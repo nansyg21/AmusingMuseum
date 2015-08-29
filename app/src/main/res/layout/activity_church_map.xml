@@ -1,0 +1,68 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:background="@color/royal_blue" tools:context=".ChurchMap"
+    android:id="@+id/framelayout">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:id="@+id/tableRow0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:id="@+id/greeceMap"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:adjustViewBounds="false"
+                android:scaleType="fitXY"
+                android:src="@drawable/church_map">
+
+            </ImageView>
+            <TableLayout
+                android:id="@+id/church_view_tableLayout"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/nameTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="Nameeeeeeeeeeeeeeee"
+                        android:textSize="@dimen/church_map_text_size">
+                    </TextView>
+
+                </TableRow>
+
+                <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/church_ImageView"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:adjustViewBounds="false"
+                       >
+                    </ImageView>
+                </TableRow>
+            </TableLayout>
+        </TableRow>
+
+    </TableLayout>
+
+</FrameLayout>

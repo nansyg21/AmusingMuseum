@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout" android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/royal_crimson">
+
+
+    <TextView android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:gravity="center"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:phoneNumber="false"
+        android:textColor="@color/neutral_beize">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:textSize="12dp"
+        android:id="@+id/textViewQuestionCounter"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/neutral_beize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:id="@+id/textViewQuestion"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textColor="@color/neutral_beize"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:minLines="2" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/buttonAns1"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="40dp"
+                android:onClick="buttonOnClick" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/buttonAns2"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="40dp"
+                android:onClick="buttonOnClick"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/buttonAns3"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:layout_marginLeft="40dp"
+                android:onClick="buttonOnClick"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Button"
+                android:id="@+id/buttonAns4"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:layout_marginRight="40dp"
+                android:onClick="buttonOnClick"/>
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/rightAnswer"
+        android:id="@+id/textViewResult"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:visibility="invisible" />
+
+
+</LinearLayout>

@@ -1,0 +1,312 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="#0099cc" tools:context=".Hangman">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tableLayout"
+        android:background="@color/royal_crimson">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow0">
+            <TableLayout
+                android:id="@+id/letterTextViewTableLayout"
+                android:layout_span="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:layout_weight="1">
+
+                <TableRow
+                    android:id="@+id/letterTableRow0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:layout_gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/dummy_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></TextView>
+                </TableRow>
+
+            </TableLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow1">
+
+            <TableLayout
+                android:id="@+id/buttonTableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <TableRow
+                    android:id="@+id/buttonTableRow0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/alphaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alpha"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/betaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/beta"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/gamaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gama"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/deltaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/delta"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/epsilonButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/epsilon"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/zetaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zeta"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/buttonTableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/etaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eta"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/thetaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/theta"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/giotaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/giota"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/kapaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/kapa"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/lamdaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lampda"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/miButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mi"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/buttonTableRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/niButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ni"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/ksiButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ksi"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/omikronButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/omikron"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/piButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pi"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/roButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ro"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/sigmaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sigma"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/buttonTableRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/tafButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/taf"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/ypsilonButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ypsilon"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/fiButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/fi"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/xiButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/xi"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/psinButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/psi"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+
+                    <Button
+                        android:id="@+id/omegaButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/omega"
+                        android:background="@color/royal_blue"
+                        android:textColor="@color/gold"
+                        android:layout_margin="2dp"></Button>
+                </TableRow>
+
+            </TableLayout>
+
+            <ImageView
+                android:id="@+id/archImageView"
+                android:adjustViewBounds="false"
+                android:layout_width="@dimen/hangman_arch_width"
+                android:layout_height="@dimen/hangman_arch_height"
+                android:baselineAlignBottom="false"
+                android:cropToPadding="false"></ImageView>
+
+        </TableRow>
+    </TableLayout>
+
+
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows. -->
+
+</FrameLayout>

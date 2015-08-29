@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    tools:context="com.asus_s550cb.theo.museum.Game"
+    android:background="@color/black_title">
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_next"
+        android:id="@+id/btnNext"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/button_back"
+        android:textStyle="bold"
+        android:textColorLink="@color/button_front"
+        android:onClick="ButtonOnClick" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:adjustViewBounds="false"
+                android:scaleType="fitXY"
+                android:id="@+id/imageView2"
+                android:background="@drawable/museum_numbers"
+                />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/museum_title"
+                        android:id="@+id/textView1"
+                        android:textAlignment="gravity"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/museum_title_size"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignRight="@+id/textView2"
+                        android:layout_alignEnd="@+id/textView2"
+                        android:layout_marginTop="@dimen/museum_title_margin"
+                        android:layout_marginBottom="@dimen/museum_title_margin" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/museum_discription"
+                        android:id="@+id/textView"
+                        android:textSize="@dimen/museum_description_size"
+                        android:maxWidth="@dimen/museum_description_max_width"
+                        android:layout_below="@+id/textView1"
+                        android:layout_alignLeft="@+id/textView2"
+                        android:layout_alignStart="@+id/textView2" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

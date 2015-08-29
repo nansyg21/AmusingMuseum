@@ -1,0 +1,197 @@
+<resources>
+    <string name="app_name">Museum</string>
+
+    <string name="action_settings">Ρυθμίσεις</string>
+    <string name="title_activity_menu">Μενού</string>
+    <string name="title_activity_game">Παιχνίδι</string>
+    <string name="title_activity_start_game">Έναρξη Παιχνιδιού</string>
+    <string name="title_activity_demo">DemoActivity</string>
+
+    <string name="btnMenuNewGame">Νέο Παιχνίδι</string>
+    <string name="btnMenuAbout">Σχετικά</string>
+    <string name="btnMenuHelp">Βοήθεια</string>
+
+
+
+<string name="title_activity_fullscreen_activity_room2">FullscreenActivityRoom2</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="button_next">Επόμενο</string>
+
+    <string name="museum_title">ΒΥΖΑΝΤΙΝΟ ΜΟΥΣΕΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ</string>
+
+    <string name="museum_discription">1. Ο ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΟΣ ΝΑΟΣ\n 2. ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΗ ΠΟΛΗ ΚΑΙ ΚΑΤΟΙΚΙΑ.\n3. ΑΠΟ ΤΑ ΗΛΥΣΙΑ ΠΕΔΙΑ ΣΤΟ ΧΡΙΣΤΙΑΝΙΚΟ ΠΑΡΑΔΕΙΣΟ.\n4. ΑΠΟ ΤΗΝ ΕΙΚΟΝΟΜΑΧΙΑ ΣΤΗ ΛΑΜΨΗ ΤΩΝ ΜΑΚΕΔΩΝΩΝ ΚΑΙ ΤΩΝ ΚΟΜΝΗΝΩΝ.\n5. ΟΙ ΔΥΝΑΣΤΕΙΕΣ ΤΩΝ ΒΥΖΑΝΤΙΝΩΝ ΑΥΤΟΚΡΑΤΟΡΩΝ.\n6. ΤΟ ΒΥΖΑΝΤΙΝΟ ΚΑΣΤΡΟ.\n7. ΤΟ ΛΥΚΌΦΩΣ ΤΟΥ ΒΥΖΑΝΤΙΟΥ.\n8-9. ΔΩΡΕΕΣ ΣΥΛΛΟΓΩΝ.\n10. Η ΒΥΖΑΝΤΙΝΗ ΚΛΗΡΟΝΟΜΙΑ ΣΤΟΥΣ ΧΡΟΝΟΥΣ ΜΕΤΑ ΤΗΝ ΑΛΩΣΗ\n11. ΑΝΑΚΑΛΥΠΤΟΝΤΑΣ ΤΟ ΠΑΡΕΛΘΟΝ.\n
+                        </string>
+
+    <string name="alpha">Α</string>
+    <string name="beta">Β</string>
+    <string name="gama">Γ</string>
+    <string name="delta">Δ</string>
+    <string name="epsilon">Ε</string>
+    <string name="zeta">Ζ</string>
+    <string name="eta">Η</string>
+    <string name="theta">Θ</string>
+    <string name="giota">Ι</string>
+    <string name="kapa">Κ</string>
+    <string name="lampda">Λ</string>
+    <string name="mi">Μ</string>
+    <string name="ni">Ν</string>
+    <string name="ksi">Ξ</string>
+    <string name="omikron">Ο</string>
+    <string name="pi">Π</string>
+    <string name="ro">Ρ</string>
+    <string name="sigma">Σ</string>
+    <string name="taf">Τ</string>
+    <string name="ypsilon">Υ</string>
+    <string name="fi">Φ</string>
+    <string name="xi">Χ</string>
+    <string name="psi">Ψ</string>
+    <string name="omega">Ω</string>
+
+    <string name="underscore">_</string>
+
+    <string-array name="words">
+        <item>ΚΩΝΣΤΑΝΤΙΝΟΥ</item>
+        <item>ΑΡΜΕΝΟΠΟΥΛΟΥ</item>
+        <item>ΚΡΙΤΟΥ</item>
+        <item>ΘΕΣΣΑΛΟΝΙΚΗΣ</item>
+        <item>ΠΡΟΧΕΙΡΟΝ</item>
+        <item>ΛΕΓΟΜΕΝΟΝ</item>
+        <item>ΕΞΑΒΙΒΛΟΣ</item>
+        <item>ΕΙΣ</item>
+        <item>ΚΟΙΝΗΝ</item>
+        <item>ΓΛΩΣΣΑΝ</item>
+        <item>ΜΕΤΑΦΡΑΣΘΕΙΣΑ</item>
+        <item>ΔΙΟΡΘΩΘΕΙΣΑ</item>
+        <item>ΕΚΤΕΘΕΙΣΑ</item>
+        <item>ΚΑΤΑ</item>
+        <item>ΥΦΟΣ</item>
+        <item>ΝΟΗΜΑ</item>
+        <item>ΠΡΩΤΟΤΥΠΟΥ</item>
+        <item>ΕΛΛΗΝΙΚΗΣ</item>
+        <item>ΠΑΡΑ</item>
+        <item>ΑΛΕΞΙΟΥ</item>
+        <item>ΣΠΑΝΟΥ</item>
+        <item>ΙΩΑΝΝΙΝΩΝ</item>
+        <item>ΕΓΧΕΙΡΙΔΙΟ</item>
+        <item>ΠΡΟΣΕΤΕΘΗ</item>
+        <item>ΑΛΦΑΒΗΤΟΝ</item>
+        <item>ΠΡΟΤΡΟΠΗ</item>
+        <item>ΔΑΠΑΝΗ</item>
+        <item>ΠΑΝΙΕΡΩΤΑΤΟΥ</item>
+        <item>ΣΕΒΑΣΜΙΟΤΑΤΟΥ</item>
+        <item>ΜΗΤΡΟΠΟΛΙΤΟΥ</item>
+        <item>ΗΡΑΚΛΕΙΑΣ</item>
+        <item>ΓΕΡΑΣΙΜΟΥ</item>
+        <item>ΑΝΑΛΩΜΑΣΙ</item>
+        <item>ΠΡΩΤΟΝ</item>
+        <item>ΤΕΤΥΠΩΤΑΙ</item>
+    </string-array>
+
+    <string-array name="monument_names">
+        <item>ΑΓΓΕΛΟΚΑΣΤΡΟ</item>
+        <item>ΑΜΦΙΠΟΛΗ</item>
+        <item>ΣΕΡΒΙΑ</item>
+        <item>ΦΙΛΙΠΠΟΙ</item>
+        <item>ΜΟΓΛΕΝΑ</item>
+        <item>ΣΕΡΡΕΣ</item>
+        <item>ΠΛΑΤΑΜΩΝΑΣ</item>
+        <item>ΑΝΑΚΤΟΡΟΥΠΟΛΗ</item>
+        <item>ΘΕΣΣΑΛΟΝΙΚΗ</item>
+        <item>ΑΝΑΣΤΑΣΙΟΥΠΟΛΗ</item>
+        <item>ΓΥΝΑΙΚΟΚΑΣΤΡΟ</item>
+        <item>ΚΟΥΜΟΥΤΖΗΝΑ</item>
+        <item>ΣΙΔΗΡΟΚΑΣΤΡΟ</item>
+        <item>ΓΡΑΤΙΝΗ</item>
+        <item>ΡΕΝΤΙΝΑ</item>
+        <item>ΔΙΔΥΜΟΤΕΙΧΟ</item>
+        <item>ΠΥΘΙΟ</item>
+    </string-array>
+
+    <string-array name="monument_images_filenames">
+        <item>monument_aggelokastro</item>
+        <item>monument_amfipoli</item>
+        <item>monument_servia</item>
+        <item>monument_filippoi</item>
+        <item>monument_moglena</item>
+        <item>monument_serres</item>
+        <item>monument_platamonas</item>
+        <item>monument_anaktoroupoli</item>
+        <item>monument_thessaloniki</item>
+        <item>monument_anastasioupoli</item>
+        <item>monument_gynaikokastro</item>
+        <item>monument_koumoutzina</item>
+        <item>monument_sidirokastro</item>
+        <item>monument_gratini</item>
+        <item>monument_rentina</item>
+        <item>monument_didimoteixo</item>
+        <item>monument_pithio</item>
+    </string-array>
+
+    <string name="title">Mini quiz challenge</string>
+    <string name="rightAnswer">Σωστό !</string>
+    <string name="wrongAnswer">Λάθος !</string>
+    <string name="result">Αποτέλεσμα</string>
+    <string name="correct_answers_num">Πλήθος σωστών απαντήσεων</string>
+    <string name="question">Ερώτηση</string>
+    <string name="from">από 5</string>
+    <string name="qrcode">QR Code</string>
+
+
+    <string-array name="Questions">
+        <item>Χρονολογία της άλωσης της Κωνσταντινούπολης από τους Οθωμανούς:</item>
+        <item>Αυτοκράτορας που κατήργησε τους ολυμπιακούς αγώνες:</item>
+        <item>Σύμβολο της Βυζαντινής Αυτοκρατορίας:</item>
+        <item>Ονομασία Βυζαντινών που ήταν ενάντια στην απεικόνιση των ιερών συμβόλων:</item>
+        <item>Ονομασία οθωμανού στρατιώτη:</item>
+        <item>Q6</item>
+        <item>Q7</item>
+        <item>Q8</item>
+    </string-array>
+
+    <string-array name="Answers">
+        <item>1284</item>
+        <item>1282</item>
+        <item>1453</item>
+        <item>1435</item>
+
+        <item>Θεοδόσιος</item>
+        <item>Ιουλιανός</item>
+        <item>Κωνσταντίνος</item>
+        <item>Ηράκλειος</item>
+
+        <item>Κουκουβάγια</item>
+        <item>Λιοντάρι</item>
+        <item>Αετός</item>
+        <item>Νυχτερίδα</item>
+
+        <item>Ανθενωτικοί</item>
+        <item>Εθνικοί</item>
+        <item>Ειδωλολάτρες</item>
+        <item>Εικονομάχοι</item>
+
+        <item>Ακρίτας</item>
+        <item>Λεγεωνάριος</item>
+        <item>Γενίτσαρος</item>
+        <item>Σταυροφόρος</item>
+    </string-array>
+
+    <string-array name="RightAnswers">
+        <item>1453</item>
+        <item>Θεοδόσιος</item>
+        <item>Αετός</item>
+        <item>Εικονομάχοι</item>
+        <item>Γενίτσαρος</item>
+    </string-array>
+
+
+    <string-array name="right_order_names">
+        <item>Μετά το πλάσιμο στον τροχό</item>
+        <item>Επένδυση ασπριδερού επιχρίσματος</item>
+        <item>Χάραξη διάκοσμου</item>
+        <item>Επι-υάλωση και ψήσιμο</item>
+    </string-array>
+
+    <string name="righ_order_timer">Χρόνος που απομένει</string>
+</resources>

@@ -1,0 +1,17 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="black_title">#121242</color>
+    <color name="button_back">#ff677cff</color>
+    <color name="button_front">#ff9099ff</color>
+
+    <color name="royal_crimson">#8F0014</color>
+    <color name="royal_blue">#0B0075</color>
+    <color name="neutral_beize">#EFCF9C</color>
+    <color name="gold">#E9D308</color>
+    <color name="disable_button">#6E6E8A</color>
+
+    <color name="white">#ffffff</color>
+
+
+</resources>

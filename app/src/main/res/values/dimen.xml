@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="museum_title_size">16sp</dimen>
+    <dimen name="museum_description_size">14sp</dimen>
+
+    <dimen name="museum_title_margin">10dp</dimen>
+    <dimen name="museum_description_max_width">280dp</dimen>
+
+    <dimen name="hangman_arch_width">250dp</dimen>
+    <dimen name="hangman_arch_height">180dp</dimen>
+    <dimen name="hangman_text_size">18sp</dimen>
+
+    <dimen name="church_map_text_size">32sp</dimen>
+    <dimen name="click_me_text_size">40sp</dimen>
+
+    <dimen name="right_order_time_size">32sp</dimen>
+    <dimen name="right_order_name_size">24sp</dimen>
+
+</resources>
