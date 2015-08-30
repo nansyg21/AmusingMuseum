@@ -86,7 +86,7 @@ public class StartGame extends Activity {
             holder = getHolder();
             ppenguin = BitmapFactory.decodeResource(getResources(), R.drawable.penguinsheet);
             background= BitmapFactory.decodeResource(getResources(), R.drawable.museum_map);
-            background = Bitmap.createScaledBitmap(background,width, height-100, false);
+            background = Bitmap.createScaledBitmap(background,width,  (int) Math.ceil(height * 0.95), false);
 
 
         }

@@ -83,19 +83,19 @@ public class Sprite {
 
         //Road to ROOM 1
         if(stage==1){
-           if(goRoom_1())//if room1 reached... then return 1
-               return 1;}
+            if(goRoom_1())//if room1 reached... then return 1
+                return 1;}
 
 
         //Road to ROOM 2
-       else  if (stage==2){
-               if(goRoom_2())
-                 return 2;}
+        else  if (stage==2){
+            if(goRoom_2())
+                return 2;}
 
         //Road to ROOM 3
-       else  if (stage==3){
-                   if(goRoom_3())
-                       return 3;}
+        else  if (stage==3){
+            if(goRoom_3())
+                return 3;}
 
         //Road to ROOM 4
         else  if (stage==4){
@@ -112,6 +112,31 @@ public class Sprite {
             if(goRoom_6())
                 return 6;}
 
+        //Road to ROOM 7
+        else  if (stage==7){
+            if(goRoom_7())
+                return 7;}
+
+        //Road to ROOM 8
+        else  if (stage==8){
+            if(goRoom_8())
+                return 8;}
+
+        //Road to ROOM 9
+        else  if (stage==9){
+            if(goRoom_9())
+                return 9;}
+
+        //Road to ROOM 10
+        else  if (stage==10){
+            if(goRoom_10())
+                return 10;}
+
+        //Road to ROOM 11
+        else  if (stage==11){
+            if(goRoom_11())
+                return 11;}
+
         try {
             Thread.sleep(75);
         } catch (InterruptedException e) {
@@ -124,11 +149,12 @@ public class Sprite {
         return 0;
     }
 
+    //Set the start coordinations of the road
     public void initializeSpriteStartingPosition(){
         //Starting Point
         if(stage==1){
             x= (int) Math.ceil(widthScreen*0.40);
-            y= (int) Math.ceil(heightScreen*0.78);
+            y= (int) Math.ceil(heightScreen*0.75);
             direction=1;
             xSpeed=0;
             ySpeed=-penguinStep;
@@ -154,30 +180,51 @@ public class Sprite {
             ySpeed=-penguinStep;
         }
         else if(stage==5){
-            x= (int) Math.ceil(widthScreen*0.255);
-            y= (int) Math.ceil(heightScreen*0.25);
-            direction=1;
-            xSpeed=0;
-            ySpeed=-penguinStep;
+            x= (int) Math.ceil(widthScreen*0.15);
+            y= (int) Math.ceil(heightScreen*0.54);
+            direction=2;//right
+            xSpeed=penguinStep;
+            ySpeed=0;
         }
         else if(stage==6){
-            x= (int) Math.ceil(widthScreen*0.255);
-            y= (int) Math.ceil(heightScreen*0.25);
-            direction=1;
+            x= (int) Math.ceil(widthScreen*0.15);
+            y= (int) Math.ceil(heightScreen*0.58);
+            direction=0;//down
             xSpeed=0;
-            ySpeed=-penguinStep;
+            ySpeed=penguinStep;
         }
         else if(stage==7){
-            x= (int) Math.ceil(widthScreen*0.255);
-            y= (int) Math.ceil(heightScreen*0.25);
+            x= (int) Math.ceil(widthScreen*0.10);
+            y= (int) Math.ceil(heightScreen*0.66);
+            direction=2;//right
+            xSpeed=penguinStep;
+            ySpeed=0;
+        }
+        else if(stage==8){
+            x= (int) Math.ceil(widthScreen*0.17);
+            y= (int) Math.ceil(heightScreen*0.71);
             direction=1;
             xSpeed=0;
             ySpeed=-penguinStep;
         }
-        else if(stage==8){
-            x= (int) Math.ceil(widthScreen*0.255);
-            y= (int) Math.ceil(heightScreen*0.25);
-            direction=1;
+        else if(stage==9){
+            x= (int) Math.ceil(widthScreen*0.315);
+            y= (int) Math.ceil(heightScreen*0.68);
+            direction=1;//up
+            xSpeed=0;
+            ySpeed=-penguinStep;
+        }
+        else if(stage==10){
+            x= (int) Math.ceil(widthScreen*0.29);
+            y= (int) Math.ceil(heightScreen*0.68);
+            direction=3;//left
+            xSpeed=-penguinStep;
+            ySpeed=0;
+        }
+        else if(stage==11){
+            x= (int) Math.ceil(widthScreen*0.38);
+            y= (int) Math.ceil(heightScreen*0.45);
+            direction=1;//up
             xSpeed=0;
             ySpeed=-penguinStep;
         }
@@ -218,7 +265,6 @@ public class Sprite {
             i++;
         } else if (i == 5 && x < (int) Math.ceil(widthScreen * 0.47)) {
             i=0;
-            setThereYet(true);
             return true;
         }
 
@@ -226,7 +272,7 @@ public class Sprite {
         return false;
     }
     public boolean goRoom_2() {
-        setThereYet(false);
+
 
         if (x < (int) Math.ceil(widthScreen * 0.345) && i == 0) {
             //Go to next Coordinate
@@ -237,7 +283,6 @@ public class Sprite {
         }
         else if (i==1 && y < (int) Math.ceil(heightScreen * 0.12)){
             i=0;
-            setThereYet(true);
             return true;
         }
         //is Room 2 reached??
@@ -245,7 +290,7 @@ public class Sprite {
     }
     public boolean goRoom_3() {
 
-        setThereYet(false);
+
         if (y > (int) Math.ceil(heightScreen * 0.16) && i == 0) {
             //Go to next Coordinate
             xSpeed = -penguinStep;
@@ -260,7 +305,6 @@ public class Sprite {
             i++;
         }else if (i==2 && y > (int) Math.ceil(heightScreen * 0.2)){
             i=0;
-            setThereYet(true);
             return true;
         }
         //is Room 3 reached??
@@ -298,58 +342,143 @@ public class Sprite {
     public boolean goRoom_5() {
 
 
-        if (y > (int) Math.ceil(heightScreen * 0.20) && i == 0) {
-            //Go to next Coordinate
-            xSpeed = -penguinStep;
-            ySpeed = 0;
-            direction = 3;// left
-            i++;
-        } else if (i == 1 && x < (int) Math.ceil(widthScreen * 0.2)) {
+        if (x > (int) Math.ceil(widthScreen * 0.18) && i == 0) {
             //Go to next Coordinate
             xSpeed = 0;
             ySpeed = penguinStep;
-            direction = 0;//down
+            direction = 0;// down
             i++;
+        } else if (i == 1 && y > (int) Math.ceil(heightScreen * 0.66)) {
+            //Go to next Coordinate
+            xSpeed = -penguinStep;
+            ySpeed = 0;
+            direction = 3;//left
+            i++;
+        }else if (i == 2 && x < (int) Math.ceil(widthScreen * 0.15)) {
+            //Go to next Coordinate
+            xSpeed = 0;
+            ySpeed = -penguinStep;
+            direction = 1;//up
+            i++;
+        }else if (i == 3 && y < (int) Math.ceil(heightScreen * 0.62)) {
+            i=0;
+            return true;
         }
-        //is Room 4 reached??
+        //is Room 5 reached??
         return false;
     }
     public boolean goRoom_6() {
 
 
-        if (y > (int) Math.ceil(heightScreen * 0.20) && i == 0) {
+        if (y > (int) Math.ceil(heightScreen * 0.655) && i == 0) {
             //Go to next Coordinate
             xSpeed = -penguinStep;
             ySpeed = 0;
             direction = 3;// left
             i++;
-        } else if (i == 1 && x < (int) Math.ceil(widthScreen * 0.2)) {
+        } else if (i == 1 && x < (int) Math.ceil(widthScreen * 0.12)) {
             //Go to next Coordinate
-            xSpeed = 0;
-            ySpeed = penguinStep;
-            direction = 0;//down
-            i++;
+            i=0;
+            return true;
         }
-        //is Room 5 reached??
+        //is Room 6 reached??
         return false;
     }
     public boolean goRoom_7() {
 
 
-        if (y > (int) Math.ceil(heightScreen * 0.20) && i == 0) {
+        if (x > (int) Math.ceil(widthScreen * 0.17) && i == 0) {
+            //Go to next Coordinate
+            xSpeed = 0;
+            ySpeed = penguinStep;
+            direction = 0;// down
+            i++;
+        } else if (i == 1 && y > (int) Math.ceil(heightScreen * 0.7)) {
+            i=0;
+            return true;
+        }
+        //is Room 7 reached??
+        return false;
+    }
+    public boolean goRoom_8() {
+
+
+        if (y < (int) Math.ceil(heightScreen * 0.68) && i == 0) {
+            //Go to next Coordinate
+            xSpeed = penguinStep;
+            ySpeed = 0;
+            direction = 2;// right
+            i++;
+        } else if (i == 1 && x > (int) Math.ceil(widthScreen * 0.305)) {
+            i=0;
+            return true;
+        }
+        //is Room 8 reached??
+        return false;
+    }
+    public boolean goRoom_9() {
+
+
+        if (y < (int) Math.ceil(heightScreen * 0.58) && i == 0) {
+            //Go to next Coordinate
+            xSpeed = penguinStep;
+            ySpeed = 0;
+            direction = 2;// right
+            i++;
+        } else if (i == 1 && x > (int) Math.ceil(widthScreen * 0.33)) {
+            i=0;
+            return true;
+        }
+        //is Room 9 reached??
+        return false;
+    }
+    public boolean goRoom_10() {
+
+
+        if (i == 0 && x < (int) Math.ceil(widthScreen * 0.29)) {
+            //Go to next Coordinate
+            xSpeed = 0;
+            ySpeed = -penguinStep;
+            direction = 1;// up
+            i++;
+        }
+        else if (i == 1 && y < (int) Math.ceil(heightScreen * 0.50)) {
+            //Go to next Coordinate
+            xSpeed = penguinStep;
+            ySpeed = 0;
+            direction = 2;// right
+            i++;
+        }
+        else if (i == 2 && x > (int) Math.ceil(widthScreen * 0.32)) {
+            //Go to next Coordinate
+            i=0;
+            return true;
+        }
+        //is Room 10 reached??
+        return false;
+    }
+    public boolean goRoom_11() {
+
+
+        if (y < (int) Math.ceil(heightScreen * 0.39) && i == 0) {
             //Go to next Coordinate
             xSpeed = -penguinStep;
             ySpeed = 0;
             direction = 3;// left
             i++;
-        } else if (i == 1 && x < (int) Math.ceil(widthScreen * 0.2)) {
+        }
+        else  if ( i == 1 && x < (int) Math.ceil(widthScreen * 0.24) ) {
             //Go to next Coordinate
             xSpeed = 0;
             ySpeed = penguinStep;
-            direction = 0;//down
+            direction = 0;// down
             i++;
         }
-        //is Room 6 reached??
+        else if (i == 2 && y > (int) Math.ceil(heightScreen * 0.31)) {
+            i=0;
+            return true;
+        }
+        //is Room 11 reached??
         return false;
     }
 
