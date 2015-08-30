@@ -1,5 +1,8 @@
 package com.asus_s550cb.theo.museum;
 
+/**
+ * Created by Nasia on 30/8/2015.
+ */
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,16 +18,15 @@ import android.view.View;
 
 public class HelpscreenSliderActivity extends FragmentActivity {
 
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 8; // number of help pages -> static because of implementation
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
      */
     private ViewPager mPager;
+
+    String[] advices; // Array with help statements for each game
 
     /**
      * The pager adapter, which provides the pages to the view pager widget.
@@ -37,10 +39,15 @@ public class HelpscreenSliderActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_helpscreen_slider);
 
+        advices=getResources().getStringArray(R.array.advices);
+
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+
+        // Set animation from android standar library
+        mPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
         // ------------------ Code in order to hide the navigation bar -------------------- //
         // The navigation bar is hiden and comes up only if the user swipes down the status bar
@@ -122,7 +129,9 @@ public class HelpscreenSliderActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new HelpScreenFragment();
+            // Create new instance of HelpScreenFragment according to the current shown advice
+            // newInstance is overrided in the HelpScreenFragment class
+            return HelpScreenFragment.newInstance(advices[position]);
         }
 
         @Override
