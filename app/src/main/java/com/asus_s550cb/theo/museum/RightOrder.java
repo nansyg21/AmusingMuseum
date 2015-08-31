@@ -92,7 +92,10 @@ public class RightOrder extends Activity {
                 long minutes=(millisUntilFinished/1000*60)%60;
 
 
-                timer.setText(minutes+" : " + seconds);
+                if(seconds > 9)
+                    timer.setText(+minutes+" : " + seconds);
+                else
+                    timer.setText(+minutes+" : 0" + seconds);
             }
 
             public void onFinish() {

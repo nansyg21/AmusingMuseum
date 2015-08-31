@@ -87,7 +87,8 @@ public class QuizGameActivity extends Activity {
             public void onFinish() {
                 timer.setText("Time's up!");
                 //Method that finishes properly the activity
-                timeIsUp();
+                //TODO:
+                //timeIsUp();
             }
         }.start();
         /**-----------------------TIMER END--------------------------**/
@@ -226,6 +227,7 @@ public class QuizGameActivity extends Activity {
     }
     //When the time end finish quiz finish Activity
     //and make sure that you are in the right question
+    //TODO:
     public void timeIsUp(){
 
         if(questionCountPublic<3)
