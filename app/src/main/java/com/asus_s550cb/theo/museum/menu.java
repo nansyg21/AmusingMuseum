@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 public class menu extends Activity {
 
+    Button helpButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,9 @@ public class menu extends Activity {
             case R.id.btnMenuNewGame:
                 startActivity(new Intent(getApplicationContext(),Game.class));
                 //finish();
+                break;
+            case R.id.btnMenuHelp:
+                startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
                 break;
         }
     }
