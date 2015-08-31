@@ -129,17 +129,25 @@
         <item>monument_pithio</item>
     </string-array>
 
-    <string name="title">Mini quiz challenge</string>
+    <string name="title">Ερωτοαπαντήσεις</string>
     <string name="rightAnswer">Σωστό !</string>
     <string name="wrongAnswer">Λάθος !</string>
     <string name="result">Αποτέλεσμα</string>
     <string name="correct_answers_num">Πλήθος σωστών απαντήσεων</string>
     <string name="question">Ερώτηση</string>
-    <string name="from">από 5</string>
+    <string name="from">από 3</string>
     <string name="qrcode">QR Code</string>
 
 
     <string-array name="Questions">
+        <item>Αιώνες που αποκαλούνται και ως Παλαιοχριστιανική περίοδος:</item>
+        <item>Έδρα της Βυζαντινής αυτοκρατορίας, πριν την ίδρυση της Κωσταντινούπολης:</item>
+        <item>Έτος ίδρυσης της Κωνσταντινούπολης από τον Μέγα Κωνσταντίνο:</item>
+        <item>Στην Θεσσαλονίκη τρικλίνιο ήταν η ονομασία για:</item>
+        <item>Οι αμφορείς χρησιμοποιούνταν σε σπίτια ώς:</item>
+        <item>Το πιο διαδεδομένο ρούχο στην Ανατολική Μεσόγειο, ο χιτώνας κατασκευάζονταν από:</item>
+        <item></item>
+
         <item>Χρονολογία της άλωσης της Κωνσταντινούπολης από τους Οθωμανούς:</item>
         <item>Αυτοκράτορας που κατήργησε τους ολυμπιακούς αγώνες:</item>
         <item>Σύμβολο της Βυζαντινής Αυτοκρατορίας:</item>
@@ -151,6 +159,37 @@
     </string-array>
 
     <string-array name="Answers">
+        <item>4ος - 7ος αιώνας</item>
+        <item>3ος - 5ος αιώνας</item>
+        <item>4ος - 6ος αιώνας</item>
+        <item>3ος - 7ος αιώνας</item>
+
+        <item>Αλεξάνδρεια</item>
+        <item>Αντιόχεια</item>
+        <item>Ρώμη</item>
+        <item>Αθήνα</item>
+
+        <item>325 μ.Χ</item>
+        <item>332 μ.Χ</item>
+        <item>340 μ.Χ</item>
+        <item>330 μ.Χ</item>
+
+
+        <item>Είδος ενδυμασίας</item>
+        <item>Πήλινα αγγεία</item>
+        <item>Μαγειρικό σκεύος</item>
+        <item>Χώρος αστικής οικίας</item>
+
+        <item>Αποθηκευτικά αγγεία</item>
+        <item>Μαγειρικά σκεύη</item>
+        <item>Διακοσμηση</item>
+        <item>Στηρίγματα</item>
+
+        <item>Λινάρι ή μαλλί</item>
+        <item>Δέρμα ζώων</item>
+        <item>Μετάξι</item>
+        <item>Βαμβάκι</item>
+
         <item>1284</item>
         <item>1282</item>
         <item>1453</item>
@@ -178,6 +217,11 @@
     </string-array>
 
     <string-array name="RightAnswers">
+        <item>4ος - 7ος αιώνας</item>
+        <item>Ρώμη</item>
+        <item>330 μ.Χ</item>
+        <item>Χώρος αστικής οικίας</item>
+        <item>Αποθηκευτικά αγγεία</item>
         <item>1453</item>
         <item>Θεοδόσιος</item>
         <item>Αετός</item>

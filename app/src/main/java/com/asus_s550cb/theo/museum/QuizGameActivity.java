@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -20,13 +21,19 @@ public class QuizGameActivity extends Activity {
 
     private int currentApiVersion;
 
-    //question counter...
-    private int questionCount;
-    private int rightAnsCounter;
+    //question counter Overall...
+    public static int questionCountPublic=0;
+    public static int questionRightAnsPublic=0;
+
+    //question for specific room
+    private int questionCounter;
+    private int questionRightAns;
+
     //Screen dimensions
     private int screenWidth;
     private int screenHeight;
 
+    private TextView timer; //Show the remaining time
     private TextView txtVquestion,txtVquestionCounter,txtVresult;
     private Button ans1,ans2,ans3,ans4;
     private String [] questions;
@@ -36,6 +43,7 @@ public class QuizGameActivity extends Activity {
     String nextApp;
     private int appToStart;
 
+    CountDownTimer countDownTimer; //Timer
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +69,30 @@ public class QuizGameActivity extends Activity {
         answers= getResources().getStringArray(R.array.Answers);
         rightAnswers= getResources().getStringArray(R.array.RightAnswers);
 
-        questionCount=0;
+        /**--------------------TIMER START----------------------------------**/
+        timer=(TextView) findViewById(R.id.txtViewTimer);
+        countDownTimer=new CountDownTimer(30000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                long seconds=(millisUntilFinished / 1000)%60;
+                long minutes=(millisUntilFinished/1000*60)%60;
+
+                if(seconds > 9)
+                    timer.setText(+minutes+" : " + seconds);
+                else
+                    timer.setText(+minutes+" : 0" + seconds);
+
+            }
+
+            public void onFinish() {
+                timer.setText("Time's up!");
+                //Method that finishes properly the activity
+                timeIsUp();
+            }
+        }.start();
+        /**-----------------------TIMER END--------------------------**/
+
+
         nextApp="nextApp";
 
         Bundle extras = getIntent().getExtras();
@@ -119,21 +150,28 @@ public class QuizGameActivity extends Activity {
 
 
         //Check for the right answer
-        if (test.toString().equals(rightAnswers[questionCount]))
+        if (test.toString().equals(rightAnswers[questionCountPublic]))
         {
             txtVresult.setText(getResources().getString(R.string.rightAnswer));
-            rightAnsCounter++;
-        }
-        else
-            txtVresult.setText(getResources().getString(R.string.wrongAnswer));
 
-        //increase the counter
-        ++questionCount;
+            //RghtAnswer so increase the proper counter
+            questionRightAnsPublic++;
+            questionRightAns++;
+        }
+        else {
+            txtVresult.setText(getResources().getString(R.string.wrongAnswer));
+        }
+
+        //increase the public & private counter
+        ++questionCountPublic;
+        ++questionCounter;
 
         //sleep and procceed to the nextQuestion
         SystemClock.sleep(1000);
-        if(questionCount <5)
+        if(questionCounter <3){
             nextQuestion();
+        }
+
         else
         {
             // When done open the qr scaner again to play the riddle
@@ -177,12 +215,50 @@ public class QuizGameActivity extends Activity {
     }
 
     public void nextQuestion(){
-        txtVquestion.setText(questions[questionCount]);
-        txtVquestionCounter.setText(getResources().getString(R.string.question)+ (questionCount +1) + getResources().getString(R.string.from));
+        txtVquestion.setText(questions[questionCountPublic]);
+        txtVquestionCounter.setText(getResources().getString(R.string.question)+" "+ (questionCounter +1)+" " + getResources().getString(R.string.from));
 
-        ans1.setText(answers[questionCount *4]);
-        ans2.setText(answers[questionCount *4+1]);
-        ans3.setText(answers[questionCount *4+2]);
-        ans4.setText(answers[questionCount *4+3]);
+        ans1.setText(answers[questionCountPublic *4]);
+        ans2.setText(answers[questionCountPublic *4+1]);
+        ans3.setText(answers[questionCountPublic *4+2]);
+        ans4.setText(answers[questionCountPublic * 4 + 3]);
+
     }
+    //When the time end finish quiz finish Activity
+    //and make sure that you are in the right question
+    public void timeIsUp(){
+
+        if(questionCountPublic<3)
+            questionCountPublic=3;
+        else if (questionCountPublic<6)
+            questionCountPublic=6;
+        else if (questionCountPublic<9)
+            questionCountPublic=9;
+        else if (questionCountPublic<12)
+            questionCountPublic=12;
+        else if (questionCountPublic<15)
+            questionCountPublic=15;
+        else if (questionCountPublic<18)
+            questionCountPublic=18;
+        else if (questionCountPublic<21)
+            questionCountPublic=21;
+        else if (questionCountPublic<24)
+            questionCountPublic=24;
+        else if (questionCountPublic<27)
+            questionCountPublic=27;
+        else if (questionCountPublic<30)
+            questionCountPublic=30;
+
+
+        // When done open the qr scaner again to play the riddle
+        // To do so pass back the next activity number
+        // And make sure the user cannot go but by hitting the back button
+        QrCodeScanner.questionMode=false;
+        Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
+        itns.putExtra(nextApp, appToStart);
+        itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(itns);
+        finish();
+    }
+
 }

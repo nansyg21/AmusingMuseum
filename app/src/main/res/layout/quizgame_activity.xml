@@ -7,16 +7,37 @@
     android:background="@color/royal_crimson">
 
 
-    <TextView android:id="@+id/titleTextView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:gravity="center"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        android:phoneNumber="false"
-        android:textColor="@color/neutral_beize">
-    </TextView>
+        android:gravity="right|fill_vertical"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:phoneNumber="false"
+            android:textColor="@color/neutral_beize"
+            android:layout_weight="2"
+            android:gravity="right">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TIMER"
+            android:id="@+id/txtViewTimer"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:textColor="@color/neutral_beize"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:maxWidth="100dp"
+            android:minWidth="100dp" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,7 +47,8 @@
         android:textSize="12dp"
         android:id="@+id/textViewQuestionCounter"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/neutral_beize" />
+        android:textColor="@color/neutral_beize"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,7 +56,6 @@
         android:text="Large Text"
         android:id="@+id/textViewQuestion"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
@@ -62,7 +83,10 @@
                 android:layout_weight="1"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="40dp"
-                android:onClick="buttonOnClick" />
+                android:onClick="buttonOnClick"
+                android:maxWidth="200dp"
+                android:minWidth="200dp"
+                android:minLines="2" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -73,7 +97,10 @@
                 android:layout_weight="1"
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="40dp"
-                android:onClick="buttonOnClick"/>
+                android:onClick="buttonOnClick"
+                android:maxWidth="200dp"
+                android:minLines="2"
+                android:minWidth="200dp" />
         </TableRow>
 
         <TableRow
@@ -88,7 +115,10 @@
                 android:layout_column="0"
                 android:layout_weight="1"
                 android:layout_marginLeft="40dp"
-                android:onClick="buttonOnClick"/>
+                android:onClick="buttonOnClick"
+                android:maxWidth="200dp"
+                android:minLines="2"
+                android:minWidth="200dp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -98,7 +128,10 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:layout_marginRight="40dp"
-                android:onClick="buttonOnClick"/>
+                android:onClick="buttonOnClick"
+                android:maxWidth="200dp"
+                android:minLines="2"
+                android:minWidth="200dp" />
         </TableRow>
     </TableLayout>
 
@@ -109,8 +142,9 @@
         android:text="@string/rightAnswer"
         android:id="@+id/textViewResult"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:visibility="invisible" />
+        android:layout_marginTop="12dp"
+        android:visibility="invisible"
+        android:textColor="@color/neutral_beize"/>
 
 
 </LinearLayout>
