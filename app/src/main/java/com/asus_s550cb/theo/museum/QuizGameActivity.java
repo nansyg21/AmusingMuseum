@@ -51,6 +51,13 @@ public class QuizGameActivity extends Activity {
 
         setContentView(R.layout.quizgame_activity);
 
+        nextApp="nextApp";
+
+        Bundle extras = getIntent().getExtras();
+        if(extras !=null) {
+            appToStart = extras.getInt("nextApp");
+        }
+
         // Get screen dimensions -- pixels
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -86,20 +93,21 @@ public class QuizGameActivity extends Activity {
 
             public void onFinish() {
                 timer.setText("Time's up!");
-                //Method that finishes properly the activity
-                //TODO:
-                //timeIsUp();
+                // Finish game when the timer is zero
+
+                QrCodeScanner.questionMode=false;
+                Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
+                itns.putExtra(nextApp, appToStart);
+                itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itns);
+                finish();
+
             }
         }.start();
         /**-----------------------TIMER END--------------------------**/
 
 
-        nextApp="nextApp";
 
-        Bundle extras = getIntent().getExtras();
-        if(extras !=null) {
-            appToStart = extras.getInt("nextApp");
-        }
 
         //call the next question
         nextQuestion();
@@ -175,6 +183,8 @@ public class QuizGameActivity extends Activity {
 
         else
         {
+           //Stop timer or else it continues running after the activity is finished
+            countDownTimer.cancel();
             // When done open the qr scaner again to play the riddle
             // To do so pass back the next activity number
             // And make sure the user cannot go but by hitting the back button
