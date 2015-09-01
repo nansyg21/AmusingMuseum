@@ -94,7 +94,7 @@ public class QuizGameActivity extends Activity {
             public void onFinish() {
                 timer.setText("Time's up!");
                 // Finish game when the timer is zero
-
+                fixQuestionCounter();
                 QrCodeScanner.questionMode=false;
                 Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
                 itns.putExtra(nextApp, appToStart);
@@ -237,8 +237,8 @@ public class QuizGameActivity extends Activity {
     }
     //When the time end finish quiz finish Activity
     //and make sure that you are in the right question
-    //TODO:
-    public void timeIsUp(){
+
+    public void fixQuestionCounter(){
 
         if(questionCountPublic<3)
             questionCountPublic=3;
@@ -260,17 +260,6 @@ public class QuizGameActivity extends Activity {
             questionCountPublic=27;
         else if (questionCountPublic<30)
             questionCountPublic=30;
-
-
-        // When done open the qr scaner again to play the riddle
-        // To do so pass back the next activity number
-        // And make sure the user cannot go but by hitting the back button
-        QrCodeScanner.questionMode=false;
-        Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
-        itns.putExtra(nextApp, appToStart);
-        itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(itns);
-        finish();
     }
 
 }
