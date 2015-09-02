@@ -4,7 +4,7 @@
     android:paddingRight="5dp"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
-    tools:context="com.asus_s550cb.theo.museum.Game"
+    tools:context="com.asus_s550cb.theo.museum.LoadingScreen"
     android:background="@color/black_title"
     android:orientation="vertical"
     android:gravity="center_vertical|center_horizontal">
