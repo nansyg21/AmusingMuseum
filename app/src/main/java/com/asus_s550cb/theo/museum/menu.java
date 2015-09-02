@@ -64,6 +64,13 @@ public class menu extends Activity {
                 break;
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hideNavBar();
+    }
+
     //HIDE the status an the navigation bars
     public void hideNavBar() {
         if (Build.VERSION.SDK_INT >= 19) {
