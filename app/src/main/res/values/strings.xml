@@ -274,6 +274,8 @@
         <item>Επι-υάλωση και ψήσιμο</item>
     </string-array>
 
+    <string name="loading">Παρακαλώ περιμένετε...</string>
+
     <string name="righ_order_timer">Χρόνος που απομένει</string>
 
     <string name="title_activity_help_screen">HelpScreenActivity</string>
@@ -332,6 +334,8 @@
             Βάλε στην σωστή σειρά τα στάδια παραγωγής τους, την ονομασία τους και την μορφή τους, όσο πιο γρήγορα μπορείς για να κερδίσεις πόντους.
         </item>
     </string-array>
+
+    <string name="title_activity_loading_screen">LoadingScreen</string>
 
 
 </resources>

@@ -42,9 +42,10 @@ public class Game extends ActionBarActivity {
     public void ButtonOnClick (View v){
         Button button = (Button) v;
 
+        //Start the "Loading Screen"
         switch (v.getId()){
             case R.id.btnNext:
-                startActivity(new Intent(getApplicationContext(),StartGame.class));
+                startActivity(new Intent(getApplicationContext(),LoadingScreen.class));
         }
     }
 }

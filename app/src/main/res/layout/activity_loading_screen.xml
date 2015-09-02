@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    tools:context="com.asus_s550cb.theo.museum.Game"
+    android:background="@color/black_title"
+    android:orientation="vertical"
+    android:gravity="center_vertical|center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/textViewProgressCircle"
+        android:layout_above="@+id/progressCircle"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
