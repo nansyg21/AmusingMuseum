@@ -10,6 +10,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -27,6 +28,9 @@ public class QrCodeScanner extends Activity {
         super.onCreate(savedInstanceState);
         //set the main content layout of the Activity
         setContentView(R.layout.activity_android_qr_code_example);
+
+        //Hide all..
+        hideNavBar();
 
         // Handle the incoming variables
         Bundle extras = getIntent().getExtras();
@@ -150,6 +154,19 @@ public class QrCodeScanner extends Activity {
                 toast.show();
             }
         }
+    }
+    //HIDE the status an the navigation bars
+    public void hideNavBar() {
+        if (Build.VERSION.SDK_INT >= 19) {
+            View v = getWindow().getDecorView();
+            v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+
     }
 }
 

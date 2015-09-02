@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
-
+        hideNavBar();
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         height = displaymetrics.heightPixels;
@@ -76,19 +77,20 @@ public class MainActivity extends AppCompatActivity {
             //Draw the logo
             canvas.drawBitmap(logo, (width / 2) / 2, (height * 3 / 10), null);
 
-         /*   //Create Pseudo loading
-            Paint p = new Paint();
-            // smooths
-            p.setAntiAlias(true);
-            p.setColor(Color.BLUE);
-            //after 5 seconds draw the second line
-            canvas.drawRect(width / 2 - 50, (height * 3 / 5), width / 2 - 30, (height * 3 / 5) + 20, p);
-            canvas.drawRect(width / 2 - 10, (height * 3 / 5), width / 2 + 10, (height * 3 / 5) + 20, p);
-            canvas.drawRect(width / 2 + 30, (height * 3 / 5), width / 2 + 50, (height * 3 / 5) + 20, p);
-            */
 
         }
 
     }
+    public void hideNavBar() {
+        if (Build.VERSION.SDK_INT >= 19) {
+            View v = getWindow().getDecorView();
+            v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
 
+    }
 }
