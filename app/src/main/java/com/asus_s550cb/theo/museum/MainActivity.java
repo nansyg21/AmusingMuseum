@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }, 1000);
 
 
+
     }
 
     public int getHeight() {
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+
 
     }
     public void hideNavBar() {

@@ -155,6 +155,12 @@ public class QrCodeScanner extends Activity {
             }
         }
     }
+    //Remember to hide everything when Activity Resumes...
+    @Override
+    protected void onResume() {
+        super.onResume();
+        hideNavBar();
+    }
     //HIDE the status an the navigation bars
     public void hideNavBar() {
         if (Build.VERSION.SDK_INT >= 19) {

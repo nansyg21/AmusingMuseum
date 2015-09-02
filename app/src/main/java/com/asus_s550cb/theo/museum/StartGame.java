@@ -58,6 +58,7 @@ public class StartGame extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        hideNavBar();//hide everything on Resume
         try {
             v.resume();
         } catch (InterruptedException e) {
@@ -145,6 +146,8 @@ public class StartGame extends Activity {
         }
 
     }
+
+
     //HIDE the status an the navigation bars
     public void hideNavBar() {
         if (Build.VERSION.SDK_INT >= 19) {

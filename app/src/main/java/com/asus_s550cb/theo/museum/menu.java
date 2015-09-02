@@ -65,6 +65,7 @@ public class menu extends Activity {
         }
     }
 
+    //Remember to hide everything when Activity Resumes...
     @Override
     protected void onResume() {
         super.onResume();
