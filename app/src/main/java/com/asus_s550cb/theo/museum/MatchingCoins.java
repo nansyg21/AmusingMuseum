@@ -3,6 +3,7 @@ package com.asus_s550cb.theo.museum;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -68,7 +69,10 @@ public class MatchingCoins extends Activity {
                         }
                     });
         }
-
+        //Start help screen
+        Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
+        itn.putExtra("appNum",5);
+        startActivity(itn);
     }
 
     // Reset the flags to hide the navigation bar

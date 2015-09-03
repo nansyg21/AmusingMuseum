@@ -2,6 +2,8 @@ package com.asus_s550cb.theo.museum;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,6 +12,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,6 +56,16 @@ public class ChurchMap extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_church_map);
+
+
+             /*   .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });*/
+        // Create the AlertDialog object and return it
+
+   //     builder.create();
 
         // Get screen dimensions -- pixels
         DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -119,8 +132,8 @@ public class ChurchMap extends Activity {
         mapImageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction()==MotionEvent.ACTION_DOWN)
-                createBitMap(event.getX(),event.getY());
+                if (event.getAction() == MotionEvent.ACTION_DOWN)
+                    createBitMap(event.getX(), event.getY());
                 return true;
             }
         });
@@ -130,6 +143,11 @@ public class ChurchMap extends Activity {
 
         //Choose a monument to start
         setMonument();
+
+        //Start help screen
+        Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
+        itn.putExtra("appNum",2);
+        startActivity(itn);
 
     }
 

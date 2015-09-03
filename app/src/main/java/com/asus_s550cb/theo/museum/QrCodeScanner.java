@@ -23,6 +23,10 @@ public class QrCodeScanner extends Activity {
     public static boolean questionMode=true; // If this is true then Quiz will come up, else a riddle
     String nextApp;
 
+    public Intent itn;
+
+    String[] advices;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,8 @@ public class QrCodeScanner extends Activity {
 
         //Hide all..
         hideNavBar();
+
+        advices=getResources().getStringArray(R.array.advices);
 
         // Handle the incoming variables
         Bundle extras = getIntent().getExtras();
@@ -45,7 +51,7 @@ public class QrCodeScanner extends Activity {
     // when qr code button is hit if it is question mode show questions, else open the riddle according to the room number
     public void scanQR(View v) {
         try {
-            Intent itn;
+
 
             if(questionMode)
             {
@@ -106,9 +112,6 @@ public class QrCodeScanner extends Activity {
                         finish();
                 }
             }
-
-
-
             finish();
             //start the scanning activity from the com.google.zxing.client.android.SCAN intent
          //   Intent intent = new Intent(ACTION_SCAN);
@@ -117,6 +120,58 @@ public class QrCodeScanner extends Activity {
         } catch (ActivityNotFoundException anfe) {
             //on catch, show the download dialog
             showDialog(QrCodeScanner.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+        }
+    }
+
+    private void chooseApp(int appToStart)
+    {
+        switch (appToStart) {
+            case 1:
+                itn = new Intent(getApplicationContext(), ChurchMap.class);
+                startActivityForResult(itn, 1);
+                break;
+            case 2:
+                itn = new Intent(getApplicationContext(), ClickMe.class);
+                startActivityForResult(itn, 1);
+                break;
+            case 3:
+                itn = new Intent(getApplicationContext(), Hangman.class);
+                startActivityForResult(itn, 1);
+                break;
+            case 4:
+                itn = new Intent(getApplicationContext(), MatchingCoins.class);
+                startActivityForResult(itn, 1);
+                break;
+            case 5:
+                itn = new Intent(getApplicationContext(), PuzzleActivity.class);
+                startActivityForResult(itn, 1);
+                break;
+            case 6:
+                itn = new Intent(getApplicationContext(), RightOrder.class);
+                startActivityForResult(itn, 1);
+                break;
+          /*      case 7:
+                    itn = new Intent(getApplicationContext(), RightOrder.class);
+                    startActivityForResult(itn, 1);
+                    break;
+                case 8:
+                    itn = new Intent(getApplicationContext(), RightOrder.class);
+                    startActivityForResult(itn, 1);
+                    break;
+                case 9:
+                    itn = new Intent(getApplicationContext(), RightOrder.class);
+                    startActivityForResult(itn, 1);
+                    break;
+                case 10:
+                    itn = new Intent(getApplicationContext(), RightOrder.class);
+                    startActivityForResult(itn, 1);
+                    break;
+                case 11:
+                    itn = new Intent(getApplicationContext(), RightOrder.class);
+                    startActivityForResult(itn, 1);
+                    break;*/
+            default:
+                finish();
         }
     }
 

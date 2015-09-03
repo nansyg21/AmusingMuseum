@@ -2,6 +2,7 @@ package com.asus_s550cb.theo.museum;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -136,6 +137,11 @@ public class RightOrder extends Activity {
         shuffleNames();
 
         setListeners();
+
+        //Start help screen
+        Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
+        itn.putExtra("appNum", 7);
+        startActivity(itn);
 
     }
 

@@ -3,6 +3,7 @@ package com.asus_s550cb.theo.museum;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -126,6 +127,11 @@ public class Hangman extends Activity {
                         }
                     });
         }
+
+        //Start help screen
+        Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
+        itn.putExtra("appNum",4);
+        startActivity(itn);
     }
 
     // Redefine the flags for hidden navigation bar every time the window has focus, otherwise with the first touch on the screen

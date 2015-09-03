@@ -29,9 +29,9 @@
         </activity>
         <activity
             android:name=".StartGame"
-            android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation"
-            android:label="@string/title_activity_start_game" >
+            android:label="@string/title_activity_start_game"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".Hangman"
@@ -98,8 +98,15 @@
             android:name=".LoadingScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_loading_screen"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".HelpDialogActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_help_dialog"
             android:theme="@style/FullscreenTheme"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape">
         </activity>
     </application>
 

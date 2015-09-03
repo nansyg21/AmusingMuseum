@@ -1,0 +1,55 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/royal_blue"
+    tools:context="com.asus_s550cb.theo.museum.HelpDialogActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/helpTableLayout">
+
+        <TableRow
+            android:id="@+id/helpTableRow0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/titleImageView"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:src="@drawable/helptitle"/>
+        </TableRow>
+
+        <TableRow android:id="@+id/helpTableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/helpTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/hangman_text_size"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/helpTableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/okButton"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/button_next"
+                android:onClick="buttonOnClick"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+</FrameLayout>
