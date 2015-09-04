@@ -14,13 +14,15 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
  * Created by panos on 4/9/2015.
  */
 public class Score extends Activity {
-    public static int currentScore, totalScore;
+
     int currentApiVersion;
 
     @Override
@@ -61,6 +63,14 @@ public class Score extends Activity {
                         }
                     });
         }
+
+        //get data
+        int score=0;
+        Bundle extras = getIntent().getExtras();
+        if(extras !=null) {
+            score = extras.getInt("appNum");
+        }
+        Log.w("Warn","Score is: "+score);
     }
 
     // Reset the flags to hide the navigation bar
@@ -267,6 +277,11 @@ public class Score extends Activity {
             postDelayed(this, 16);
         }
 
+        public boolean onTouchEvent(MotionEvent ev)
+        {
+
+            return true;
+        }
 
     }
 
