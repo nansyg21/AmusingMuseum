@@ -8,5 +8,5 @@
 
     <item
     	android:state_enabled="true"
-        android:drawable="@drawable/back_arrow" />
+        android:drawable="@drawable/back_arrow_small" />
 </selector>

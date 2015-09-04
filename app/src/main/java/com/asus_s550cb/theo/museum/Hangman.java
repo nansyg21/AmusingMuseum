@@ -201,6 +201,7 @@ public class Hangman extends Activity {
             else if(mistakes>4)
             {
                 // TODO: the actions of what has to be done if the player loses
+                QrCodeScanner.questionMode=true;
                 finish();
             }
         }
@@ -214,7 +215,6 @@ public class Hangman extends Activity {
     {
         if(correctLetters==numberOfLetters)
         {
-            currentArch.setImageResource(R.drawable.hangman_win_icon);
             QrCodeScanner.questionMode=true;
             finish();
         }
