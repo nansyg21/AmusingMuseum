@@ -20,10 +20,17 @@ import android.view.View;
 
 /**
  * Created by panos on 4/9/2015.
+ *
+ *  Score is from 0 to 100 for each room
+ *  Quiz: 30 (3 questions)    Riddle 70
+ *
+ *  ChurchMap: 17 churches  70/17=4,1 points for each correct    -- ceil because 17*4.1=69.7
+
  */
 public class Score extends Activity {
 
     int currentApiVersion;
+    public static int TotalScore=0,currentQuizScore,currentRiddleScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +70,6 @@ public class Score extends Activity {
                         }
                     });
         }
-
-        //get data
-        int score=0;
-        Bundle extras = getIntent().getExtras();
-        if(extras !=null) {
-            score = extras.getInt("appNum");
-        }
-        Log.w("Warn","Score is: "+score);
     }
 
     // Reset the flags to hide the navigation bar
@@ -152,7 +151,7 @@ public class Score extends Activity {
             txtPaint.setStyle(Paint.Style.FILL);
             txtPaint.setColor(Color.WHITE);
             txtPaint.setTextSize(40);
-            //txtPaint.setTextSize(getResources().getDimension(R.dimen.click_me_text_size));
+            txtPaint.setTextSize(getResources().getDimension(R.dimen.score_text_size));
 
             //back image
             backImg = BitmapFactory.decodeResource(getResources(), R.drawable.menu_logo);
@@ -188,10 +187,32 @@ public class Score extends Activity {
             showStar3=false;
             showScore=false;
 
-            //calculate stars to show...
-            starsToShow=3;
-            currentStarsShown=0;
+            CalculateStarsBasedOnScore();
             startTime = System.currentTimeMillis();
+        }
+
+        private void CalculateStarsBasedOnScore() {
+            //0-10: 0 star    11-40 1 star  41-70 2 stars   71-100  3 stars
+            int riddle_score= currentRiddleScore+currentQuizScore;
+            TotalScore+=currentQuizScore+currentRiddleScore;
+
+            if (riddle_score >= 0 && riddle_score <= 10)
+            {
+                doneShowingStars=true;
+                starsToShow = 0;
+            }
+            else if(riddle_score >=11 && riddle_score <=40)
+                starsToShow=1;
+            else if(riddle_score >=41 && riddle_score <=70)
+                starsToShow=2;
+            else if(riddle_score >=71 && riddle_score <=100)
+                starsToShow=3;
+            else
+                Log.w("Warn","Something wrong with score received");
+
+            currentStarsShown=0;
+
+
         }
 
         private void PlaySound() {
@@ -242,11 +263,7 @@ public class Score extends Activity {
 
             }
             else if(showScore && elapsedTime>=doneTimer)                   //doneShowingStars playing
-            {
-                //  QrCodeScanner.questionMode=true;
                 finish();
-
-            }
 
             // onDraw(Canvas) will be called
             invalidate();
@@ -271,7 +288,7 @@ public class Score extends Activity {
 
             //write score
             if(showScore)
-                canvas.drawText("Score: 100 Total:1000", star1Rect.left, star1Rect.bottom + starHeight, txtPaint);
+                canvas.drawText("Quiz: "+ currentQuizScore +" Mini Game: "+currentRiddleScore+ " Total: "+TotalScore, frameRect.left+10, star1Rect.bottom + starHeight, txtPaint);
 
             // Invalidate view at about 60fps
             postDelayed(this, 16);
