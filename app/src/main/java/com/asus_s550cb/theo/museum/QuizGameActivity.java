@@ -197,6 +197,10 @@ public class QuizGameActivity extends Activity {
         {
            //Stop timer or else it continues running after the activity is finished
             countDownTimer.cancel();
+
+            //Save Quiz Score
+            Score.currentQuizScore=questionRightAnsPublic*10;
+
             // When done open the qr scaner again to play the riddle
             // To do so pass back the next activity number
             // And make sure the user cannot go but by hitting the back button
