@@ -139,6 +139,8 @@ public class HelpscreenSliderActivity extends FragmentActivity {
             return NUM_PAGES;
         }
     }
+
+
 }
 
 

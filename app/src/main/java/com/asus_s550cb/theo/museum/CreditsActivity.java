@@ -25,6 +25,7 @@ public class CreditsActivity extends Activity {
 
         creditsTextView=(TextView)findViewById(R.id.aboutTextView);
 
+        // Used to scroll down the text view
         creditsTextView.setMovementMethod(new ScrollingMovementMethod());
 
         // ------------------ Code in order to hide the navigation bar -------------------- //

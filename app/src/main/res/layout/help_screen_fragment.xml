@@ -1,6 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#0099cc"
+    android:layout_height="match_parent" android:background="@color/royal_blue"
     tools:context="com.asus_s550cb.theo.museum.HelpScreenFragment">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -8,13 +8,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <TextView style="?android:textAppearanceMedium"
-            android:id="@+id/adviceTextView"
-            android:padding="16dp"
-            android:lineSpacingMultiplier="1.2"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-             />
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/logoImageView"
+                android:src="@drawable/logo"
+                android:layout_weight="2"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <TextView style="?android:textAppearanceMedium"
+                    android:id="@+id/adviceTextView"
+                    android:padding="16dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:textColor="@color/neutral_beize"
+                    android:textSize="18sp"
+                    />
+
+                <ImageButton
+                    android:id="@+id/backButton1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/back_arrow_small"
+                    android:layout_gravity="bottom"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
 
 </FrameLayout>

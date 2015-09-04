@@ -18,7 +18,7 @@
                 android:id="@+id/titleImageView"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:src="@drawable/helptitle"/>
+                android:src="@drawable/logo"/>
         </TableRow>
 
         <TableRow android:id="@+id/helpTableRow1"
