@@ -85,7 +85,7 @@ public class HelpDialogActivity extends Activity{
         advicesTextView.setText(adviceText[textNum]);
         advicesTextView.invalidate();
 
-        titleImageView.getLayoutParams().height=screenHeight/3;
+        titleImageView.getLayoutParams().height=screenHeight/4;
      //   titleImageView.requestLayout();
     }
 

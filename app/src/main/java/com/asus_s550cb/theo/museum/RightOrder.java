@@ -110,13 +110,13 @@ public class RightOrder extends Activity {
         // Define correct sequence of images
         imageAnswers=new ImageView[4];
         imageAnswers[0]=new ImageView(this);
-        imageAnswers[0].setImageResource(R.drawable.planet1);
+        imageAnswers[0].setImageResource(R.drawable.pottery_small_1);
         imageAnswers[1]=new ImageView(this);
-        imageAnswers[1].setImageResource(R.drawable.planet2);
+        imageAnswers[1].setImageResource(R.drawable.pottery_small_2);
         imageAnswers[2]=new ImageView(this);
-        imageAnswers[2].setImageResource(R.drawable.planet3);
+        imageAnswers[2].setImageResource(R.drawable.pottery_small_3);
         imageAnswers[3]=new ImageView(this);
-        imageAnswers[3].setImageResource(R.drawable.planet4);
+        imageAnswers[3].setImageResource(R.drawable.pottery_small_4);
 
         // Get the correct sequence of names
         nameStrings=getResources().getStringArray(R.array.right_order_names);
@@ -372,13 +372,13 @@ public class RightOrder extends Activity {
     {
         switch (num)
         {
-            case 0: images[ind].setImageResource(R.drawable.planet1);
+            case 0: images[ind].setImageResource(R.drawable.pottery_small_1);
                 break;
-            case 1: images[ind].setImageResource(R.drawable.planet2);
+            case 1: images[ind].setImageResource(R.drawable.pottery_small_2);
                 break;
-            case 2: images[ind].setImageResource(R.drawable.planet3);
+            case 2: images[ind].setImageResource(R.drawable.pottery_small_3);
                 break;
-            default: images[ind].setImageResource(R.drawable.planet4);
+            default: images[ind].setImageResource(R.drawable.pottery_small_4);
                 break;
         }
     }

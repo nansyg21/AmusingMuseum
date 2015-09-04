@@ -243,7 +243,7 @@ public class ChurchMap extends Activity {
         Paint paint = new Paint();//define paint and paint color
 
         // Create the rectangle around the circle
-        touchRect=new Rect((int)pointX-15,(int) pointY-15, (int)pointX+15, (int)pointY+15);
+        touchRect=new Rect((int)pointX-(screenHeight/40),(int) pointY-(screenHeight/40), (int)pointX+(screenHeight/40), (int)pointY+(screenHeight/40));
 
         // If the rectangle collides with the monument's location rectangle add it to the correct answers list
         // Else add it to the wrong answers list
@@ -263,20 +263,20 @@ public class ChurchMap extends Activity {
         // Set the map on the background and draw the circle above
         imageView.setBackgroundResource(R.drawable.church_map);
         // Use cords of touch to draw the circle
-        canvas.drawCircle(pointX, pointY, 30, paint);
+        canvas.drawCircle(pointX, pointY, screenHeight/20, paint);
 
         // If the lists are not empty, draw all the red circles, then all the green
         if(!wrongPoints.isEmpty()) {
             paint.setColor(Color.RED);
             for (Point p : wrongPoints) {
-                canvas.drawCircle(p.x,p.y,30,paint);
+                canvas.drawCircle(p.x,p.y,screenHeight/20,paint);
             }
         }
 
         if(!correctPoints.isEmpty()) {
             paint.setColor(Color.GREEN);
             for (Point p : correctPoints) {
-                canvas.drawCircle(p.x,p.y,30,paint);
+                canvas.drawCircle(p.x,p.y,screenHeight/20,paint);
             }
         }
 
