@@ -289,6 +289,12 @@ public class ChurchMap extends Activity {
         }
         else
         {
+
+            //Show Score
+            Intent itn= new Intent(getApplicationContext(), Score.class);
+            itn.putExtra("appNum",100);
+            startActivity(itn);
+
             QrCodeScanner.questionMode=true;
             finish();
             //TODO: calculate score

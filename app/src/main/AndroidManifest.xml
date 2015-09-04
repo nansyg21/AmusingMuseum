@@ -108,6 +108,13 @@
             android:theme="@style/FullscreenTheme"
             android:screenOrientation="landscape">
         </activity>
+        <activity
+            android:name=".Score"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_help_dialog"
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>
