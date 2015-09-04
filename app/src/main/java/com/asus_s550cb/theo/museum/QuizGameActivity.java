@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 public class QuizGameActivity extends Activity {
 
+    public static boolean firstQuiz;
+
 
 
     private int currentApiVersion;
@@ -148,6 +150,16 @@ public class QuizGameActivity extends Activity {
                         }
                     });
         }
+
+     //   if(firstQuiz)
+     ///   {
+
+
+          //  countDownTimer.cancel();
+      //      countDownTimer.start();
+//            firstQuiz=false;
+
+      //  }
     }
 
 

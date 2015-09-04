@@ -42,6 +42,8 @@ public class StartGame extends Activity {
             height = displaymetrics.heightPixels;
             width = displaymetrics.widthPixels;
 
+            QuizGameActivity.firstQuiz=true;
+
             nextApp="nextApp";
 
             v = new Ourview(this);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Museum</string>
+    <string name="app_name">Amusing Museum</string>
 
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="title_activity_menu">Μενού</string>
@@ -374,6 +374,19 @@
     <string name="title_activity_loading_screen">LoadingScreen</string>
 
     <string name="title_activity_help_dialog">HelpDialogActivity</string>
+
+    <string name="title_activity_credits">CreditsActivity</string>
+
+    <string name="credits">Το παιχνίδι Amusing Museum είναι μία εφαρμογή εκπαιδευτικού χαρακτήρα η οποία αναπτύχθηκε με σκοπό
+    ο επισκέπτης του Βυζαντινού Μουσείου της Θεσσαλονίκης να μπορεί να γνωρίσει το μουσείο μέσα από ένα διασκεδαστικό παιχνίδι
+    θησαυρού.\n
+    Η εφαρμογή αναπτύχθηκε στα πλαίσια του Θερινού Σχολείου Ανοιχτού Κώδικα του Πανεπιστημίου Μακεδονίας από το τμήμα της Εφαρμοσμένης
+        Πληροφορικής.\n\n
+    Ομάδα Ανάπτυξης:\n
+    Δημόπουλος Θεόδωρος-Χρήστος\n
+    Κοτσικόρης Παναγιώτης\n
+    Μόσχου Αθανασία\n\n
+    Καλή ξενάγηση στους Βυζαντινούς θησαυρούς της πόλης μας!</string>
 
 
 </resources>

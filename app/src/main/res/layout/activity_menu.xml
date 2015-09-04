@@ -46,6 +46,7 @@
         android:layout_alignStart="@+id/btnMenuHelp"
         android:background="@drawable/button_menu"
         android:textStyle="bold"
+        android:onClick="ButtonOnClick"
 
         android:textSize="15dp" />
 
