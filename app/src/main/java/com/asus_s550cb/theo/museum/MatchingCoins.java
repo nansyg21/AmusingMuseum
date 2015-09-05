@@ -274,7 +274,7 @@ public class MatchingCoins extends Activity {
                     if(wave2)
                     {
                         //Save and Show Score
-                        Score.setRiddleScore(70) ;//full score
+                        Score.setRiddleScore(70) ;//some score
                         Intent itn= new Intent(getApplicationContext(), Score.class);
                         startActivity(itn);
 

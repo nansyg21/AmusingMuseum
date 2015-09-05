@@ -200,7 +200,12 @@ public class Hangman extends Activity {
             }
             else if(mistakes>4)
             {
-                // TODO: the actions of what has to be done if the player loses
+                //Lost - Save and Show Score
+                Score.setRiddleScore(correctLetters*2) ;
+                Intent itn= new Intent(getApplicationContext(), Score.class);
+                startActivity(itn);
+
+
                 QrCodeScanner.questionMode=true;
                 finish();
             }
@@ -215,6 +220,11 @@ public class Hangman extends Activity {
     {
         if(correctLetters==numberOfLetters)
         {
+            //Win - Save and Show Score
+            Score.setRiddleScore(70-mistakes*2) ;
+            Intent itn= new Intent(getApplicationContext(), Score.class);
+            startActivity(itn);
+
             QrCodeScanner.questionMode=true;
             finish();
         }
