@@ -2,22 +2,11 @@ package com.asus_s550cb.theo.museum;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -102,34 +91,34 @@ public class Score extends Activity {
 
                 starsToShow--;
                 currentStarsShown++;
-                if(starsToShow==-1)
+                if(starsToShow==-1) //done showing stars
                     showScore=true;
+
                 else if(showScore)
                 {
                     msg.setText("Quiz: "+ currentQuizScore +" Mini Game: "+currentRiddleScore+ " Total: "+TotalScore);
                 }
                 else
                 {
-                    switch (currentStarsShown)
+                    if(currentStarsShown==1)
                     {
-                        case 1:
-                        {
-                            ImageView s1 = (ImageView) findViewById(R.id.starView1);
-                            s1.setImageResource(R.drawable.score_star_full);
-                        }
-                        case 2:
-                        {
-                            ImageView s2 = (ImageView) findViewById(R.id.starView2);
-                            s2.setImageResource(R.drawable.score_star_full);
-                        }
-                        case 3:
-                        {
-                            ImageView s3 = (ImageView) findViewById(R.id.starView3);
-                            s3.setImageResource(R.drawable.score_star_full);
-                        }
-                        default:
-                            Log.w("Warn","More than 3 stars..?");
+                        PlaySound();
+                        ImageView s1 = (ImageView) findViewById(R.id.starView1);
+                        s1.setImageResource(R.drawable.score_star_full);
                     }
+                    else  if(currentStarsShown==2)
+                    {
+                        PlaySound();
+                        ImageView s2 = (ImageView) findViewById(R.id.starView2);
+                        s2.setImageResource(R.drawable.score_star_full);
+                    }
+                    else  if(currentStarsShown==3)
+                    {
+                        PlaySound();
+                        ImageView s3 = (ImageView) findViewById(R.id.starView3);
+                        s3.setImageResource(R.drawable.score_star_full);
+                    }
+
                 }
 
 
@@ -180,7 +169,6 @@ public class Score extends Activity {
             starsToShow=3;
         else
             Log.w("Warn","Something wrong with score received");
-
 
         currentStarsShown=0;
     }
