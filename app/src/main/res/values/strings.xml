@@ -422,6 +422,9 @@
         <item>10011</item>
         <item>10012</item>
     </string-array>
+    <string name="title_activity_insert_code">Πληκτρολόγησε το κωδικό του μνημείου</string>
+
+
 
 
 

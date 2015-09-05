@@ -28,21 +28,21 @@
         android:id="@+id/button_qr_code"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_margin="10dp"
-        android:gravity="center"
+            android:gravity="center"
         android:onClick="scanQR"
         android:text="@string/qrcode"
         android:textSize="18dp"
             android:background="@drawable/button_qrcode"
             android:textStyle="bold"
-            android:layout_gravity="bottom">
+            android:layout_gravity="bottom"
+            android:layout_margin="15dp">
         </Button>
 
         <Button
             android:id="@+id/button_num_code"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_margin="10dp"
+            android:layout_margin="15dp"
 
             android:text="@string/button_num_code"
             android:textSize="18dp"

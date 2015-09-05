@@ -122,6 +122,13 @@
             android:screenOrientation="landscape"
             android:theme="@style/FullscreenTheme" >
         </activity>
+        <activity
+            android:name=".Insert_code"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:label="@string/title_activity_insert_code"
+            android:theme="@style/FullscreenTheme">
+        </activity>
     </application>
 
 </manifest>
