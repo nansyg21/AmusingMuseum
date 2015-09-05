@@ -13,12 +13,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class QrCodeScanner extends Activity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-
+    public static int hintCounter;//counter for finding the proper hint in list
     int appToStart; // The number of the next activity to start
     public static boolean questionMode=true; // If this is true then Quiz will come up, else a riddle
     String nextApp;
@@ -26,12 +27,20 @@ public class QrCodeScanner extends Activity {
     public Intent itn;
 
     String[] advices;
+    String[] hints;
 
+    TextView textViewHint;//In this textview the hints will be displayed!
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //set the main content layout of the Activity
         setContentView(R.layout.activity_android_qr_code_example);
+
+        //Find the textView and the Hints List
+        textViewHint = (TextView) findViewById(R.id.textViewHints);
+        hints= getResources().getStringArray(R.array.hints);
+
+        textViewHint.setText(hints[hintCounter]);
 
         //Hide all..
         hideNavBar();
@@ -51,7 +60,8 @@ public class QrCodeScanner extends Activity {
     // when qr code button is hit if it is question mode show questions, else open the riddle according to the room number
     public void scanQR(View v) {
         try {
-
+            //Increase the counter for the next Hint
+            hintCounter++;
 
             if(questionMode)
             {

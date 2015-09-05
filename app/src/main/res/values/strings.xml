@@ -388,5 +388,42 @@
     Μόσχου Αθανασία\n\n
     Καλή ξενάγηση στους Βυζαντινούς θησαυρούς της πόλης μας!</string>
 
+    <string name="title_qrcode"> Βρες το μνημείο ! </string>
+    <string name="button_qrcode_scanner">QR code</string>
+    <string name="button_num_code">Κωδικος</string>
+
+    <string-array name="hints">
+        <item>hint 1</item>
+        <item>hint 2</item>
+        <item>hint 3</item>
+        <item>hint 4</item>
+        <item>hint 5</item>
+        <item>hint 6</item>
+        <item>hint 7</item>
+        <item>hint 8</item>
+        <item>hint 9</item>
+        <item>hint 10</item>
+        <item>hint 11</item>
+        <item>hint 12</item>
+    </string-array>
+
+    <string-array name="monument_codes">
+        <item>10000</item>
+        <item>10001</item>
+        <item>10002</item>
+        <item>10003</item>
+        <item>10004</item>
+        <item>10005</item>
+        <item>10006</item>
+        <item>10007</item>
+        <item>10008</item>
+        <item>10009</item>
+        <item>10010</item>
+        <item>10011</item>
+        <item>10012</item>
+    </string-array>
+
+
+
 
 </resources>

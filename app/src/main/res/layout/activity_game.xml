@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/button_back"
+        android:background="@drawable/button_qrcode"
         android:textStyle="bold"
         android:textColorLink="@color/button_front"
         android:onClick="ButtonOnClick" />

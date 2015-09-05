@@ -4,31 +4,63 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/black_title"
     android:orientation="vertical">
+
     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/title_qrcode"
+        android:id="@+id/textView5"
+        android:gravity="center"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp" />
 
-    android:id="@+id/textView1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center|top"
-    android:layout_margin="20dp"
-    android:text="Scan"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linear">
 
-    android:textColor="@color/black_title"
-    android:textSize="30dp" />
+        <Button
+        android:id="@+id/button_qr_code"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:onClick="scanQR"
+        android:text="@string/qrcode"
+        android:textSize="18dp"
+            android:background="@drawable/button_qrcode"
+            android:textStyle="bold"
+            android:layout_gravity="bottom">
+        </Button>
 
-<Button
-    android:id="@+id/scanner"
-    android:layout_width="250dp"
-    android:layout_height="80dp"
-    android:layout_gravity="center"
-    android:layout_margin="10dp"
-    android:gravity="center"
-    android:onClick="scanQR"
-    android:text="@string/qrcode"
-    android:textSize="18dp" >
-    </Button>
+        <Button
+            android:id="@+id/button_num_code"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
 
+            android:text="@string/button_num_code"
+            android:textSize="18dp"
+            android:background="@drawable/button_qrcode"
+            android:layout_gravity="bottom"
+            android:textStyle="bold">
+        </Button>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text Large Text Large TextLarge TextLarge TextLarge TextLarge Text"
+            android:id="@+id/textViewHints"
+            android:textAlignment="inherit"
+            android:gravity="center_horizontal" />
 
     </LinearLayout>
+
+
+</LinearLayout>
