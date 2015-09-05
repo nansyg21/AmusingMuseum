@@ -273,6 +273,11 @@ public class MatchingCoins extends Activity {
 
                     if(wave2)
                     {
+                        //Save and Show Score
+                        Score.setRiddleScore(70) ;//full score
+                        Intent itn= new Intent(getApplicationContext(), Score.class);
+                        startActivity(itn);
+
                         QrCodeScanner.questionMode=true;
                         finish();// Log.w("Warn","Done!"); //Game exits from here
                     }

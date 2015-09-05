@@ -199,7 +199,7 @@ public class QuizGameActivity extends Activity {
             countDownTimer.cancel();
 
             //Save Quiz Score
-            Score.currentQuizScore=questionRightAnsPublic*10;
+            Score.setQuizScore(questionRightAnsPublic*10);
 
             // When done open the qr scaner again to play the riddle
             // To do so pass back the next activity number

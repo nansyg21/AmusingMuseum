@@ -201,6 +201,13 @@ public class PuzzleActivity extends Activity   {
             //all pieces are correctly placed
             frame = BitmapFactory.decodeResource(getResources(), R.drawable.frame2);
             puzzle_completed_sound.start();
+
+
+            //Save and Show Score
+            Score.setRiddleScore(70) ;//full score
+            Intent itn= new Intent(getApplicationContext(), Score.class);
+            startActivity(itn);
+
             QrCodeScanner.questionMode=true;
             finish();
 

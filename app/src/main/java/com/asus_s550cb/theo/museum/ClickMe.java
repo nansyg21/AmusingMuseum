@@ -128,7 +128,7 @@ public class ClickMe extends Activity {
         int nextIndex=0;           //index from cropped images we read next
 
         boolean done=false;     //on true all pieces appear on screen for doneTimer milliseconds
-        long doneTimer=5000;
+        long doneTimer=3000;
 
         public ClickMeScreen(Context context)
         {
@@ -265,10 +265,17 @@ public class ClickMe extends Activity {
 
             if(done && elapsedTime>=doneTimer)                   //done playing
             {
+            /**    //Save and Show Score
+                int corrects=0;
+                for(boolean b: selectedList)
+                    if(b) corrects++;
+              //  Score.currentRiddleScore= (int) Math.ceil( corrects*2.8) ;
+                Intent itn= new Intent(getApplicationContext(), Score.class);
+                startActivity(itn);
+            **/
                 QrCodeScanner.questionMode=true;
                 finish();
-                //TODO Calculate score
-               // Log.w("Warn","Click Me exits..");       //click me exits from here
+
             }
 
             // onDraw(Canvas) will be called
@@ -292,10 +299,6 @@ public class ClickMe extends Activity {
                         canvas.drawBitmap(croppedImages.get(i), null, croppedOriginalRects.get(i), null);
                     else
                         canvas.drawBitmap(croppedImages.get(i), null, croppedOriginalRects.get(i), missedImagePaint);
-
-
-            //Draw hits
-           // canvas.drawText(hits+"/"+maxHits, 50, 50, txtPaint );
 
 
             // Invalidate view at about 60fps
