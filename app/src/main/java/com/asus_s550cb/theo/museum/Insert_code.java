@@ -1,19 +1,24 @@
 package com.asus_s550cb.theo.museum;
 
+import android.app.Activity;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
-public class Insert_code extends AppCompatActivity {
+public class Insert_code extends Activity {
+
+
+    EditText numCodeTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_code);
-
+        numCodeTxt= (EditText) findViewById(R.id.numCode);
         //Hide bars
         hideNavBar();
     }
@@ -25,20 +30,24 @@ public class Insert_code extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void OnClick(View v){
+        switch (v.getId()){
+            case R.id.button_num_code_Ok:
+                QrCodeScanner.numCode=numCodeTxt.getText().toString();
+                finish();
+                break;
+            case R.id.button_num_code_Back:
+                QrCodeScanner.numCode=null;
+                finish();
+                break;
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
     public void hideNavBar() {
         if (Build.VERSION.SDK_INT >= 19) {
             View v = getWindow().getDecorView();

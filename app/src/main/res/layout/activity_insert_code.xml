@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/numCode"
         android:layout_gravity="center_horizontal" />
 
     <LinearLayout
@@ -37,16 +37,18 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:text="New Button"
-            android:id="@+id/button"
+            android:id="@+id/button_num_code_Ok"
             android:background="@drawable/button_qrcode"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:onClick="OnClick"/>
 
         <Button
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:text="New Button"
-            android:id="@+id/button2"
+            android:text="Back"
+            android:id="@+id/button_num_code_Back"
             android:background="@drawable/button_qrcode"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:onClick="OnClick"/>
     </LinearLayout>
 </LinearLayout>

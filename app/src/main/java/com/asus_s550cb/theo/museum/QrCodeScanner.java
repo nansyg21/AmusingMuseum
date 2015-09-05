@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ public class QrCodeScanner extends Activity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     public static int hintCounter;//counter for finding the proper hint in list
+    public static String numCode;//Contain the code that the user typed
     int appToStart; // The number of the next activity to start
     public static boolean questionMode=true; // If this is true then Quiz will come up, else a riddle
     String nextApp;
@@ -28,6 +30,7 @@ public class QrCodeScanner extends Activity {
 
     String[] advices;
     String[] hints;
+    String[] monumentCodes;
 
     TextView textViewHint;//In this textview the hints will be displayed!
     @Override
@@ -39,7 +42,7 @@ public class QrCodeScanner extends Activity {
         //Find the textView and the Hints List
         textViewHint = (TextView) findViewById(R.id.textViewHints);
         hints= getResources().getStringArray(R.array.hints);
-
+        monumentCodes=getResources().getStringArray(R.array.monument_codes);
         textViewHint.setText(hints[hintCounter]);
 
         //Hide all..
@@ -214,12 +217,51 @@ public class QrCodeScanner extends Activity {
             if (resultCode == RESULT_OK) {
                 //get the extras that are returned from the intent
                 String contents = intent.getStringExtra("SCAN_RESULT");
-                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-                Toast toast = Toast.makeText(this, "Content:" + contents + " Format:" + format, Toast.LENGTH_LONG);
-                toast.show();
+                //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+
+
+                //Check if the qrcode is correct...
+                if (contents.equals(monumentCodes[hintCounter]+"\n") || contents.equals(monumentCodes[hintCounter]) ) {
+                    scanQR(this.textViewHint);
+                }else {
+                    Toast toast = Toast.makeText(this,"Λάθος προσπάθησε ξανά!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+               // Log.d("ELEOS","asdf"+contents+"asdf");
             }
         }
     }
+
+    public void buttonOnclick(View v) {
+        switch (v.getId()) {
+            case R.id.button_qr_code:
+                try {
+                    // start the scanning activity from the com.google.zxing.client.android.SCAN intent
+                    Intent intent = new Intent(ACTION_SCAN);
+                    intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+                    startActivityForResult(intent, 0);
+                } catch (ActivityNotFoundException anfe) {
+                    //on catch, show the download dialog
+                    showDialog(QrCodeScanner.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+                }
+                break;
+            case R.id.button_num_code:
+                startActivity(new Intent(getApplicationContext(),Insert_code.class));
+
+                //Check if code was right or button back was pressed
+              if(  numCode.equals(monumentCodes[hintCounter])){
+                    scanQR(this.textViewHint);
+                }
+                //If numCode is null then the button back was pressed so do NOTHING, else there was wrong pass...
+                else if(!numCode.isEmpty() && numCode!= null) {
+                    Toast toast = Toast.makeText(this,"Λάθος προσπάθησε ξανά!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                break;
+        }
+    }
+
+
     //Remember to hide everything when Activity Resumes...
     @Override
     protected void onResume() {
@@ -239,6 +281,7 @@ public class QrCodeScanner extends Activity {
         }
 
     }
+
 }
 
 

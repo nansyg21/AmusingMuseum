@@ -31,7 +31,7 @@ public class LoadingScreen extends Activity {
         // Start long running operation in a background thread
         new Thread(new Runnable() {
             public void run() {
-                while (progressStatus < 25) {
+                while (progressStatus < 15) {
                     progressStatus++;
 
                     handler.post(new Runnable() {
