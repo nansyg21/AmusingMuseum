@@ -38,7 +38,7 @@
             android:layout_height="75dp"
             android:text="New Button"
             android:id="@+id/button_num_code_Ok"
-            android:background="@drawable/button_qrcode"
+            android:background="@drawable/button_design"
             android:layout_margin="10dp"
             android:onClick="OnClick"/>
 
@@ -47,7 +47,7 @@
             android:layout_height="75dp"
             android:text="Back"
             android:id="@+id/button_num_code_Back"
-            android:background="@drawable/button_qrcode"
+            android:background="@drawable/button_design"
             android:layout_margin="10dp"
             android:onClick="OnClick"/>
     </LinearLayout>

@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -114,7 +115,7 @@ public class StartGame extends Activity {
 
         }
         public void onDraw(Canvas canvas){
-            canvas.drawARGB(255, 18, 34, 94);
+            canvas.drawColor(Color.parseColor("#0B0075"));
             canvas.drawBitmap(background, 0, 0, null);
             newInt=sprite.onDraw(canvas);
 
