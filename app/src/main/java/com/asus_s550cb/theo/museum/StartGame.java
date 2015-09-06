@@ -8,8 +8,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -31,6 +34,10 @@ public class StartGame extends Activity {
 
     String nextApp;
 
+    Rect menuRect;
+    Drawable menuBt;
+    PauseMenuButton pauseBt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +52,36 @@ public class StartGame extends Activity {
 
             QuizGameActivity.firstQuiz=true;
 
+            pauseBt=new PauseMenuButton(width,this);
+
             nextApp="nextApp";
+            PauseMenuActivity.pause=false;
 
             v = new Ourview(this);
             setContentView(v);
         }
 
 
+    public boolean onTouchEvent(MotionEvent event) {
+        float touchX = event.getX();
+        float touchY = event.getY();
+
+        if(pauseBt.getRect().contains((int)touchX,(int)touchY))
+        {
+            if(event.getAction()==MotionEvent.ACTION_DOWN) {
+                PauseMenuActivity.pause = true;
+                Intent itn;
+                itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
+                startActivity(itn);
+            }
+
+        }
+
+        return true;
+    }
+
     @Override
-    protected void onPause() {
+        protected void onPause() {
         super.onPause();
         v.pause();
     }
@@ -63,13 +91,24 @@ public class StartGame extends Activity {
         super.onResume();
         hideNavBar();//hide everything on Resume
         try {
+
+            if(PauseMenuActivity.pause==true)
+            {
+                PauseMenuActivity.pause=false;
+
+                startingStage--;
+            }
             v.resume();
+
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         //StageCounter
         startingStage++;
+
+
     }
 
 
@@ -100,32 +139,39 @@ public class StartGame extends Activity {
         @Override
         public void run() {
 
+            if(PauseMenuActivity.pause==false)
+            {
             sprite = new Sprite(Ourview.this, ppenguin,width,height,startingStage);
-            while(isItok){
+            while(isItok) {
                 //perform drawing
-                if(!holder.getSurface().isValid()){
+                if (!holder.getSurface().isValid()) {
                     continue;
                 }
 
-                Canvas c =holder.lockCanvas();
+                Canvas c = holder.lockCanvas();
                 onDraw(c);
                 holder.unlockCanvasAndPost(c);
+            }
 
             }
 
         }
         public void onDraw(Canvas canvas){
-            canvas.drawColor(Color.parseColor("#0B0075"));
-            canvas.drawBitmap(background, 0, 0, null);
-            newInt=sprite.onDraw(canvas);
 
-            // When character is in a room, start the qr scanner activity and pass the next riddle number to it
-                if (newInt != 0)
-                {
-                    Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
-                    itns.putExtra(nextApp, newInt);
-                    startActivity(itns);
-                }
+        if(PauseMenuActivity.pause==false) {
+          canvas.drawColor(Color.parseColor("#0B0075"));
+          canvas.drawBitmap(background, 0, 0, null);
+          newInt = sprite.onDraw(canvas);
+          pauseBt.getPauseMenuButton().draw(canvas);
+
+    // When character is in a room, start the qr scanner activity and pass the next riddle number to it
+         if (newInt != 0) {
+               Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
+                itns.putExtra(nextApp, newInt);
+                startActivity(itns);
+          }
+        }
+
         }
 
         public void pause(){
@@ -164,5 +210,6 @@ public class StartGame extends Activity {
         }
 
     }
+
 
 }

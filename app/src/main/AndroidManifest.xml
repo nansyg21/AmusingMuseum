@@ -124,11 +124,15 @@
         <activity
             android:name=".Insert_code"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="landscape"
             android:label="@string/title_activity_insert_code"
-            android:theme="@style/FullscreenTheme"
-            >
-
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        <activity
+            android:name=".PauseMenuActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_pause_menu"
+            android:theme="@style/FullscreenTheme" >
         </activity>
     </application>
 

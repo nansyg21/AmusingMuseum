@@ -11,6 +11,7 @@
     <string name="btnMenuAbout">Σχετικά</string>
     <string name="btnMenuHelp">Βοήθεια</string>
     <string name="btnMenuExit">Έξοδος</string>
+    <string name="btnContinue">Συνέχεια</string>
     <string name="Help">ΒΟΗΘΕΙΑ</string>
 
 
@@ -424,6 +425,8 @@
         <item>10012</item>
     </string-array>
     <string name="title_activity_insert_code">Πληκτρολόγησε το κωδικό του μνημείου</string>
+
+    <string name="title_activity_pause_menu">PauseMenuActivity</string>
 
 
 
