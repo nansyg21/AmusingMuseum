@@ -250,7 +250,7 @@ public class QrCodeScanner extends Activity {
                     showDialog(QrCodeScanner.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
                 }
                 break;
-            //TODO:
+            //TODO: Edw isws kai na mhn xreiazetai kati ,des sto insert_code.java
             case R.id.button_num_code:
                 startActivity(new Intent(getApplicationContext(),Insert_code.class));
                 itn = new Intent(getApplicationContext(),Insert_code.class);

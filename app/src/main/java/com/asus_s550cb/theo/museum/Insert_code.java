@@ -43,7 +43,7 @@ public class Insert_code extends Activity {
         return true;
     }
 
-    //TODO:
+    //TODO: Kalese thn qrcodeScanner.class etsi wste na kaleitai o grifos, giati to quiz prepei na einai ok
     public void OnClick(View v){
         Intent itns;
         switch (v.getId()){
