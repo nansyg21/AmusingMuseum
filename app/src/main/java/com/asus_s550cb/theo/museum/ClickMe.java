@@ -19,6 +19,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,34 +108,44 @@ public class ClickMe extends Activity {
         int ScreenWidth,ScreenHeight;
         int PlayerTouchX, PlayerTouchY;
         MediaPlayer click_me_hit_sound ;
-        int hits=0;
+        int hits;
         Paint backgroundPaint, txtPaint, missedImagePaint;
         Bitmap backImg;
-        Date dt= new Date();
-        long startTime, respawn_timer=3000, lowerTimeLimit=500, deltaTime=500;//On select moving image the time is decreased, from 3 seconds to 0.5
-        long elapsedTime = 0L;                                                // from 0.5 it goes to 3 again
-        Random rand= new Random();
+
+        long startTime, respawn_timer, lowerTimeLimit, deltaTime;//On select moving image the time is decreased, from 3 seconds to 0.5
+        long elapsedTime ;                                                // from 0.5 it goes to 3 again
+        Random rand;
 
         int M=5, N=5;                         // M(HEIGHT-rows) x N(WIDTH-columns) images
-        ArrayList<Bitmap> croppedImages = new ArrayList<Bitmap>();      //each bitmap is a small piece of the whole image
-        ArrayList<Rect> croppedOriginalRects = new ArrayList<Rect>();
-        boolean[] selectedList = new boolean[M*N];
+        ArrayList<Bitmap> croppedImages;      //each bitmap is a small piece of the whole image
+        ArrayList<Rect> croppedOriginalRects ;
+        boolean[] selectedList;
         int croppedWidth,croppedHeight;     //percentage based on the loaded image      -- create image
         int imgWidth,imgHeight;             //percentage based on the screen dimensions -- draw image
         int movingImgWidth,movingImgHeight; //moving image is bigger than usual for easy pick
 
         Bitmap movingImg;          //this object is moving
         Rect movingImgRect;
-        int nextIndex=0;           //index from cropped images we read next
+        int nextIndex;           //index from cropped images we read next
 
-        boolean done=false;     //on true all pieces appear on screen for doneTimer milliseconds
-        long doneTimer=3000;
-
+        boolean done, leave;     //on true all pieces appear on screen for doneTimer milliseconds
+        long doneTimer;
+        Button invBtn;          //invisible button: triggered on exit to finish mini game
         public ClickMeScreen(Context context)
         {
             super(context);
             click_me_hit_sound= MediaPlayer.create(this.getContext(), R.raw.click_me_hit_sound);
-
+            respawn_timer=3000; lowerTimeLimit=500; deltaTime=500;
+            elapsedTime = 0L;
+            hits=0;
+            rand= new Random();
+            croppedImages = new ArrayList<Bitmap>();      //each bitmap is a small piece of the whole image
+            croppedOriginalRects = new ArrayList<Rect>();
+            selectedList = new boolean[M*N];
+            nextIndex=0;
+            done=false; //on true all pieces appear on screen for doneTimer milliseconds
+            leave=false;
+            doneTimer=3000;
             //get screen size
             Point size = new Point();
           //  getWindowManager().getDefaultDisplay().getSize(size);
@@ -174,6 +185,16 @@ public class ClickMe extends Activity {
             imgHeight=ScreenHeight/M;
             movingImgWidth=ScreenWidth/N;
             movingImgHeight=ScreenHeight/M;
+
+            invBtn = new Button(getContext());
+            invBtn.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.w("Warn","Clicked button");
+                    LeaveClickMe();
+                }
+            });
+
 
             CropImage();
             setCroppedOriginalRects(); //calculate where each image should be
@@ -250,10 +271,28 @@ public class ClickMe extends Activity {
             return false;
         }
 
+        public void LeaveClickMe() {
+
+            Log.w("Warn", "Leaving click me");
+            /**    //Save and Show Score
+             int corrects=0;
+             for(boolean b: selectedList)
+             if(b) corrects++;
+             //  Score.currentRiddleScore= (int) Math.ceil( corrects*2.8) ;
+             Intent itn= new Intent(getApplicationContext(), Score.class);
+             startActivity(itn);
+             **/
+            //Save and Show Score
+            Score.setRiddleScore(14);
+
+            Intent itn = new Intent(getApplicationContext(), Score.class);
+            startActivity(itn);
+            finish();
+
+        }
         @Override
         public void run()
         {   // Update state of what we draw
-
             elapsedTime = System.currentTimeMillis() - startTime;
             if (elapsedTime >= respawn_timer && !done)          //still playing
             {
@@ -263,19 +302,10 @@ public class ClickMe extends Activity {
                 elapsedTime=0L;
             }
 
-            if(done && elapsedTime>=doneTimer)                   //done playing
+            if(done && elapsedTime>=doneTimer&& !leave)                   //done playing
             {
-            /**    //Save and Show Score
-                int corrects=0;
-                for(boolean b: selectedList)
-                    if(b) corrects++;
-              //  Score.currentRiddleScore= (int) Math.ceil( corrects*2.8) ;
-                Intent itn= new Intent(getApplicationContext(), Score.class);
-                startActivity(itn);
-            **/
-                QrCodeScanner.questionMode=true;
-                finish();
-
+               leave=true;
+                invBtn.performClick();
             }
 
             // onDraw(Canvas) will be called
@@ -294,11 +324,14 @@ public class ClickMe extends Activity {
             if(!done)            // Draw img
                 canvas.drawBitmap(movingImg, null, movingImgRect, null);
             else               // Draw all images together
+            {
                 for (int i = 0; i < croppedImages.size(); i++)
-                    if(selectedList[i])
+                    if (selectedList[i])
                         canvas.drawBitmap(croppedImages.get(i), null, croppedOriginalRects.get(i), null);
                     else
                         canvas.drawBitmap(croppedImages.get(i), null, croppedOriginalRects.get(i), missedImagePaint);
+
+            }
 
 
             // Invalidate view at about 60fps
@@ -310,6 +343,7 @@ public class ClickMe extends Activity {
         @Override
         public boolean onTouchEvent(MotionEvent ev)
         {
+
             if(ev.getAction()== MotionEvent.ACTION_DOWN)
             {
                     final int pointerIndex = MotionEventCompat.getActionIndex(ev);
