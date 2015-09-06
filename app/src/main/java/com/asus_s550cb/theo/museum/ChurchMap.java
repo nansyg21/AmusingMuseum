@@ -51,21 +51,15 @@ public class ChurchMap extends Activity {
     private List<Point> correctPoints; //List of correct points -- green circles
     private List<Point> wrongPoints; // List of wrong points -- red circles
 
+    private PauseMenuButton pauseBt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_church_map);
 
-
-             /*   .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
-                    }
-                });*/
         // Create the AlertDialog object and return it
-
-   //     builder.create();
 
         // Get screen dimensions -- pixels
         DisplayMetrics displaymetrics = new DisplayMetrics();
@@ -157,6 +151,9 @@ public class ChurchMap extends Activity {
     public void onWindowFocusChanged(boolean hasFocus)
     {
         super.onWindowFocusChanged(hasFocus);
+
+      //  PauseMenuActivity.pause=false;
+
         if(currentApiVersion >= Build.VERSION_CODES.KITKAT && hasFocus)
         {
             getWindow().getDecorView().setSystemUiVisibility(
@@ -167,6 +164,21 @@ public class ChurchMap extends Activity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+
+    // Call pause menu
+   public void menuBtClick(View v)
+   {
+       PauseMenuActivity.pause = true;
+       Intent itn;
+       itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
+       startActivity(itn);
+   }
+
+    protected void onPause()
+    {
+        super.onPause();
+
     }
 
     // Set the question for each monument

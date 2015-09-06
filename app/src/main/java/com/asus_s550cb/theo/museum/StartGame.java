@@ -42,26 +42,27 @@ public class StartGame extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            //Hide everything...:)
-            hideNavBar();
+        //Hide everything...:)
+        hideNavBar();
 
-            DisplayMetrics displaymetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-            height = displaymetrics.heightPixels;
-            width = displaymetrics.widthPixels;
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        height = displaymetrics.heightPixels;
+        width = displaymetrics.widthPixels;
 
-            QuizGameActivity.firstQuiz=true;
+        QuizGameActivity.firstQuiz=true;
 
-            pauseBt=new PauseMenuButton(width,this);
+        pauseBt=new PauseMenuButton(width,this);
 
-            nextApp="nextApp";
-            PauseMenuActivity.pause=false;
+        nextApp="nextApp";
+        PauseMenuActivity.pause=false;
 
-            v = new Ourview(this);
-            setContentView(v);
-        }
+        v = new Ourview(this);
+        setContentView(v);
+    }
 
 
+    // Check if pause button is presssed then start pause menu activity
     public boolean onTouchEvent(MotionEvent event) {
         float touchX = event.getX();
         float touchY = event.getY();
@@ -81,7 +82,7 @@ public class StartGame extends Activity {
     }
 
     @Override
-        protected void onPause() {
+    protected void onPause() {
         super.onPause();
         v.pause();
     }
@@ -92,6 +93,7 @@ public class StartGame extends Activity {
         hideNavBar();//hide everything on Resume
         try {
 
+            //If resume from pause make pause false and revert startingStage to previous condition
             if(PauseMenuActivity.pause==true)
             {
                 PauseMenuActivity.pause=false;
@@ -139,38 +141,40 @@ public class StartGame extends Activity {
         @Override
         public void run() {
 
+            //Only when not paused
             if(PauseMenuActivity.pause==false)
             {
-            sprite = new Sprite(Ourview.this, ppenguin,width,height,startingStage);
-            while(isItok) {
-                //perform drawing
-                if (!holder.getSurface().isValid()) {
-                    continue;
-                }
+                sprite = new Sprite(Ourview.this, ppenguin,width,height,startingStage);
+                while(isItok) {
+                    //perform drawing
+                    if (!holder.getSurface().isValid()) {
+                        continue;
+                    }
 
-                Canvas c = holder.lockCanvas();
-                onDraw(c);
-                holder.unlockCanvasAndPost(c);
-            }
+                    Canvas c = holder.lockCanvas();
+                    onDraw(c);
+                    holder.unlockCanvasAndPost(c);
+                }
 
             }
 
         }
         public void onDraw(Canvas canvas){
 
-        if(PauseMenuActivity.pause==false) {
-          canvas.drawColor(Color.parseColor("#0B0075"));
-          canvas.drawBitmap(background, 0, 0, null);
-          newInt = sprite.onDraw(canvas);
-          pauseBt.getPauseMenuButton().draw(canvas);
+            //Only when not paused
+            if(PauseMenuActivity.pause==false) {
+                canvas.drawColor(Color.parseColor("#0B0075"));
+                canvas.drawBitmap(background, 0, 0, null);
+                newInt = sprite.onDraw(canvas);
+                pauseBt.getPauseMenuButton().draw(canvas);
 
-    // When character is in a room, start the qr scanner activity and pass the next riddle number to it
-         if (newInt != 0) {
-               Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
-                itns.putExtra(nextApp, newInt);
-                startActivity(itns);
-          }
-        }
+                // When character is in a room, start the qr scanner activity and pass the next riddle number to it
+                if (newInt != 0) {
+                    Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
+                    itns.putExtra(nextApp, newInt);
+                    startActivity(itns);
+                }
+            }
 
         }
 
