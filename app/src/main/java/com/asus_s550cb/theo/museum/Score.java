@@ -21,8 +21,9 @@ import android.widget.TextView;
  *  ChurchMap: 17 churches  70/17=4,1 points for each correct    -- ceil because 17*4.1=69.7
  *  Click Me:  25 pieces    70/25=2.8 points for each piece
  *  Hangman:  Finished : 70 - mistakes*2        Unfinished: correct_letters*2
- *  Matching Coins: 70 the user has to completed to move on
- *  Puzzle:         70 the user has to completed to move on
+ *  Matching Coins: 70 the user has to complete it to move on
+ *  Puzzle:         70 the user has to complete it to move on
+ *  Right Order:    60 seconds: 1 point per second left  (+10 to reach 70)
 
  */
 public class Score extends Activity {
@@ -153,6 +154,9 @@ public class Score extends Activity {
 
     private void CalculateStarsBasedOnScore() {
         //0-10: 0 star    11-40 1 star  41-70 2 stars   71-100  3 stars
+        if(currentQuizScore>=30) currentQuizScore=30;   //selecting fast answers on quiz gives you more than 3 corrects answers
+
+
         int riddle_score= currentRiddleScore+currentQuizScore;
         TotalScore+=currentQuizScore+currentRiddleScore;
 
