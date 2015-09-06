@@ -24,6 +24,7 @@ public class QrCodeScanner extends Activity {
     public static String numCode;//Contain the code that the user typed
     int appToStart; // The number of the next activity to start
     public static boolean questionMode=true; // If this is true then Quiz will come up, else a riddle
+    public static boolean numCodeCheck=false;// True if user( accessed from insert_code.java)
     String nextApp;
 
     public Intent itn;
@@ -57,6 +58,10 @@ public class QrCodeScanner extends Activity {
         }
 
         nextApp="nextApp";
+
+        //If user typed a pass...
+        if(numCodeCheck)
+            validateNumCode();
     }
 
     //product qr code mode
@@ -245,22 +250,24 @@ public class QrCodeScanner extends Activity {
                     showDialog(QrCodeScanner.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
                 }
                 break;
+            //TODO:
             case R.id.button_num_code:
                 startActivity(new Intent(getApplicationContext(),Insert_code.class));
-
-                //Check if code was right or button back was pressed
-              if(  numCode.equals(monumentCodes[hintCounter])){
-                    scanQR(this.textViewHint);
-                }
-                //If numCode is null then the button back was pressed so do NOTHING, else there was wrong pass...
-                else if(!numCode.isEmpty() && numCode!= null) {
-                    Toast toast = Toast.makeText(this,"Λάθος προσπάθησε ξανά!", Toast.LENGTH_LONG);
-                    toast.show();
-                }
+                itn = new Intent(getApplicationContext(),Insert_code.class);
+                startActivity(itn);
                 break;
         }
     }
-
+    //check the code that the user typed
+    public void validateNumCode(){
+            numCodeCheck=false;
+            if(monumentCodes[hintCounter].equals(numCode)){
+                scanQR(this.textViewHint);
+            } else  {
+                Toast toast = Toast.makeText(this,"Λάθος προσπάθησε ξανά!", Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
 
     //Remember to hide everything when Activity Resumes...
     @Override
