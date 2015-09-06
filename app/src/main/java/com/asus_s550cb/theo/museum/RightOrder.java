@@ -38,6 +38,8 @@ public class RightOrder extends Activity {
     boolean imageFirst; //True if it the first selected imageView, false if it is the second
 
     CountDownTimer countDownTimer; //Timer
+    long seconds;
+    long minutes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +91,8 @@ public class RightOrder extends Activity {
         countDownTimer=new CountDownTimer(60000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                long seconds=(millisUntilFinished / 1000)%60;
-                long minutes=(millisUntilFinished/1000*60)%60;
+                seconds=(millisUntilFinished / 1000)%60;
+                minutes=(millisUntilFinished/1000*60)%60;
 
 
                 if(seconds > 9)
@@ -210,8 +212,7 @@ public class RightOrder extends Activity {
 
                 if(checkImages())
                 {
-                    QrCodeScanner.questionMode=true;
-                    finish();
+                    CalculateScoreAndExit();
                 }
 
 
@@ -253,12 +254,26 @@ public class RightOrder extends Activity {
                 }
 
                 if (checkNames())
-                    finish();
+                {
+                    CalculateScoreAndExit();
+                }
+
 
             }
 
         }
 
+    }
+
+    private void CalculateScoreAndExit()
+    {
+        Score.currentRiddleScore=(int) (10 + (minutes*60 + seconds)) ;
+        Intent itn= new Intent(getApplicationContext(), Score.class);
+        startActivity(itn);
+
+
+        QrCodeScanner.questionMode=true;
+        finish();
     }
 
     //Check if the names are in correct order

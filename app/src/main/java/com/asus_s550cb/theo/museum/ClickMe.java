@@ -273,20 +273,17 @@ public class ClickMe extends Activity {
 
         public void LeaveClickMe() {
 
-            Log.w("Warn", "Leaving click me");
-            /**    //Save and Show Score
+             //Save and Show Score
              int corrects=0;
              for(boolean b: selectedList)
-             if(b) corrects++;
-             //  Score.currentRiddleScore= (int) Math.ceil( corrects*2.8) ;
-             Intent itn= new Intent(getApplicationContext(), Score.class);
-             startActivity(itn);
-             **/
-            //Save and Show Score
-            Score.setRiddleScore(14);
+                if(b) corrects++;
 
-            Intent itn = new Intent(getApplicationContext(), Score.class);
+            Score.currentRiddleScore= (int) Math.ceil( corrects*2.8) ;
+            Intent itn= new Intent(getApplicationContext(), Score.class);
             startActivity(itn);
+
+
+            QrCodeScanner.questionMode=true;
             finish();
 
         }
