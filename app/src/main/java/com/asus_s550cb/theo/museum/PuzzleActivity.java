@@ -35,6 +35,7 @@ public class PuzzleActivity extends Activity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new PuzzleScreen(this));
+        menu.hideNavBar(this.getWindow());
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);

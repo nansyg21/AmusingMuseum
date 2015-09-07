@@ -98,6 +98,7 @@ public class menu extends Activity {
                 //SYSTEM_UI_FLAG_FULLSCREEN         removes status bar
                 //And SYSTEM_UI_FLAG_LOW_PROFILE    sets navigation bar to dots
             w.getDecorView().setSystemUiVisibility(uiOptions);
+
         }
         else if (Build.VERSION.SDK_INT < 16)    // If the Android version is lower than Jellybean, hide the status bar.
         {

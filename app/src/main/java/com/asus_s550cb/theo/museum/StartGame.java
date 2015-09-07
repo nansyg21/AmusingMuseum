@@ -43,7 +43,7 @@ public class StartGame extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Hide everything...:)
-        hideNavBar();
+        menu.hideNavBar(this.getWindow());
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -90,7 +90,7 @@ public class StartGame extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        hideNavBar();//hide everything on Resume
+        menu.hideNavBar(this.getWindow());//hide everything on Resume
         try {
 
             //If resume from pause make pause false and revert startingStage to previous condition
@@ -199,21 +199,4 @@ public class StartGame extends Activity {
         }
 
     }
-
-
-    //HIDE the status an the navigation bars
-    public void hideNavBar() {
-        if (Build.VERSION.SDK_INT >= 19) {
-            View v = getWindow().getDecorView();
-            v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        }
-
-    }
-
-
 }
