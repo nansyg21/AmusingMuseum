@@ -15,14 +15,13 @@ import android.widget.Button;
 
 public class menu extends Activity {
 
-    static Window myWindow ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         //hide nav & stat bars
-        myWindow=this.getWindow();
-        hideNavBar();
+        hideNavBar(this.getWindow());
 
     }
 
@@ -76,15 +75,16 @@ public class menu extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        hideNavBar();
+        hideNavBar(this.getWindow());
 
     }
 
     //HIDE the status an the navigation bars
-    public static void hideNavBar() {
+    public static void hideNavBar(Window w) {
+
         if (Build.VERSION.SDK_INT >= 19)
         {
-            View v = myWindow.getDecorView();
+            View v = w.getDecorView();
             v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -97,11 +97,11 @@ public class menu extends Activity {
             int uiOptions =( View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LOW_PROFILE);
                 //SYSTEM_UI_FLAG_FULLSCREEN         removes status bar
                 //And SYSTEM_UI_FLAG_LOW_PROFILE    sets navigation bar to dots
-            myWindow.getDecorView().setSystemUiVisibility(uiOptions);
+            w.getDecorView().setSystemUiVisibility(uiOptions);
         }
         else if (Build.VERSION.SDK_INT < 16)    // If the Android version is lower than Jellybean, hide the status bar.
         {
-            myWindow.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                         WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         }

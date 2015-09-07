@@ -17,7 +17,7 @@ public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        hideNavBar();//hide...!
+        menu.hideNavBar(this.getWindow());//hide...!
     }
 
     @Override
@@ -55,20 +55,7 @@ public class Game extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        hideNavBar();
+        menu.hideNavBar(this.getWindow());
     }
 
-    //HIDE the status an the navigation bars
-    public void hideNavBar() {
-        if (Build.VERSION.SDK_INT >= 19) {
-            View v = getWindow().getDecorView();
-            v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        }
-
-    }
 }

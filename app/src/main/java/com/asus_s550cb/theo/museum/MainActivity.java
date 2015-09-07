@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
 
-        hideNavBar();
+        menu.hideNavBar(this.getWindow());
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         height = displaymetrics.heightPixels;
@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }, 1000);
-
-
 
     }
 
@@ -78,22 +76,7 @@ public class MainActivity extends AppCompatActivity {
             //Draw the logo
             canvas.drawBitmap(logo, (width / 2) / 2, (height * 3 / 10), null);
 
-
         }
-
-
-
     }
-    public void hideNavBar() {
-        if (Build.VERSION.SDK_INT >= 19) {
-            View v = getWindow().getDecorView();
-            v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        }
 
-    }
 }
