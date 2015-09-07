@@ -169,7 +169,6 @@ public class ChurchMap extends Activity {
     // Call pause menu
    public void menuBtClick(View v)
    {
-       PauseMenuActivity.pause = true;
        Intent itn;
        itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
        startActivity(itn);
