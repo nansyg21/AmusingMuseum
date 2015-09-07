@@ -11,8 +11,10 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MotionEventCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,10 +26,56 @@ import java.util.Random;
 //this is for application stuff
 public class PuzzleActivity extends Activity   {
 
+    PauseMenuButton pauseBt;
+
+    int screenWidth;
+    int currentApiVersion;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new PuzzleScreen(this));
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screenWidth = displaymetrics.widthPixels;
+        pauseBt=new PauseMenuButton(screenWidth,this);
+
+        // ------------------ Code in order to hide the navigation bar -------------------- //
+        // The navigation bar is hiden and comes up only if the user swipes down the status bar
+        currentApiVersion = Build.VERSION.SDK_INT; //get the current api
+
+        // Initialize flags for full screen and hide navitation bar, immersive approach
+        final int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+
+        // This work only for android 4.4+
+        if(currentApiVersion >= Build.VERSION_CODES.KITKAT)
+        {
+
+            getWindow().getDecorView().setSystemUiVisibility(flags);
+
+            // Code below is to handle presses of Volume up or Volume down.
+            // Without this, after pressing volume buttons, the navigation bar will
+            // show up and won't hide
+            final View decorView = getWindow().getDecorView();
+            decorView
+                    .setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener()
+                    {
+                        @Override
+                        public void onSystemUiVisibilityChange(int visibility)
+                        {
+                            if((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0)
+                            {
+                                decorView.setSystemUiVisibility(flags);
+                            }
+                        }
+                    });
+        }
 
         //Start help screen
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
@@ -268,6 +316,8 @@ public class PuzzleActivity extends Activity   {
             paint.setColor(Color.parseColor("#FFC5AA22"));//background: dark gold
             canvas.drawPaint(paint);
 
+            pauseBt.getPauseMenuButton().draw(canvas);
+
             // Draw frame
             canvas.drawBitmap(frame, null, frameRect, null);
 
@@ -287,6 +337,20 @@ public class PuzzleActivity extends Activity   {
             {
                 case MotionEvent.ACTION_DOWN:       //New touch started
                 {
+
+                    // Check if pause button is pressed
+                    float touchX = ev.getX();
+                    float touchY = ev.getY();
+
+                    if(pauseBt.getRect().contains((int)touchX,(int)touchY))
+                    {
+                        if(ev.getAction()==MotionEvent.ACTION_DOWN) {
+                            Intent itn;
+                            itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
+                            startActivity(itn);
+                        }
+
+                    }
 
                     final int pointerIndex = MotionEventCompat.getActionIndex(ev);
                     final float x = MotionEventCompat.getX(ev, pointerIndex);

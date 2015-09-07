@@ -27,12 +27,21 @@ public class MatchingCoins extends Activity {
 
     int currentApiVersion;
 
+    PauseMenuButton pauseBt;
+
+    int screenWidth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
         setContentView(new MatcingCoinsScreen(this));
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screenWidth = displaymetrics.widthPixels;
+        pauseBt=new PauseMenuButton(screenWidth,this);
 
         // ------------------ Code in order to hide the navigation bar -------------------- //
         // The navigation bar is hiden and comes up only if the user swipes down the status bar
@@ -337,6 +346,8 @@ public class MatchingCoins extends Activity {
             for(int i=0;i<coinsList.size();i++)
                 canvas.drawBitmap(coinsList.get(i), null, coinsRectList.get(i), null);
 
+            pauseBt.getPauseMenuButton().draw(canvas);
+
 
 
             // Invalidate view at about 60fps
@@ -353,6 +364,20 @@ public class MatchingCoins extends Activity {
             {
                 case MotionEvent.ACTION_DOWN:       //New touch started
                 {
+
+
+                    //Check if pause button is hit
+                        float touchX = ev.getX();
+                        float touchY = ev.getY();
+
+                        if(pauseBt.getRect().contains((int)touchX,(int)touchY)) {
+                            if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+                                Intent itn;
+                                itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
+                                startActivity(itn);
+                            }
+
+                        }
 
                     final int pointerIndex = MotionEventCompat.getActionIndex(ev);
                     final float x = MotionEventCompat.getX(ev, pointerIndex);

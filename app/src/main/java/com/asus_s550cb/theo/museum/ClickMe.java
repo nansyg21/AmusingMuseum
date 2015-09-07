@@ -29,6 +29,9 @@ import java.util.Random;
 public class ClickMe extends Activity {
 
     int currentApiVersion;
+    PauseMenuButton pauseBt;
+
+    int screenWidth;
 
 
     @Override
@@ -37,6 +40,12 @@ public class ClickMe extends Activity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
         setContentView(new ClickMeScreen(this));
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screenWidth = displaymetrics.widthPixels;
+        pauseBt=new PauseMenuButton(screenWidth,this);
+
 
         // ------------------ Code in order to hide the navigation bar -------------------- //
         // The navigation bar is hiden and comes up only if the user swipes down the status bar
@@ -156,6 +165,7 @@ public class ClickMe extends Activity {
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             ScreenHeight = displaymetrics.heightPixels;
             ScreenWidth = displaymetrics.widthPixels;
+
 
             //for background color
             backgroundPaint = new Paint();
@@ -317,6 +327,8 @@ public class ClickMe extends Activity {
             //Draw color on background
             canvas.drawPaint(backgroundPaint);
 
+            pauseBt.getPauseMenuButton().draw(canvas);
+
 
             if(!done)            // Draw img
                 canvas.drawBitmap(movingImg, null, movingImgRect, null);
@@ -341,9 +353,25 @@ public class ClickMe extends Activity {
         public boolean onTouchEvent(MotionEvent ev)
         {
 
+            // Check if pause button is hit
             if(ev.getAction()== MotionEvent.ACTION_DOWN)
             {
-                    final int pointerIndex = MotionEventCompat.getActionIndex(ev);
+                float touchX = ev.getX();
+                float touchY = ev.getY();
+
+                if(pauseBt.getRect().contains((int)touchX,(int)touchY))
+                {
+                    if(ev.getAction()==MotionEvent.ACTION_DOWN) {
+                        Intent itn;
+                        itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
+                        startActivity(itn);
+                    }
+
+                }
+
+
+
+                final int pointerIndex = MotionEventCompat.getActionIndex(ev);
                     final float x = MotionEventCompat.getX(ev, pointerIndex);
                     final float y = MotionEventCompat.getY(ev, pointerIndex);
 
