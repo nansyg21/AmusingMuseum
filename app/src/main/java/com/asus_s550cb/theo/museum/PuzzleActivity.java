@@ -28,6 +28,7 @@ public class PuzzleActivity extends Activity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(new PuzzleScreen(this));
+        menu.hideNavBar(this.getWindow());
 
         //Start help screen
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
