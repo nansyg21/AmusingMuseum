@@ -7,19 +7,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
-
 
 
 
 public class menu extends Activity {
 
+    static Window myWindow ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         //hide nav & stat bars
+        myWindow=this.getWindow();
         hideNavBar();
+
     }
 
     @Override
@@ -73,12 +77,14 @@ public class menu extends Activity {
     protected void onResume() {
         super.onResume();
         hideNavBar();
+
     }
 
     //HIDE the status an the navigation bars
-    public void hideNavBar() {
-        if (Build.VERSION.SDK_INT >= 19) {
-            View v = getWindow().getDecorView();
+    public static void hideNavBar() {
+        if (Build.VERSION.SDK_INT >= 19)
+        {
+            View v = myWindow.getDecorView();
             v.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -86,6 +92,21 @@ public class menu extends Activity {
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
-//to commit
+        else if(Build.VERSION.SDK_INT >16)  //hide the status bar only between JELLY_BEAN and KITKAT and na bar:Low Profile
+        {
+            int uiOptions =( View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LOW_PROFILE);
+                //SYSTEM_UI_FLAG_FULLSCREEN         removes status bar
+                //And SYSTEM_UI_FLAG_LOW_PROFILE    sets navigation bar to dots
+            myWindow.getDecorView().setSystemUiVisibility(uiOptions);
+        }
+        else if (Build.VERSION.SDK_INT < 16)    // If the Android version is lower than Jellybean, hide the status bar.
+        {
+            myWindow.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        }
+
     }
+//to commit
+
 }
