@@ -108,13 +108,13 @@ public class PuzzleActivity extends Activity   {
         public Random rand= new Random();
         MediaPlayer puzzle_completed_sound ;
         int ScreenWidth,ScreenHeight;
-        int imgWidth = 100, imgHeight = 100;
+        int imgWidth , imgHeight;
         int PlayerTouchX, PlayerTouchY;
         int mPosX, mPosY;   //coordinates in the middle on dragging
         Bitmap frame;
         Rect frameRect;
-        int startingX=380,startingY=10;//where frame starts
-        int extraSpace=30;  //piece matches with puzzle curves
+        int startingX,startingY;//where frame starts
+        int extraSpace;  //piece matches with puzzle curves
 
         boolean movingSomething=false;
 
@@ -134,6 +134,14 @@ public class PuzzleActivity extends Activity   {
             ScreenWidth=size.x;
             ScreenHeight=size.y;
 
+            startingX=ScreenWidth/2;
+            startingY=ScreenHeight/12;
+
+            imgWidth=ScreenWidth/8;
+            imgHeight=imgWidth;
+
+            extraSpace=imgWidth/3;
+
             InitializePuzzlePieces();
 
             frame = BitmapFactory.decodeResource(getResources(), R.drawable.frame1);
@@ -147,7 +155,7 @@ public class PuzzleActivity extends Activity   {
 
         public int getRandY()
         {
-            return  rand.nextInt(ScreenHeight- imgWidth)+startingY; //from 10 to where frame starts
+            return  rand.nextInt(startingY+ 2*imgWidth)+startingY; //from 10 to where frame starts
         }
 
         public Rect getRandomRect()
@@ -454,6 +462,12 @@ public class PuzzleActivity extends Activity   {
                         System.exit(0);
                     }
                 }).create().show();
+    }
+    //Remember to hide everything when Activity Resumes...
+    @Override
+    protected void onResume() {
+        super.onResume();
+        menu.hideNavBar(this.getWindow());
     }
 }
 

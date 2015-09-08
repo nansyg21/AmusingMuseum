@@ -25,6 +25,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 
 /**
  * Created by theo on 9/7/2015.
@@ -159,14 +161,16 @@ public class StartGame extends Activity {
             {
                 sprite = new Sprite(Ourview.this, ppenguin,width,height,startingStage);
                 while(isItok) {
-                    //perform drawing
-                    if (!holder.getSurface().isValid()) {
-                        continue;
-                    }
 
-                    Canvas c = holder.lockCanvas();
-                    draw(c);
-                    holder.unlockCanvasAndPost(c);
+                      //perform drawing
+                      if (!holder.getSurface().isValid()) {
+                          continue;
+                      }
+
+                      Canvas c = holder.lockCanvas();
+                      draw(c);
+                      holder.unlockCanvasAndPost(c);
+
                 }
 
             }
@@ -263,7 +267,7 @@ public class StartGame extends Activity {
         }else if(startingStage==10){
             return new String[]{"H ΒΥΖΑΝΤΙΝΗ ΚΛΗΡΟΝΟΜΙΑ","ΣΤΟΥΣ ΧΡΟΝΟΥΣ ΜΕΤΑ ","ΤΗΝ ΑΛΩΣΗ"};
         }else if(startingStage==11){
-            return new String[]{"ΑΝΑΚΑΛΥΠΤΟΝΤΑΣ ΤΟ ΠΑΡΕΛΘΟΝ",""};
+            return new String[]{"ΑΝΑΚΑΛΥΠΤΟΝΤΑΣ ΤΟ ΠΑΡΕΛΘΟΝ","",""};
         }
 
         return null;

@@ -106,7 +106,7 @@ public class QrCodeScanner extends Activity {
                         itn = new Intent(getApplicationContext(), RightOrder.class);
                         startActivityForResult(itn, 1);
                         break;
-          /*      case 7:
+             /*   case 7:
                     itn = new Intent(getApplicationContext(), RightOrder.class);
                     startActivityForResult(itn, 1);
                     break;
@@ -168,7 +168,7 @@ public class QrCodeScanner extends Activity {
                 itn = new Intent(getApplicationContext(), RightOrder.class);
                 startActivityForResult(itn, 1);
                 break;
-          /*      case 7:
+          /*     case 7:
                     itn = new Intent(getApplicationContext(), RightOrder.class);
                     startActivityForResult(itn, 1);
                     break;

@@ -411,6 +411,16 @@
         <item>hint 10</item>
         <item>hint 11</item>
         <item>hint 12</item>
+        <item>hint 13</item>
+        <item>hint 14</item>
+        <item>hint 15</item>
+        <item>hint 16</item>
+        <item>hint 17</item>
+        <item>hint 18</item>
+        <item>hint 19</item>
+        <item>hint 20</item>
+        <item>hint 21</item>
+        <item>hint 22</item>
     </string-array>
 
     <string-array name="monument_codes">
@@ -427,6 +437,17 @@
         <item>10010</item>
         <item>10011</item>
         <item>10012</item>
+        <item>10013</item>
+        <item>10014</item>
+        <item>10015</item>
+        <item>10016</item>
+        <item>10017</item>
+        <item>10018</item>
+        <item>10019</item>
+        <item>10020</item>
+        <item>10021</item>
+        <item>10022</item>
+
     </string-array>
     <string name="title_activity_insert_code">Πληκτρολόγησε το κωδικό του μνημείου</string>
 
