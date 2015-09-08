@@ -1,5 +1,7 @@
 package com.asus_s550cb.theo.museum;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
@@ -58,4 +60,19 @@ public class Game extends AppCompatActivity {
         menu.hideNavBar(this.getWindow());
     }
 
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.confirm_exit_small)
+                .setMessage(R.string.confirm_exit_large)
+                .setNegativeButton(R.string.confirm_exit_cancel, null)
+                .setPositiveButton(R.string.confirm_exit_οκ, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1)
+                    {
+                        System.exit(0);
+                    }
+                }).create().show();
+    }
 }

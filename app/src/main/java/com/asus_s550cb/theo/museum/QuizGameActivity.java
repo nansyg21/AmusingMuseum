@@ -235,4 +235,20 @@ public class QuizGameActivity extends Activity {
             questionCountPublic=30;
     }
 
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.confirm_exit_small)
+                .setMessage(R.string.confirm_exit_large)
+                .setNegativeButton(R.string.confirm_exit_cancel, null)
+                .setPositiveButton(R.string.confirm_exit_οκ, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1)
+                    {
+                        System.exit(0);
+                    }
+                }).create().show();
+    }
+
 }

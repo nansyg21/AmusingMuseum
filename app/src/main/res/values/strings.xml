@@ -14,6 +14,10 @@
     <string name="btnContinue">Συνέχεια</string>
     <string name="Help">ΒΟΗΘΕΙΑ</string>
 
+    <string name="confirm_exit_small">ΕΞΟΔΟΣ</string>
+    <string name="confirm_exit_large">Είστε σίγουροι ότι θέλετε να κλείσετε την εφαρμογή;</string>
+    <string name="confirm_exit_cancel">Ακύρωση</string>
+    <string name="confirm_exit_οκ">ΟΚ</string>
 
 
 <string name="title_activity_fullscreen_activity_room2">FullscreenActivityRoom2</string>
