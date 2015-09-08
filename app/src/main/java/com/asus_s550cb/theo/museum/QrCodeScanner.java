@@ -83,7 +83,7 @@ public class QrCodeScanner extends Activity {
             {
                 switch (appToStart) {
                     case 1:
-                        itn = new Intent(getApplicationContext(), PuzzleActivity.class);
+                        itn = new Intent(getApplicationContext(), ChurchMap.class);
                         startActivityForResult(itn, 1);
                         break;
                     case 2:
@@ -145,7 +145,7 @@ public class QrCodeScanner extends Activity {
     {
         switch (appToStart) {
             case 1:
-                itn = new Intent(getApplicationContext(), PuzzleActivity.class);
+                itn = new Intent(getApplicationContext(), ChurchMap.class);
                 startActivityForResult(itn, 1);
                 break;
             case 2:

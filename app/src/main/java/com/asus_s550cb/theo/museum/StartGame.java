@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -20,6 +21,8 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -39,7 +42,7 @@ public class StartGame extends Activity {
     Rect menuRect;
     Drawable menuBt;
     PauseMenuButton pauseBt;
-
+    float textViewX,textViewY;//the position of the textview
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +131,7 @@ public class StartGame extends Activity {
         boolean isItok = false;
         Bitmap ppenguin,background;
         Sprite sprite;
+        Paint paint;//Text style in TextView
 
         //CONSTRUCTOR
         public Ourview(Context context) {
@@ -135,8 +139,15 @@ public class StartGame extends Activity {
             holder = getHolder();
             ppenguin = BitmapFactory.decodeResource(getResources(), R.drawable.penguinsheet);
             background= BitmapFactory.decodeResource(getResources(), R.drawable.museum_map);
-            background = Bitmap.createScaledBitmap(background,width,  (int) Math.ceil(height * 0.95), false);
+            background = Bitmap.createScaledBitmap(background, width, (int) Math.ceil(height * 0.95), false);
 
+            paint=new Paint();
+            paint.setColor(Color.WHITE);
+            paint.setTextSize((float) Math.ceil(height * 0.05));
+            paint.setTextAlign(Paint.Align.CENTER);
+
+            textViewX=(float) Math.ceil(width* 0.8);
+            textViewY=(float) Math.ceil(height* 0.3);
 
         }
 
@@ -154,21 +165,32 @@ public class StartGame extends Activity {
                     }
 
                     Canvas c = holder.lockCanvas();
-                    onDraw(c);
+                    draw(c);
                     holder.unlockCanvasAndPost(c);
                 }
 
             }
 
         }
-        public void onDraw(Canvas canvas){
+
+        @Override
+        public void draw(Canvas canvas){
+            super.draw(canvas);
 
             //Only when not paused
             if(PauseMenuActivity.pause==false) {
                 canvas.drawColor(Color.parseColor("#0B0075"));
                 canvas.drawBitmap(background, 0, 0, null);
+                //Symbol \n cannot be realized from android , too bad
+                canvas.drawText("ΑΙΘΟΥΣΑ " + startingStage + " :", textViewX, textViewY-30, paint);
+                canvas.drawText(setTextTitle()[0],textViewX,textViewY+100,paint);
+                canvas.drawText(setTextTitle()[1],textViewX,textViewY+200,paint);
+                canvas.drawText(setTextTitle()[2],textViewX,textViewY+300,paint);
+
                 newInt = sprite.onDraw(canvas);
                 pauseBt.getPauseMenuButton().draw(canvas);
+
+
 
                 // When character is in a room, start the qr scanner activity and pass the next riddle number to it
                 if (newInt != 0) {
@@ -216,5 +238,34 @@ public class StartGame extends Activity {
                         System.exit(0);
                     }
                 }).create().show();
+    }
+
+    public String [] setTextTitle(){
+
+        if(startingStage==1){
+            return new String[]{ " O ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΟΣ ΝΑΟΣ","",""};
+        }else if(startingStage==2){
+            return new String[]{"Η ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΗ ΠΟΛΗ ","ΚΑΙ ΚΑΤΟΙΚΙΑ",""};
+        }else if(startingStage==3){
+            return new String[]{"ΑΠΟ ΤΑ ΗΛΥΣΙΑ ΠΕΔΙΑ ΣΤΟ"," ΧΡΙΣΤΙΑΝΙΚΟ ΠΑΡΑΔΕΙΣΟ",""};
+        }else if(startingStage==4){
+            return new String[]{"ΑΠΟ ΤΗΝ ΕΙΚΟΝΟΜΑΧΙΑ ΣΤΗ"," ΛΑΜΨΗ ΤΩΝ ΜΑΚΕΔΩΝΩΝ", "ΚΑΙ ΤΩΝ ΚΟΜΝΗΝΩΝ"};
+        }else if(startingStage==5){
+            return new String[]{"ΟΙ ΔΥΝΑΣΤΕΙΕΣ ΤΩΝ ΒΥΖΑΝΤΙΝΩΝ","ΑΥΤΟΚΡΑΤΟΡΩΝ",""};
+        }else if(startingStage==6){
+            return new String[]{"ΤΟ ΒΥΖΑΝΤΙΝΟ ΚΑΣΤΡΟ","",""};
+        }else if(startingStage==7){
+            return new String[]{"ΤΟ ΛΥΚΟΦΩΣ ΤΟΥ ΒΥΖΑΝΤΙΟΥ","",""};
+        }else if(startingStage==8){
+            return new String[]{"ΔΩΡΕΕΣ ΣΥΛΛΟΓΩΝ (1/2)","",""};
+        }else if(startingStage==9){
+            return new String[]{"ΔΩΡΕΕΣ ΣΥΛΛΟΓΩΝ (2/2)","",""};
+        }else if(startingStage==10){
+            return new String[]{"H ΒΥΖΑΝΤΙΝΗ ΚΛΗΡΟΝΟΜΙΑ","ΣΤΟΥΣ ΧΡΟΝΟΥΣ ΜΕΤΑ ","ΤΗΝ ΑΛΩΣΗ"};
+        }else if(startingStage==11){
+            return new String[]{"ΑΝΑΚΑΛΥΠΤΟΝΤΑΣ ΤΟ ΠΑΡΕΛΘΟΝ",""};
+        }
+
+        return null;
     }
 }
