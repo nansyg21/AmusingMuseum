@@ -69,7 +69,7 @@ public class MatchingCoins extends Activity {
     //A couple of pictures appear for each coin. The player matches the coins together
     public class MatcingCoinsScreen extends View implements Runnable
     {
-        int ScreenWidth,ScreenHeight;
+        int ScreenWidth,ScreenHeight, hits;
         int PlayerTouchX, PlayerTouchY;
         int mPosX, mPosY;   //coordinates in the middle on dragging
 
@@ -124,7 +124,7 @@ public class MatchingCoins extends Activity {
 
             frame2Rect= new Rect(ScreenWidth/2,frame1Rect.top, ScreenWidth/2+frameWidth,frame1Rect.bottom);
 
-
+            hits=0;
             //coin images
             imgWidth=ScreenWidth/6;
             imgHeight=imgWidth;
@@ -191,36 +191,71 @@ public class MatchingCoins extends Activity {
         public void DroppedPiece() //Player was dragging a piece, check if its near the original position
         {
 
+            if(currentMovingCoinId%2==0)
+            {//frame 1 - left side
+                if (currentMovingCoin.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //empty frame 1:drop piece
+                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftCoin == -1) {
+                    currentMovingCoin.left = frame1Rect.left; //assign by value
+                    currentMovingCoin.top = frame1Rect.top;
+                    currentMovingCoin.right = frame1Rect.right;
+                    currentMovingCoin.bottom = frame1Rect.bottom;
+
+                    leftCoin = currentMovingCoinId;
+                } else if (currentMovingCoin.intersect(new Rect(frame1Rect.left, frame1Rect.top,//moved the piece that already is in frame:drop the same piece again
+                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftCoin == currentMovingCoinId) {
+                    currentMovingCoin.left = frame1Rect.left; //assign by value
+                    currentMovingCoin.top = frame1Rect.top;
+                    currentMovingCoin.right = frame1Rect.right;
+                    currentMovingCoin.bottom = frame1Rect.bottom;
+
+                    leftCoin = currentMovingCoinId;
+                } else if (currentMovingCoin.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //tried to drop piece in frame 1 but there is another piece: find random position and drop it
+                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftCoin != -1 && leftCoin != currentMovingCoinId) {
+                    int x = rand.nextInt(ScreenWidth / 2 - imgWidth);
+                    int y = rand.nextInt(ScreenHeight - imgHeight);
+                    coinsRectList.set(currentMovingCoinId, new Rect(x, y, x + imgWidth, y + imgHeight));
+                } else if (!currentMovingCoin.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //Dropped piece in open space
+                        frame1Rect.right - 50, frame1Rect.bottom - 50))) {
+                    if (currentMovingCoinId == leftCoin)//Dropped piece that was in frame
+                        leftCoin = -1;
+                    currentMovingCoinId = -1;         //update value
+
+                }
+
+            }
+            else if(currentMovingCoinId%2==1)
+            {//frame 2 = right side
+                if (currentMovingCoin.intersect(new Rect(frame2Rect.left, frame2Rect.top,//empty frame 2:drop piece
+                        frame2Rect.right , frame2Rect.bottom )) && rightCoin == -1) {
+                    currentMovingCoin.left = frame2Rect.left; //assign by value
+                    currentMovingCoin.top = frame2Rect.top;
+                    currentMovingCoin.right = frame2Rect.right;
+                    currentMovingCoin.bottom = frame2Rect.bottom;
+
+                    rightCoin = currentMovingCoinId;
+                } else if (currentMovingCoin.intersect(new Rect(frame2Rect.left, frame2Rect.top,//moved the piece that already is in frame 2:drop the same piece again
+                        frame2Rect.right , frame2Rect.bottom )) && rightCoin == currentMovingCoinId) {
+                    currentMovingCoin.left = frame2Rect.left; //assign by value
+                    currentMovingCoin.top = frame2Rect.top;
+                    currentMovingCoin.right = frame2Rect.right;
+                    currentMovingCoin.bottom = frame2Rect.bottom;
+
+                    rightCoin = currentMovingCoinId;
+                } else if (currentMovingCoin.intersect(new Rect(frame2Rect.left, frame2Rect.top, //tried to drop piece in frame 2 but there is another piece: find random position and drop it
+                        frame2Rect.right , frame2Rect.bottom )) && rightCoin != -1 && rightCoin != currentMovingCoinId) {
+                    //right side
+                    int x = rand.nextInt(ScreenWidth / 2 - imgWidth) + ScreenWidth / 2;
+                    int y = rand.nextInt(ScreenHeight - imgHeight);
+                    coinsRectList.set(currentMovingCoinId, new Rect(x, y, x + imgWidth, y + imgHeight));
+                } else if (!currentMovingCoin.intersect(new Rect(frame2Rect.left, frame2Rect.top, //Dropped piece in open space
+                        frame2Rect.right , frame2Rect.bottom ))) {
+                    if (currentMovingCoinId == rightCoin)//Dropped piece that was in frame
+                        rightCoin = -1;
+                    currentMovingCoinId = -1;         //update value
+                }
+            }
+
             Log.w("Warn","Left:"+leftCoin+" right:"+rightCoin);
-
-            //frame 1
-            if( currentMovingCoin.intersect(new Rect( frame1Rect.left,frame1Rect.top,
-                    frame1Rect.right-50,frame1Rect.bottom-50)) && leftCoin==-1)
-            {
-                currentMovingCoin.left = frame1Rect.left; //assign by value
-                currentMovingCoin.top = frame1Rect.top;
-                currentMovingCoin.right = frame1Rect.right;
-                currentMovingCoin.bottom = frame1Rect.bottom;
-
-                leftCoin=currentMovingCoinId;
-            }
-            else if(currentMovingCoinId%2==0)   //coin removed from frame1
-                leftCoin=-1;
-
-            //frame 2
-            if( currentMovingCoin.intersect(new Rect( frame2Rect.left,frame2Rect.top,
-                    frame2Rect.right-50,frame2Rect.bottom-50))&& rightCoin==-1)
-            {
-                currentMovingCoin.left = frame2Rect.left; //assign by value
-                currentMovingCoin.top = frame2Rect.top;
-                currentMovingCoin.right = frame2Rect.right;
-                currentMovingCoin.bottom = frame2Rect.bottom;
-
-                rightCoin=currentMovingCoinId;
-            }
-            else if(currentMovingCoinId%2==1) //coin removed from frame2
-                rightCoin=-1;
-
             CheckMatch();
 
         }
@@ -243,13 +278,20 @@ public class MatchingCoins extends Activity {
 
                     if(wave2)
                     {
-                        //Save and Show Score
-                        Score.setRiddleScore(70) ;//some score
+                        //Calculate Save and Show Score
+                        if(hits<=16)
+                            Score.setRiddleScore(70) ;
+                        else if(hits<=32)
+                            Score.setRiddleScore(35) ;
+                        else if(hits<=40)
+                            Score.setRiddleScore(20) ;
+                        else
+                            Score.setRiddleScore(0) ;
                         Intent itn= new Intent(getApplicationContext(), Score.class);
                         startActivity(itn);
 
                         QrCodeScanner.questionMode=true;
-                        finish();// Log.w("Warn","Done!"); //Game exits from here
+                        finish();
                     }
                     else
                         wave2=true;
@@ -320,13 +362,10 @@ public class MatchingCoins extends Activity {
         @Override
         public boolean onTouchEvent(MotionEvent ev)
         {
-
             switch (ev.getAction())
             {
                 case MotionEvent.ACTION_DOWN:       //New touch started
                 {
-
-
                     //Check if pause button is hit
                         float touchX = ev.getX();
                         float touchY = ev.getY();
@@ -337,7 +376,6 @@ public class MatchingCoins extends Activity {
                                 itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
                                 startActivity(itn);
                             }
-
                         }
 
                     final int pointerIndex = MotionEventCompat.getActionIndex(ev);
@@ -396,8 +434,6 @@ public class MatchingCoins extends Activity {
                                 currentMovingCoin.right = PlayerTouchX + imgWidth;
                                 currentMovingCoin.bottom = PlayerTouchY + imgHeight;
                             }
-
-
                       //  else
                          //   Log.w("Warn","currentMovingPiece IS NULL");
                     }
@@ -408,33 +444,26 @@ public class MatchingCoins extends Activity {
                     if(movingSomething)
                     {
                         DroppedPiece();
-
                         movingSomething = false;
+                        hits++;
+                        Log.w("Warn","Hits: "+hits);
                     }
-
                     break;
                 }
                 case MotionEvent.ACTION_CANCEL: //Current event has been canceled, something else took control of the touch event
                 {
-
                     movingSomething=false;
                     break;
                 }
                 default:            //whatever happens
                 {
-
                     movingSomething=false;
                     break;
                 }
-
             }
-
             return true;
-
         }
-
     }
-
 
     @Override
     public void onBackPressed() {
