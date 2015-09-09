@@ -4,15 +4,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-public class Insert_code extends Activity {
+public class CodeActivity extends Activity {
 
 
     EditText numCodeTxt;
@@ -22,7 +19,7 @@ public class Insert_code extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_insert_code);
+        setContentView(R.layout.activity_code);
         numCodeTxt= (EditText) findViewById(R.id.numCode);
 
 
@@ -53,17 +50,19 @@ public class Insert_code extends Activity {
                 QrCodeScanner.numCode=numCodeTxt.getText().toString();
                 QrCodeScanner.numCodeCheck=true;//Next time the QR Scanner will validate the num code...
                 itns = new Intent(getApplicationContext(), QrCodeScanner.class);
-                startActivity(itns);
+                itns.putExtra("nextApp",appToStart);
                 finish();
+                startActivity(itns);
                 break;
             case R.id.button_num_code_Back:
                 //nothing to do
                 itns = new Intent(getApplicationContext(), QrCodeScanner.class);
-                itns.putExtra(nextApp, 1);
-                startActivity(itns);
+                itns.putExtra("nextApp", appToStart);
                 finish();
+                startActivity(itns);
                 break;
         }
+        finish();
 
     }
 

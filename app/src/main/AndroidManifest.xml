@@ -38,26 +38,30 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            >
         </activity>
         <activity
             android:name=".ChurchMap"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            >
         </activity>
         <activity
             android:name=".ClickMe"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            >
         </activity>
         <activity
             android:name=".PuzzleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            >
         </activity>
         <activity
             android:name=".QuizGameActivity"
@@ -65,74 +69,85 @@
             android:label="@string/app_name"
             android:noHistory="true"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            >
         </activity>
         <activity
             android:name=".QrCodeScanner"
             android:label="@string/app_name"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:noHistory="true">
         </activity>
         <activity
             android:name=".MatchingCoins"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            >
         </activity>
         <activity
             android:name=".RightOrder"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            >
         </activity>
         <activity
             android:name=".HelpscreenSliderActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+           >
         </activity>
         <activity
             android:name=".LoadingScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_loading_screen"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            >
         </activity>
         <activity
             android:name=".HelpDialogActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_help_dialog"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+           >
         </activity>
         <activity
             android:name=".Score"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_help_dialog"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            android:noHistory="true">
         </activity>
         <activity
             android:name=".CreditsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_credits"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+           >
         </activity>
         <activity
-            android:name=".Insert_code"
+            android:name=".CodeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_insert_code"
             android:screenOrientation="landscape"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            android:noHistory="true">
         </activity>
         <activity
             android:name=".PauseMenuActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_pause_menu"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+           >
         </activity>
     </application>
 

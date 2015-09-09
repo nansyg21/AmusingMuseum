@@ -10,9 +10,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -252,9 +250,11 @@ public class QrCodeScanner extends Activity {
                 break;
             //TODO: Edw isws kai na mhn xreiazetai kati ,des sto insert_code.java
             case R.id.button_num_code:
-                startActivity(new Intent(getApplicationContext(),Insert_code.class));
-                itn = new Intent(getApplicationContext(),Insert_code.class);
-                startActivity(itn);
+                startActivity(new Intent(getApplicationContext(),CodeActivity.class));
+                itn = new Intent(getApplicationContext(),CodeActivity.class);
+                itn.putExtra("nextApp",appToStart);
+                startActivityForResult(itn,0);
+              //  finish();
                 break;
         }
     }

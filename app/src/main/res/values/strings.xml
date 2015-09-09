@@ -13,6 +13,7 @@
     <string name="btnMenuExit">Έξοδος</string>
     <string name="btnContinue">Συνέχεια</string>
     <string name="Help">ΒΟΗΘΕΙΑ</string>
+    <string name="btnOK">ΟΚ</string>
 
     <string name="confirm_exit_small">ΕΞΟΔΟΣ</string>
     <string name="confirm_exit_large">Είστε σίγουροι ότι θέλετε να κλείσετε την εφαρμογή;</string>

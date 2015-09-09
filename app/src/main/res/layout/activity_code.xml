@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.asus_s550cb.theo.museum.Insert_code"
+    tools:context="com.asus_s550cb.theo.museum.CodeActivity"
     android:background="@color/black_title"
     android:orientation="vertical"
     android:gravity="center_horizontal">
@@ -36,7 +36,7 @@
         <Button
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:text="New Button"
+            android:text="@string/btnOK"
             android:id="@+id/button_num_code_Ok"
             android:background="@drawable/button_design"
             android:layout_margin="10dp"
@@ -45,7 +45,7 @@
         <Button
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:text="Back"
+            android:text="@string/btnMenuExit"
             android:id="@+id/button_num_code_Back"
             android:background="@drawable/button_design"
             android:layout_margin="10dp"
