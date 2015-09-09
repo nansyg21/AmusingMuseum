@@ -8,23 +8,32 @@
        android:layout_height="match_parent"
        android:layout_weight="1"
        android:stretchColumns="*">
+
+
        <TableRow
            android:id="@+id/tableRowTimer"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-
            >
 
            <TextView
                android:id="@+id/timerTextView"
                android:layout_width="match_parent"
                android:textAlignment="center"
-               android:layout_span="4"
-               android:layout_gravity="center"
+               android:layout_span="3"
+               android:layout_gravity="start"
                android:gravity="center"
                android:textColor="@color/royal_crimson"
                android:textSize="@dimen/right_order_time_size"
                android:text="time"/>
+
+           <ImageView
+               android:id="@+id/pauseBt"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:layout_gravity="end"
+               android:onClick="pauseButtonOnClick"
+               android:src="@drawable/menu_icon"/>
 
        </TableRow>
 

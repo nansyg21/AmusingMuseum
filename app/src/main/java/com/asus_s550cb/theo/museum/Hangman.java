@@ -1,6 +1,7 @@
 package com.asus_s550cb.theo.museum;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,10 +9,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -42,6 +49,9 @@ public class Hangman extends Activity {
     private ImageView currentArch; // The instance of the current image of arches, change on every mistake
     private int correctLetters; // Number of correct letters found
     private int currentApiVersion; // The api version of android
+    private int screenWidth;
+
+    PauseMenuButton pauseBt;
 
 
     @Override
@@ -87,6 +97,7 @@ public class Hangman extends Activity {
                                                  // the counter of the for loop
 
         }
+
         // Has to be after the setContentView, otherway it crashes
         currentArch = (ImageView) findViewById(R.id.archImageView); // get the image view instance
         currentArch.setImageResource(R.drawable.hangman_wrong_0); // initialize the image to the first with no mistakes
@@ -99,6 +110,13 @@ public class Hangman extends Activity {
         //Start help screen
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
         itn.putExtra("appNum",4);
+        startActivity(itn);
+    }
+
+    public void pauseButtonOnClick(View v)
+    {
+        Intent itn;
+        itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
         startActivity(itn);
     }
 

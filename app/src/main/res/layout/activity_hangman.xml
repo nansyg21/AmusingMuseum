@@ -14,19 +14,20 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tableRow0">
+            android:id="@+id/tableRow0"
+            android:layout_weight="1">
             <TableLayout
                 android:id="@+id/letterTextViewTableLayout"
                 android:layout_span="2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:stretchColumns="*"
                 android:layout_weight="1">
 
                 <TableRow
                     android:id="@+id/letterTableRow0"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="50dp"
                     android:layout_gravity="center_vertical">
@@ -34,9 +35,21 @@
                         android:id="@+id/dummy_textview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"></TextView>
+
                 </TableRow>
 
             </TableLayout>
+
+            <ImageView
+                android:id="@+id/pauseBt"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:src="@drawable/menu_icon"
+                android:layout_weight="1"
+                android:onClick="pauseButtonOnClick"/>
+
+
 
         </TableRow>
 

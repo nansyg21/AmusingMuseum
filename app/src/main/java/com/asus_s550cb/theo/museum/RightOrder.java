@@ -266,6 +266,12 @@ public class RightOrder extends Activity {
         return  true;
     }
 
+    public void pauseButtonOnClick(View v)
+    {
+        Intent itn;
+        itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
+        startActivity(itn);
+    }
     //Check if the images are in correct order
     private boolean checkImages()
     {
