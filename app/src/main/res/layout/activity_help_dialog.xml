@@ -30,6 +30,7 @@
                 android:id="@+id/helpTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textColor="@color/neutral_beize"
                 android:textSize="@dimen/hangman_text_size"
                 />
         </TableRow>

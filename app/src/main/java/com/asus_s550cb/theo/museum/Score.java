@@ -70,7 +70,7 @@ public class Score extends Activity {
 
                 else if(showScore)
                 {
-                    msg.setText("Quiz: "+ currentQuizScore +" Mini Game: "+currentRiddleScore+ " Total: "+TotalScore);
+                    msg.setText("Quiz: "+ currentQuizScore +"\nMini Game: "+currentRiddleScore+ "\nTotal: "+TotalScore);
                 }
                 else
                 {
