@@ -39,12 +39,12 @@
                     android:textSize="18sp"
                     />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/backButton1"
                     android:layout_height="wrap_content"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:src="@drawable/back_arrow_small"
+                    android:src="@drawable/back_button_icon"
                     android:layout_gravity="bottom"/>
 
             </LinearLayout>

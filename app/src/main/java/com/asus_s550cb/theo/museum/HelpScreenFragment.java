@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -31,7 +32,7 @@ public class HelpScreenFragment extends Fragment
 
         // Set listener on back button to close the screen
         // Cannot set on xml because it is not an Activity class
-        ImageButton bt=(ImageButton) view.findViewById(R.id.backButton1);
+        ImageView bt=(ImageView) view.findViewById(R.id.backButton1);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

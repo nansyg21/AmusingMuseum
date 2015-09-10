@@ -60,13 +60,14 @@
 
             <TableLayout
                 android:id="@+id/buttonTableLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="3"
                 >
 
                 <TableRow
                     android:id="@+id/buttonTableRow0"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
                     <Button
@@ -308,10 +309,11 @@
 
             <ImageView
                 android:id="@+id/archImageView"
-                android:adjustViewBounds="false"
-                android:layout_width="@dimen/hangman_arch_width"
+                android:adjustViewBounds="true"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/hangman_arch_height"
                 android:baselineAlignBottom="false"
+                android:layout_weight="1"
                 android:cropToPadding="false"></ImageView>
 
         </TableRow>
