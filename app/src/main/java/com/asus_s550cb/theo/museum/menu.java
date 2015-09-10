@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import java.util.Locale;
 
 
 public class menu extends Activity {
@@ -96,6 +99,43 @@ public class menu extends Activity {
         super.onResume();
         hideNavBar(this.getWindow());
 
+    }
+
+    public void setLocale(String lang) {
+        Locale locale = new Locale("en_US");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getApplicationContext().getResources().updateConfiguration(config, null);
+    }
+
+    public void changeLanguage(View v)
+    {
+        ImageView imgv=(ImageView) v;
+
+        switch (imgv.getId()) {
+            case R.id.ukflag:
+                Locale locale = new Locale("en_US");
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.locale = locale;
+                getApplicationContext().getResources().updateConfiguration(config, null);
+                Intent refresh = new Intent(this, menu.class);
+                finish();
+                startActivity(refresh);
+
+                break;
+            case R.id.elflag:
+                locale = new Locale("el");
+                Locale.setDefault(locale);
+                config = new Configuration();
+                config.locale = locale;
+                getApplicationContext().getResources().updateConfiguration(config, null);
+                refresh = new Intent(this, menu.class);
+                finish();
+                startActivity(refresh);
+                break;
+        }
     }
 
     //HIDE the status an the navigation bars

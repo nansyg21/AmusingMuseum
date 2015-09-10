@@ -1,36 +1,46 @@
 <resources>
     <string name="app_name">Amusing Museum</string>
 
-    <string name="action_settings">Ρυθμίσεις</string>
-    <string name="title_activity_menu">Μενού</string>
-    <string name="title_activity_game">Παιχνίδι</string>
-    <string name="title_activity_start_game">Έναρξη Παιχνιδιού</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="title_activity_game">Game</string>
+    <string name="title_activity_start_game">Start Game</string>
     <string name="title_activity_demo">DemoActivity</string>
 
-    <string name="btnMenuNewGame">Νέο Παιχνίδι</string>
-    <string name="btnMenuAbout">Σχετικά</string>
-    <string name="btnMenuHelp">Βοήθεια</string>
-    <string name="btnMenuExit">Έξοδος</string>
-    <string name="btnContinue">Συνέχεια</string>
-    <string name="Help">ΒΟΗΘΕΙΑ</string>
-    <string name="btnOK">ΟΚ</string>
+    <string name="btnMenuNewGame">New Game</string>
+    <string name="btnMenuAbout">About</string>
+    <string name="btnMenuHelp">Help</string>
+    <string name="btnMenuExit">Exit</string>
+    <string name="btnContinue">Continue</string>
+    <string name="Help">HELP</string>
+    <string name="btnOK">OK</string>
 
-    <string name="confirm_exit_small">ΕΞΟΔΟΣ</string>
-    <string name="confirm_exit_large">Είστε σίγουροι ότι θέλετε να κλείσετε την εφαρμογή;</string>
-    <string name="confirm_exit_cancel">Ακύρωση</string>
-    <string name="confirm_exit_οκ">ΟΚ</string>
+    <string name="confirm_exit_small">EXIT</string>
+    <string name="confirm_exit_large">Are you sure, you want to exit the application?</string>
+    <string name="confirm_exit_cancel">Cancel</string>
+    <string name="confirm_exit_οκ">OK</string>
 
 
 <string name="title_activity_fullscreen_activity_room2">FullscreenActivityRoom2</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
-    <string name="button_next">Επόμενο</string>
+    <string name="button_next">Next</string>
 
-    <string name="museum_title">ΒΥΖΑΝΤΙΝΟ ΜΟΥΣΕΙΟ ΘΕΣΣΑΛΟΝΙΚΗΣ</string>
+    <string name="museum_title">MUSEUM OF BYZANTINE CULTURE OF THESSALONIKI</string>
 
-    <string name="museum_discription">1. Ο ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΟΣ ΝΑΟΣ\n 2. ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΗ ΠΟΛΗ ΚΑΙ ΚΑΤΟΙΚΙΑ.\n3. ΑΠΟ ΤΑ ΗΛΥΣΙΑ ΠΕΔΙΑ ΣΤΟ ΧΡΙΣΤΙΑΝΙΚΟ ΠΑΡΑΔΕΙΣΟ.\n4. ΑΠΟ ΤΗΝ ΕΙΚΟΝΟΜΑΧΙΑ ΣΤΗ ΛΑΜΨΗ ΤΩΝ ΜΑΚΕΔΩΝΩΝ ΚΑΙ ΤΩΝ ΚΟΜΝΗΝΩΝ.\n5. ΟΙ ΔΥΝΑΣΤΕΙΕΣ ΤΩΝ ΒΥΖΑΝΤΙΝΩΝ ΑΥΤΟΚΡΑΤΟΡΩΝ.\n6. ΤΟ ΒΥΖΑΝΤΙΝΟ ΚΑΣΤΡΟ.\n7. ΤΟ ΛΥΚΌΦΩΣ ΤΟΥ ΒΥΖΑΝΤΙΟΥ.\n8-9. ΔΩΡΕΕΣ ΣΥΛΛΟΓΩΝ.\n10. Η ΒΥΖΑΝΤΙΝΗ ΚΛΗΡΟΝΟΜΙΑ ΣΤΟΥΣ ΧΡΟΝΟΥΣ ΜΕΤΑ ΤΗΝ ΑΛΩΣΗ\n11. ΑΝΑΚΑΛΥΠΤΟΝΤΑΣ ΤΟ ΠΑΡΕΛΘΟΝ.\n
-                        </string>
+    <string name="museum_discription">
+        1. THE EARLY CHRISTIAN CHURCHES\n
+        2. EARLY CHRISTIAN CITY AND PRIVATE DWELLING\n
+        3. FROM THE ELYSIAN FIELDS TO THE CHRISTIAN PARADISE\n
+        4. FROM ICONOCLASM TO THE SPLENDOUR OF THE MACEDONIAN AND KOMNENIAN DYNASTIES\n
+        5. THE DYNASTIES OF BYZANTINE EMPERORS\n
+        6. BYZANTINE CASTLES\n
+        7. THE TWILIGHT OF BYZANTIUM\n
+        8-9. DONATED COLLECTIONS\n
+        10. THE BYZANTINE LEGACY IN THE YEARS AFTER THE FALL OF CONSTANTINOPLE\n
+        11. DISCOVERING THE PAST\n
+    </string>
 
     <string name="alpha">Α</string>
     <string name="beta">Β</string>
@@ -98,23 +108,23 @@
     </string-array>
 
     <string-array name="monument_names">
-        <item>ΑΓΓΕΛΟΚΑΣΤΡΟ</item>
-        <item>ΑΜΦΙΠΟΛΗ</item>
-        <item>ΣΕΡΒΙΑ</item>
-        <item>ΦΙΛΙΠΠΟΙ</item>
-        <item>ΜΟΓΛΕΝΑ</item>
-        <item>ΣΕΡΡΕΣ</item>
-        <item>ΠΛΑΤΑΜΩΝΑΣ</item>
-        <item>ΑΝΑΚΤΟΡΟΥΠΟΛΗ</item>
-        <item>ΘΕΣΣΑΛΟΝΙΚΗ</item>
-        <item>ΑΝΑΣΤΑΣΙΟΥΠΟΛΗ</item>
-        <item>ΓΥΝΑΙΚΟΚΑΣΤΡΟ</item>
-        <item>ΚΟΥΜΟΥΤΖΗΝΑ</item>
-        <item>ΣΙΔΗΡΟΚΑΣΤΡΟ</item>
-        <item>ΓΡΑΤΙΝΗ</item>
-        <item>ΡΕΝΤΙΝΑ</item>
-        <item>ΔΙΔΥΜΟΤΕΙΧΟ</item>
-        <item>ΠΥΘΙΟ</item>
+        <item>AGGELOKASTRO</item>
+        <item>AMPHIPOLIS</item>
+        <item>SERVIA</item>
+        <item>PHILIPPOI</item>
+        <item>MOGLENA</item>
+        <item>SERRES</item>
+        <item>PLATAMONAS</item>
+        <item>ANAKTOROUPOLIS</item>
+        <item>THESSALONIKI</item>
+        <item>ANASTASIOUPOLIS</item>
+        <item>GYNAIKOKASTRO</item>
+        <item>KOUMOUTZINA</item>
+        <item>SIDIROKASTRO</item>
+        <item>GRATINI</item>
+        <item>RENTINA</item>
+        <item>DIDIMOTIHO</item>
+        <item>PITHIO</item>
     </string-array>
 
     <string-array name="monument_images_filenames">
@@ -137,189 +147,188 @@
         <item>monument_pithio</item>
     </string-array>
 
-    <string name="title">Ερωτοαπαντήσεις</string>
-    <string name="rightAnswer">Σωστό !</string>
-    <string name="wrongAnswer">Λάθος !</string>
-    <string name="result">Αποτέλεσμα</string>
-    <string name="correct_answers_num">Πλήθος σωστών απαντήσεων</string>
-    <string name="question">Ερώτηση</string>
-    <string name="from">από 3</string>
+    <string name="title">Questions-Answers</string>
+    <string name="rightAnswer">Correct !</string>
+    <string name="wrongAnswer">Wrong !</string>
+    <string name="result">Result</string>
+    <string name="correct_answers_num">Number of correct answers</string>
+    <string name="question">Question</string>
+    <string name="from">from 3</string>
     <string name="qrcode">QR Code</string>
 
 
     <string-array name="Questions">
-        <item>Αιώνες που αποκαλούνται και ως Παλαιοχριστιανική περίοδος:</item>
-        <item>Έδρα της Βυζαντινής αυτοκρατορίας, πριν την ίδρυση της Κωσταντινούπολης:</item>
-        <item>Έτος ίδρυσης της Κωνσταντινούπολης από τον Μέγα Κωνσταντίνο:</item>
-        <item>Στην Θεσσαλονίκη τρικλίνιο ήταν η ονομασία για:</item>
-        <item>Οι αμφορείς χρησιμοποιούνταν σε σπίτια ώς:</item>
-        <item>Το πιο διαδεδομένο ρούχο στην Ανατολική Μεσόγειο, ο χιτώνας κατασκευάζονταν από:</item>
-        <item>Σύμφωνα με την Ελληνική μυθολογία τα Ηλύσια πεδία ήταν ο τελικό προορισμός της ψυχής των:</item>
-        <item>Ποιό απο τα παρακάτω δεν συνηθίζοταν να συνοδεύει το νεκρό μέσα στον τάφο:</item>
-        <item>Τι πληροφορία δεν περιμένει κάποιος να βρεί σε μια επιτύμβια επιγραφή :</item>
-        <item>Αιώνες που περιέχει η Μεσοβυζαντινή περίοδος:</item>
-        <item>Τα "κουτρούβια" χρησιμοποιούνταν από τους προσκυνητές για να μεταφέρουν:</item>
-        <item>Ονομασία Βυζαντινών που ήταν ενάντια στην απεικόνιση των ιερών συμβόλων:</item>
-        <item>Ο Ηράκλειος υπήρξε αυτόκράτορας του Βυζαντίου από το 610 μ.Χ μέχρι το:</item>
-        <item>Ονομάσια του χρυσού νομίσματος που καθιέρωσε ο Μ. Κωνσταντίνος:</item>
-        <item> Ο Αλέξιος Α΄ Κομνηνός (1081-1118) εισήγαγε νέο χρυσό νόμισμα με όνομα:</item>
-        <item>Αυτοκράτορας που επανιδρύει το κάστρο της Ρεντίνας καθώς ενισχύει και τις οχυρώσεις:</item>
-        <item>Τμήμα του κάστρου που βρίσκεται ψηλά και χρησιμεύει στις περιπολίες των στρατιωτών:</item>
-        <item>Σε ποιά απ τις παρακάτω τοποθεσίες δεν θα χτίζονταν ένα κάστρο:</item>
-
-        <item>Χρονολογία της άλωσης της Κωνσταντινούπολης από τους Οθωμανούς:</item>
-        <item>Αυτοκράτορας που κατήργησε τους ολυμπιακούς αγώνες:</item>
-        <item>Σύμβολο της Βυζαντινής Αυτοκρατορίας:</item>
-        <item>Ονομασία οθωμανού στρατιώτη:</item>
+        <item>Centuries that are known as Early Christian Period:</item>
+        <item>The capital of Byzantine Empire, before the founding of Constantinople:</item>
+        <item>The year of Constantinople foundation, by Constantine the Great:</item>
+        <item>In Thessaloniki the "triklino" was the name of:</item>
+        <item>The amphoraes in the houses was used as:</item>
+        <item>The most popular clothe in East Meditteranean, the tunic, was manifactured with:</item>
+        <item>According to the Greek mythology, the Elysian Fields, were the final destination of the souls of:</item>
+        <item>Which of the following, was not used to follow a dead in his tomb:</item>
+        <item>What information is unexpected to be found on a tombstone:</item>
+        <item>Centuries that are known as Middle Byzantine Period:</item>
+        <item>The "koutroubia" were used from pilgrims to carry:</item>
+        <item>The name of the Byzantines, who were against the depiction of holly symbols:</item>
+        <item>Heraclius had been the emperor of Byzantium from 610 A.C to:</item>
+        <item>The name of the golden currency, which was established by Contantine the Great:</item>
+        <item>Alexios A Komnenian (1081-1118) established a new golden currency known as:</item>
+        <item>The emperor who re-established the castle of Rentina, while he reenforced the fortifications too:</item>
+        <item>The part of the castle, which is highly located to help the soldiers\' patrols:</item>
+        <item>In which of the following locations, a castle must not be built:</item>
+        <item>The year of the Fall of Contantinople by the Ottomans:</item>
+        <item>The emperor who canceled the Olympic Games:</item>
+        <item>The symbol of the Byzantine Empire:</item>
+        <item>The name of the Ottoman soldier:</item>
     </string-array>
 
     <string-array name="Answers">
-        <item>4ος - 7ος αιώνας</item>
-        <item>3ος - 5ος αιώνας</item>
-        <item>4ος - 6ος αιώνας</item>
-        <item>3ος - 7ος αιώνας</item>
+        <item>4th - 7th century</item>
+        <item>3rd - 5th century</item>
+        <item>4th - 6th century</item>
+        <item>3rd - 7th century</item>
 
-        <item>Αλεξάνδρεια</item>
-        <item>Αντιόχεια</item>
-        <item>Ρώμη</item>
-        <item>Αθήνα</item>
+        <item>Alexandria</item>
+        <item>Antiohia</item>
+        <item>Rome</item>
+        <item>Athens</item>
 
-        <item>325 μ.Χ</item>
-        <item>332 μ.Χ</item>
-        <item>340 μ.Χ</item>
-        <item>330 μ.Χ</item>
+        <item>325 A.C</item>
+        <item>332 A.C</item>
+        <item>340 A.C</item>
+        <item>330 A.C</item>
 
-        <item>Είδος ενδυμασίας</item>
-        <item>Πήλινα αγγεία</item>
-        <item>Μαγειρικό σκεύος</item>
-        <item>Χώρος αστικής οικίας</item>
+        <item>Clothing type</item>
+        <item>Pottery</item>
+        <item>Kitchenware</item>
+        <item>Place of urban residence</item>
 
-        <item>Αποθηκευτικά αγγεία</item>
-        <item>Μαγειρικά σκεύη</item>
-        <item>Διακοσμηση</item>
-        <item>Στηρίγματα</item>
+        <item>Storage pottery</item>
+        <item>Kitchenware</item>
+        <item>Decoration</item>
+        <item>Pillars</item>
 
-        <item>Λινάρι ή μαλλί</item>
-        <item>Δέρμα ζώων</item>
-        <item>Μετάξι</item>
-        <item>Βαμβάκι</item>
+        <item>Wool</item>
+        <item>Animal skin</item>
+        <item>Silk</item>
+        <item>Cotton</item>
 
-        <item>Στρατιωτών</item>
-        <item>Βασιλιάδων</item>
-        <item>Λιποτακτών</item>
-        <item>Ηρώων</item>
+        <item>Soldiers</item>
+        <item>Kings</item>
+        <item>Defectors</item>
+        <item>Heroes</item>
 
-        <item>Γυάλινα αγγεία</item>
-        <item>Χρυσά νομίσματα</item>
-        <item>Ασπίδες</item>
-        <item>Κατοικίδια ζώα</item>
+        <item>Glass vases</item>
+        <item>Golden coins</item>
+        <item>Shield</item>
+        <item>Pets</item>
 
-        <item>Όνομα </item>
-        <item>Επάγγελμα</item>
-        <item>Κόστος του Τάφου</item>
-        <item>Οικογενειακή κατάσταση</item>
+        <item>Name</item>
+        <item>Occupation</item>
+        <item>Tomb\'s cost</item>
+        <item>Marital status</item>
 
-        <item>6ος - 10ος αιώνας</item>
-        <item>9ος - 12ος αιώνας</item>
-        <item>8ος - 12ος αιώνας</item>
-        <item>7ος - 10ος αιώνας</item>
+        <item>6th - 10th century</item>
+        <item>9th - 12th century</item>
+        <item>8th - 12th century</item>
+        <item>7th - 10th century</item>
 
-        <item>Σιτάρι</item>
-        <item>Μαλλί</item>
-        <item>Νερό</item>
-        <item>Μύρο</item>
+        <item>Wheat</item>
+        <item>Wool</item>
+        <item>Water</item>
+        <item>Essence</item>
 
-        <item>Ανθενωτικοί</item>
-        <item>Εθνικοί</item>
-        <item>Ειδωλολάτρες</item>
-        <item>Εικονομάχοι</item>
+        <item>Anti-unionist</item>
+        <item>Paynim</item>
+        <item>Pagans</item>
+        <item>Iconoclasts</item>
 
-        <item>625 μ.Χ</item>
-        <item>635 μ.Χ</item>
-        <item>641 μ.Χ</item>
-        <item>631 μ.Χ</item>
+        <item>625 A.C</item>
+        <item>635 A.C</item>
+        <item>641 A.C</item>
+        <item>631 A.C</item>
 
-        <item>Σόλιδος</item>
-        <item>Μιλιαρήσιο</item>
-        <item>Κεράτιο</item>
-        <item>φολλίς</item>
+        <item>Solidos</item>
+        <item>Miliarisio</item>
+        <item>Keratio</item>
+        <item>Follis</item>
 
-        <item>Τετάρτηρο</item>
-        <item>Τρημίσιο</item>
-        <item>Ιστάμενον</item>
-        <item>Υπέρπυρο</item>
+        <item>Tetartiro</item>
+        <item>Trimisio</item>
+        <item>Istamenon</item>
+        <item>Iperpiros</item>
 
-        <item>Φωκάς</item>
-        <item>Ιουστινιανός</item>
-        <item>Μαυρίκιος</item>
-        <item>Τιβέριος Β`</item>
+        <item>Fokas</item>
+        <item>Justinian</item>
+        <item>Maurice</item>
+        <item>Tiberius Β</item>
 
-        <item>Κινστέρνα</item>
-        <item>Πύργος</item>
-        <item>Περίδρομος</item>
-        <item>Τείχος</item>
+        <item>Cistern</item>
+        <item>Tower</item>
+        <item>Peridromus</item>
+        <item>Wall</item>
 
-        <item>Ύψώμα</item>
-        <item>Απότομο έδαφος</item>
-        <item>Παραθαλάσσιο μέρος</item>
-        <item>Πεδιάδα</item>
+        <item>Hill</item>
+        <item>Steep terrain</item>
+        <item>Place by the sea</item>
+        <item>Plain</item>
 
         <item>1284</item>
         <item>1282</item>
         <item>1453</item>
         <item>1435</item>
 
-        <item>Θεοδόσιος</item>
-        <item>Ιουλιανός</item>
-        <item>Κωνσταντίνος</item>
-        <item>Ηράκλειος</item>
+        <item>Theodosios</item>
+        <item>Justinian</item>
+        <item>Constantine</item>
+        <item>Heraclius</item>
 
-        <item>Κουκουβάγια</item>
-        <item>Λιοντάρι</item>
-        <item>Αετός</item>
-        <item>Νυχτερίδα</item>
+        <item>Owl</item>
+        <item>Lionοντάρι</item>
+        <item>Eagle</item>
+        <item>Bat</item>
 
-        <item>Ακρίτας</item>
-        <item>Λεγεωνάριος</item>
-        <item>Γενίτσαρος</item>
-        <item>Σταυροφόρος</item>
+        <item>Akritas</item>
+        <item>Legionnaire</item>
+        <item>Janissary</item>
+        <item>Crusader</item>
     </string-array>
 
     <string-array name="RightAnswers">
-        <item>4ος - 7ος αιώνας</item>
-        <item>Ρώμη</item>
-        <item>330 μ.Χ</item>
-        <item>Χώρος αστικής οικίας</item>
-        <item>Αποθηκευτικά αγγεία</item>
-        <item>Λινάρι ή μαλλί</item>
-        <item>Ηρώων</item>
-        <item>Κατοικίδια ζώα</item>
-        <item>Οικογενειακή κατάσταση</item>
-        <item>8ος - 12ος αιώνας</item>
-        <item>Μύρο</item>
-        <item>Εικονομάχοι</item>
-        <item>641 μ.Χ</item>
-        <item>Σόλιδος</item>
-        <item>Υπέρπυρο</item>
-        <item>Ιουστινιανός</item>
-        <item>Πεδιάδα</item>
+        <item>4rth - 7th century</item>
+        <item>Rome</item>
+        <item>330 A.C</item>
+        <item>Place of urban residence</item>
+        <item>Storage pottery</item>
+        <item>Wool</item>
+        <item>Heroes</item>
+        <item>Pets</item>
+        <item>Marital status</item>
+        <item>8th - 12th century</item>
+        <item>Essence</item>
+        <item>Iconoclasts</item>
+        <item>641 A.C</item>
+        <item>Solidos</item>
+        <item>Iperpiros</item>
+        <item>Justinian</item>
+        <item>Plain</item>
 
         <item>1453</item>
-        <item>Θεοδόσιος</item>
-        <item>Αετός</item>
-        <item>Γενίτσαρος</item>
+        <item>Theodosios</item>
+        <item>Eagle</item>
+        <item>Janissary</item>
     </string-array>
 
     <string-array name="right_order_names">
-        <item>Μετά το πλάσιμο στον τροχό</item>
-        <item>Επένδυση ασπριδερού επιχρίσματος</item>
-        <item>Χάραξη διάκοσμου</item>
-        <item>Επι-υάλωση και ψήσιμο</item>
+        <item>After figuration on the wheel</item>
+        <item>Investing whitish coating</item>
+        <item>Eecoration engraving</item>
+        <item>Com-glazing and baking</item>
     </string-array>
 
-    <string name="loading">Παρακαλώ περιμένετε...</string>
+    <string name="loading">Please wait...</string>
 
-    <string name="righ_order_timer">Χρόνος που απομένει</string>
+    <string name="righ_order_timer">Remaining time</string>
 
     <string name="title_activity_help_screen">HelpScreenActivity</string>
 
@@ -327,54 +336,54 @@
 
     <string-array name="advices">
         <item>
-            ΓΕΝΙΚΑ \n
-            Μέσω της εφαρμογής γνωρίζεις το Βυζαντινό Μουσείο της Θεσσαλονίκης με ένα διασκεδαστικό κυνήγι θησαυρού. \nΕπισκέψου όλες τις
-            αίθουσες του μουσείου, απαντήσε σωστά στις ερωτήσεις και επιστράτευσε όλη σου την επιδεξιότητα για να λύσεις τους γρίφους που συναντάς.
-            \nΟλοκλήρωσε την βόλτα σου στο μουσείο με το μεγαλύτερο σκορ. \n \n
-            1. Ακολούθησε τα στοιχεία που εμφανίζονται στην οθόνη. \n
-            2. Χρησιμοποίησε τον QR code scanner για να εντοπίσεις το σωστό έκθεμα. \n
-            3. Ολοκλήρωσε με επιτυχία τις ερωτήσεις και τους γρίφους για να αυξήσεις το σκορ σου \n
+            GENERAL \n
+            Through this application you get to know the Museum of Byzantine Culture of Thessaloniki via a funny treasure hunt. \n
+            You should visit every room in the museum, answer the questions and gather all your abilities, in order to solve the riddles you
+            come across.\n
+            Complete your museum tour with the greatest score.\n\n
+            1. Follow the clues on the screen \n
+            2. Use the QR code scanner to locate the correct exhibit\n
+            3. Fullfill successfully all the questions and the riddles, to increase your score.\n
         </item>
         <item>
-            ΠΑΙΧΝΙΔΙ ΕΡΩΤΗΣΕΩΝ \n
-            Μία ερώτηση, τέσσερεις πιθανές απαντήσεις. \n
-            Το μόνο που έχεις να κάνεις είναι να βρεις την σωστή\n
-            Πόσο καλός είσαι στην ιστορία?
+            QUIZ GAME\n
+            One question, four possible answers. \n
+            The only thing you have to do is to find the right one.\n
+            How good are you in history?
         </item>
         <item>
-            ΠΟΥ ΒΡΙΣΚΟΝΤΑΙ ΤΑ ΜΝΗΜΕΙΑ?\n
-            Γνωρίζοντας το μνημείο και την τοποθεσία του μπορείς να βρεις που βρίσκεται στον χάρτη? \n
-            Επέλεξε την τοποθεσία πάνω στον χάρτη, όσο το δυνατόν πιο κοντά στο μνημείο για να κερδίσεις πόντους. \n
-            Στους τοίχους του μουσείου κρύβονται τα στοιχεία που ζητάς...
+            WHERE ARE THE MONUMENTS?\n
+            Can you find the location of the monument on the map, knowing the monument and the location name?\n
+            Choose the location on the map, as close as possible to the right one, to score more points\n
+            The clues you are asking for are hidden on the museum\'s walls
         </item>
         <item>
-            ΠΙΑΣΕ ΜΕ ΑΝ ΜΠΟΡΕΙΣ \n
-            Όσο πιο γρήγορα τα αντανακλαστικά σου τόσο το καλύτερο. \n
-            Χτύπα την κινούμενη εικόνα στην οθόνη για να συμπληρώσεις την μεγάλη εικόνα στο τέλος του παιχνιδιού. \n
-            Όσα περισσότερα επιτυχημένα χτυπήματα έχεις, κερδίζεις πόντους και μία καλύτερη ματιά σε ένα από τα αριστουργήματα του μουσείου μας
+            CATCH ME IF YOU CAN\n
+            The faster your reflexes are the better.\n
+            Hit the moving image in order to complete the bigger picture in the end of the game.\n
+            The more successful hits you manage, the more points you score and you get a cleaner view at on of the museum\'s masterpieces.
         </item>
         <item>
-            ΣΩΣΕ ΤΙΣ ΑΨΙΔΕΣ \n
-            Στην πραγματικότητα πρόκειται για το κλασσικό παιχνίδι της κρεμάλας.\n
-            Αρκεί να βρεις την λέξη πριν γκρεμιστούν όλες οι αψίδες του μνημείου.\n
-            Τι και αν οι λέξεις είναι λίγο ασυνήθιστές, πρόσεχε το περιβάλλον γύρω σου και θα σου δώσει την απάντηση σχεδόν από μόνο του.
+            SAVE THE ARCHES\n
+            In fact it is all about the classic hangman game.\n
+            All you have to do is to guess the word before all the arches come down.\n
+            What is the words are kind of unusual and Greek, take a good look at your surroundings and the museum will give you the answer
         </item>
         <item>
-            ΚΑΘΕ ΝΟΜΙΣΜΑ ΕΧΕΙ ΔΥΟ ΟΨΕΙΣ \n
-            Μπορείς να αναγνωρίσεις ποιες είναι αυτές? \n
-            Ταιριαξές τες όσο πιο γρήγορα μπορείς για να κερδίσεις πόντους. Όσο πιο παρατηρητικός είσαι τόσο πιο γρήγορα θα τελειώσεις\n
-            Να θυμάσαι πως τίποτα δεν τελειώνει αν δεν αλλάξεις αίθουσα στο μουσείο.
+            ALL COINS HAVE TWO FACES\n
+            Can you figure out who they are?\n
+            Match them as soon as possible to score points. The more observant you are, the sooner you will finish.\n
+            Remember nothing is over until you move on to the next room of the museum.
         </item>
         <item>
-            ΣΥΜΠΛΗΡΩΣΕ ΤΟ \n
-            Μόνο αν βάλεις κάθε τι στην θέση του μπορείς να δεις τι κρύβει η εικόνα. \n
-            Ένα κλασσικό παιχνίδι puzzle, ή αλλιώς "Γρήγορα και νοικοκυρεμένα"
+            FILL IT UP\n
+            Only if you put everything in place you can see what the picture is hidding.\n
+            It is a classical puzzle game, also known as "Fast and neatly"
         </item>
         <item>
-            ΒΡΕΣ ΤΗΝ ΣΩΣΤΗ ΣΕΙΡΑ\n
-            Μερικά από τα αγγεία που θαυμάζουμε μέχρι και σήμερα για την εμφάνισή και τις λεπτομέριές τους, χρειάστηκαν αρκετό κόπο και χρόνο
-            για να πάρουν την μορφή τους. \n
-            Βάλε στην σωστή σειρά τα στάδια παραγωγής τους, την ονομασία τους και την μορφή τους, όσο πιο γρήγορα μπορείς για να κερδίσεις πόντους.
+            FIND THE RIGHT ORDER\n
+            Some of the pottery we admire up to this day, took a lot of time in order to look like this and carry all these details.\n
+            Put in the rigth order the production stages, their names and form, as fast as you can to increase your score
         </item>
     </string-array>
 
@@ -384,20 +393,22 @@
 
     <string name="title_activity_credits">CreditsActivity</string>
 
-    <string name="credits">Το παιχνίδι Amusing Museum είναι μία εφαρμογή εκπαιδευτικού χαρακτήρα η οποία αναπτύχθηκε με σκοπό
-    ο επισκέπτης του Βυζαντινού Μουσείου της Θεσσαλονίκης να μπορεί να γνωρίσει το μουσείο μέσα από ένα διασκεδαστικό παιχνίδι
-    θησαυρού.\n
-    Η εφαρμογή αναπτύχθηκε στα πλαίσια του Θερινού Σχολείου Ανοιχτού Κώδικα του Πανεπιστημίου Μακεδονίας από το τμήμα της Εφαρμοσμένης
-        Πληροφορικής.\n\n
-    Ομάδα Ανάπτυξης:\n
-    Δημόπουλος Θεόδωρος-Χρήστος\n
-    Κοτσικόρης Παναγιώτης\n
-    Μόσχου Αθανασία\n\n
-    Καλή ξενάγηση στους Βυζαντινούς θησαυρούς της πόλης μας!</string>
+    <string name="credits">
+        The game "Amusing Museum" is an application for educational purposes. It has been developed in order to help the visitor
+        of the Museum of Byzantine Culture of Thessaloniki, to see the museum via a funny treasure hunt.\n
+        The application was developed during the Summer School of Open Source Projects of University of Macedonia and the department of
+         Applied Informatics.\n
+        Developer Team:\n
+        Dimopoulos Theodoros - Christos\n
+        Kotsikoris Panagiotis\n
+        Moschou Athanasia\n\n
 
-    <string name="title_qrcode"> Βρες το μνημείο ! </string>
+        Have a nice tour of the Byzantine treasures in our city!
+    !</string>
+
+    <string name="title_qrcode"> Find the exhibit ! </string>
     <string name="button_qrcode_scanner">QR code</string>
-    <string name="button_num_code">Κωδικος</string>
+    <string name="button_num_code">Code</string>
 
     <string-array name="hints">
         <item>hint 1</item>
@@ -450,11 +461,12 @@
         <item>10022</item>
 
     </string-array>
-    <string name="title_activity_insert_code">Πληκτρολόγησε το κωδικό του μνημείου</string>
 
+
+    <string name="title_activity_insert_code">Insert the code of the exhibit</string>
     <string name="title_activity_pause_menu">PauseMenuActivity</string>
 
-<string name="wrong_code">Λάθος κωδικός, προσπάθησε ξανά!</string>
+    <string name="wrong_code">Wrong code, try again!</string>
 
 
 

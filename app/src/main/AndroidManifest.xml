@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.asus_s550cb.theo.museum" >
+    package="com.asus_s550cb.theo.museum"
+    android:configChanges="locale">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:configChanges="locale"
         >
         <activity
             android:name=".MainActivity"
