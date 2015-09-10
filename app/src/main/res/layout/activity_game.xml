@@ -73,7 +73,8 @@
                         android:maxWidth="@dimen/museum_description_max_width"
                         android:layout_below="@+id/textView1"
                         android:layout_alignLeft="@+id/textView2"
-                        android:layout_alignStart="@+id/textView2" />
+                        android:layout_alignStart="@+id/textView2"
+                        android:scrollbars="vertical"/>
 
                 </LinearLayout>
 

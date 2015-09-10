@@ -84,7 +84,7 @@ public class QrCodeScanner extends Activity {
             {
                 switch (appToStart) {
                     case 1:
-                        itn = new Intent(getApplicationContext(), Hangman.class);
+                        itn = new Intent(getApplicationContext(), ChurchMap.class);
                         startActivityForResult(itn, 1);
                         break;
                     case 2:
@@ -142,57 +142,6 @@ public class QrCodeScanner extends Activity {
         }
     }
 
-    private void chooseApp(int appToStart)
-    {
-        switch (appToStart) {
-            case 1:
-                itn = new Intent(getApplicationContext(), ChurchMap.class);
-                startActivityForResult(itn, 1);
-                break;
-            case 2:
-                itn = new Intent(getApplicationContext(), ClickMe.class);
-                startActivityForResult(itn, 1);
-                break;
-            case 3:
-                itn = new Intent(getApplicationContext(), Hangman.class);
-                startActivityForResult(itn, 1);
-                break;
-            case 4:
-                itn = new Intent(getApplicationContext(), MatchingCoins.class);
-                startActivityForResult(itn, 1);
-                break;
-            case 5:
-                itn = new Intent(getApplicationContext(), PuzzleActivity.class);
-                startActivityForResult(itn, 1);
-                break;
-            case 6:
-                itn = new Intent(getApplicationContext(), RightOrder.class);
-                startActivityForResult(itn, 1);
-                break;
-          /*     case 7:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;
-                case 8:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;
-                case 9:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;
-                case 10:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;
-                case 11:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;*/
-            default:
-                finish();
-        }
-    }
 
     //alert dialog for downloadDialog
     private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {

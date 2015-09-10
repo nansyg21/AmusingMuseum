@@ -7,18 +7,25 @@ import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class Game extends AppCompatActivity {
+
+    TextView txtV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        txtV=(TextView)findViewById(R.id.textView);
+        txtV.setMovementMethod(new ScrollingMovementMethod());
         menu.hideNavBar(this.getWindow());//hide...!
     }
 
