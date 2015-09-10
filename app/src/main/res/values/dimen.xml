@@ -6,7 +6,7 @@
     <dimen name="museum_title_margin">10dp</dimen>
     <dimen name="museum_description_max_width">280dp</dimen>
 
-    <dimen name="hangman_arch_width">250dp</dimen>
+    <dimen name="hangman_arch_width">200dp</dimen>
     <dimen name="hangman_arch_height">180dp</dimen>
     <dimen name="hangman_text_size">18sp</dimen>
 

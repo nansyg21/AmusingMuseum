@@ -20,11 +20,8 @@ public class QrCodeScanner extends Activity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     public static int hintCounter;//counter for finding the proper hint in list
-//    public static String numCode;//Contain the code that the user typed
     int appToStart; // The number of the next activity to start
     public static boolean questionMode=true; // If this is true then Quiz will come up, else a riddle
-//    public static boolean numCodeCheck=false;// True if user( accessed from insert_code.java)
-
 
     String nextApp;
 
@@ -87,7 +84,7 @@ public class QrCodeScanner extends Activity {
             {
                 switch (appToStart) {
                     case 1:
-                        itn = new Intent(getApplicationContext(), ChurchMap.class);
+                        itn = new Intent(getApplicationContext(), Hangman.class);
                         startActivityForResult(itn, 1);
                         break;
                     case 2:
@@ -231,7 +228,7 @@ public class QrCodeScanner extends Activity {
                 if (contents.equals(monumentCodes[hintCounter]+"\n") || contents.equals(monumentCodes[hintCounter]) ) {
                     scanQR(null);
                 }else {
-                    Toast toast = Toast.makeText(this,"Λάθος προσπάθησε ξανά!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -281,7 +278,7 @@ public class QrCodeScanner extends Activity {
                 setContentView(R.layout.activity_android_qr_code_example);
                 textViewHint = (TextView) findViewById(R.id.textViewHints);
                 textViewHint.setText(hints[hintCounter]);
-                Toast toast = Toast.makeText(this,"Λάθος προσπάθησε ξανά!", Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
                 toast.show();
                 menu.hideNavBar(this.getWindow());
             }

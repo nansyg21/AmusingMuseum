@@ -28,9 +28,9 @@
                     android:id="@+id/letterTableRow0"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="50dp"
-                    android:layout_gravity="center_vertical">
+                    android:gravity="bottom"
+                    android:layout_gravity="center"
+                    android:paddingTop="50dp">
                     <TextView
                         android:id="@+id/dummy_textview"
                         android:layout_width="match_parent"
@@ -316,10 +316,5 @@
 
         </TableRow>
     </TableLayout>
-
-
-
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
 
 </FrameLayout>
