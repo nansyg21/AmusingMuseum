@@ -21,6 +21,8 @@ import java.util.Locale;
 
 public class menu extends Activity {
 
+    public static String lang="uk";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,13 +103,6 @@ public class menu extends Activity {
 
     }
 
-    public void setLocale(String lang) {
-        Locale locale = new Locale("en_US");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getApplicationContext().getResources().updateConfiguration(config, null);
-    }
 
     public void changeLanguage(View v)
     {
@@ -119,6 +114,7 @@ public class menu extends Activity {
                 Locale.setDefault(locale);
                 Configuration config = new Configuration();
                 config.locale = locale;
+                lang="uk";
                 getApplicationContext().getResources().updateConfiguration(config, null);
                 Intent refresh = new Intent(this, menu.class);
                 finish();
@@ -130,6 +126,7 @@ public class menu extends Activity {
                 Locale.setDefault(locale);
                 config = new Configuration();
                 config.locale = locale;
+                lang="el";
                 getApplicationContext().getResources().updateConfiguration(config, null);
                 refresh = new Intent(this, menu.class);
                 finish();

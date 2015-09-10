@@ -11,16 +11,29 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class PauseMenuActivity extends Activity {
 
     public static Boolean pause;
+
+    ImageView imgv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_pause_menu);
+
+        imgv=(ImageView)findViewById(R.id.titleImageView);
+
+        if(menu.lang.equals("uk")) {
+            imgv.setImageResource(R.drawable.pause_icon_en);
+        }
+        else
+        {
+            imgv.setImageResource(R.drawable.pause_icon_v2);
+        }
 
         menu.hideNavBar(this.getWindow());
 

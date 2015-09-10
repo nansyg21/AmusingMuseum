@@ -53,6 +53,13 @@ public class HelpDialogActivity extends Activity{
         advicesTextView.setText(adviceText[textNum]);
         advicesTextView.invalidate();
 
+        if(menu.lang.equals("uk")) {
+            titleImageView.setImageResource(R.drawable.help_icon_en);
+        }
+        else
+        {
+            titleImageView.setImageResource(R.drawable.help_icon);
+        }
         titleImageView.getLayoutParams().height=screenHeight/4;
      //   titleImageView.requestLayout();
     }
@@ -64,11 +71,13 @@ public class HelpDialogActivity extends Activity{
     {
         super.onWindowFocusChanged(hasFocus);
         menu.hideNavBar(this.getWindow());
+
+
     }
 
     public void setText(int textNum)
     {
-        advicesTextView.setText("nasia");
+        advicesTextView.setText(" ");
     }
 
     public void buttonOnClick(View v)

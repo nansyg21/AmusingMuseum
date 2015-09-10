@@ -22,6 +22,8 @@ import android.widget.TextView;
 public class HelpScreenFragment extends Fragment
 {
     TextView tv;
+    ImageView imgv;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -29,6 +31,16 @@ public class HelpScreenFragment extends Fragment
         View view = inflater.inflate(R.layout.help_screen_fragment, container, false);
         tv = (TextView) view.findViewById(R.id.adviceTextView);
         tv.setText(getArguments().getString("pageContent"));
+
+        imgv=(ImageView) view.findViewById(R.id.logoImageView);
+
+        if(menu.lang.equals("uk")) {
+            imgv.setImageResource(R.drawable.help_icon_en);
+        }
+        else
+        {
+            imgv.setImageResource(R.drawable.help_icon);
+        }
 
         // Set listener on back button to close the screen
         // Cannot set on xml because it is not an Activity class

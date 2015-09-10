@@ -39,6 +39,7 @@ public class Score extends Activity {
     private TextView msg;
     int starsToShow,currentStarsShown;   //calculated according to score
     MediaPlayer score_sound;
+    ImageView imgv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,16 @@ public class Score extends Activity {
         score_sound= MediaPlayer.create(getBaseContext(), R.raw.score_sound);
         msg = (TextView) findViewById( R.id.scoreTextView);
         CalculateStarsBasedOnScore();
+
+        imgv=(ImageView) findViewById(R.id.scoreTitle);
+
+        if(menu.lang.equals("uk")) {
+            imgv.setImageResource(R.drawable.score_icon_en);
+        }
+        else
+        {
+            imgv.setImageResource(R.drawable.score_title);
+        }
 
 
         EffectsCountDownTimer = new CountDownTimer(6000, 1000)
