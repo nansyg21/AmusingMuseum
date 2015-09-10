@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.asus_s550cb.theo.museum.CodeActivity"
-    android:background="@color/black_title"
+    android:background="@color/royal_blue"
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
@@ -24,7 +24,8 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/numCode"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:imeOptions="flagNoExtractUi"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -40,7 +41,8 @@
             android:id="@+id/button_num_code_Ok"
             android:background="@drawable/button_design"
             android:layout_margin="10dp"
-            android:onClick="OnClick"/>
+            android:onClick="buttonOnclick"
+            android:textStyle="bold" />
 
         <Button
             android:layout_width="75dp"
@@ -49,6 +51,7 @@
             android:id="@+id/button_num_code_Back"
             android:background="@drawable/button_design"
             android:layout_margin="10dp"
-            android:onClick="OnClick"/>
+            android:onClick="buttonOnclick"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +20,12 @@ public class QrCodeScanner extends Activity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     public static int hintCounter;//counter for finding the proper hint in list
-    public static String numCode;//Contain the code that the user typed
+//    public static String numCode;//Contain the code that the user typed
     int appToStart; // The number of the next activity to start
     public static boolean questionMode=true; // If this is true then Quiz will come up, else a riddle
-    public static boolean numCodeCheck=false;// True if user( accessed from insert_code.java)
+//    public static boolean numCodeCheck=false;// True if user( accessed from insert_code.java)
+
+
     String nextApp;
 
     public Intent itn;
@@ -32,6 +35,8 @@ public class QrCodeScanner extends Activity {
     String[] monumentCodes;
 
     TextView textViewHint;//In this textview the hints will be displayed!
+
+    EditText numCodeTxt;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +63,9 @@ public class QrCodeScanner extends Activity {
         nextApp="nextApp";
 
         //If user typed a pass...
-        if(numCodeCheck)
-            validateNumCode();
+      /*  if(numCodeCheck)
+            validateNumCode();*/
+
     }
 
     //product qr code mode
@@ -221,16 +227,13 @@ public class QrCodeScanner extends Activity {
                 //get the extras that are returned from the intent
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-
-
                 //Check if the qrcode is correct...
                 if (contents.equals(monumentCodes[hintCounter]+"\n") || contents.equals(monumentCodes[hintCounter]) ) {
-                    scanQR(this.textViewHint);
+                    scanQR(null);
                 }else {
                     Toast toast = Toast.makeText(this,"Λάθος προσπάθησε ξανά!", Toast.LENGTH_LONG);
                     toast.show();
                 }
-               // Log.d("ELEOS","asdf"+contents+"asdf");
             }
         }
     }
@@ -248,24 +251,39 @@ public class QrCodeScanner extends Activity {
                     showDialog(QrCodeScanner.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
                 }
                 break;
-            //TODO: Edw isws kai na mhn xreiazetai kati ,des sto insert_code.java
             case R.id.button_num_code:
-                startActivity(new Intent(getApplicationContext(),CodeActivity.class));
+              /*  startActivity(new Intent(getApplicationContext(),CodeActivity.class));
                 itn = new Intent(getApplicationContext(),CodeActivity.class);
                 itn.putExtra("nextApp",appToStart);
-                startActivityForResult(itn,0);
+                startActivityForResult(itn,0);*/
               //  finish();
+                setContentView(R.layout.activity_code);
+                menu.hideNavBar(this.getWindow());
+                break;
+            case R.id.button_num_code_Ok:
+                   numCodeTxt= (EditText) findViewById(R.id.numCode);
+                   validateNumCode();
+                break;
+            case R.id.button_num_code_Back:
+                setContentView(R.layout.activity_android_qr_code_example);
+                textViewHint = (TextView) findViewById(R.id.textViewHints);
+                textViewHint.setText(hints[hintCounter]);
+                menu.hideNavBar(this.getWindow());
                 break;
         }
     }
     //check the code that the user typed
     public void validateNumCode(){
-            numCodeCheck=false;
-            if(monumentCodes[hintCounter].equals(numCode)){
-                scanQR(this.textViewHint);
+           // numCodeCheck=false;
+            if(monumentCodes[hintCounter].equals(numCodeTxt.getText().toString())){
+                scanQR(null);
             } else  {
+                setContentView(R.layout.activity_android_qr_code_example);
+                textViewHint = (TextView) findViewById(R.id.textViewHints);
+                textViewHint.setText(hints[hintCounter]);
                 Toast toast = Toast.makeText(this,"Λάθος προσπάθησε ξανά!", Toast.LENGTH_LONG);
                 toast.show();
+                menu.hideNavBar(this.getWindow());
             }
         }
 
@@ -275,6 +293,9 @@ public class QrCodeScanner extends Activity {
         super.onResume();
         menu.hideNavBar(this.getWindow());
     }
+
+
+
 
     @Override
     public void onBackPressed() {

@@ -47,8 +47,8 @@ public class CodeActivity extends Activity {
         Intent itns;
         switch (v.getId()){
             case R.id.button_num_code_Ok:
-                QrCodeScanner.numCode=numCodeTxt.getText().toString();
-                QrCodeScanner.numCodeCheck=true;//Next time the QR Scanner will validate the num code...
+            //    QrCodeScanner.numCode=numCodeTxt.getText().toString();
+            //    QrCodeScanner.numCodeCheck=true;//Next time the QR Scanner will validate the num code...
                 itns = new Intent(getApplicationContext(), QrCodeScanner.class);
                 itns.putExtra("nextApp",appToStart);
                 finish();

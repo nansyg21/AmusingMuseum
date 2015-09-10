@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class QuizGameActivity extends Activity {
@@ -47,6 +48,7 @@ public class QuizGameActivity extends Activity {
 
     CountDownTimer countDownTimer; //Timer
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,7 @@ public class QuizGameActivity extends Activity {
         ans3 = (Button) findViewById(R.id.buttonAns3);
         ans4 = (Button) findViewById(R.id.buttonAns4);
 
+
         questions= getResources().getStringArray(R.array.Questions);
         answers= getResources().getStringArray(R.array.Answers);
         rightAnswers= getResources().getStringArray(R.array.RightAnswers);
@@ -92,8 +95,8 @@ public class QuizGameActivity extends Activity {
                     timer.setText(+minutes+" : 0" + seconds);
 
             }
-
             public void onFinish() {
+
                 timer.setText("Time's up!");
                 // Finish game when the timer is zero
                 fixQuestionCounter();
@@ -129,9 +132,9 @@ public class QuizGameActivity extends Activity {
     }
 
 
+
     public void buttonOnClick (View v){
         Button btn= (Button) v;
-
         CharSequence test=((Button) v).getText();
         txtVresult.setVisibility(View.VISIBLE);
 
@@ -140,7 +143,6 @@ public class QuizGameActivity extends Activity {
         if (test.toString().equals(rightAnswers[questionCountPublic]))
         {
             txtVresult.setText(getResources().getString(R.string.rightAnswer));
-
             //RghtAnswer so increase the proper counter
             questionRightAnsPublic++;
             questionRightAns++;
@@ -204,10 +206,15 @@ public class QuizGameActivity extends Activity {
 
         ans1.setText(answers[questionCountPublic *4]);
         ans2.setText(answers[questionCountPublic *4+1]);
-        ans3.setText(answers[questionCountPublic *4+2]);
+        ans3.setText(answers[questionCountPublic * 4 + 2]);
         ans4.setText(answers[questionCountPublic * 4 + 3]);
 
+
+
     }
+
+
+
     //When the time end finish quiz finish Activity
     //and make sure that you are in the right question
 
@@ -235,6 +242,7 @@ public class QuizGameActivity extends Activity {
             questionCountPublic=30;
     }
 
+
     @Override
     public void onBackPressed() {
 
@@ -250,5 +258,6 @@ public class QuizGameActivity extends Activity {
                     }
                 }).create().show();
     }
+
 
 }
