@@ -69,7 +69,7 @@ public class QuizGameActivity extends Activity {
         screenWidth = displaymetrics.widthPixels;
 
         txtVquestion = (TextView) findViewById(R.id.textViewQuestion);
-        txtVquestion.setTextSize((float) Math.ceil(screenHeight*0.017));
+
 
         txtVquestionCounter=  (TextView) findViewById(R.id.textViewQuestionCounter);
         txtVresult = (TextView) findViewById(R.id.textViewResult);
