@@ -36,13 +36,9 @@ public class StartGame extends Activity {
     Ourview v;
     int height,width,newInt;
     static int startingStage=0;
-
-    boolean scan=true;
-
     String nextApp;
+    String [] rooms;
 
-    Rect menuRect;
-    Drawable menuBt;
     PauseMenuButton pauseBt;
     float textViewX,textViewY;//the position of the textview
 
@@ -60,6 +56,8 @@ public class StartGame extends Activity {
         QuizGameActivity.firstQuiz=true;
 
         pauseBt=new PauseMenuButton(width,this);
+
+        rooms=getResources().getStringArray(R.array.rooms_startgame);
 
         nextApp="nextApp";
         PauseMenuActivity.pause=false;
@@ -145,7 +143,7 @@ public class StartGame extends Activity {
 
             paint=new Paint();
             paint.setColor(Color.WHITE);
-            paint.setTextSize((float) Math.ceil(height * 0.05));
+            paint.setTextSize((float) Math.ceil(height * 0.045));
             paint.setTextAlign(Paint.Align.CENTER);
 
             textViewX=(float) Math.ceil(width* 0.8);
@@ -186,7 +184,8 @@ public class StartGame extends Activity {
                 canvas.drawColor(Color.parseColor("#0B0075"));
                 canvas.drawBitmap(background, 0, 0, null);
                 //Symbol \n cannot be realized from android , too bad
-                canvas.drawText("ΑΙΘΟΥΣΑ " + startingStage + " :", textViewX, textViewY-30, paint);
+
+                canvas.drawText( getResources().getString(R.string.room_word)+" " + startingStage + " :", textViewX, textViewY-30, paint);
                 canvas.drawText(setTextTitle()[0],textViewX,textViewY+100,paint);
                 canvas.drawText(setTextTitle()[1],textViewX,textViewY+200,paint);
                 canvas.drawText(setTextTitle()[2],textViewX,textViewY+300,paint);
@@ -247,27 +246,27 @@ public class StartGame extends Activity {
     public String [] setTextTitle(){
 
         if(startingStage==1){
-            return new String[]{ " O ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΟΣ ΝΑΟΣ","",""};
+            return new String[]{ rooms[0],"",""};
         }else if(startingStage==2){
-            return new String[]{"Η ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΗ ΠΟΛΗ ","ΚΑΙ ΚΑΤΟΙΚΙΑ",""};
+            return new String[]{rooms[1],rooms[2],""};
         }else if(startingStage==3){
-            return new String[]{"ΑΠΟ ΤΑ ΗΛΥΣΙΑ ΠΕΔΙΑ ΣΤΟ"," ΧΡΙΣΤΙΑΝΙΚΟ ΠΑΡΑΔΕΙΣΟ",""};
+            return new String[]{rooms[3],rooms[4],""};
         }else if(startingStage==4){
-            return new String[]{"ΑΠΟ ΤΗΝ ΕΙΚΟΝΟΜΑΧΙΑ ΣΤΗ"," ΛΑΜΨΗ ΤΩΝ ΜΑΚΕΔΩΝΩΝ", "ΚΑΙ ΤΩΝ ΚΟΜΝΗΝΩΝ"};
+            return new String[]{rooms[5],rooms[6], rooms[7]};
         }else if(startingStage==5){
-            return new String[]{"ΟΙ ΔΥΝΑΣΤΕΙΕΣ ΤΩΝ ΒΥΖΑΝΤΙΝΩΝ","ΑΥΤΟΚΡΑΤΟΡΩΝ",""};
+            return new String[]{rooms[8],rooms[9],""};
         }else if(startingStage==6){
-            return new String[]{"ΤΟ ΒΥΖΑΝΤΙΝΟ ΚΑΣΤΡΟ","",""};
+            return new String[]{rooms[10],"",""};
         }else if(startingStage==7){
-            return new String[]{"ΤΟ ΛΥΚΟΦΩΣ ΤΟΥ ΒΥΖΑΝΤΙΟΥ","",""};
+            return new String[]{rooms[11],"",""};
         }else if(startingStage==8){
-            return new String[]{"ΔΩΡΕΕΣ ΣΥΛΛΟΓΩΝ (1/2)","",""};
+            return new String[]{rooms[12],"",""};
         }else if(startingStage==9){
-            return new String[]{"ΔΩΡΕΕΣ ΣΥΛΛΟΓΩΝ (2/2)","",""};
+            return new String[]{rooms[13],"",""};
         }else if(startingStage==10){
-            return new String[]{"H ΒΥΖΑΝΤΙΝΗ ΚΛΗΡΟΝΟΜΙΑ","ΣΤΟΥΣ ΧΡΟΝΟΥΣ ΜΕΤΑ ","ΤΗΝ ΑΛΩΣΗ"};
+            return new String[]{rooms[14],rooms[15],rooms[16]};
         }else if(startingStage==11){
-            return new String[]{"ΑΝΑΚΑΛΥΠΤΟΝΤΑΣ ΤΟ ΠΑΡΕΛΘΟΝ","",""};
+            return new String[]{rooms[17],"",""};
         }
 
         return null;

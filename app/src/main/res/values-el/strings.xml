@@ -21,6 +21,7 @@
     <string name="confirm_exit_οκ">ΟΚ</string>
 
 
+
 <string name="title_activity_fullscreen_activity_room2">FullscreenActivityRoom2</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
@@ -456,6 +457,22 @@
     <string name="title_activity_pause_menu">PauseMenuActivity</string>
 
     <string name="wrong_code">Λάθος κωδικός, προσπάθησε ξανά!</string>
+
+    <string name="room_word">ΑΙΘΟΥΣΑ</string>
+
+    <string-array name="rooms_startgame">
+        <item>Ο ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΟΣ ΝΑΟΣ</item>
+        <item>ΠΑΛΑΙΟΧΡΙΣΤΙΑΝΙΚΗ ΠΟΛΗ</item><item>ΚΑΙ ΚΑΤΟΙΚΙΑ</item>
+        <item>ΑΠΟ ΤΑ ΗΛΥΣΙΑ ΠΕΔΙΑ ΣΤΟ </item><item>ΧΡΙΣΤΙΑΝΙΚΟ ΠΑΡΑΔΕΙΣΟ</item>
+        <item>ΑΠΟ ΤΗΝ ΕΙΚΟΝΟΜΑΧΙΑ</item><item>ΣΤΗΝ ΛΑΜΨΗ ΤΩΝ ΜΑΚΕΔΟΝΩΝ</item><item>ΚΑΙ ΤΩΝ ΚΟΜΝΗΝΩΝ</item>
+        <item>ΟΙ ΔΥΝΑΣΤΕΙΕΣ ΤΩΝ</item><item>ΒΥΖΑΝΤΙΝΩΝ ΑΥΤΟΚΡΑΤΟΡΩΝ</item>
+        <item>ΤΟ ΒΥΖΑΝΤΙΝΟ ΚΑΣΤΡΟ</item>
+        <item>ΤΟ ΛΥΚΟΦΩΣ ΤΟΥ ΒΥΖΑΝΤΙΟΥ</item>
+        <item>ΔΩΡΕΕΣ ΣΥΛΛΟΓΩΝ (1/2)</item>
+        <item>ΔΩΡΕΕΣ ΣΥΛΛΟΓΩΝ (2/2)</item>
+        <item>Η ΒΥΖΑΝΤΙΝΗ ΚΛΗΡΟΝΟΜΙΑ</item><item>ΣΤΟΥΣ ΧΡΟΝΟΥΣ ΜΕΤΑ </item><item>ΤΗΝ ΑΛΩΣΗ</item>
+        <item>ΑΝΑΚΑΛΥΠΤΟΝΤΑΣ ΤΟ</item><item>ΠΑΡΕΛΘΟΝ</item>
+    </string-array>
 
 
 

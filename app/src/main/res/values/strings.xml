@@ -30,7 +30,7 @@
     <string name="museum_title">MUSEUM OF BYZANTINE CULTURE OF THESSALONIKI</string>
 
     <string name="museum_discription">
-        1. THE EARLY CHRISTIAN CHURCHES\n
+        1. EARLY CHRISTIAN CHURCHES\n
         2. EARLY CHRISTIAN CITY AND PRIVATE DWELLING\n
         3. FROM THE ELYSIAN FIELDS TO THE CHRISTIAN PARADISE\n
         4. FROM ICONOCLASM TO THE SPLENDOUR OF THE MACEDONIAN AND KOMNENIAN DYNASTIES\n
@@ -468,6 +468,21 @@
 
     <string name="wrong_code">Wrong code, try again!</string>
 
+    <string name="room_word">ROOM</string>
+
+    <string-array name="rooms_startgame">
+        <item>EARLY CHRISTIAN CHURCHES</item>
+        <item>EARLY CHRISTIAN CITY AND</item><item>PRIVATE DWELLING</item>
+        <item> FROM THE ELYSIAN FIELDS </item><item>TO THE CHRISTIAN PARADISE</item>
+        <item> FROM ICONOCLASM TO THE </item><item>SPLENDOUR OF THE MACEDONIAN</item><item>AND KOMNENIAN DYNASTIES</item>
+        <item>THE DYNASTIES OF</item><item>BYZANTINE EMPERORS</item>
+        <item> BYZANTINE CASTLES</item>
+        <item>THE TWILIGHT OF BYZANTIUM</item>
+        <item>DONATED COLLECTIONS (1/2)</item>
+        <item>DONATED COLLECTIONS (2/2)</item>
+        <item> THE BYZANTINE LEGACY </item><item> IN THE YEARS AFTER THE</item><item>FALL OF CONSTANTINOPLE</item>
+        <item> DISCOVERING THE</item><item>PAST</item>
+    </string-array>
 
 
 

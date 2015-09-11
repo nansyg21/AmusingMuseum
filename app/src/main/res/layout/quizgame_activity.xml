@@ -17,12 +17,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title"
-            android:textSize="35dp"
             android:textStyle="bold"
             android:phoneNumber="false"
             android:textColor="@color/neutral_beize"
             android:layout_weight="2"
-            android:gravity="right">
+            android:gravity="right"
+            android:textSize="35dp">
         </TextView>
 
         <TextView
@@ -30,13 +30,14 @@
             android:layout_height="wrap_content"
             android:text="TIMER"
             android:id="@+id/txtViewTimer"
-            android:textSize="35dp"
+
             android:textStyle="bold"
             android:textColor="@color/neutral_beize"
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:maxWidth="100dp"
-            android:minWidth="100dp" />
+            android:minWidth="100dp"
+            android:textSize="35dp" />
     </LinearLayout>
 
     <TextView
@@ -44,11 +45,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:textSize="12dp"
         android:id="@+id/textViewQuestionCounter"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/neutral_beize"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -60,7 +61,6 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:textColor="@color/neutral_beize"
-        android:textSize="25dp"
         android:gravity="center"
         android:textAlignment="gravity"
         android:minLines="2" />
