@@ -106,7 +106,7 @@ public class ChurchMap extends Activity {
 
         //Start help screen
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
-        itn.putExtra("appNum",2);
+        itn.putExtra("appNum", 2);
         startActivity(itn);
 
     }
@@ -331,7 +331,11 @@ public class ChurchMap extends Activity {
 
                     public void onClick(DialogInterface arg0, int arg1)
                     {
-                        System.exit(0);
+                        finish();
+                        Intent itn= new Intent(getApplicationContext(), menu.class); //go to menu screen with proper flag set
+                        itn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        itn.putExtra("leaving", true);
+                        startActivity(itn);
                     }
                 }).create().show();
     }

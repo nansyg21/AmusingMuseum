@@ -75,9 +75,18 @@ public class LoadingScreen extends Activity {
 
                     public void onClick(DialogInterface arg0, int arg1)
                     {
-                        System.exit(0);
+                        finish();
+                        Intent itn= new Intent(getApplicationContext(), menu.class); //go to menu screen with proper flag set
+                        itn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        itn.putExtra("leaving", true);
+                        startActivity(itn);
                     }
                 }).create().show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        menu.hideNavBar(this.getWindow());
+    }
 }

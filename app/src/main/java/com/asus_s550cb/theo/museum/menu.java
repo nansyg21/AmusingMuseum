@@ -20,9 +20,8 @@ import java.util.Locale;
 
 
 public class menu extends Activity {
-
+    public static int mainPid;
     public static String lang="uk";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,7 @@ public class menu extends Activity {
         setContentView(R.layout.activity_menu);
         //hide nav & stat bars
         hideNavBar(this.getWindow());
-
+        mainPid=android.os.Process.myPid();
     }
 
     @Override
@@ -67,7 +66,7 @@ public class menu extends Activity {
                 System.exit(0);
                 break;
             case R.id.btnMenuNewGame:
-                startActivity(new Intent(getApplicationContext(),Game.class));
+                startActivity(new Intent(getApplicationContext(), Game.class));
                 //finish();
                 break;
             case R.id.btnMenuHelp:
@@ -90,19 +89,25 @@ public class menu extends Activity {
 
                     public void onClick(DialogInterface arg0, int arg1)
                     {
-                        System.exit(0);
+                       finish();
                     }
                 }).create().show();
     }
+
 
     //Remember to hide everything when Activity Resumes...
     @Override
     protected void onResume() {
         super.onResume();
+        Bundle extras = getIntent().getExtras();
+        if(extras !=null) {
+            boolean leaving = extras.getBoolean("leaving");
+            if(leaving)
+                android.os.Process.killProcess(android.os.Process.myPid()); //will kill all the activities started in this process
+
+        }
         hideNavBar(this.getWindow());
-
     }
-
 
     public void changeLanguage(View v)
     {

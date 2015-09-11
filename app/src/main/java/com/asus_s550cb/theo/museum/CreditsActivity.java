@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,7 +62,11 @@ public class CreditsActivity extends Activity {
 
                     public void onClick(DialogInterface arg0, int arg1)
                     {
-                        System.exit(0);
+                        finish();
+                        Intent itn= new Intent(getApplicationContext(), menu.class); //go to menu screen with proper flag set
+                        itn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        itn.putExtra("leaving", true);
+                        startActivity(itn);
                     }
                 }).create().show();
     }
