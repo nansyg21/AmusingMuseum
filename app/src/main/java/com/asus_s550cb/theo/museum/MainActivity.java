@@ -60,23 +60,28 @@ public class MainActivity extends AppCompatActivity {
     private class SampleView extends View {
 
         Bitmap logo= null;
+        Bitmap museum_logo=null;
 
         // CONSTRUCTOR
         public SampleView(Context context) {
             super(context);
             setFocusable(true);
 
-                logo= BitmapFactory.decodeResource(getResources(), R.drawable.menu_logo);
-                logo= Bitmap.createScaledBitmap(logo,width/2, height/4, true);
+            logo= BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+            logo= Bitmap.createScaledBitmap(logo, width / 2, height / 4, true);
+
+            museum_logo= BitmapFactory.decodeResource(getResources(), R.drawable.museum_logo);
+            museum_logo= Bitmap.createScaledBitmap(museum_logo, height / 2, height / 2, true);
         }
 
         @Override
         protected void onDraw(final Canvas canvas) {
 
             //Set Background Color
-            canvas.drawColor(Color.rgb(236, 253, 149));
+            canvas.drawColor(getResources().getColor(R.color.royal_blue));
             //Draw the logo
-            canvas.drawBitmap(logo, (width / 2) / 2, (height * 3 / 10), null);
+            canvas.drawBitmap(logo, (width / 2) / 2, (height * 2 / 10), null);
+            canvas.drawBitmap(museum_logo,(width/2)-(height/4),(height*5/10),null);
 
         }
     }
