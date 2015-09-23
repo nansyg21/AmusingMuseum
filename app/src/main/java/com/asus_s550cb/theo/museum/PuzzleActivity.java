@@ -47,7 +47,7 @@ public class PuzzleActivity extends Activity   {
         // ------------------ Code in order to hide the navigation bar -------------------- //
         menu.hideNavBar(this.getWindow());
 
-         //Start help screen
+        //Start help screen
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
         itn.putExtra("appNum", 6);
         startActivity(itn);
@@ -64,9 +64,9 @@ public class PuzzleActivity extends Activity   {
 
         /**
          * #EFCF9C oudetero mpez
-            #0B0075 blue royal
-            #8F0014 bussini
-            #E9D308 gold
+         #0B0075 blue royal
+         #8F0014 bussini
+         #E9D308 gold
          *
          * Rect:(Left, Right, Top, Bottom) |3rd and 4rth arg: Not width and height|  left < right and top < bottom  *
          */
@@ -189,19 +189,19 @@ public class PuzzleActivity extends Activity   {
                     new Rect(startingX+2*imgWidth-extraSpace, startingY+2*imgHeight, startingX+2*imgWidth+imgWidth, startingY +2*imgHeight+ imgHeight+extraSpace),
                     11));
 
-            PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p12),
+            PuzzlePieces.add(new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p12),
                     getRandomRect(),
-                    new Rect(startingX+3*imgWidth-extraSpace, startingY+2*imgHeight-extraSpace, startingX+3*imgWidth+imgWidth, startingY +2*imgHeight+ imgHeight),
+                    new Rect(startingX + 3 * imgWidth - extraSpace, startingY + 2 * imgHeight - extraSpace, startingX + 3 * imgWidth + imgWidth, startingY + 2 * imgHeight + imgHeight),
                     12));
 
-            PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p13),
+            PuzzlePieces.add(new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p13),
                     getRandomRect(),
-                    new Rect(startingX, startingY+3*imgHeight-extraSpace, startingX+imgWidth, startingY +3*imgHeight+ imgHeight),
+                    new Rect(startingX, startingY + 3 * imgHeight - extraSpace, startingX + imgWidth, startingY + 3 * imgHeight + imgHeight),
                     13));
 
-            PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p14),
+            PuzzlePieces.add(new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p14),
                     getRandomRect(),
-                    new Rect(startingX+imgWidth-extraSpace, startingY+3*imgHeight, startingX+imgWidth+imgWidth, startingY +3*imgHeight+ imgHeight),
+                    new Rect(startingX + imgWidth - extraSpace, startingY + 3 * imgHeight, startingX + imgWidth + imgWidth, startingY + 3 * imgHeight + imgHeight),
                     14));
 
             PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p15),
@@ -209,9 +209,9 @@ public class PuzzleActivity extends Activity   {
                     new Rect(startingX+2*imgWidth-extraSpace, startingY+3*imgHeight, startingX+2*imgWidth+imgWidth, startingY +3*imgHeight+ imgHeight),
                     15));
 
-            PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p16),
+            PuzzlePieces.add(new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p16),
                     getRandomRect(),
-                    new Rect(startingX+3*imgWidth-extraSpace, startingY+3*imgHeight-extraSpace, startingX+3*imgWidth+imgWidth, startingY +3*imgHeight+ imgHeight),
+                    new Rect(startingX + 3 * imgWidth - extraSpace, startingY + 3 * imgHeight - extraSpace, startingX + 3 * imgWidth + imgWidth, startingY + 3 * imgHeight + imgHeight),
                     16));
 
         }
@@ -239,12 +239,9 @@ public class PuzzleActivity extends Activity   {
 
         public void DroppedPiece() //Player was dragging a piece, check if its near the original position
         {
-
-            Log.w("Warn","DROPPED PIECE");
-            if( currentMovingPiece.rect.intersect(new Rect( currentMovingPiece.originalRec.left,currentMovingPiece.originalRec.top,
-                    currentMovingPiece.originalRec.right-50,currentMovingPiece.originalRec.bottom-50)))
+            if( currentMovingPiece.rect.contains(new Rect(currentMovingPiece.originalRec.left + 2*imgWidth / 5, currentMovingPiece.originalRec.top + 3*imgHeight / 5,
+                    currentMovingPiece.originalRec.right - 2*imgWidth / 5, currentMovingPiece.originalRec.bottom - 2*imgHeight / 5)))
             {
-                Log.w("Warn", "SUCCESSFULLY");
                 currentMovingPiece.rect.left = currentMovingPiece.originalRec.left; //assign by value
                 currentMovingPiece.rect.top = currentMovingPiece.originalRec.top;
                 currentMovingPiece.rect.right = currentMovingPiece.originalRec.right;
@@ -259,20 +256,17 @@ public class PuzzleActivity extends Activity   {
 
         public boolean CheckCollision() //finds the piece the user selected: returns true
         {
-           for(PuzzlePiece p : PuzzlePieces)
-               if( p.rect.contains(PlayerTouchX,PlayerTouchY) && !p.placedCorrectly)//cant move correctly places pieces
-               {
-                   Log.w("Warn","COLLISION");
-                   currentMovingPiece=p;
-                   return true;
-               }
+            for(PuzzlePiece p : PuzzlePieces)
+                if( p.rect.contains(PlayerTouchX,PlayerTouchY) && !p.placedCorrectly)//cant move correctly places pieces
+                {
+                    currentMovingPiece=p;
+                    return true;
+                }
             return false;
         }
 
         @Override
         public void run() {   // Update state of what we draw
-            // Log.w("Warn","Run Method Called");
-
 
             // Request a redraw of this view
             // onDraw(Canvas) will be called
@@ -283,8 +277,6 @@ public class PuzzleActivity extends Activity   {
         @Override
         protected void onDraw(Canvas canvas)
         {
-            //  Log.w("Warn","Draw Method Called");
-
             super.onDraw(canvas);
 
             Paint paint = new Paint();
@@ -301,6 +293,15 @@ public class PuzzleActivity extends Activity   {
             for(PuzzlePiece p : PuzzlePieces)
                 canvas.drawBitmap(p.img, null, p.rect, null);
 
+            /** //Execute to see the area the dropped piece must cover to be accepted as correct
+             if(currentMovingPiece!=null) {
+             Paint tmpPaint = new Paint();
+             tmpPaint.setColor(Color.BLACK);
+
+             canvas.drawRect(new Rect(currentMovingPiece.originalRec.left + 2*imgWidth / 5, currentMovingPiece.originalRec.top + 3*imgHeight / 5,
+             currentMovingPiece.originalRec.right - 2*imgWidth / 5, currentMovingPiece.originalRec.bottom - 2*imgHeight / 5), tmpPaint);
+             }
+             **/
             // Invalidate view at about 60fps
             postDelayed(this, 16);
         }
@@ -308,7 +309,6 @@ public class PuzzleActivity extends Activity   {
         @Override
         public boolean onTouchEvent(MotionEvent ev) {
 
-            //Log.w("Warn","Action:"+ev.getAction()+" Touched: "+ PlayerTouchX +"x"+ PlayerTouchY);
             switch (ev.getAction())
             {
                 case MotionEvent.ACTION_DOWN:       //New touch started
@@ -340,7 +340,6 @@ public class PuzzleActivity extends Activity   {
 
                     if(!movingSomething && CheckCollision())    //CheckCollision:true:selected piece  false: selected empty
                     {
-                        Log.w("Warn", "Started moving");
                         movingSomething = true;
                     }
                     break;
@@ -350,7 +349,6 @@ public class PuzzleActivity extends Activity   {
                 {
                     if(movingSomething)
                     {
-                      //  Log.w("Warn","Dragging...");
                         // Find the index of the active pointer and fetch its position
                         final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
 
@@ -377,14 +375,13 @@ public class PuzzleActivity extends Activity   {
                             currentMovingPiece.rect.right = PlayerTouchX + imgWidth;
                             currentMovingPiece.rect.bottom = PlayerTouchY + imgHeight;
                         }
-                        else
-                            Log.w("Warn","currentMovingPiece IS NULL");
+                        // else
+                        //    Log.w("Warn","currentMovingPiece IS NULL");
                     }
                     break;
                 }
                 case MotionEvent.ACTION_UP:     //Finger left screen
                 {
-                    Log.w("Warn","ACTION UP");
                     if(movingSomething)
                     {
                         DroppedPiece();
@@ -396,13 +393,11 @@ public class PuzzleActivity extends Activity   {
                 }
                 case MotionEvent.ACTION_CANCEL: //Current event has been canceled, something else took control of the touch event
                 {
-                    Log.w("Warn","ACTION CANCEL");
                     movingSomething=false;
                     break;
                 }
                 default:            //whatever happens
                 {
-                    Log.w("Warn","default");
                     movingSomething=false;
                     break;
                 }
