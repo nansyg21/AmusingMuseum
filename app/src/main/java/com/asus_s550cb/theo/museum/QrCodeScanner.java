@@ -40,7 +40,6 @@ public class QrCodeScanner extends Activity {
     ImageView imgvExhibit ;//Exhibit image
     TextView txtViewExhibit;//Exhibit information text
 
-
     EditText numCodeTxt;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -189,11 +188,11 @@ public class QrCodeScanner extends Activity {
                 //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 //Check if the qrcode is correct...
                 if (contents.equals(monumentCodes[hintCounter]+"\n") || contents.equals(monumentCodes[hintCounter]) ) {
-                    buildExhibitInformationView();
-                    scanQR(null);
+                    buildExhibitInformationView(true);
+
                 }else {
                     //GO to information screen...
-                    buildExhibitInformationView();
+                    buildExhibitInformationView(false);
 
                     ///show a toast... for wrong...
                     Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
@@ -243,24 +242,22 @@ public class QrCodeScanner extends Activity {
     public void validateNumCode(){
            // numCodeCheck=false;
             if(monumentCodes[hintCounter].equals(numCodeTxt.getText().toString())){
-                buildExhibitInformationView();
-                scanQR(null);
+                buildExhibitInformationView(true);
+
             }
             //IF code is incorrect , display the information about the current exhibit and a toast with proper message
             else
             {
                 //Info window
-                buildExhibitInformationView();
+                buildExhibitInformationView(false);
 
                 ///show a toast... for wrong...
                 Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
                 toast.show();
-
-                menu.hideNavBar(this.getWindow());
             }
         }
     //BUILD and show the information screen
-    private void buildExhibitInformationView() {
+    private void buildExhibitInformationView(final boolean theAnswerWasRight) {
 
         //set Content view
         setContentView(R.layout.exhibit_information);
@@ -315,13 +312,19 @@ public class QrCodeScanner extends Activity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_android_qr_code_example);
-                textViewHint = (TextView) findViewById(R.id.textViewHints);
-                textViewHint.setText(hints[hintCounter]);
+
+
+                if(theAnswerWasRight){
+                    scanQR(null);
+                }else {
+                    setContentView(R.layout.activity_android_qr_code_example);
+                    textViewHint = (TextView) findViewById(R.id.textViewHints);
+                    textViewHint.setText(hints[hintCounter]);
+                }
             }
         });
 
-
+        menu.hideNavBar(this.getWindow());
     }
 
     //Remember to hide everything when Activity Resumes...
