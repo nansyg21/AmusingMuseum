@@ -9,10 +9,13 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +33,13 @@ public class QrCodeScanner extends Activity {
     String[] advices;
     String[] hints;
     String[] monumentCodes;
+    String[] monumentInformations;
 
     TextView textViewHint;//In this textview the hints will be displayed!
+
+    ImageView imgvExhibit ;//Exhibit image
+    TextView txtViewExhibit;//Exhibit information text
+
 
     EditText numCodeTxt;
     @Override
@@ -63,6 +71,12 @@ public class QrCodeScanner extends Activity {
       /*  if(numCodeCheck)
             validateNumCode();*/
 
+        //These are important for the Exhibit information view
+
+        monumentInformations=getResources().getStringArray(R.array.exhibits_information);
+
+
+        Log.d("test",monumentInformations[0]);
     }
 
     //product qr code mode
@@ -175,10 +189,17 @@ public class QrCodeScanner extends Activity {
                 //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 //Check if the qrcode is correct...
                 if (contents.equals(monumentCodes[hintCounter]+"\n") || contents.equals(monumentCodes[hintCounter]) ) {
+                    buildExhibitInformationView();
                     scanQR(null);
                 }else {
+                    //GO to information screen...
+                    buildExhibitInformationView();
+
+                    ///show a toast... for wrong...
                     Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
                     toast.show();
+
+
                 }
             }
         }
@@ -222,16 +243,86 @@ public class QrCodeScanner extends Activity {
     public void validateNumCode(){
            // numCodeCheck=false;
             if(monumentCodes[hintCounter].equals(numCodeTxt.getText().toString())){
+                buildExhibitInformationView();
                 scanQR(null);
-            } else  {
-                setContentView(R.layout.activity_android_qr_code_example);
-                textViewHint = (TextView) findViewById(R.id.textViewHints);
-                textViewHint.setText(hints[hintCounter]);
+            }
+            //IF code is incorrect , display the information about the current exhibit and a toast with proper message
+            else
+            {
+                //Info window
+                buildExhibitInformationView();
+
+                ///show a toast... for wrong...
                 Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
                 toast.show();
+
                 menu.hideNavBar(this.getWindow());
             }
         }
+    //BUILD and show the information screen
+    private void buildExhibitInformationView() {
+
+        //set Content view
+        setContentView(R.layout.exhibit_information);
+
+        //Get References to components
+        imgvExhibit = (ImageView) findViewById(R.id.imageview_exhibit_info);
+        txtViewExhibit= (TextView)  findViewById(R.id.textViewExhibitInfo);
+        ImageView bt=(ImageView) findViewById(R.id.backButtonExhibitInfo);
+
+        //Set text and image
+        txtViewExhibit.setText(monumentInformations[hintCounter]);
+        switch (hintCounter)
+        {
+            case 0:
+                imgvExhibit.setImageResource(R.drawable.monument1a);
+                break;
+            case 1:
+                imgvExhibit.setImageResource(R.drawable.monument1b);
+                break;
+            case 2:
+                imgvExhibit.setImageResource(R.drawable.monument2a);
+                break;
+            case 3:
+                imgvExhibit.setImageResource(R.drawable.monument2b);
+                break;
+            case 4:
+                imgvExhibit.setImageResource(R.drawable.monument3a);
+                break;
+            case 5:
+                imgvExhibit.setImageResource(R.drawable.monument3b);
+                break;
+            case 6:
+                imgvExhibit.setImageResource(R.drawable.monument4a);
+                break;
+            case 7:
+                imgvExhibit.setImageResource(R.drawable.monument4b);
+                break;
+            case 8:
+                imgvExhibit.setImageResource(R.drawable.monument5a);
+                break;
+            case 9:
+                imgvExhibit.setImageResource(R.drawable.monument5a);
+                break;
+            case 10:
+                imgvExhibit.setImageResource(R.drawable.monument6a);
+                break;
+            case 11:
+                imgvExhibit.setImageResource(R.drawable.monument6b);
+                break;
+        }
+        //ImageView listener!!!
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_android_qr_code_example);
+                textViewHint = (TextView) findViewById(R.id.textViewHints);
+                textViewHint.setText(hints[hintCounter]);
+            }
+        });
+
+
+    }
 
     //Remember to hide everything when Activity Resumes...
     @Override
@@ -240,8 +331,12 @@ public class QrCodeScanner extends Activity {
         menu.hideNavBar(this.getWindow());
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
 
-
+        menu.hideNavBar(this.getWindow());
+    }
 
     @Override
     public void onBackPressed() {

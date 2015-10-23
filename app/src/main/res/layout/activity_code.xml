@@ -21,11 +21,11 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:ems="10"
         android:id="@+id/numCode"
         android:layout_gravity="center_horizontal"
-        android:imeOptions="flagNoExtractUi"/>
+        android:imeOptions="flagNoExtractUi"
+        android:inputType="textCapCharacters" />
 
     <LinearLayout
         android:orientation="horizontal"
