@@ -413,18 +413,19 @@
 
     <!-- Fullfill NEEDED! -->
     <string-array name="hints">
-        <item>γ</item>
-        <item>hint 2</item>
-        <item>hint 3</item>
-        <item>hint 4</item>
-        <item>hint 5</item>
-        <item>hint 6</item>
-        <item>hint 7</item>
-        <item>hint 8</item>
-        <item>hint 9</item>
-        <item>hint 10</item>
-        <item>hint 11</item>
-        <item>hint 12</item>
+        <item>Locate the part of mosaic mural with fountain and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Spot the silver reliquary with scenes from the Old and New Testament and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Locate the clay amphora ( 5th-6th Cent.) and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Locate the solidus coin made ​​of gold and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Locate the mural with protoplasts Adam and Eve and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+
+        <item>Locate the marble statue of the Good Shepherd and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Spot gold wristbands with enclosed enamel and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Locate the Tetraeuangelo (late 11th - early 12th century ) and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Locate Manuel Komneno's hyperpyron and proceeded to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Locate the solidus of Heraklion and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Locate the ceramic filter or else strainer and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Type the title of the hall to proceed</item>
         <item>hint 13</item>
         <item>hint 14</item>
         <item>hint 15</item>

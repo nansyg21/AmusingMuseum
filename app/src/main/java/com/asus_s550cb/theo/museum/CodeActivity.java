@@ -22,20 +22,6 @@ public class CodeActivity extends Activity {
         setContentView(R.layout.activity_code);
         numCodeTxt= (EditText) findViewById(R.id.numCode);
 
-        numCodeTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-            /* When focus is lost check that the text field
-            * has valid values.
-            */
-                if (hasFocus) {
-                   menu.hideNavBar(getWindow());
-                }
-            }
-        });
-
-
         nextApp="nextApp";
 
         Bundle extras = getIntent().getExtras();
