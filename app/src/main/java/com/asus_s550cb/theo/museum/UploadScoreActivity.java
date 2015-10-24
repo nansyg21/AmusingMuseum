@@ -165,29 +165,39 @@ public class UploadScoreActivity extends Activity {
 
     public void SaveScoreLocally(View v)
     {
-        if(!scoreUploaded) {
-            nameField = (EditText) findViewById(R.id.upload_score_name_txt);
-            String name = nameField.getText().toString();   //collect data: name-score-date
-            Calendar c = Calendar.getInstance();
-            String date = c.get(Calendar.DAY_OF_MONTH) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.YEAR);
-
-            SharedPreferences settings = getApplicationContext().getSharedPreferences(LOCALLY_SAVED_DATA_PREFERENCE_NAME, 0);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString(LOCALLY_SAVED_NAME, name);
-            editor.putInt(LOCALLY_SAVED_SCORE, Score.TotalScore);
-            editor.putString(LOCALLY_SAVED_DATE, date);
-
-            // Apply the edits!
-            editor.apply();
-
-            TextView errView = (TextView) findViewById(R.id.ErrorView);
-            errView.setText(R.string.save_score_locally_successfully);
-            scoreUploaded=true;
-        }
-        else
+        nameField = (EditText) findViewById(R.id.upload_score_name_txt);
+        if(nameField.length()==0)
         {
-            TextView errView = (TextView) findViewById(R.id.ErrorView);
-            errView.setText(R.string.upload_locally_already_saved);
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.upload_empty_name_small)
+                    .setMessage(R.string.upload_empty_name_large)
+                    .setPositiveButton(R.string.confirm_exit_οκ, null).create().show();
+        }
+        else {
+
+            if (!scoreUploaded)
+            {
+                nameField = (EditText) findViewById(R.id.upload_score_name_txt);
+                String name = nameField.getText().toString();   //collect data: name-score-date
+                Calendar c = Calendar.getInstance();
+                String date = c.get(Calendar.DAY_OF_MONTH) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.YEAR);
+
+                SharedPreferences settings = getApplicationContext().getSharedPreferences(LOCALLY_SAVED_DATA_PREFERENCE_NAME, 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString(LOCALLY_SAVED_NAME, name);
+                editor.putInt(LOCALLY_SAVED_SCORE, Score.TotalScore);
+                editor.putString(LOCALLY_SAVED_DATE, date);
+
+                // Apply the edits!
+                editor.apply();
+
+                TextView errView = (TextView) findViewById(R.id.ErrorView);
+                errView.setText(R.string.save_score_locally_successfully);
+                scoreUploaded = true;
+            } else {
+                TextView errView = (TextView) findViewById(R.id.ErrorView);
+                errView.setText(R.string.upload_locally_already_saved);
+            }
         }
     }
 
