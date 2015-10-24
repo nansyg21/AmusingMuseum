@@ -130,6 +130,27 @@
             android:noHistory="true">
         </activity>
         <activity
+            android:name=".UploadScoreActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme"
+            >
+        </activity>
+        <activity
+            android:name=".UploadScoreFromLocalDataActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme"
+            >
+        </activity>
+        <activity
+            android:name=".DownloadOtherMuseumsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/FullscreenTheme"
+            >
+        </activity>
+        <activity
             android:name=".CreditsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_credits"

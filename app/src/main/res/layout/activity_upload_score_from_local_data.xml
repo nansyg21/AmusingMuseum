@@ -1,0 +1,80 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/royal_blue"
+    tools:context="com.asus_s550cb.theo.museum.HelpScreenFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/UploadLocalDataScreenLogo"
+            android:src="@drawable/upload_button_icon"
+            android:layout_weight="2"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/Upload_Score_from_local_change_name_layout">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload_score_upload"
+                android:id="@+id/Upload_Score_from_local_change_name_btn"
+                android:background="@drawable/button_design"
+                android:onClick="UploadScoreSubmit" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/upload_score_name"
+                android:id="@+id/Upload_Score_from_local_name_lbl"
+                android:editable="false" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Upload_Score_from_local_name_txt" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+
+            <TextView style="?android:textAppearanceMedium"
+                android:id="@+id/UploadLocalDataScreenText"
+                android:padding="16dp"
+                android:lineSpacingMultiplier="1.2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textColor="@color/neutral_beize"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/UploadLocalDataBackBtn"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/back_button_icon"
+                android:layout_gravity="bottom"
+                android:adjustViewBounds="false"
+                android:onClick="UploadLocalDataBackBtnOnClick" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
