@@ -21,6 +21,7 @@
     <string name="confirm_exit_cancel">Cancel</string>
     <string name="confirm_exit_οκ">OK</string>
 
+    <string name="upload_score_info">Upload your score</string>
     <string name="upload_score_name">Name:</string>
     <string name="upload_score_num">Score:</string>
     <string name="upload_score_upload">Upload</string>
@@ -36,6 +37,8 @@
     <string name="save_score_locally_successfully">Data successfully stored locally</string>
     <string name="upload_locally_no_saved_data_found">No saved data found</string>
     <string name="upload_locally_already_saved">Your score has already been saved</string>
+    <string name="download_and_play_with_other_museums">Download and play with other museums</string>
+    <string name="upload_previously_saved_score">Upload the score you have previously saved</string>
 
     <string name="Number">Number</string>
     <string name="Name">Name</string>

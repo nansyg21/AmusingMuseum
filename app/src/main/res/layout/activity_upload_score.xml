@@ -27,6 +27,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/upload_score_info"
+                android:id="@+id/Upload_score_info"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow

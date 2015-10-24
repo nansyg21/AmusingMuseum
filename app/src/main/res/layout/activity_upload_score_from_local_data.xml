@@ -17,6 +17,13 @@
             android:layout_weight="2"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/upload_previously_saved_score"
+            android:id="@+id/Upload_score_info" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"

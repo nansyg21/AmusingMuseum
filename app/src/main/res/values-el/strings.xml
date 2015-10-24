@@ -21,6 +21,7 @@
     <string name="confirm_exit_cancel">Ακύρωση</string>
     <string name="confirm_exit_οκ">ΟΚ</string>
 
+    <string name="upload_score_info">Ανεβάστε το σκορ σας</string>
     <string name="upload_score_name">Όνομα:</string>
     <string name="upload_score_num">Σκορ:</string>
     <string name="upload_score_upload">Ανέβασμα</string>
@@ -36,6 +37,8 @@
     <string name="save_score_locally_successfully">Τα δεδομένα αποθηκεύτηκαν τοπικά</string>
     <string name="upload_locally_no_saved_data_found">Δεν βρέθηκαν αποθηκευμένα δεδομένα</string>
     <string name="upload_locally_already_saved">Το σκορ έχει ήδη αποθηκευτεί</string>
+    <string name="download_and_play_with_other_museums">Κατεβάστε και παίξτε με άλλα μουσεία</string>
+    <string name="upload_previously_saved_score">Ανεβάστε το σκορ που έχετε αποθηκεύσει προηγουμένως</string>
 
     <string name="Number">Αριθμός</string>
     <string name="Name">Όνομα</string>
