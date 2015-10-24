@@ -84,6 +84,14 @@ public class QrCodeScanner extends Activity {
             //Increase the counter for the next Hint
             hintCounter++;
 
+            if(hintCounter==12)     //No rooms left, go to Upload Score Activity
+            {
+                itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
+                // pass the number of the next activity to the quiz so it can pass it back to the qr code activity
+                // when the quiz is done and the riddle must start
+                startActivityForResult(itn,1);
+            }
+            Log.w("Warn","App to start: "+ appToStart);
             if(questionMode)
             {
                 itn=new Intent(getApplicationContext(),QuizGameActivity.class);
@@ -267,6 +275,7 @@ public class QrCodeScanner extends Activity {
         ImageView bt=(ImageView) findViewById(R.id.backButtonExhibitInfo);
 
         //Set text and image
+        Log.w("Warn","hintCounter: "+hintCounter);
         txtViewExhibit.setText(monumentInformations[hintCounter]);
         switch (hintCounter)
         {

@@ -14,6 +14,7 @@
     <string name="btnContinue">Continue</string>
     <string name="Help">HELP</string>
     <string name="btnOK">OK</string>
+    <string name="Quit">Quit</string>
 
     <string name="confirm_exit_small">EXIT</string>
     <string name="confirm_exit_large">Are you sure, you want to exit the application?</string>
@@ -34,6 +35,7 @@
     <string name="save_score_locally_button_text">Store locally</string>
     <string name="save_score_locally_successfully">Data successfully stored locally</string>
     <string name="upload_locally_no_saved_data_found">No saved data found</string>
+    <string name="upload_locally_already_saved">Your score has already been saved</string>
 
     <string name="Number">Number</string>
     <string name="Name">Name</string>

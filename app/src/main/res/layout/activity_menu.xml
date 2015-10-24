@@ -106,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/menu_download_other_museums"
-                android:src="@drawable/upload_button_icon"
+                android:src="@drawable/download_museums_button_icon"
                 android:onClick="ConnectToServerView" />
 
             <ImageView

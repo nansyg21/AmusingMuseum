@@ -3,46 +3,25 @@ package com.asus_s550cb.theo.museum;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -57,6 +36,7 @@ public class UploadScoreActivity extends Activity {
     public static String LOCALLY_SAVED_NAME = "LOCALLY_SAVED_NAME";
     public static String LOCALLY_SAVED_SCORE= "LOCALLY_SAVED_SCORE";
     public static String LOCALLY_SAVED_DATE = "LOCALLY_SAVED_DATE";
+    boolean scoreUploaded=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,74 +64,81 @@ public class UploadScoreActivity extends Activity {
                     .setMessage(R.string.upload_empty_name_large)
                     .setPositiveButton(R.string.confirm_exit_οκ, null).create().show();
         }
-        else
-        {
+        else {
             // try to upload to server
             //if there is no connection it can be saved locally
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
+            if (!scoreUploaded) {
+                Thread thread = new Thread(new Runnable()
+                {
+                    @Override
+                    public void run() {
+                        try {
+                            URL url;
+                            String response = "";
+                            String name = nameField.getText().toString();   //collect data: name-score-date
+                            Calendar c = Calendar.getInstance();
+                            String date = c.get(Calendar.DAY_OF_MONTH) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.YEAR);
+                            ShowErrorOnView("");    //clear error log
 
-                    try {
-                        URL url;
-                        String response = "";
-                        String name = nameField.getText().toString();   //collect data: name-score-date
-                        Calendar c = Calendar.getInstance();
-                        String date= c.get(Calendar.DAY_OF_MONTH)+"-"+c.get(Calendar.MONTH)+"-"+c.get(Calendar.YEAR);
-                        ShowErrorOnView("");    //clear error log
+                            //UBUNTU LTS Server on okeanos.grnet.gr
+                            url = new URL("http://83.212.117.226/SaveData.php?date=" + date + "&score=" + Score.TotalScore + "&name=" + name);
+                            // $sql=mysql_query("INSERT INTO AmusingMuseumScores (name,score,date) VALUES (".$_GET['name'].",".$_GET['score'].",".$_GET['date'].")");
+                            //create table AmusingMuseumScores ( name varchar(30), score int(10), date varchar(10));
+                            //alter table AmusingMuseumScores add Primary Key (name);
 
-                        //UBUNTU LTS Server on okeanos.grnet.gr
-                        url = new URL("http://83.212.117.226/SaveData.php?date="+date+"&score="+Score.TotalScore+"&name="+name);
-                        // $sql=mysql_query("INSERT INTO AmusingMuseumScores (name,score,date) VALUES (".$_GET['name'].",".$_GET['score'].",".$_GET['date'].")");
-                        //create table AmusingMuseumScores ( name varchar(30), score int(10), date varchar(10));
-                        //alter table AmusingMuseumScores add Primary Key (name);
+                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                            conn.setReadTimeout(15000);
+                            conn.setConnectTimeout(15000);
+                            conn.setRequestMethod("POST");
+                            conn.setDoInput(true);
+                            conn.setDoOutput(true);
 
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setReadTimeout(15000);
-                        conn.setConnectTimeout(15000);
-                        conn.setRequestMethod("POST");
-                        conn.setDoInput(true);
-                        conn.setDoOutput(true);
+                            OutputStream os = conn.getOutputStream();
+                            BufferedWriter writer = new BufferedWriter(
+                                    new OutputStreamWriter(os, "UTF-8"));
 
-                        OutputStream os = conn.getOutputStream();
-                        BufferedWriter writer = new BufferedWriter(
-                                new OutputStreamWriter(os, "UTF-8"));
+                            writer.flush();
+                            writer.close();
+                            os.close();
+                            int responseCode = conn.getResponseCode();
+                            Log.w("Warn", "ResponseCode: " + responseCode); // 200: OK, The request was fulfilled.
+                            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                                String line;
+                                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                                while ((line = br.readLine()) != null) {
+                                    response += line;
+                                }
 
-                        writer.flush();
-                        writer.close();
-                        os.close();
-                        int responseCode = conn.getResponseCode();
-                        Log.w("Warn", "ResponseCode: " + responseCode); // 200: OK, The request was fulfilled.
-                        if (responseCode == HttpsURLConnection.HTTP_OK)
+                                Log.w("Warn", "Response: " + response);
+                                if (response.contains("Integrity constraint violation")) //name already used on database
+                                    ShowErrorOnView(getBaseContext().getString(R.string.error_on_upload_name_used));
+                                else if (response.equals("Success")) {
+                                    ShowErrorOnView(getBaseContext().getString(R.string.score_successfully_uploaded));
+                                    scoreUploaded = true;
+                                }
+                            } else
+                                ShowErrorOnView(getBaseContext().getString(R.string.error_try_later_large));
+
+                        } catch (ConnectException ce) //connection exception
                         {
-                            String line;
-                            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                            while ((line = br.readLine()) != null) {
-                                response += line;
-                            }
-
-                            Log.w("Warn","Response: "+response);
-                            if(response.contains("Integrity constraint violation")) //name already used on database
-                                ShowErrorOnView(getBaseContext().getString(R.string.error_on_upload_name_used ));
-                            else if (response.equals("Success"))
-                                ShowErrorOnView(getBaseContext().getString(R.string.score_successfully_uploaded ));
+                            ShowErrorOnView(getBaseContext().getString(R.string.error_no_internet_connection_large));
+                        } catch (Exception e)     //general exception
+                        {
+                            ShowErrorOnView(getBaseContext().getString(R.string.error_try_later_large));
                         }
-                        else
-                            ShowErrorOnView(getBaseContext().getString(R.string.error_try_later_large ));
+                    }
+                });
+                thread.start();
+            }
+            else
+            {
+                TextView errView = (TextView) findViewById(R.id.ErrorView);
+                errView.setText(R.string.upload_locally_already_saved);
 
-                    }
-                    catch (ConnectException ce) //connection exception
-                    {
-                        ShowErrorOnView(getBaseContext().getString(R.string.error_no_internet_connection_large ));
-                    }
-                    catch (Exception e)     //general exception
-                    {
-                        ShowErrorOnView(getBaseContext().getString(R.string.error_try_later_large ));
-                    }
-                }
-            });
-            thread.start();
+            }
+
         }
+
 
     }
 
@@ -167,7 +154,7 @@ public class UploadScoreActivity extends Activity {
         });
     }
 
-    public void UploadScoreCancel(View v)   //On cancel button app closes
+    public void UploadScoreQuit(View v)   //On cancel button app closes
     {
         finish();
         Intent itn= new Intent(getApplicationContext(), menu.class); //go to menu screen with proper flag set
@@ -178,22 +165,30 @@ public class UploadScoreActivity extends Activity {
 
     public void SaveScoreLocally(View v)
     {
-        nameField = (EditText) findViewById(R.id.upload_score_name_txt);
-        String name = nameField.getText().toString();   //collect data: name-score-date
-        Calendar c = Calendar.getInstance();
-        String date= c.get(Calendar.DAY_OF_MONTH)+"-"+c.get(Calendar.MONTH)+"-"+c.get(Calendar.YEAR);
+        if(!scoreUploaded) {
+            nameField = (EditText) findViewById(R.id.upload_score_name_txt);
+            String name = nameField.getText().toString();   //collect data: name-score-date
+            Calendar c = Calendar.getInstance();
+            String date = c.get(Calendar.DAY_OF_MONTH) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.YEAR);
 
-        SharedPreferences settings = getApplicationContext().getSharedPreferences(LOCALLY_SAVED_DATA_PREFERENCE_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(LOCALLY_SAVED_NAME, name);
-        editor.putInt(LOCALLY_SAVED_SCORE, Score.TotalScore);
-        editor.putString(LOCALLY_SAVED_DATE, date);
+            SharedPreferences settings = getApplicationContext().getSharedPreferences(LOCALLY_SAVED_DATA_PREFERENCE_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(LOCALLY_SAVED_NAME, name);
+            editor.putInt(LOCALLY_SAVED_SCORE, Score.TotalScore);
+            editor.putString(LOCALLY_SAVED_DATE, date);
 
-        // Apply the edits!
-        editor.apply();
+            // Apply the edits!
+            editor.apply();
 
-        TextView errView = (TextView) findViewById(R.id.ErrorView);
-        errView.setText(R.string.save_score_locally_successfully);
+            TextView errView = (TextView) findViewById(R.id.ErrorView);
+            errView.setText(R.string.save_score_locally_successfully);
+            scoreUploaded=true;
+        }
+        else
+        {
+            TextView errView = (TextView) findViewById(R.id.ErrorView);
+            errView.setText(R.string.upload_locally_already_saved);
+        }
     }
 
     // Reset the flags to hide the navigation bar
