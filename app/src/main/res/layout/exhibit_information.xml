@@ -11,7 +11,7 @@
         android:id="@+id/titleImageViewExInfo"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:src="@drawable/help_icon"/>
+        android:src="@drawable/info_title_icon_el"/>
 
     <LinearLayout
         android:orientation="horizontal"
