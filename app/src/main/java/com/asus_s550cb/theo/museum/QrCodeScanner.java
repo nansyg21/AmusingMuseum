@@ -299,7 +299,7 @@ public class QrCodeScanner extends Activity {
                 imgvExhibit.setImageResource(R.drawable.monument5a);
                 break;
             case 9:
-                imgvExhibit.setImageResource(R.drawable.monument5a);
+                imgvExhibit.setImageResource(R.drawable.monument5b);
                 break;
             case 10:
                 imgvExhibit.setImageResource(R.drawable.monument6a);
