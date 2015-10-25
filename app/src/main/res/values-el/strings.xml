@@ -14,12 +14,34 @@
     <string name="btnContinue">Συνέχεια</string>
     <string name="Help">ΒΟΗΘΕΙΑ</string>
     <string name="btnOK">ΟΚ</string>
+    <string name="Quit">Έξοδος</string>
 
     <string name="confirm_exit_small">ΕΞΟΔΟΣ</string>
     <string name="confirm_exit_large">Είστε σίγουροι ότι θέλετε να κλείσετε την εφαρμογή;</string>
     <string name="confirm_exit_cancel">Ακύρωση</string>
     <string name="confirm_exit_οκ">ΟΚ</string>
 
+    <string name="upload_score_info">Ανεβάστε το σκορ σας</string>
+    <string name="upload_score_name">Όνομα:</string>
+    <string name="upload_score_num">Σκορ:</string>
+    <string name="upload_score_upload">Ανέβασμα</string>
+    <string name="upload_empty_name_small">Κενό Όνομα</string>
+    <string name="upload_empty_name_large">Παρακαλώ εισάγετε ένα όνομα</string>
+
+    <string name="error_on_upload_name_used">Παρακαλώ δοκιμάστε με διαφορετικό όνομα</string>
+    <string name="error_no_internet_connection_large">Βεβαιωθείτε ότι είστε συνδεδεμένοι στο Διαδύκτιο</string>
+    <string name="error_try_later_large">Παρακαλώ προσπαθήστε αργότερα</string>
+    <string name="score_successfully_uploaded">Το σκορ ανέβηκε επιτυχώς</string>
+
+    <string name="save_score_locally_button_text">Αποθήκευση τοπικά</string>
+    <string name="save_score_locally_successfully">Τα δεδομένα αποθηκεύτηκαν τοπικά</string>
+    <string name="upload_locally_no_saved_data_found">Δεν βρέθηκαν αποθηκευμένα δεδομένα</string>
+    <string name="upload_locally_already_saved">Το σκορ έχει ήδη αποθηκευτεί</string>
+    <string name="download_and_play_with_other_museums">Κατεβάστε και παίξτε με άλλα μουσεία</string>
+    <string name="upload_previously_saved_score">Ανεβάστε το σκορ που έχετε αποθηκεύσει προηγουμένως</string>
+
+    <string name="Number">Αριθμός</string>
+    <string name="Name">Όνομα</string>
 
 
 <string name="title_activity_fullscreen_activity_room2">FullscreenActivityRoom2</string>
