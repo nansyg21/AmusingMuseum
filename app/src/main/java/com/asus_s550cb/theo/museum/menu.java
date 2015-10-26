@@ -21,7 +21,7 @@ import java.util.Locale;
 
 public class menu extends Activity {
     public static int mainPid;
-    public static String lang="uk";
+    public static String lang="el";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

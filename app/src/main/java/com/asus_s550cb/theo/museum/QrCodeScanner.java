@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -269,9 +270,26 @@ public class QrCodeScanner extends Activity {
         setContentView(R.layout.exhibit_information);
 
         //Get References to components
+
         imgvExhibit = (ImageView) findViewById(R.id.imageview_exhibit_info);
         txtViewExhibit= (TextView)  findViewById(R.id.textViewExhibitInfo);
         ImageView bt=(ImageView) findViewById(R.id.backButtonExhibitInfo);
+
+        ImageView titleImageView=(ImageView)findViewById(R.id.titleImageViewExInfo);
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int screenHeight = displaymetrics.heightPixels;
+        int screenWidth = displaymetrics.widthPixels;
+
+        if(menu.lang.equals("uk")) {
+            titleImageView.setImageResource(R.drawable.info_title_icon);
+        }
+        else
+        {
+            titleImageView.setImageResource(R.drawable.info_title_icon_el);
+        }
+        titleImageView.getLayoutParams().height=screenHeight/4;
 
         //Set text and image
         txtViewExhibit.setText(monumentInformations[hintCounter]);
