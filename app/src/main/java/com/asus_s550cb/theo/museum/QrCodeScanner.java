@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -73,7 +74,10 @@ public class QrCodeScanner extends Activity {
         //These are important for the Exhibit information view
 
         monumentInformations=getResources().getStringArray(R.array.exhibits_information);
-
+        if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+        {
+            monumentInformations=MainActivity.GetAllHintsAsList();
+        }
 
         Log.d("test",monumentInformations[0]);
     }
@@ -85,11 +89,14 @@ public class QrCodeScanner extends Activity {
             //Increase the counter for the next Hint
             hintCounter++;
 
-            if(hintCounter==12)     //No rooms left, go to Upload Score Activity
+            if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM && hintCounter==(MainActivity.EXTERNAL_MUSEUM.number_of_rooms*2))
+            {       //hints= rooms visited*2    Rooms=dynamic value     No rooms left, go to Upload Score Activity
+                itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
+                startActivityForResult(itn,1);
+            }
+            if(hintCounter==12)     //hints= rooms visited*2    Rooms=6     No rooms left, go to Upload Score Activity
             {
                 itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
-                // pass the number of the next activity to the quiz so it can pass it back to the qr code activity
-                // when the quiz is done and the riddle must start
                 startActivityForResult(itn,1);
             }
             if(questionMode)
@@ -153,9 +160,9 @@ public class QrCodeScanner extends Activity {
             }
             finish();
             //start the scanning activity from the com.google.zxing.client.android.SCAN intent
-         //   Intent intent = new Intent(ACTION_SCAN);
-         //   intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-         //   startActivityForResult(intent, 0);
+            //   Intent intent = new Intent(ACTION_SCAN);
+            //   intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+            //   startActivityForResult(intent, 0);
         } catch (ActivityNotFoundException anfe) {
             //on catch, show the download dialog
             showDialog(QrCodeScanner.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
@@ -229,13 +236,13 @@ public class QrCodeScanner extends Activity {
                 itn = new Intent(getApplicationContext(),CodeActivity.class);
                 itn.putExtra("nextApp",appToStart);
                 startActivityForResult(itn,0);*/
-              //  finish();
+                //  finish();
                 setContentView(R.layout.activity_code);
                 menu.hideNavBar(this.getWindow());
                 break;
             case R.id.button_num_code_Ok:
-                   numCodeTxt= (EditText) findViewById(R.id.numCode);
-                   validateNumCode();
+                numCodeTxt= (EditText) findViewById(R.id.numCode);
+                validateNumCode();
                 break;
             case R.id.button_num_code_Back:
                 setContentView(R.layout.activity_android_qr_code_example);
@@ -247,22 +254,22 @@ public class QrCodeScanner extends Activity {
     }
     //check the code that the user typed
     public void validateNumCode(){
-           // numCodeCheck=false;
-            if(monumentCodes[hintCounter].equals(numCodeTxt.getText().toString())){
-                buildExhibitInformationView(true);
+        // numCodeCheck=false;
+        if(monumentCodes[hintCounter].equals(numCodeTxt.getText().toString())){
+            buildExhibitInformationView(true);
 
-            }
-            //IF code is incorrect , display the information about the current exhibit and a toast with proper message
-            else
-            {
-                //Info window
-                buildExhibitInformationView(false);
-
-                ///show a toast... for wrong...
-                Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
-                toast.show();
-            }
         }
+        //IF code is incorrect , display the information about the current exhibit and a toast with proper message
+        else
+        {
+            //Info window
+            buildExhibitInformationView(false);
+
+            ///show a toast... for wrong...
+            Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
+            toast.show();
+        }
+    }
     //BUILD and show the information screen
     private void buildExhibitInformationView(final boolean theAnswerWasRight) {
 
@@ -297,39 +304,99 @@ public class QrCodeScanner extends Activity {
         {
             case 0:
                 imgvExhibit.setImageResource(R.drawable.monument1a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)         //working on external museum case
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(0).hintImgBmp1.imageByteArray),500,600,true));
+                }
                 break;
             case 1:
                 imgvExhibit.setImageResource(R.drawable.monument1b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(0).hintImgBmp2.imageByteArray),500,600,true));
+                }
                 break;
             case 2:
                 imgvExhibit.setImageResource(R.drawable.monument2a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(1).hintImgBmp1.imageByteArray),500,600,true));
+                }
                 break;
             case 3:
                 imgvExhibit.setImageResource(R.drawable.monument2b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(1).hintImgBmp2.imageByteArray),500,600,true));
+                }
                 break;
             case 4:
                 imgvExhibit.setImageResource(R.drawable.monument3a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(2).hintImgBmp1.imageByteArray),500,600,true));
+                }
                 break;
             case 5:
                 imgvExhibit.setImageResource(R.drawable.monument3b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(2).hintImgBmp2.imageByteArray),500,600,true));
+                }
                 break;
             case 6:
                 imgvExhibit.setImageResource(R.drawable.monument4a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(3).hintImgBmp1.imageByteArray),500,600,true));
+                }
                 break;
             case 7:
                 imgvExhibit.setImageResource(R.drawable.monument4b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(3).hintImgBmp2.imageByteArray),500,600,true));
+                }
                 break;
             case 8:
                 imgvExhibit.setImageResource(R.drawable.monument5a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(4).hintImgBmp1.imageByteArray),500,600,true));
+                }
                 break;
             case 9:
                 imgvExhibit.setImageResource(R.drawable.monument5b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(4).hintImgBmp2.imageByteArray),500,600,true));
+                }
                 break;
             case 10:
                 imgvExhibit.setImageResource(R.drawable.monument6a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(5).hintImgBmp1.imageByteArray),500,600,true));
+                }
                 break;
             case 11:
                 imgvExhibit.setImageResource(R.drawable.monument6b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(5).hintImgBmp2.imageByteArray),500,600,true));
+                }
                 break;
         }
         //ImageView listener!!!

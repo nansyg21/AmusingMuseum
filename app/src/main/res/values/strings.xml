@@ -14,12 +14,37 @@
     <string name="btnContinue">Continue</string>
     <string name="Help">HELP</string>
     <string name="btnOK">OK</string>
+    <string name="Quit">Exit</string>
 
     <string name="confirm_exit_small">EXIT</string>
     <string name="confirm_exit_large">Are you sure, you want to exit the application?</string>
     <string name="confirm_exit_cancel">Cancel</string>
     <string name="confirm_exit_οκ">OK</string>
 
+    <string name="upload_score_info">Upload your score</string>
+    <string name="upload_score_name">Name:</string>
+    <string name="upload_score_num">Score:</string>
+    <string name="upload_score_upload">Upload</string>
+    <string name="upload_empty_name_small">Empty Name</string>
+    <string name="upload_empty_name_large">Please insert a name</string>
+
+    <string name="error_on_upload_name_used">Name is already in use, please try a different name</string>
+    <string name="error_no_internet_connection_large">Please make sure you are connected to the Internet</string>
+    <string name="error_try_later_large">Please try again later</string>
+    <string name="score_successfully_uploaded">Your score has been uploaded successfully</string>
+
+    <string name="save_score_locally_button_text">Save locally</string>
+    <string name="save_score_locally_successfully">Data saved locally</string>
+    <string name="upload_locally_no_saved_data_found">No saved data found</string>
+    <string name="upload_locally_already_saved">Your score has already been saved</string>
+    <string name="download_and_play_with_other_museums">Download and play with other museums</string>
+    <string name="upload_previously_saved_score">Upload previously saved score</string>
+    <string name="download_change_museum_confirm">New museum downloaded. Play with new museum?</string>
+    <string name="download_switch_to_mbp">Switch to Museum Of Byzantine Culture Of Thessaloniki</string>
+    <string name="new_museum">New museum</string>
+
+    <string name="Number">Number</string>
+    <string name="Name">Name</string>
 
 <string name="title_activity_fullscreen_activity_room2">FullscreenActivityRoom2</string>
     <string name="dummy_button">Dummy Button</string>

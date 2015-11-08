@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -13,7 +12,6 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class QuizGameActivity extends Activity {
@@ -82,6 +80,13 @@ public class QuizGameActivity extends Activity {
         questions= getResources().getStringArray(R.array.Questions);
         answers= getResources().getStringArray(R.array.Answers);
         rightAnswers= getResources().getStringArray(R.array.RightAnswers);
+        if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+        {
+            questions= MainActivity.GetAllQuestions();
+            answers = MainActivity.GetAllAnswers();
+            rightAnswers = MainActivity.GetAllRightAnswers();
+        }
+
 
         /**--------------------TIMER START----------------------------------**/
         timer=(TextView) findViewById(R.id.txtViewTimer);
@@ -122,15 +127,15 @@ public class QuizGameActivity extends Activity {
         // ------------------ Code in order to hide the navigation bar -------------------- //
         menu.hideNavBar(this.getWindow());
 
-     //   if(firstQuiz)
-     ///   {
+        //   if(firstQuiz)
+        ///   {
 
 
-          //  countDownTimer.cancel();
-      //      countDownTimer.start();
+        //  countDownTimer.cancel();
+        //      countDownTimer.start();
 //            firstQuiz=false;
 
-      //  }
+        //  }
     }
 
 
@@ -165,7 +170,7 @@ public class QuizGameActivity extends Activity {
 
         else
         {
-           //Stop timer or else it continues running after the activity is finished
+            //Stop timer or else it continues running after the activity is finished
             countDownTimer.cancel();
 
             //Save Quiz Score

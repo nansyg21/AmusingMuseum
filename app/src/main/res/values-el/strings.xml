@@ -39,6 +39,9 @@
     <string name="upload_locally_already_saved">Το σκορ έχει ήδη αποθηκευτεί</string>
     <string name="download_and_play_with_other_museums">Κατεβάστε και παίξτε με άλλα μουσεία</string>
     <string name="upload_previously_saved_score">Ανεβάστε το σκορ που έχετε αποθηκεύσει προηγουμένως</string>
+    <string name="download_change_museum_confirm">Μόλις κατεβάσατε ένα νέο μουσείο. Έναρξη παιχνιδιού;</string>
+    <string name="download_switch_to_mbp">Αλλαγή στο Μουσείο Βυζαντινού Πολιτισμού</string>
+    <string name="new_museum">Νέο μουσείο</string>
 
     <string name="Number">Αριθμός</string>
     <string name="Name">Όνομα</string>

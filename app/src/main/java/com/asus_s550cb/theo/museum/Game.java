@@ -3,8 +3,7 @@ package com.asus_s550cb.theo.museum;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.ActionBarActivity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -12,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -26,6 +26,27 @@ public class Game extends AppCompatActivity {
 
         txtV=(TextView)findViewById(R.id.textView);
         txtV.setMovementMethod(new ScrollingMovementMethod());
+
+        if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+        {
+            TextView txtV1=(TextView)findViewById(R.id.textView1);
+            if(menu.lang.equals("uk")) {
+                txtV1.setText(MainActivity.EXTERNAL_MUSEUM.museum_name);
+            }
+            else {
+                txtV1.setText(MainActivity.EXTERNAL_MUSEUM.museum_name_gr);
+            }
+
+            TextView txtVFull=(TextView)findViewById(R.id.textView);
+            txtVFull.setText(MainActivity.GetAllRoomNames());
+
+            ImageView im = (ImageView) findViewById(R.id.imageView2);
+            im.setImageBitmap( Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap(MainActivity.EXTERNAL_MUSEUM.floor_planBmp.imageByteArray), 500, 538, true));
+
+            Button b = (Button) findViewById(R.id.btnNext);
+            b.invalidate();
+        }
+
         menu.hideNavBar(this.getWindow());//hide...!
     }
 

@@ -7,21 +7,6 @@
     tools:context="com.asus_s550cb.theo.museum.Game"
     android:background="@color/royal_blue">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:text="@string/button_next"
-        android:id="@+id/btnNext"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:background="@drawable/button_design"
-        android:textStyle="bold"
-        android:textColorLink="@color/button_front"
-        android:onClick="ButtonOnClick"
-        android:textSize="16dp" />
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -83,5 +68,20 @@
         </TableRow>
 
     </TableLayout>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_next"
+        android:id="@+id/btnNext"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:background="@drawable/button_design"
+        android:textStyle="bold"
+        android:textColorLink="@color/button_front"
+        android:onClick="ButtonOnClick"
+        android:textSize="16dp" />
 
 </RelativeLayout>

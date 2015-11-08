@@ -16,13 +16,20 @@
             android:measureWithLargestChild="false">
 
 
-            <ImageView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/download_other_museums_logo"
-                android:src="@drawable/download_museums_button_icon"
-                android:layout_weight="2"
-                />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/download_other_museums_logo"
+                    android:src="@drawable/download_museums_button_icon"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -57,6 +64,14 @@
                     android:layout_gravity="bottom" />
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/download_switch_to_mbp"
+                android:id="@+id/download_switch_to_mbp_text"
+                android:onClick="OnClickSwitchBackToMBP"
+                android:clickable="true" />
 
         </LinearLayout>
     </ScrollView>

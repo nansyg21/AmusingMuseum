@@ -5,27 +5,16 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.IOException;
 
 
 /**
@@ -56,8 +45,11 @@ public class StartGame extends Activity {
         QuizGameActivity.firstQuiz=true;
 
         pauseBt=new PauseMenuButton(width,this);
-
         rooms=getResources().getStringArray(R.array.rooms_startgame);
+        if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+        {
+            rooms=MainActivity.GetAllRoomNamesAsList();
+        }
 
         nextApp="nextApp";
         PauseMenuActivity.pause=false;
@@ -160,14 +152,14 @@ public class StartGame extends Activity {
                 sprite = new Sprite(Ourview.this, ppenguin,width,height,startingStage);
                 while(isItok) {
 
-                      //perform drawing
-                      if (!holder.getSurface().isValid()) {
-                          continue;
-                      }
+                    //perform drawing
+                    if (!holder.getSurface().isValid()) {
+                        continue;
+                    }
 
-                      Canvas c = holder.lockCanvas();
-                      draw(c);
-                      holder.unlockCanvasAndPost(c);
+                    Canvas c = holder.lockCanvas();
+                    draw(c);
+                    holder.unlockCanvasAndPost(c);
 
                 }
 
