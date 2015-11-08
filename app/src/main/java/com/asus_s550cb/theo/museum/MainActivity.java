@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             in = new ObjectInputStream(base64InputStream);
             m = (DownloadableMuseum) in.readObject();
 
-            Log.w("Warn","RETRIEVED");
+            //Log.w("Warn","RETRIEVED");
             return  m;
 
 

@@ -150,7 +150,7 @@ public class DownloadOtherMuseumsActivity extends Activity {
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {   //User selects one of these museums
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Log.w("Warn", "clicked at: " + (position + 1)); // 200: OK, The request was fulfilled.
+                       // Log.w("Warn", "clicked at: " + (position + 1)); // 200: OK, The request was fulfilled.
                         DownloadMuseum(position + 1);//in Museums table id column starts from 1
                     }
                 });
@@ -162,7 +162,6 @@ public class DownloadOtherMuseumsActivity extends Activity {
     {
         try {
             String s = new DownloadMuseumTask().execute(museumId+"").get();  //DownloadMuseumTask works with String
-            Log.w("Warn", "TASK: "+s);
             //split by && to receive all rows: number_of_rooms*12
             //for each row: split by --- to separate data from tables   1)Museums,2)Rooms,3)Questions - Answers
             // 1)Museums    1
@@ -174,7 +173,7 @@ public class DownloadOtherMuseumsActivity extends Activity {
 
             for(int i=0;i<(stRows.countTokens())/12 ;i++)
                 rooms.add(new DownloadableMuseum.RoomsForNewMuseum());
-            Log.w("Warn", "Total rows: " + stRows.countTokens() +" Added "+rooms.size() +" rooms");
+           // Log.w("Warn", "Total rows: " + stRows.countTokens() +" Added "+rooms.size() +" rooms");
 
             int row=0, currentRoom=-1;
             int answerIndex=1; //which answer we are currently reading, from 1 to 4
@@ -184,13 +183,13 @@ public class DownloadOtherMuseumsActivity extends Activity {
                 String line = stRows.nextToken();
                 StringTokenizer stInLine = new StringTokenizer(line,"---"); //each line holds a table row
                 String str =stInLine.nextToken();
-                Log.w("Warn", "Line: " + str);
+                //Log.w("Warn", "Line: " + str);
                 SeparateMuseum(str);
                 str=stInLine.nextToken();
-                Log.w("Warn", "Line: " + str);
+                //Log.w("Warn", "Line: " + str);
                 SeparateRooms(str, currentRoom);
                 str= stInLine.nextToken();
-                Log.w("Warn", "Line: " + str);
+                //Log.w("Warn", "Line: " + str);
                 SeparateQuestionsAndAnswers(str, answerIndex, currentRoom);
 
                 answerIndex++;
@@ -215,7 +214,6 @@ public class DownloadOtherMuseumsActivity extends Activity {
                     .setPositiveButton(R.string.confirm_exit_οκ, new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface arg0, int arg1) {
-                            //TODO  change data...
                             SharedPreferences settings = getApplicationContext().getSharedPreferences(MainActivity.WORKING_ON_EXTERNAL_MUSEUM_PREF_NAME, 0);
                             SharedPreferences.Editor editor = settings.edit();
                             editor.putBoolean(MainActivity.WORKING_ON_EXTERNAL_MUSEUM_VAR_KEY,true);
@@ -329,18 +327,17 @@ public class DownloadOtherMuseumsActivity extends Activity {
     public void SeparateQuestionsAndAnswers(String str, int answerIndex, int currentRoom)
     {
         StringTokenizer stQuestionsAndAnswers= new StringTokenizer(str,"|");
-        Log.w("Warn","QuestionsAndAnswers: "+stQuestionsAndAnswers.countTokens());
+        //Log.w("Warn","QuestionsAndAnswers: "+stQuestionsAndAnswers.countTokens());
         int currentQuestionIndex=-1;
         int currentAnswerID=-1;
         String currentAnswerText="",currentAnswerText_gr="";
 
         while(stQuestionsAndAnswers.hasMoreTokens()) {
             String pairs[] = stQuestionsAndAnswers.nextToken().split(":");
-            Log.w("Warn","0:"+pairs[0] +" 1:"+pairs[1]);
+           // Log.w("Warn","0:"+pairs[0] +" 1:"+pairs[1]);
 
             switch (pairs[0]){
                 case "e_id":
-                    Log.w("Warn","PAIR[1]:"+pairs[1] +" ID1):"+rooms.get(currentRoom-1).e_id+" 2)"+rooms.get(currentRoom-1).e2_id +" 3)"+rooms.get(currentRoom-1).e3_id);
                     if(Integer.parseInt(pairs[1])==rooms.get(currentRoom-1).e_id) //first save question id
                         currentQuestionIndex = 1;
                     else if(Integer.parseInt(pairs[1])==rooms.get(currentRoom-1).e2_id)
