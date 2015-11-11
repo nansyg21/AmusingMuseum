@@ -34,6 +34,7 @@
                 android:text="@string/upload_score_info"
                 android:id="@+id/Upload_score_info"
                 android:layout_weight="1" />
+
         </TableRow>
 
         <TableRow
@@ -99,7 +100,9 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1">
+
+            </LinearLayout>
         </TableRow>
 
         <TableRow
@@ -130,12 +133,22 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/topFive"
+                    android:id="@+id/button_display_topFive"
+                    android:background="@drawable/button_design"
+                    android:onClick="displayTopFive"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/Quit"
                     android:id="@+id/upload_button_quit"
                     android:background="@drawable/button_design"
                     android:onClick="UploadScoreQuit"/>
 
             </GridLayout>
+
+
 
         </TableRow>
 
@@ -150,6 +163,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/ErrorView"
                 android:layout_weight="1" />
+
+
         </TableRow>
     </TableLayout>
 

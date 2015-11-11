@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -202,12 +203,13 @@ public class QrCodeScanner extends Activity {
                 //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 //Check if the qrcode is correct...
                 if (contents.equals(monumentCodes[hintCounter]+"\n") || contents.equals(monumentCodes[hintCounter]) ) {
+                    Log.d("code",monumentCodes[hintCounter]);
                     buildExhibitInformationView(true);
 
                 }else {
                     //GO to information screen...
                     buildExhibitInformationView(false);
-
+                    Log.d("code", monumentCodes[hintCounter]);
                     ///show a toast... for wrong...
                     Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
                     toast.show();
@@ -257,14 +259,14 @@ public class QrCodeScanner extends Activity {
         // numCodeCheck=false;
         if(monumentCodes[hintCounter].equals(numCodeTxt.getText().toString())){
             buildExhibitInformationView(true);
-
+            Log.d("code", monumentCodes[hintCounter]);
         }
         //IF code is incorrect , display the information about the current exhibit and a toast with proper message
         else
         {
             //Info window
             buildExhibitInformationView(false);
-
+            Log.d("code", monumentCodes[hintCounter]);
             ///show a toast... for wrong...
             Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
             toast.show();

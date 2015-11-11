@@ -465,6 +465,7 @@
     </string-array>
 
     <string-array name="monument_codes">
+
         <item>BY40</item>
         <item>BA71</item>
         <item>BK2644</item>
@@ -476,7 +477,7 @@
         <item>BN226</item>
         <item>BN22885</item>
         <item>BK2793</item>
-        <item>ΤΗΕ BYZANTINE CASTLE</item>
+        <item>THE BYZANTINE CASTLE</item>
         <item>10012</item>
         <item>10013</item>
         <item>10014</item>
@@ -528,4 +529,5 @@
         <item>Filter, or in other words colander or strainer hemispherical. Incised wavy line runs around the rim. The whole body of the vase is pierced. The holes were opened, of course, while the clay was still damp with a sharp tool and with the direction from the interior of the vessel to the outward. The filter has been serving through the centuries the same use which remained in an unchanged shape until today.</item>
         <item>The castles were fortified settlements, obtaining the basic functions of a city. They were built in key positions who controlled the passes of roads and offered protection to the inhabitants and residents of the surrounding region in seasons of war. The limited space and the morphology of the terrain determined the urban organization of the castles and the changes in the architecture of the houses.  </item>
     </string-array>
+    <string name="topFive">TOP 5</string>
 </resources>

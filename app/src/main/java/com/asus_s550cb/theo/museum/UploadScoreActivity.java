@@ -6,12 +6,16 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.apache.http.client.HttpClient;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,8 +24,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
+import java.util.StringTokenizer;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -38,6 +44,8 @@ public class UploadScoreActivity extends Activity {
     public static String LOCALLY_SAVED_DATE = "LOCALLY_SAVED_DATE";
     boolean scoreUploaded=false;
 
+    String topFive = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +56,11 @@ public class UploadScoreActivity extends Activity {
         // ------------------ Code in order to hide the navigation bar -------------------- //
         menu.hideNavBar(this.getWindow());
 
+        //Fuction to get top scores from db and display the to layout
+        getTop5();
+
         TextView scoreTxtView = (TextView) findViewById(R.id.upload_score_num_txt);
-        scoreTxtView.setText(Score.TotalScore+"");
+        scoreTxtView.setText(Score.TotalScore + "");
 
     }
 
@@ -199,6 +210,77 @@ public class UploadScoreActivity extends Activity {
                 errView.setText(R.string.upload_locally_already_saved);
             }
         }
+    }
+    //******THEO FUNCTIONs IN PANO's class
+    //Get the info about top5
+    private void getTop5() {
+
+        Thread thread = new Thread(new Runnable() {//using thread to handle connections
+            @Override
+            public void run() {
+
+                try {
+                    URL url;
+                    String response = "";
+
+                    //UBUNTU LTS Server on okeanos.grnet.gr
+                    url = new URL("http://83.212.117.226/TopFive.php");
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    int responseCode = conn.getResponseCode();
+                    Log.w("Warn", "ResponseCode: " + responseCode); // 200: OK, The request was fulfilled.
+                    if (responseCode == HttpsURLConnection.HTTP_OK) {
+                        String line;
+                        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                        while ((line = br.readLine()) != null) {
+                            response += line;
+                        }
+                        Log.w("Warn", "Response: " + response);
+
+
+                        topFive = fixResponseTopFive(response);
+                    }
+
+
+                } catch (ConnectException ce) //connection exception
+                {
+                    //ce.printStackTrace();
+                    // ShowErrors(getBaseContext().getString(R.string.error_no_internet_connection_large));
+                } catch (Exception e)     //general exception
+                {
+                    e.printStackTrace();
+                    // ShowErrors(getBaseContext().getString(R.string.error_try_later_large));
+                }
+            }
+            //parse php response text
+            private String fixResponseTopFive(String response) {
+                StringTokenizer tknzr = new StringTokenizer(response, "|");
+                String str = "",fixedStr ="";
+
+                while (tknzr.hasMoreElements())                            //separate
+                {
+                    str = (String) tknzr.nextElement();
+                    String[] parts = str.split(",");
+
+                    fixedStr+=padRight(parts[0],20)+""+parts[1]+"\n";
+                    //  Log.w("Warn", "Added to list:  0:" + parts[0] + " 1: " + parts[1]);
+                }
+                return fixedStr;
+            }
+            private  String padRight(String s, int n) {
+                return String.format("%1$-" + n + "s", s);
+            }
+        });
+        thread.start();
+
+
+    }
+    //Create an alert dialog box with the top 5 scorers
+    public void displayTopFive(View v) {
+        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("TOP 5 SCORES").setMessage(topFive).show();
+
+        TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+        textView.setTypeface(Typeface.MONOSPACE);
     }
 
     // Reset the flags to hide the navigation bar
