@@ -436,6 +436,10 @@
     <string name="button_qrcode_scanner">QR code</string>
     <string name="button_num_code">Code</string>
 
+    <string name="choose_question">Choose question to view statistics:</string>
+    <string name="correct_answers">Correct answers: </string>
+    <string name="wrong_answers">Wrong answers: </string>
+
 
     <!-- Fullfill NEEDED! -->
     <string-array name="hints">
@@ -528,4 +532,6 @@
         <item>Filter, or in other words colander or strainer hemispherical. Incised wavy line runs around the rim. The whole body of the vase is pierced. The holes were opened, of course, while the clay was still damp with a sharp tool and with the direction from the interior of the vessel to the outward. The filter has been serving through the centuries the same use which remained in an unchanged shape until today.</item>
         <item>The castles were fortified settlements, obtaining the basic functions of a city. They were built in key positions who controlled the passes of roads and offered protection to the inhabitants and residents of the surrounding region in seasons of war. The limited space and the morphology of the terrain determined the urban organization of the castles and the changes in the architecture of the houses.  </item>
     </string-array>
+
+    <string name="title_activity_statistics">Statistics</string>
 </resources>
