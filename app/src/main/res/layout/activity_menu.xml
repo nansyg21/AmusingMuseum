@@ -105,6 +105,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/menu_see_statistics"
+                android:src="@drawable/stats_menu_bt"
+                android:onClick="GoToStats" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/menu_download_other_museums"
                 android:src="@drawable/download_museums_button_icon"
                 android:onClick="ConnectToServerView" />

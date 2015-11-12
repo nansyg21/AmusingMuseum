@@ -86,6 +86,13 @@ public class menu extends Activity {
         }
     }
 
+    public void GoToStats(View v)
+    {
+        startActivity(new Intent(getApplicationContext(),Statistics.class));
+     //   ImageView imgv=(ImageView) v;
+
+    }
+
     @Override
     public void onBackPressed() {
 

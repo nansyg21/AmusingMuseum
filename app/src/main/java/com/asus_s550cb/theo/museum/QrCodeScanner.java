@@ -112,7 +112,7 @@ public class QrCodeScanner extends Activity {
             {
                 switch (appToStart) {
                     case 1:
-                        itn = new Intent(getApplicationContext(), ChurchMap.class);
+                        itn = new Intent(getApplicationContext(), Hangman.class);
                         startActivityForResult(itn, 1);
                         break;
                     case 2:

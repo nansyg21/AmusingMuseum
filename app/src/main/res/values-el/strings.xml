@@ -426,6 +426,10 @@
     <string name="button_qrcode_scanner">QR code</string>
     <string name="button_num_code">Κωδικος</string>
 
+    <string name="choose_question">Επιλογή ερώτησης για εμφάνιση στατιστικών:</string>
+    <string name="correct_answers">Σωστές απαντήσεις: </string>
+    <string name="wrong_answers">Λάθος απαντήσεις: </string>
+
     <string-array name="hints">
 
         <item>Εντόπισε το τμήμα εντοιχιου ψηφιδωτού με αναβρυτήριο και προχώρησε στον επόμενο γρίφο σκανάροντας ή εισάγωντας τον κωδικό του μνημείου.</item>
