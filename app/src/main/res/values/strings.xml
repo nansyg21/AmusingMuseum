@@ -533,5 +533,7 @@
         <item>The castles were fortified settlements, obtaining the basic functions of a city. They were built in key positions who controlled the passes of roads and offered protection to the inhabitants and residents of the surrounding region in seasons of war. The limited space and the morphology of the terrain determined the urban organization of the castles and the changes in the architecture of the houses.  </item>
     </string-array>
 
+    <string name="topFive">TOP 5</string>`
+
     <string name="title_activity_statistics">Statistics</string>
 </resources>
