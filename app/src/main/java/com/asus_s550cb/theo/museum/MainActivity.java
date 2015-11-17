@@ -173,12 +173,13 @@ public class MainActivity extends AppCompatActivity {
         for(DownloadableMuseum.RoomsForNewMuseum r : EXTERNAL_MUSEUM.RoomsList)
         {
             if(menu.lang.equals("uk")) {
-                result[i] = EXTERNAL_MUSEUM.RoomsList.get(i).hint1;
-                result[i+1] = EXTERNAL_MUSEUM.RoomsList.get(i).hint2;
+                result[i] = r.hint1;
+                result[i+1] =r.hint2;
             }
-            else
-                result[i]=  EXTERNAL_MUSEUM.RoomsList.get(i).hint1_gr;
-            result[i+1]=  EXTERNAL_MUSEUM.RoomsList.get(i).hint2_gr;
+            else {
+                result[i] =r.hint1_gr;
+                result[i + 1] =r.hint2_gr;
+            }
             i+=2;
         }
         return  result;

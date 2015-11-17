@@ -240,31 +240,35 @@ public class StartGame extends Activity {
     }
 
     public String [] setTextTitle(){
-
-        if(startingStage==1){
-            return new String[]{ rooms[0],"",""};
-        }else if(startingStage==2){
-            return new String[]{rooms[1],rooms[2],""};
-        }else if(startingStage==3){
-            return new String[]{rooms[3],rooms[4],""};
-        }else if(startingStage==4){
-            return new String[]{rooms[5],rooms[6], rooms[7]};
-        }else if(startingStage==5){
-            return new String[]{rooms[8],rooms[9],""};
-        }else if(startingStage==6){
-            return new String[]{rooms[10],"",""};
-        }else if(startingStage==7){
-            return new String[]{rooms[11],"",""};
-        }else if(startingStage==8){
-            return new String[]{rooms[12],"",""};
-        }else if(startingStage==9){
-            return new String[]{rooms[13],"",""};
-        }else if(startingStage==10){
-            return new String[]{rooms[14],rooms[15],rooms[16]};
-        }else if(startingStage==11){
-            return new String[]{rooms[17],"",""};
+        if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+        {
+            return new String[]{ rooms[startingStage-1],"",""};
         }
-
+        else {
+            if (startingStage == 1) {
+                return new String[]{rooms[0], "", ""};
+            } else if (startingStage == 2) {
+                return new String[]{rooms[1], rooms[2], ""};
+            } else if (startingStage == 3) {
+                return new String[]{rooms[3], rooms[4], ""};
+            } else if (startingStage == 4) {
+                return new String[]{rooms[5], rooms[6], rooms[7]};
+            } else if (startingStage == 5) {
+                return new String[]{rooms[8], rooms[9], ""};
+            } else if (startingStage == 6) {
+                return new String[]{rooms[10], "", ""};
+            } else if (startingStage == 7) {
+                return new String[]{rooms[11], "", ""};
+            } else if (startingStage == 8) {
+                return new String[]{rooms[12], "", ""};
+            } else if (startingStage == 9) {
+                return new String[]{rooms[13], "", ""};
+            } else if (startingStage == 10) {
+                return new String[]{rooms[14], rooms[15], rooms[16]};
+            } else if (startingStage == 11) {
+                return new String[]{rooms[17], "", ""};
+            }
+        }
         return null;
     }
 }
