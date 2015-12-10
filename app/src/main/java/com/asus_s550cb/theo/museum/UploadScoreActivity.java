@@ -7,15 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.apache.http.client.HttpClient;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,7 +21,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.StringTokenizer;
@@ -42,6 +38,7 @@ public class UploadScoreActivity extends Activity {
     public static String LOCALLY_SAVED_NAME = "LOCALLY_SAVED_NAME";
     public static String LOCALLY_SAVED_SCORE= "LOCALLY_SAVED_SCORE";
     public static String LOCALLY_SAVED_DATE = "LOCALLY_SAVED_DATE";
+    public static String LOCALLY_SAVED_MUSEUM = "LOCALLY_SAVED_MUSEUM";
     boolean scoreUploaded=false;
 
     String topFive = "";
@@ -89,10 +86,15 @@ public class UploadScoreActivity extends Activity {
                             String name = nameField.getText().toString();   //collect data: name-score-date
                             Calendar c = Calendar.getInstance();
                             String date = c.get(Calendar.DAY_OF_MONTH) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.YEAR);
+                            String museum="";
+                            if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                                museum=MainActivity.EXTERNAL_MUSEUM.museum_name;
+                            else
+                                museum="Museum Of Byzantine Culture Of Thessaloniki";
                             ShowErrorOnView("");    //clear error log
 
                             //UBUNTU LTS Server on okeanos.grnet.gr
-                            url = new URL("http://83.212.117.226/SaveData.php?date=" + date + "&score=" + Score.TotalScore + "&name=" + name);
+                            url = new URL("http://83.212.117.226/SaveData.php?date=" + date + "&score=" + Score.TotalScore + "&name=" + name +"&museum="+museum);
                             // $sql=mysql_query("INSERT INTO AmusingMuseumScores (name,score,date) VALUES (".$_GET['name'].",".$_GET['score'].",".$_GET['date'].")");
                             //create table AmusingMuseumScores ( name varchar(30), score int(10), date varchar(10));
                             //alter table AmusingMuseumScores add Primary Key (name);
@@ -192,13 +194,18 @@ public class UploadScoreActivity extends Activity {
                 String name = nameField.getText().toString();   //collect data: name-score-date
                 Calendar c = Calendar.getInstance();
                 String date = c.get(Calendar.DAY_OF_MONTH) + "-" + c.get(Calendar.MONTH) + "-" + c.get(Calendar.YEAR);
+                String museum="";
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                    museum=MainActivity.EXTERNAL_MUSEUM.museum_name;
+                else
+                    museum="Museum Of Byzantine Culture Of Thessaloniki";
 
                 SharedPreferences settings = getApplicationContext().getSharedPreferences(LOCALLY_SAVED_DATA_PREFERENCE_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString(LOCALLY_SAVED_NAME, name);
                 editor.putInt(LOCALLY_SAVED_SCORE, Score.TotalScore);
                 editor.putString(LOCALLY_SAVED_DATE, date);
-
+                editor.putString(LOCALLY_SAVED_MUSEUM, museum);
                 // Apply the edits!
                 editor.apply();
 

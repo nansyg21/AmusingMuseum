@@ -317,6 +317,9 @@ public class DownloadOtherMuseumsActivity extends Activity {
                 case "hintImg2":
                     rooms.get(currentRoom-1).hintImg2= pairs[1];
                     break;
+                case "mini_game":
+                    rooms.get(currentRoom-1).MiniGame= pairs[1];
+                    break;
                 default:
                     break;
 

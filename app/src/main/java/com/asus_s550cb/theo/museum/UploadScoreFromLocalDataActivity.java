@@ -55,8 +55,9 @@ public class UploadScoreFromLocalDataActivity extends Activity{
                 String name = settings.getString(UploadScoreActivity.LOCALLY_SAVED_NAME, null);
                 int score = settings.getInt(UploadScoreActivity.LOCALLY_SAVED_SCORE, -1);
                 String date = settings.getString(UploadScoreActivity.LOCALLY_SAVED_DATE, null);
+                String museum = settings.getString(UploadScoreActivity.LOCALLY_SAVED_MUSEUM, null);
 
-                if(name==null || score==-1 || date==null)   //no data found: do nothing
+                if(name==null || score==-1 || date==null || museum==null)   //no data found: do nothing
                 {
                     TextView errorview = (TextView) findViewById(R.id.UploadLocalDataScreenText);
                     errorview.setText(R.string.upload_locally_no_saved_data_found);
@@ -69,7 +70,7 @@ public class UploadScoreFromLocalDataActivity extends Activity{
 
 
                         //UBUNTU LTS Server on okeanos.grnet.gr
-                        url = new URL("http://83.212.117.226/SaveData.php?date=" + date + "&score=" + score + "&name=" + name);
+                        url = new URL("http://83.212.117.226/SaveData.php?date=" + date + "&score=" + score + "&name=" + name +"&museum="+museum);
                         // $sql=mysql_query("INSERT INTO AmusingMuseumScores (name,score,date) VALUES (".$_GET['name'].",".$_GET['score'].",".$_GET['date'].")");
                         //create table AmusingMuseumScores ( name varchar(30), score int(10), date varchar(10));
                         //alter table AmusingMuseumScores add Primary Key (name);

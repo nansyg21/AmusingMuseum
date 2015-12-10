@@ -51,6 +51,7 @@ public class DownloadableMuseum implements java.io.Serializable {       //HOLDS 
     }
 
     public static class RoomsForNewMuseum implements java.io.Serializable {//HOLDS DATA EACH ROOM HAS
+        String MiniGame;         //mini game to load in each room: info coming from server
         int r_id;
         String room_name;
         String room_name_gr;

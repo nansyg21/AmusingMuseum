@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -110,53 +109,39 @@ public class QrCodeScanner extends Activity {
             }
             else
             {
-                switch (appToStart) {
-                    case 1:
-                        itn = new Intent(getApplicationContext(), ChurchMap.class);
-                        startActivityForResult(itn, 1);
-                        break;
-                    case 2:
-                        itn = new Intent(getApplicationContext(), ClickMe.class);
-                        startActivityForResult(itn, 1);
-                        break;
-                    case 3:
-                        itn = new Intent(getApplicationContext(), Hangman.class);
-                        startActivityForResult(itn, 1);
-                        break;
-                    case 4:
-                        itn = new Intent(getApplicationContext(), MatchingCoins.class);
-                        startActivityForResult(itn, 1);
-                        break;
-                    case 5:
-                        itn = new Intent(getApplicationContext(), PuzzleActivity.class);
-                        startActivityForResult(itn, 1);
-                        break;
-                    case 6:
-                        itn = new Intent(getApplicationContext(), RightOrder.class);
-                        startActivityForResult(itn, 1);
-                        break;
-             /*   case 7:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;
-                case 8:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;
-                case 9:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;
-                case 10:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;
-                case 11:
-                    itn = new Intent(getApplicationContext(), RightOrder.class);
-                    startActivityForResult(itn, 1);
-                    break;*/
-                    default:
-                        finish();
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)//if working on external museum the mini game is chosen by the tour creator
+                {                                           //and loaded dynamically
+                    OpenProperMiniGame(appToStart);
+                }
+                else {
+                    switch (appToStart) {
+                        case 1:
+                            itn = new Intent(getApplicationContext(), ChurchMap.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        case 2:
+                            itn = new Intent(getApplicationContext(), ClickMe.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        case 3:
+                            itn = new Intent(getApplicationContext(), Hangman.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        case 4:
+                            itn = new Intent(getApplicationContext(), MatchingCoins.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        case 5:
+                            itn = new Intent(getApplicationContext(), PuzzleActivity.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        case 6:
+                            itn = new Intent(getApplicationContext(), RightOrder.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        default:
+                            finish();
+                    }
                 }
             }
             finish();
@@ -170,6 +155,35 @@ public class QrCodeScanner extends Activity {
         }
     }
 
+    private void OpenProperMiniGame(int mini_game_index) //Depending on the value received from server load the correct mini game
+    {
+        Class classToLoad ;
+        switch (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(mini_game_index-1).MiniGame)
+        {
+            case "churchmap":
+                classToLoad=ChurchMap.class;
+                break;
+            case "clickme":
+                classToLoad=ClickMe.class;
+                break;
+            case "hangman":
+                classToLoad=Hangman.class;
+                break;
+            case "matchingcoins":
+                classToLoad=MatchingCoins.class;
+                break;
+            case "puzzle":
+                classToLoad=PuzzleActivity.class;
+                break;
+            case "rightorder":
+                classToLoad=RightOrder.class;
+                break;
+            default:
+                classToLoad=ChurchMap.class;    //if something goes wrong we need to load something: load ChurchMap
+        }
+        itn = new Intent(getApplicationContext(), classToLoad);
+        startActivityForResult(itn, 1);
+    }
 
     //alert dialog for downloadDialog
     private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
