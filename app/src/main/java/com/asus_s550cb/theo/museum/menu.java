@@ -66,6 +66,9 @@ public class menu extends Activity {
                 break;
             case R.id.btnMenuHelp:
                 startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
+                //Intent itn = new Intent(getApplicationContext(), MemoryGame.class);
+               // Intent itn = new Intent(getApplicationContext(), ExhibitsFall.class);
+                //startActivityForResult(itn, 1);
                 break;
             case R.id.btnMenuAbout:
                 startActivity(new Intent(getApplicationContext(),CreditsActivity.class));

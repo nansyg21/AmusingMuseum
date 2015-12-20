@@ -21,6 +21,10 @@
     <string name="confirm_exit_cancel">Cancel</string>
     <string name="confirm_exit_οκ">OK</string>
 
+    <string name="correct">Correct</string>
+    <string name="wrong">Wrong</string>
+
+
     <string name="upload_score_info">Upload your score</string>
     <string name="upload_score_name">Name:</string>
     <string name="upload_score_num">Score:</string>
@@ -411,6 +415,11 @@
             Some of the pottery we admire up to this day, took a lot of time in order to look like this and carry all these details.\n
             Put in the rigth order the production stages, their names and form, as fast as you can to increase your score
         </item>
+         <item>
+            FIND THE PAIRS OF THE CLAY VESSELS\n
+             You have a few seconds to observe and memorize the pairs formed by the clay vessels. \n
+             Then you have to use your memory to locate those pairs with the least possible selections on screen.
+         </item>
     </string-array>
 
     <string name="title_activity_loading_screen">LoadingScreen</string>
@@ -536,4 +545,55 @@
     <string name="topFive">TOP 5</string>`
 
     <string name="title_activity_statistics">Statistics</string>
+
+    <string name="exhibitsFall1">Oinochoe from the 4th century AD. Its height is 16.5 cm. αnd diameter 4.5 cm. It is made of pale green glass. The base is flat unformatted. The body is octagonal and decorated with side stripes.\nThe almost cylindrical neck is reduced slightly towards the ring-shaped rim which is horizontal, and folded. The vessel is constructed with the technique of blowing into two successive molds.</string>
+    <string name="exhibitsFall2">Lamp dated around the 6th century and is made of copper alloy.\n It has spherical body, disc-shaped base, elongated spout and a hole with clam-shaped cover. The handle is a cross with forked antennae. On the back of the cross, there is a carrying handle attached to support the cross.</string>
+    <string name="exhibitsFall3">Clay whistle from the 3rd-4th century with a height of 9.3 cm and base diameter 2.7cm. It was discovered north of the cemetery of Evangelistria, on the eastern Thessaloniki. \n The upper body of the vessel has a cylindrical appendage with a spout and a small hole in the surface for the functioning of the whistle. When the vase was filled with water the sound produced when using the whistle imitated the chirping of a bird. The sound differed depending on the height of the water level in the vessel. The format of this game remained unchanged until today as similar whistles sold as toys so far, especially at festivals remote from urban areas.</string>
+    <string name="exhibitsFall4">Wooden portable picture that was created around 1200 AD. It\'s height is 53 cm, width is 28.5 cm and it has thickness of 3 cm. \nThe Virgin is depicted in the middle, praying with her left hand on the chest, holding on the right the young Christ, blessing with corresponding hand while holding a wrapped scroll in his left. The iconographic archetype of the image located in the 6th century work in Rome.</string>
+    <string name="exhibitsFall5">Glass unguentarium of the 4th century with a height of 8 cm and base diameter of 3 cm. \n It has flat base and a spherical body with a form of two young people\'s heads and a tall neck widening in ends horizontally creating in that way a ring-shaped lip. It was found in the West Cemetery of Thessaloniki, at Kallithea 5 street.</string>
+    <string name="exhibitsFall6">Glass bracelet of the 10th-12th century. It originates from Macedonia but the place of discovery is unknown. \nIt is flat on the inside and curved on the outside. It is decorated by yellow and gold colors. It is separated vertically by triple stripes in six rectangular fields which are alternatively: a bird with a long neck, possibly a swan with its wings stretched and three horizontal zigzags, two gold and a central yellow.</string>
+    <string name="exhibitsFall7">Archieratic garment of the 18th century made of silk, linen, gold and silver. \nIn the front side we see meandering vine shoots with grapes, resulting in oval medallions, within which the apostles are depicted. In large central framework we see enthroned Christ Pantocrator and the Feast of the Annunciation. On the back side we see the genealogical tree of Christ, known as the "Root of Jesse" according to the prophecy of Isaiah.</string>
+    <string name="exhibitsFall8">Golden coin made between 1164-1167 AD. \nIn one side, which is the curved, Christ is depicted in the formula of Emmanuel, which means at young age. On the other side, which is hollow,there is Manuel I, with imperial dress, holding a banner and a crusader sphere.</string>
+    <string name="exhibitsFall9">Leaden seal of emperor Constantine VII Porphyrogenitus (913-959 AD) with a diameter of 3.4 cm and a weight of 19.88 gramms. \nOn the one side we see Christ Pantocrator with the original IC-XC (Jesus Christ).On the orher side there is the Emperor Constantine VII wearing imperial clothes and holding the crusader ball in his right hand.The display of the emperor in the seal is an excellent example of portraiture of the time.</string>
+    <string name="exhibitsFall10">Colored copperplate engraved in 1798 by the monk painter Nikiforos descended from Karpenissi. It\'s height is 48.5 cm and it\'s width is 34.5 cm. \nIn the central frame we see St George the dragon-slayer above the monastery of Xenofontos, which is dedicated to the saint. On the upper right, Christ is blessing St George and on the left Saint Marina  is praying with a cross in her hand. </string>
+    <string name="exhibitsFall11">Marble inlay created with the opus sectile technique in the 7th century. Ir\'s height and width is 80 cm and it was found at the church of St. Demetrius at Thessaloniki. In the central circle we have two red squares and inside the created corners we see white leeves </string>
+    <string name="exhibitsFall12">Wall painting of the 5th century discovered at the west wall of a vaulted tomb, depicting the biblical story of Sosannas. \nThe show is divided into two zones, one of which is the lower one which shows a scaly thorakion that ends up taking the shape of a pine tree. On the second zone we have a floor as two wide stripes of green and orange and in from of them we see Sosanna between the two Jewish Judges.</string>
+    <string name="exhibitsFall13">Marble embossed plate of the 11th century coming from Thessaloniki.\nIt was used to decorate the long side of a Christian tomb of the 11th-12th century. The left half part is missing. In the main view, within the framework, two crosses are represented in graded foundations. The cross on the right is roman and framed by branched that grow from the base. Over the branches we see an eagle on the right and a smaller bird on the left. The cross left is a Resurrection cross with double horizontal rows and a tree is growing from within.</string>
+    <string name="exhibitsFall14">A copy of a mural found in a vaulted tomb at Nigde 6-8 street outside the western walls of Thessaloniki, at the settlement Tyroloe. It was created in 1950 and has a height of 75.5 cm and a width of 171 cm.\n It displays two colorful birds in front of a bown of fruits. The background is decorated with flowers. The scene looks like a heavenly landscape, refering to the afterlife. On the top and bottom of the image we it is decorated by red stripes.</string>
+    <string name="exhibitsFall15">A book used in churches to structure chants and hymns of saints of Byzantine music. It was created around the 17th century with a height of 17.5 cm and width 12 cm.</string>
+
+    <string name="exhibitsFall1_name">Oinochoe</string>
+    <string name="exhibitsFall2_name">Lamp</string>
+    <string name="exhibitsFall3_name">Clay whistle</string>
+    <string name="exhibitsFall4_name">Wooden picture</string>
+    <string name="exhibitsFall5_name">Glass unguentarium</string>
+    <string name="exhibitsFall6_name">Glass bracelet</string>
+    <string name="exhibitsFall7_name">Archieratic garment</string>
+    <string name="exhibitsFall8_name">Golden coin</string>
+    <string name="exhibitsFall9_name">Leaden seal</string>
+    <string name="exhibitsFall10_name">Colored copperplate</string>
+    <string name="exhibitsFall11_name">Marble inlay</string>
+    <string name="exhibitsFall12_name">Wall painting of a vaulted tomb</string>
+    <string name="exhibitsFall13_name">Marble embossed</string>
+    <string name="exhibitsFall14_name">Colorful mural</string>
+    <string name="exhibitsFall15_name">Byzantine music book</string>
+    <string name="looking_for">We are looking for:  </string>
+
+
+
+
 </resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

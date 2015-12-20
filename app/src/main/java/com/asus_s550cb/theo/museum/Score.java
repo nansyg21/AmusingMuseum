@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -27,6 +26,8 @@ import android.widget.TextView;
  *  Matching Coins: 70 the user has to complete it to move on
  *  Puzzle:         70 the user has to complete it to move on
  *  Right Order:    60 seconds: 1 point per second left  (+10 to reach 70)
+ *  Memory game:    Best case: 16 clicks, for each extra click, subtract score by 70/16. If score is <20, user gets 20
+ *  ExhibitsFall:   Score starts from 70 and is reduced by ~70/5=14 for each lost object and ~by 5 for each wrong caught object. If score is <20, user gets 20
 
  */
 public class Score extends Activity {

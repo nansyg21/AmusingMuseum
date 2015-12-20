@@ -12,6 +12,7 @@
 
     <dimen name="church_map_text_size">32sp</dimen>
     <dimen name="click_me_text_size">40sp</dimen>
+    <dimen name="memory_game_text_size">40sp</dimen>
 
     <dimen name="right_order_time_size">32sp</dimen>
     <dimen name="right_order_name_size">24sp</dimen>
