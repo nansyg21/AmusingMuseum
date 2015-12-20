@@ -26,8 +26,6 @@ import java.util.Random;
 
 public class MatchingCoins extends Activity {
 
-
-    //TODO: DOWNLOAD NEW COINS FROM MUSEUM WEBSITE: http://www.mbp.gr/el/%CE%BD%CE%BF%CE%BC%CE%AF%CF%83%CE%BC%CE%B1%CF%84%CE%B1
     PauseMenuButton pauseBt;
 
     int screenWidth;

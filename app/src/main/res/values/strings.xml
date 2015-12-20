@@ -179,6 +179,7 @@
     <string name="title">Questions-Answers</string>
     <string name="rightAnswer">Correct !</string>
     <string name="wrongAnswer">Wrong !</string>
+    <string name="correct_is">The correct is:</string>
     <string name="result">Result</string>
     <string name="correct_answers_num">Number of correct answers</string>
     <string name="question">Question</string>
@@ -212,7 +213,7 @@
     </string-array>
 
     <string-array name="Answers">
-        <item>4th - 7th century</item>
+        <item>4rth - 7th century</item>
         <item>3rd - 5th century</item>
         <item>4th - 6th century</item>
         <item>3rd - 7th century</item>
@@ -419,6 +420,11 @@
             FIND THE PAIRS OF THE CLAY VESSELS\n
              You have a few seconds to observe and memorize the pairs formed by the clay vessels. \n
              Then you have to use your memory to locate those pairs with the least possible selections on screen.
+         </item>
+        <item>
+            CATCH THE EXHIBIT, SAVING IT FROM DESTRUCTION\n
+            Random exhibits are falling from the sky. Watch the screen for the exhibit you must catch and save it.\n
+            But beware, don\'t catch the wrong one. In the end you have the chance to see information about the exhibit you are trying to save.
          </item>
     </string-array>
 

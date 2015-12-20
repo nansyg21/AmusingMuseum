@@ -178,6 +178,12 @@ public class QrCodeScanner extends Activity {
             case "rightorder":
                 classToLoad=RightOrder.class;
                 break;
+            case "memorygame":
+                classToLoad=MemoryGame.class;
+                break;
+            case "exhibitsfall":
+                classToLoad=ExhibitsFall.class;
+                break;
             default:
                 classToLoad=ChurchMap.class;    //if something goes wrong we need to load something: load ChurchMap
         }

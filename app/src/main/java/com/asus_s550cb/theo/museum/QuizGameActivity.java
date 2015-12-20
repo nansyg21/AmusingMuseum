@@ -11,11 +11,9 @@ import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -25,8 +23,6 @@ import java.io.OutputStreamWriter;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.StringTokenizer;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -65,7 +61,6 @@ public class QuizGameActivity extends Activity {
     private int wrongAnswers;
 
     CountDownTimer countDownTimer; //Timer
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,11 +128,9 @@ public class QuizGameActivity extends Activity {
                 itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(itns);
                 finish();
-
             }
         }.start();
         /**-----------------------TIMER END--------------------------**/
-
 
         //call the next question
         nextQuestion();
@@ -145,15 +138,6 @@ public class QuizGameActivity extends Activity {
         // ------------------ Code in order to hide the navigation bar -------------------- //
         menu.hideNavBar(this.getWindow());
 
-        //   if(firstQuiz)
-        ///   {
-
-
-        //  countDownTimer.cancel();
-        //      countDownTimer.start();
-//            firstQuiz=false;
-
-        //  }
     }
 
 
@@ -161,27 +145,37 @@ public class QuizGameActivity extends Activity {
         Button btn = (Button) v;
         CharSequence test = ((Button) v).getText();
         txtVresult.setVisibility(View.VISIBLE);
-
-
+        String toastText="";
+        Log.w("Warn","SELECTED:"+((Button) v).getText()+"|");
+        Log.w("Warn", "CORRECT IS:" + rightAnswers[questionCountPublic]+"|");
         //Check for the right answer
         if (test.toString().equals(rightAnswers[questionCountPublic])) {
             correctAnswers++;
             UploadAnswerResults(questionCountPublic);
             txtVresult.setText(getResources().getString(R.string.rightAnswer));
-            //RghtAnswer so increase the proper counter
+            toastText=getResources().getString(R.string.rightAnswer);
+            //RightAnswer so increase the proper counter
             questionRightAnsPublic++;
             questionRightAns++;
+            Log.w("Warn","CORRECT");
+
         } else {
             wrongAnswers++;
-            UploadAnswerResults(questionCountPublic);
             txtVresult.setText(getResources().getString(R.string.wrongAnswer));
+            toastText=getResources().getString(R.string.wrongAnswer) + getResources().getString(R.string.correct_is) +rightAnswers[questionCountPublic];
+            UploadAnswerResults(questionCountPublic);
+            Log.w("Warn", "WRONG");
         }
+
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(this.getBaseContext(), toastText, duration);
+        toast.show();
 
         //increase the public & private counter
         ++questionCountPublic;
         ++questionCounter;
 
-        //sleep and procceed to the nextQuestion
+        //sleep and proceed to the nextQuestion
         SystemClock.sleep(1000);
         if (questionCounter < 3) {
             nextQuestion();
@@ -204,7 +198,6 @@ public class QuizGameActivity extends Activity {
 
         }
     }
-
 
     // Reset the flags to hide the navigation bar
     @SuppressLint("NewApi")
@@ -290,7 +283,6 @@ public class QuizGameActivity extends Activity {
                     Log.w("Warn", "Question: " + questionText);
                     //UBUNTU LTS Server on okeanos.grnet.gr
                     //Increase questionCountPublic by 1 because in DB id starts from 1 not 0
-                    //TODO: If other museums are added the counter should start from another index (eg plus as many questions as the prev museum had)
                     int id_num=questionCountPublic+1;
                     Log.w("Warn", "Id: "+id_num);
                     //Pass id as a parameter

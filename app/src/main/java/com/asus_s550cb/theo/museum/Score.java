@@ -32,7 +32,6 @@ import android.widget.TextView;
  */
 public class Score extends Activity {
 
-
     public static int TotalScore=0,currentQuizScore,currentRiddleScore;
 
     private Button OkButton;

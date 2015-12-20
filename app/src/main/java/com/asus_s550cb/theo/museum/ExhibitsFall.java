@@ -30,21 +30,29 @@ import java.util.Random;
 
 /**
  * Created by panos on 18/12/2015.
+ *
+ * Random exhibits of the museum of Byzantine Culture of Thessaloniki drop from the top of the screen
+ * On start we see the name of one exhibit
+ * If we see that exhibit, we must catch it avoiding all the others
+ * Whether we catch it or not we see its description
+ * After 5 rounds, the score is calculated and the screen exits
  */
 public class ExhibitsFall extends Activity {
 
     int currentApiVersion;
     PauseMenuButton pauseBt;
-
+    ExhibitsFallScreen exhibitsFallScreen;
     int screenWidth, screenHeight;
     private int mActivePointerId = -1;      //-1 instead of INVALID_POINTER_ID
+    static int onFocusChangedCounterExhibitsFall =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
-        setContentView(new ExhibitsFallScreen(this));
+        exhibitsFallScreen = new ExhibitsFallScreen(this);
+        setContentView(exhibitsFallScreen);
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -56,9 +64,9 @@ public class ExhibitsFall extends Activity {
         menu.hideNavBar(this.getWindow());
 
         //Start help screen
-        //Intent itn = new Intent(getApplicationContext(), HelpDialogActivity.class);
-        //  itn.putExtra("appNum", 9);  //TODO: WRITE MINI GAME DESCRIPTION
-        //  startActivity(itn);
+        Intent itn = new Intent(getApplicationContext(), HelpDialogActivity.class);
+         itn.putExtra("appNum", 9);
+          startActivity(itn);
 
     }
 
@@ -68,6 +76,16 @@ public class ExhibitsFall extends Activity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         menu.hideNavBar(this.getWindow());
+
+       if(onFocusChangedCounterExhibitsFall==0)   //On return from HelpDialogActivity Screen this method is triggered
+       //it is also triggered any other time the app changes focus so we restart the game only once
+       {
+           Log.w("Warn", "Returned!");
+           onFocusChangedCounterExhibitsFall++;
+           exhibitsFallScreen.StartGame();
+
+       }
+
     }
 
     //This is actually drawing on screen the game
@@ -81,7 +99,7 @@ public class ExhibitsFall extends Activity {
         int imgWidth, imgHeight, xSpeed, ySpeed, baseImgWidth, baseImgHeight, baseImgXSpeed, wrongObjectsCaught, correctObjectsCaught;
         int currentRound, totalRounds;
         Random rand = new Random();
-        Boolean movinBaseImg,infoState, fallingWrongObjects, fallingCorrectObject;
+        Boolean movinBaseImg,infoState, fallingWrongObjects, fallingCorrectObject, playingGame;
 
         // long noSelectTimer, elapsedNoSelectTime, limitNoSelectTime; //timer to freeze game between 2 selections
         //   long showAllImagesTimer, elapsedShowAllImagesTime, limitShowAllImagesTime; //timer for showing images on start
@@ -127,12 +145,13 @@ public class ExhibitsFall extends Activity {
             baseRect= new Rect(10, screenHeight-baseImgHeight, 10+ baseImgWidth, screenHeight );
             baseImgXSpeed=20;
             movinBaseImg=false;
-            infoState=false;
+            infoState=true;
             chosenObjectIndex=-1;
             wrongObjectsCaught=0;
             correctObjectsCaught=0;
             currentRound=0;
             totalRounds =5;
+            playingGame=false;
 
             // imgWidth = screenWidth / (N+1); //split by 5:  4 for each image 1 for free space
 
@@ -146,19 +165,17 @@ public class ExhibitsFall extends Activity {
             });
 
             AddAllExhibits();
+
+
+        }
+        public void StartGame()
+        {
+            infoState=false;
+            RestoreExhibits();
             AddAChosenExhibit();
             InformAboutCorrectObject();
             AddRandomlyFallingExhibits();
             delayTimer=System.currentTimeMillis();
-
-            Log.w("Warn","SCORE 1 IS: "+(Math.max(20, (int) Math.ceil(70- (totalRounds-1)*(70/totalRounds)))));
-            Log.w("Warn","SCORE 2 IS: "+(Math.max(20, (int) Math.ceil(70- (totalRounds-2)*(70/totalRounds)))));
-            Log.w("Warn","SCORE 3 IS: "+(Math.max(20, (int) Math.ceil(70- (totalRounds-3)*(70/totalRounds)))));
-            Log.w("Warn","SCORE 4 IS: "+(Math.max(20, (int) Math.ceil(70- (totalRounds-4)*(70/totalRounds)))));
-            Log.w("Warn","SCORE 5 IS: "+(Math.max(20, (int) Math.ceil(70- (totalRounds-5)*(70/totalRounds)))));
-
-
-
         }
 
         public void AddAllExhibits() {
@@ -172,11 +189,18 @@ public class ExhibitsFall extends Activity {
             allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall8_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed8), getResources().getString(R.string.exhibitsFall8),GetRandDelay()));
             allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall9_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed9), getResources().getString(R.string.exhibitsFall9),GetRandDelay()));
             allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall10_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed10), getResources().getString(R.string.exhibitsFall10),GetRandDelay()));
-            allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall11_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed11), getResources().getString(R.string.exhibitsFall11),GetRandDelay()));
+            allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall11_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed11), getResources().getString(R.string.exhibitsFall11), GetRandDelay()));
             allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall12_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed12), getResources().getString(R.string.exhibitsFall12), GetRandDelay()));
             allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall13_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed13), getResources().getString(R.string.exhibitsFall13), GetRandDelay()));
-            allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall14_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed14), getResources().getString(R.string.exhibitsFall14),GetRandDelay()));
+            allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall14_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed14), getResources().getString(R.string.exhibitsFall14), GetRandDelay()));
             allExhibitsList.add(new FallingExhibit(getResources().getString(R.string.exhibitsFall15_name), BitmapFactory.decodeResource(getResources(), R.drawable.ed15), getResources().getString(R.string.exhibitsFall15),GetRandDelay()));
+        }
+
+        public void RestoreExhibits() {
+            activeExhibits.clear();
+            activeExhibitsRects.clear();
+            for(int i=0;i<allExhibitsList.size();i++)
+                allExhibitsList.get(i).restoreState();
         }
 
         public void AddAChosenExhibit()
@@ -207,7 +231,7 @@ public class ExhibitsFall extends Activity {
             }
             fallingWrongObjects =true;
             fallingCorrectObject =false;
-            Log.w("Warn", "Added " + activeExhibits.size() + " active exhibits ");
+            Log.w("Warn", "Added " + n + " active exhibits ");
         }
 
         public Rect GetRandomRect() //returns a random rectangle starting from above the screen
@@ -236,28 +260,38 @@ public class ExhibitsFall extends Activity {
             dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public void onDismiss(DialogInterface dialog) {
-                    infoState=false;
+
                     currentRound++;
                     if((currentRound)<= totalRounds) {
                         Log.w("Warn", "Round: "+currentRound);
-                        AddAChosenExhibit();                                    //restart game
-                        InformAboutCorrectObject();
-                        AddRandomlyFallingExhibits();
-                        delayTimer = System.currentTimeMillis();
+                        StartGame();
                     }
                     else
                         LeaveExhibitsFall();
-                    //Log.w("Warn", "STOPPED INFO ");
+
                 }
             });
             dialog.show();
         }
 
+        public void RemoveFallingExhibitAndCheckState(int index)
+        {
+            activeExhibitsRects.remove(index);
+            activeExhibits.remove(index);
+            Log.w("Warn", "activeExhibits SIZE: " + activeExhibits.size());
+            if (activeExhibits.size() == 0)                     //no more wrong objects, drop the correct one
+            {
+                fallingWrongObjects = false;
+                fallingCorrectObject = true;
+                activeExhibits.add(allExhibitsList.get(chosenObjectIndex));
+                activeExhibitsRects.add(GetRandomRect());
+                activeExhibits.get(0).delay = GetRandDelay();
+            }
+        }
         public void LeaveExhibitsFall() {
 
             //Save and Show Score
-
-            Log.w("Warn", "FINAL SCORE: "+(Math.max(20, (int) Math.ceil(70- (totalRounds-correctObjectsCaught)*(70/totalRounds))-5*wrongObjectsCaught)));
+            Log.w("Warn", "FINAL SCORE: " + (Math.max(20, (int) Math.ceil(70 - (totalRounds - correctObjectsCaught) * (70 / totalRounds)) - 5 * wrongObjectsCaught)));
             Score.currentRiddleScore =Math.max(20, (int) Math.ceil(70- (totalRounds-correctObjectsCaught)*(70/totalRounds))-5*wrongObjectsCaught);//score starts from 20
             Intent itn = new Intent(getApplicationContext(), Score.class);
             startActivity(itn);
@@ -269,8 +303,8 @@ public class ExhibitsFall extends Activity {
 
         @Override
         public void run() {
-            elapsedDelayTimer=System.currentTimeMillis() - delayTimer;
-            if(!infoState) {
+            if (!infoState) {
+                elapsedDelayTimer = System.currentTimeMillis() - delayTimer;
                 FallingExhibit de;
                 Rect r;
                 for (int i = 0; i < activeExhibitsRects.size(); i++) {
@@ -289,45 +323,35 @@ public class ExhibitsFall extends Activity {
                         if (r.intersect(baseRect) && r.left > baseRect.left && r.left + imgWidth < baseRect.right && r.bottom + 5 > baseRect.top) //if falling object intersects with base object and it is inside: it remove it
                         {
                             // Log.w("Warn", "r.width: " + r.width() + " r.height: " + r.height() + "CheckFall:  r.left: " + r.left + " baseRect.left: " + baseRect.left + " r.right: " + r.right + " baseRect.right: " + baseRect.right);
-
-                            if(activeExhibits.get(i).name.equals(chosenObjectName))    //caught correct object  -  show info
+                            if (activeExhibits.get(i).name.equals(chosenObjectName))    //caught correct object  -  show info
                             {
                                 infoState = true;
                                 Log.w("Warn", "CAUGHT CORRECT");
                                 correctObjectsCaught++;
                                 ShowInfoForExhibit(getResources().getString(R.string.correct), allExhibitsList.get(chosenObjectIndex));
-                            }
-                            else {                                                      //caught wrong object
+                            } else {                                                      //caught wrong object
                                 //play wrong sound...
                                 wrongObjectsCaught++;
                                 Log.w("Warn", "CAUGHT WRONG OBJECT");
-                                activeExhibitsRects.remove(i);
-                                activeExhibits.remove(i);
+                                RemoveFallingExhibitAndCheckState(i);
+
                             }
 
-
                         } else if (r.top > screenHeight) {  //object fell down
-                            if(activeExhibits.get(i).name.equals(chosenObjectName))  //correct object fell down - show info
+                            if (activeExhibits.get(i).name.equals(chosenObjectName))  //correct object fell down - show info
                             {
                                 infoState = true;
                                 ShowInfoForExhibit(getResources().getString(R.string.wrong), allExhibitsList.get(chosenObjectIndex));
-                            }
-                            else {                                                  //wrong object fell down - show info
-                                activeExhibitsRects.remove(i);
-                                activeExhibits.remove(i);
-                                if (activeExhibits.size() == 0)                     //no more wrong objects, drop the correct one
-                                {
-                                    fallingWrongObjects = false;
-                                    fallingCorrectObject = true;
-                                    activeExhibits.add(allExhibitsList.get(chosenObjectIndex));
-                                    activeExhibitsRects.add(GetRandomRect());
-                                    activeExhibits.get(0).delay=GetRandDelay();
-                                }
+                            } else {                                                  //wrong object fell down - show info
+                                RemoveFallingExhibitAndCheckState(i);
+
                             }
                         }
                     }
                 }
             }
+
+
 
             // onDraw(Canvas) will be called
             invalidate();
@@ -448,7 +472,6 @@ public class ExhibitsFall extends Activity {
     public class FallingExhibit     //on object used in mini game ExhibitsFall to hold data for falling exhibits
     {
         Bitmap image;
-        Rect rect;
         String description; //information about the specific object
         public int delay;          //delay before it appears on screen
         public Boolean isFalling;
@@ -460,6 +483,11 @@ public class ExhibitsFall extends Activity {
             description = _description;
             delay = _delay;
             isFalling = false;
+        }
+
+        public void restoreState() //set isFalling to false so we can reuse it
+        {
+            isFalling=false;
         }
     }
 }

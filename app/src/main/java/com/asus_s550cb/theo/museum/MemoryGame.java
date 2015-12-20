@@ -26,6 +26,13 @@ import java.util.Random;
 
 /**
  * Created by panos on 15/12/2015.
+ *
+ * 16 cards appear on screen
+ * for a few seconds we see the front side, then they turn around
+ * we pick pairs of two by selecting them
+ * if the pair is correct, the front side is show until the end
+ * if not, it turns around after a few milliseconds
+ * Once all pairs are done, score is calculated and the screen exits
  */
 public class MemoryGame extends Activity {
 
@@ -35,7 +42,7 @@ public class MemoryGame extends Activity {
     int screenWidth, screenHeight;
     MemoryGameScreen memoryGameScreen;
 
-    static int onFocusChangedCounter=0;
+    static int onFocusChangedCounterMemoryGame =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +76,11 @@ public class MemoryGame extends Activity {
         super.onWindowFocusChanged(hasFocus);
         menu.hideNavBar(this.getWindow());
 
-        if(onFocusChangedCounter==0)    //On return from HelpDialogActivity Screen this method is triggered
+        if(onFocusChangedCounterMemoryGame ==0)    //On return from HelpDialogActivity Screen this method is triggered
                                         //it is also triggered any other time the app changes focus so we restart the game only once
         {
             Log.w("Warn", "Returned!");
-            onFocusChangedCounter++;
+            onFocusChangedCounterMemoryGame++;
             memoryGameScreen.StartGame();
         }
 
