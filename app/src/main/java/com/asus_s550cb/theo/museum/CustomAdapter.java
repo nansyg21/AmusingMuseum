@@ -22,19 +22,16 @@ public class CustomAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-
         return values.size();
     }
 
     @Override
     public Object getItem(int position) {
-
         return values.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-
         return 0;
     }
 

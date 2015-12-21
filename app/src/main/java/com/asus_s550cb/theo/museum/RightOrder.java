@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.MotionEvent;
@@ -235,6 +234,7 @@ public class RightOrder extends Activity {
 
     private void CalculateScoreAndExit()
     {
+        SoundHandler.PlaySound(SoundHandler.correct_sound_id);
         Score.currentRiddleScore=(int) (10 + (minutes*60 + seconds)) ;
         Intent itn= new Intent(getApplicationContext(), Score.class);
         startActivity(itn);

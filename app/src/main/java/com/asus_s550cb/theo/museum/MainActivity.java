@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static String WORKING_ON_EXTERNAL_MUSEUM_VAR_KEY="WORKING_ON_EXTERNAL_MUSEUM_VAR_KEY";
     public static boolean WORKING_ON_EXTERNAL_MUSEUM;
     public static DownloadableMuseum EXTERNAL_MUSEUM;
-
+    public static Context my_context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
             super(context);
             setFocusable(true);
 
+            my_context=getBaseContext();
+            SoundHandler.InitiateSoundPool();   //create object to handle sounds
             SharedPreferences settings = getApplicationContext().getSharedPreferences(MainActivity.WORKING_ON_EXTERNAL_MUSEUM_PREF_NAME, 0);
             WORKING_ON_EXTERNAL_MUSEUM = settings.getBoolean(MainActivity.WORKING_ON_EXTERNAL_MUSEUM_VAR_KEY, false);//if nothing found: return false
             Log.w("Warn","1)SAMPLE VIEW WORKING_ON_EXTERNAL_MUSEUM: "+ WORKING_ON_EXTERNAL_MUSEUM);

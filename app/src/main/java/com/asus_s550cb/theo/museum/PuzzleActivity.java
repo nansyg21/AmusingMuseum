@@ -13,11 +13,9 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MotionEventCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -248,6 +246,7 @@ public class PuzzleActivity extends Activity   {
                 currentMovingPiece.rect.bottom = currentMovingPiece.originalRec.bottom;
                 currentMovingPiece.placedCorrectly=true;
 
+                SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
                 CheckFinishedPuzzle();
 
             }

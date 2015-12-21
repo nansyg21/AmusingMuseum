@@ -207,7 +207,7 @@ public class ExhibitsFall extends Activity {
         {
             chosenObjectIndex= rand.nextInt(allExhibitsList.size() - 1);
             chosenObjectName= allExhibitsList.get(chosenObjectIndex).name;
-            Log.w("Warn", "Chosen is: " + chosenObjectIndex);
+            //Log.w("Warn", "Chosen is: " + chosenObjectIndex);
         }
 
         public void InformAboutCorrectObject()     //Show a pop up toast informing the player about the correct object
@@ -231,7 +231,7 @@ public class ExhibitsFall extends Activity {
             }
             fallingWrongObjects =true;
             fallingCorrectObject =false;
-            Log.w("Warn", "Added " + n + " active exhibits ");
+            //Log.w("Warn", "Added " + n + " active exhibits ");
         }
 
         public Rect GetRandomRect() //returns a random rectangle starting from above the screen
@@ -263,7 +263,7 @@ public class ExhibitsFall extends Activity {
 
                     currentRound++;
                     if((currentRound)<= totalRounds) {
-                        Log.w("Warn", "Round: "+currentRound);
+                       // Log.w("Warn", "Round: "+currentRound);
                         StartGame();
                     }
                     else
@@ -278,7 +278,7 @@ public class ExhibitsFall extends Activity {
         {
             activeExhibitsRects.remove(index);
             activeExhibits.remove(index);
-            Log.w("Warn", "activeExhibits SIZE: " + activeExhibits.size());
+           // Log.w("Warn", "activeExhibits SIZE: " + activeExhibits.size());
             if (activeExhibits.size() == 0)                     //no more wrong objects, drop the correct one
             {
                 fallingWrongObjects = false;
@@ -291,7 +291,7 @@ public class ExhibitsFall extends Activity {
         public void LeaveExhibitsFall() {
 
             //Save and Show Score
-            Log.w("Warn", "FINAL SCORE: " + (Math.max(20, (int) Math.ceil(70 - (totalRounds - correctObjectsCaught) * (70 / totalRounds)) - 5 * wrongObjectsCaught)));
+           // Log.w("Warn", "FINAL SCORE: " + (Math.max(20, (int) Math.ceil(70 - (totalRounds - correctObjectsCaught) * (70 / totalRounds)) - 5 * wrongObjectsCaught)));
             Score.currentRiddleScore =Math.max(20, (int) Math.ceil(70- (totalRounds-correctObjectsCaught)*(70/totalRounds))-5*wrongObjectsCaught);//score starts from 20
             Intent itn = new Intent(getApplicationContext(), Score.class);
             startActivity(itn);
@@ -326,13 +326,15 @@ public class ExhibitsFall extends Activity {
                             if (activeExhibits.get(i).name.equals(chosenObjectName))    //caught correct object  -  show info
                             {
                                 infoState = true;
-                                Log.w("Warn", "CAUGHT CORRECT");
+                                SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
+                                //Log.w("Warn", "CAUGHT CORRECT");
                                 correctObjectsCaught++;
                                 ShowInfoForExhibit(getResources().getString(R.string.correct), allExhibitsList.get(chosenObjectIndex));
                             } else {                                                      //caught wrong object
                                 //play wrong sound...
                                 wrongObjectsCaught++;
-                                Log.w("Warn", "CAUGHT WRONG OBJECT");
+                                SoundHandler.PlaySound(SoundHandler.wrong_sound_id2);
+                               // Log.w("Warn", "CAUGHT WRONG OBJECT");
                                 RemoveFallingExhibitAndCheckState(i);
 
                             }

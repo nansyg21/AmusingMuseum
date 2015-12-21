@@ -10,9 +10,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -217,10 +215,12 @@ public class ChurchMap extends Activity {
         // Else add it to the wrong answers list
         // Use Points to avoid create a Circle class, Points is a built in Java class
         if(touchRect.intersect(selectedRect)) {
+            SoundHandler.PlaySound(SoundHandler.correct_sound_id2);
             paint.setColor(Color.GREEN);
             correctPoints.add(new Point((int)pointX,(int)pointY));
         }
         else {
+            SoundHandler.PlaySound(SoundHandler.wrong_sound_id2);
             paint.setColor(Color.RED);
             wrongPoints.add(new Point((int)pointX,(int)pointY));
         }

@@ -166,6 +166,7 @@ public class MemoryGame extends Activity {
             currentSelectedRectIndex1=-1;   //on start nothing is selected
             currentSelectedRectIndex2=-1;
         }
+
         public void StartGame(){
             showAllImagesTimer=System.currentTimeMillis();
             showCardsState=true;
@@ -370,6 +371,7 @@ public class MemoryGame extends Activity {
                         //search for pairs
                         if (KeysArray[currentSelectedRectIndex1] == currentSelectedRectIndex2 && KeysArray[currentSelectedRectIndex2] == currentSelectedRectIndex1) {
                             Log.w("Warn", "Pair found");
+                            SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
                             pairs++;
                             if(pairs== (M*N)/2)
                                 LeaveMemoryGame();

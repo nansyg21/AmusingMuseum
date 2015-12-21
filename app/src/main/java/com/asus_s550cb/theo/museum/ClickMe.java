@@ -13,8 +13,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MotionEventCompat;
 import android.util.DisplayMetrics;
@@ -24,7 +22,6 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
 
@@ -73,18 +70,17 @@ public class ClickMe extends Activity {
     //This is actually drawing on screen the game
     public class ClickMeScreen extends View implements Runnable
     {
+        int click_me_hit_sound_id;
+
         int ScreenWidth,ScreenHeight;
-        int PlayerTouchX, PlayerTouchY;
-        MediaPlayer click_me_hit_sound ;
-        int hits;
+        int PlayerTouchX, PlayerTouchY,M=5, N=5,hits;
         Paint backgroundPaint, txtPaint, missedImagePaint;
         Bitmap backImg;
 
-        long startTime, respawn_timer, lowerTimeLimit, deltaTime;//On select moving image the time is decreased, from 3 seconds to 0.5
-        long elapsedTime ;                                                // from 0.5 it goes to 3 again
+        long startTime, respawn_timer, lowerTimeLimit, deltaTime,elapsedTime;//On select moving image the time is decreased, from 3 seconds to 0.5
+                                          //elapsedTime: from 0.5 it goes to 3 again
         Random rand;
 
-        int M=5, N=5;                         // M(HEIGHT-rows) x N(WIDTH-columns) images
         ArrayList<Bitmap> croppedImages;      //each bitmap is a small piece of the whole image
         ArrayList<Rect> croppedOriginalRects ;
         boolean[] selectedList;
@@ -99,10 +95,13 @@ public class ClickMe extends Activity {
         boolean done, leave;     //on true all pieces appear on screen for doneTimer milliseconds
         long doneTimer;
         Button invBtn;          //invisible button: triggered on exit to finish mini game
+
         public ClickMeScreen(Context context)
         {
             super(context);
-            click_me_hit_sound= MediaPlayer.create(this.getContext(), R.raw.click_me_hit_sound);
+
+            click_me_hit_sound_id = SoundHandler.soundPool.load(this.getContext(), R.raw.click_me_hit_sound, 1);
+
             respawn_timer=3000; lowerTimeLimit=500; deltaTime=500;
             elapsedTime = 0L;
             hits=0;
@@ -179,7 +178,6 @@ public class ClickMe extends Activity {
                 for (int j = 0; j < N; j++)
                     croppedImages.add(Bitmap.createBitmap(backImg, j*croppedWidth, i*croppedHeight,
                             croppedWidth,  croppedHeight) );
-
         }
 
         public void setCroppedOriginalRects()
@@ -221,22 +219,23 @@ public class ClickMe extends Activity {
             movingImgRect = new Rect(x, y, x+movingImgWidth, y+movingImgHeight);
 
             nextIndex++;
-            Log.w("Warn", "nextIndex:"+nextIndex);    //mini game almost completed
+           // Log.w("Warn", "nextIndex:"+nextIndex);    //mini game almost completed
 
             if(nextIndex>=croppedImages.size())
             {
-                Log.w("Warn", "No more images");    //mini game almost completed
+              //  Log.w("Warn", "No more images");    //mini game almost completed
                 done=true;
                 startTime= System.currentTimeMillis();  //restart counter
                 elapsedTime=0L;
             }
-
         }
 
         public boolean TouchedImage()
         {
-            if( movingImgRect.contains(PlayerTouchX,PlayerTouchY) )
+            if( movingImgRect.contains(PlayerTouchX,PlayerTouchY) ) {
+                SoundHandler.PlaySound(click_me_hit_sound_id);
                 return true;
+            }
             return false;
         }
 
@@ -263,6 +262,7 @@ public class ClickMe extends Activity {
             if (elapsedTime >= respawn_timer && !done)          //still playing
             {
                 selectedList[nextIndex]=false;  //image wasn't selected
+
                 changeMovingImage();
                 startTime= System.currentTimeMillis();
                 elapsedTime=0L;
@@ -339,7 +339,6 @@ public class ClickMe extends Activity {
 
                     if(TouchedImage() && !done)
                     {
-                        click_me_hit_sound.start();
                         hits++;
                         selectedList[nextIndex]=true;   //successfully selected image
                         changeMovingImage();

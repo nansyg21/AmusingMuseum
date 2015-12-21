@@ -150,6 +150,7 @@ public class Hangman extends Activity {
         // the game is over
         if(!found)
         {
+            SoundHandler.PlaySound(SoundHandler.wrong_sound_id2);
             mistakes++;
             if(mistakes==1)
             {
@@ -170,6 +171,7 @@ public class Hangman extends Activity {
             else if(mistakes>4)
             {
                 //Lost - Save and Show Score
+                SoundHandler.PlaySound(SoundHandler.wrong_sound_id4);
                 Score.setRiddleScore(correctLetters*2) ;
                 Intent itn= new Intent(getApplicationContext(), Score.class);
                 startActivity(itn);
@@ -189,6 +191,7 @@ public class Hangman extends Activity {
         if(correctLetters==numberOfLetters)
         {
             //Win - Save and Show Score
+            SoundHandler.PlaySound(SoundHandler.correct_sound_id);
             Score.setRiddleScore(70-mistakes*2) ;
             Intent itn= new Intent(getApplicationContext(), Score.class);
             startActivity(itn);

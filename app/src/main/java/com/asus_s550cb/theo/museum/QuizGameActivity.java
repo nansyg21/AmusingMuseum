@@ -150,6 +150,7 @@ public class QuizGameActivity extends Activity {
         Log.w("Warn", "CORRECT IS:" + rightAnswers[questionCountPublic]+"|");
         //Check for the right answer
         if (test.toString().equals(rightAnswers[questionCountPublic])) {
+            SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
             correctAnswers++;
             UploadAnswerResults(questionCountPublic);
             txtVresult.setText(getResources().getString(R.string.rightAnswer));
@@ -160,6 +161,7 @@ public class QuizGameActivity extends Activity {
             Log.w("Warn","CORRECT");
 
         } else {
+            SoundHandler.PlaySound(SoundHandler.wrong_sound_id);
             wrongAnswers++;
             txtVresult.setText(getResources().getString(R.string.wrongAnswer));
             toastText=getResources().getString(R.string.wrongAnswer) + getResources().getString(R.string.correct_is) +rightAnswers[questionCountPublic];

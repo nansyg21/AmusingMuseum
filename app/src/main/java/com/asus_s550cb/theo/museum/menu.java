@@ -69,11 +69,11 @@ public class menu extends Activity {
                // Intent itn = new Intent(getApplicationContext(), ChurchMap.class);
                // Intent itn = new Intent(getApplicationContext(), ClickMe.class);
                // Intent itn = new Intent(getApplicationContext(), Hangman.class);
-               //  Intent itn = new Intent(getApplicationContext(), MatchingCoins.class);
+                // Intent itn = new Intent(getApplicationContext(), MatchingCoins.class);
                // Intent itn = new Intent(getApplicationContext(), PuzzleActivity.class);
-              //   Intent itn = new Intent(getApplicationContext(), RightOrder.class);
-              //  Intent itn = new Intent(getApplicationContext(), MemoryGame.class);
-              //   Intent itn = new Intent(getApplicationContext(), ExhibitsFall.class);
+                // Intent itn = new Intent(getApplicationContext(), RightOrder.class);
+               // Intent itn = new Intent(getApplicationContext(), MemoryGame.class);
+               //  Intent itn = new Intent(getApplicationContext(), ExhibitsFall.class);
               //  startActivityForResult(itn, 1);
                 break;
             case R.id.btnMenuAbout:

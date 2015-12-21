@@ -12,7 +12,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.view.MotionEventCompat;
 import android.util.DisplayMetrics;
@@ -35,7 +34,7 @@ public class MatchingCoins extends Activity {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
-        setContentView(new MatcingCoinsScreen(this));
+        setContentView(new MatchingCoinsScreen(this));
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -64,37 +63,28 @@ public class MatchingCoins extends Activity {
 
     //This is actually drawing on screen the game : Matching Coins
     //A couple of pictures appear for each coin. The player matches the coins together
-    public class MatcingCoinsScreen extends View implements Runnable
+    public class MatchingCoinsScreen extends View implements Runnable
     {
-        int ScreenWidth,ScreenHeight, hits;
-        int PlayerTouchX, PlayerTouchY;
-        int mPosX, mPosY;   //coordinates in the middle on dragging
-
-        MediaPlayer correct_match_sound ;
-
+        int ScreenWidth,ScreenHeight, hits,PlayerTouchX, PlayerTouchY, mPosX, mPosY,frameWidth,frameHeight, imgWidth,imgHeight; ;
         Paint backgroundPaint, linePaint;
         Bitmap frameImg;
         ArrayList<Bitmap> coinsList= new ArrayList<Bitmap>();//1 matches with 2, 3 with 4 etc
         Rect frame1Rect,frame2Rect;
         ArrayList<Rect> coinsRectList= new ArrayList<Rect>();
-        int frameWidth,frameHeight, imgWidth,imgHeight;     //sizes of frames and coins
         Random rand = new Random();
 
         boolean movingSomething=false;
         Rect currentMovingCoin;
-        int currentMovingCoinId; //index of rect coin object
-
-        int leftCoin,rightCoin;  //id
+        int currentMovingCoinId,leftCoin,rightCoin;
 
         boolean wave2=false;    //true once wave 1 is done
 
         private int mActivePointerId = -1;      //-1 instead of INVALID_POINTER_ID
 
-        public MatcingCoinsScreen(Context context)
+        public MatchingCoinsScreen(Context context)
         {
             super(context);
 
-            correct_match_sound= MediaPlayer.create(this.getContext(), R.raw.correct_match_sound);
 
             DisplayMetrics displaymetrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -261,18 +251,15 @@ public class MatchingCoins extends Activity {
         {
             if(leftCoin+1==rightCoin)   //0 matches with 1 , 2 with 3 etc..
             {
-
-                correct_match_sound.start();
+                SoundHandler.PlaySound(SoundHandler.correct_sound_id4);
                 coinsList.remove(rightCoin);
                 coinsList.remove(leftCoin);
                 coinsRectList.remove(rightCoin);
                 coinsRectList.remove(leftCoin);
 
-
                 if(coinsList.size()==0)
                 {
                     InitializeCoinImages("2");  //call wave 2
-
                     if(wave2)
                     {
                         //Calculate Save and Show Score
@@ -294,13 +281,13 @@ public class MatchingCoins extends Activity {
                         wave2=true;
                 }
 
-
                 Log.w("Warn", "still " + coinsList.size() + " coins");
                 leftCoin=-1;
                 rightCoin=-1;
                 currentMovingCoin=null;
                 currentMovingCoinId=-1;
             }
+
 
 
         }
@@ -348,12 +335,9 @@ public class MatchingCoins extends Activity {
 
             pauseBt.getPauseMenuButton().draw(canvas);
 
-
-
             // Invalidate view at about 60fps
             postDelayed(this, 16);
         }
-
 
 
         @Override
