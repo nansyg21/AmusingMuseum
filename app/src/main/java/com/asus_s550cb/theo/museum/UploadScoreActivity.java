@@ -122,6 +122,7 @@ public class UploadScoreActivity extends Activity {
                                     response += line;
                                 }
 
+
                                 Log.w("Warn", "Response: " + response);
                                 if (response.contains("Integrity constraint violation")) //name already used on database
                                     ShowErrorOnView(getBaseContext().getString(R.string.error_on_upload_name_used));

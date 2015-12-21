@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewManager;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -30,6 +32,20 @@ public class menu extends Activity {
         //hide nav & stat bars
         hideNavBar(this.getWindow());
         mainPid=android.os.Process.myPid();
+
+        //hide icon: Upload score from local data if local data don't exist
+        SharedPreferences settings = getApplicationContext().getSharedPreferences(UploadScoreActivity.LOCALLY_SAVED_DATA_PREFERENCE_NAME, 0);
+        String name = settings.getString(UploadScoreActivity.LOCALLY_SAVED_NAME, null);
+        int score = settings.getInt(UploadScoreActivity.LOCALLY_SAVED_SCORE, -1);
+        String date = settings.getString(UploadScoreActivity.LOCALLY_SAVED_DATE, null);
+        String museum = settings.getString(UploadScoreActivity.LOCALLY_SAVED_MUSEUM, null);
+
+        if(name==null || score==-1 || date==null || museum==null)   //no data found: do nothing
+        {
+            ImageView localDataImgView = (ImageView) findViewById(R.id.menu_upload_locally_saved_data);
+            ((ViewManager)localDataImgView.getParent()).removeView(localDataImgView);
+            localDataImgView.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
