@@ -22,7 +22,7 @@ import android.view.SurfaceView;
  */
 public class StartGame extends Activity {
 
-    Ourview v;
+    StartGameOurview v;
     int height,width,newInt;
     static int startingStage=0;
     String nextApp;
@@ -54,12 +54,12 @@ public class StartGame extends Activity {
         nextApp="nextApp";
         PauseMenuActivity.pause=false;
 
-        v = new Ourview(this);
+        v = new StartGameOurview(this);
         setContentView(v);
     }
 
 
-    // Check if pause button is presssed then start pause menu activity
+    // Check if pause button is pressed then start pause menu activity
     public boolean onTouchEvent(MotionEvent event) {
         float touchX = event.getX();
         float touchY = event.getY();
@@ -116,7 +116,7 @@ public class StartGame extends Activity {
         super.onSaveInstanceState(outState);
     }
 
-    public class Ourview extends SurfaceView implements Runnable {
+    public class StartGameOurview extends SurfaceView implements Runnable {
 
         Thread t;
         SurfaceHolder holder;
@@ -126,7 +126,7 @@ public class StartGame extends Activity {
         Paint paint;//Text style in TextView
 
         //CONSTRUCTOR
-        public Ourview(Context context) {
+        public StartGameOurview(Context context) {
             super(context);
             holder = getHolder();
             ppenguin = BitmapFactory.decodeResource(getResources(), R.drawable.penguinsheet);
@@ -149,7 +149,7 @@ public class StartGame extends Activity {
             //Only when not paused
             if(PauseMenuActivity.pause==false)
             {
-                sprite = new Sprite(Ourview.this, ppenguin,width,height,startingStage);
+                sprite = new Sprite(StartGameOurview.this, ppenguin,width,height,startingStage);
                 while(isItok) {
 
                     //perform drawing

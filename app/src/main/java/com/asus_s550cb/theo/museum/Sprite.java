@@ -3,17 +3,9 @@ package com.asus_s550cb.theo.museum;
 /**
  * Created by theo on 3/8/2015.
  */
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.widget.Toast;
-
-import java.util.logging.XMLFormatter;
-
-import static android.support.v4.app.ActivityCompat.startActivity;
 
 /**
  * Created by theo on 9/7/2015.
@@ -41,7 +33,7 @@ public class Sprite {
     int xSpeed,ySpeed;
     int height,width;
     Bitmap b;
-    StartGame.Ourview ov;
+    StartGame.StartGameOurview ov;
     int currentFrame=0;
     int direction;
     int widthScreen,heightScreen;
@@ -49,9 +41,9 @@ public class Sprite {
 
 
 
-    public Sprite(StartGame.Ourview ourview, Bitmap peng,int widthScreen,int heightScreen,int stage) {
+    public Sprite(StartGame.StartGameOurview startGameOurview, Bitmap peng,int widthScreen,int heightScreen,int stage) {
         b=peng;
-        ov=ourview;
+        ov= startGameOurview;
         this.stage=stage;
         this.widthScreen=widthScreen;
         this.heightScreen=heightScreen;

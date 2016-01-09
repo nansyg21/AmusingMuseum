@@ -30,11 +30,18 @@
     <string name="upload_score_upload">Ανέβασμα</string>
     <string name="upload_empty_name_small">Κενό Όνομα</string>
     <string name="upload_empty_name_large">Παρακαλώ εισάγετε ένα όνομα</string>
+    <string name="upload_complaints">Παράπονα:</string>
+    <string name="upload_complaints_send">Αποστολή παραπόνωνt</string>
+    <string name="empty_field">Κενό Πεδίο</string>
+    <string name="empty_field_large">Παρακαλώ συμπληρώστε τυχόν παράπονα ή οτιδήποτε σας απογοήτευσε ατά την διάρκεια της περιοδείας</string>
 
+    <string name="error">Σφάλμα!</string>
     <string name="error_on_upload_name_used">Παρακαλώ δοκιμάστε με διαφορετικό όνομα</string>
-    <string name="error_no_internet_connection_large">Βεβαιωθείτε ότι είστε συνδεδεμένοι στο Διαδύκτιο</string>
+    <string name="error_no_internet_connection_large">Δεν είστε συνδεδεμένοι</string>
     <string name="error_try_later_large">Παρακαλώ προσπαθήστε αργότερα</string>
     <string name="score_successfully_uploaded">Το σκορ ανέβηκε επιτυχώς</string>
+    <string name="upload_complaint_sent">Το κείμενο έχει σταλεί επιτυχώς</string>
+
 
     <string name="save_score_locally_button_text">Αποθήκευση τοπικά</string>
     <string name="save_score_locally_successfully">Τα δεδομένα αποθηκεύτηκαν τοπικά</string>

@@ -31,11 +31,17 @@
     <string name="upload_score_upload">Upload</string>
     <string name="upload_empty_name_small">Empty Name</string>
     <string name="upload_empty_name_large">Please insert a name</string>
+    <string name="upload_complaints">Complaints:</string>
+    <string name="upload_complaints_send">Send Complaint</string>
+    <string name="empty_field">Empty Field</string>
+    <string name="empty_field_large">Please write your complaints or anything that you did not like during the tour</string>
 
+    <string name="error">Error!</string>
     <string name="error_on_upload_name_used">Name is already in use, please try a different name</string>
-    <string name="error_no_internet_connection_large">Please make sure you are connected to the Internet</string>
+    <string name="error_no_internet_connection_large">No internet connection</string>
     <string name="error_try_later_large">Please try again later</string>
     <string name="score_successfully_uploaded">Your score has been uploaded successfully</string>
+    <string name="upload_complaint_sent">Your complaint was sent</string>
 
     <string name="save_score_locally_button_text">Save locally</string>
     <string name="save_score_locally_successfully">Data saved locally</string>

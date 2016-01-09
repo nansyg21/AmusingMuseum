@@ -426,7 +426,6 @@ public class QrCodeScanner extends Activity {
             @Override
             public void onClick(View v) {
 
-
                 if(theAnswerWasRight){
                     scanQR(null);
                 }else {
@@ -438,6 +437,11 @@ public class QrCodeScanner extends Activity {
         });
 
         menu.hideNavBar(this.getWindow());
+    }
+
+    public void FastForwardActiviy(View v)
+    {
+        buildExhibitInformationView(true);
     }
 
     //Remember to hide everything when Activity Resumes...

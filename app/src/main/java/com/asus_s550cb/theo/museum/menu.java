@@ -82,6 +82,7 @@ public class menu extends Activity {
                 break;
             case R.id.btnMenuHelp:
                 startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
+                //startActivity(new Intent(getApplicationContext(),UploadScoreActivity.class));
                // Intent itn = new Intent(getApplicationContext(), ChurchMap.class);
                // Intent itn = new Intent(getApplicationContext(), ClickMe.class);
                // Intent itn = new Intent(getApplicationContext(), Hangman.class);
@@ -201,7 +202,7 @@ public class menu extends Activity {
             w.getDecorView().setSystemUiVisibility(uiOptions);
 
         }
-        else if (Build.VERSION.SDK_INT < 16)    // If the Android version is lower than Jellybean, hide the status bar.
+        else if (Build.VERSION.SDK_INT <= 16)    // If the Android version is lower than Jellybean, hide the status bar.
         {
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);

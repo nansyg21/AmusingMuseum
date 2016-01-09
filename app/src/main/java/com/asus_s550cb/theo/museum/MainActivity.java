@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         width = displaymetrics.widthPixels;
 
 
-        setContentView(new SampleView(this));
+        setContentView(new MainActivitySampleView(this));
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
         return width;
     }
 
-    private class SampleView extends View {
+    private class MainActivitySampleView extends View {
 
         Bitmap logo= null;
         Bitmap museum_logo=null;
 
         // CONSTRUCTOR
-        public SampleView(Context context) {
+        public MainActivitySampleView(Context context) {
             super(context);
             setFocusable(true);
 

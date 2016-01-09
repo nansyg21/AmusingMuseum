@@ -7,17 +7,34 @@
     android:background="@color/royal_blue"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/title_qrcode"
-        android:id="@+id/textView5"
-        android:gravity="center"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        android:layout_marginBottom="25dp" />
-<!--
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Fast Forward"
+            android:id="@+id/button"
+            android:layout_weight="5"
+            android:background="@drawable/button_design"
+            android:textColor="#ff0101"
+            android:onClick="FastForwardActiviy" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/title_qrcode"
+            android:id="@+id/textView5"
+            android:gravity="center"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="25dp"
+            android:layout_weight="1" />
+    </TableRow>
+
+    <!--
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +43,7 @@
         android:layout_gravity="right"
         android:onClick="scanQR"/>
 -->
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

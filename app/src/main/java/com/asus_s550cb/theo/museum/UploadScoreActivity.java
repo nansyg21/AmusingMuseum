@@ -22,6 +22,7 @@ import java.io.OutputStreamWriter;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.StringTokenizer;
 
@@ -152,8 +153,6 @@ public class UploadScoreActivity extends Activity {
             }
 
         }
-
-
     }
 
     public void ShowErrorOnView(final String err)   //use UI Thread to update view from worker thread
@@ -219,6 +218,7 @@ public class UploadScoreActivity extends Activity {
             }
         }
     }
+
     //******THEO FUNCTIONs IN PANO's class
     //Get the info about top5
     private void getTop5() {
@@ -284,6 +284,7 @@ public class UploadScoreActivity extends Activity {
 
     }
     //Create an alert dialog box with the top 5 scorers
+
     public void displayTopFive(View v) {
         AlertDialog dialog = new AlertDialog.Builder(this).setTitle("TOP 5 SCORES").setMessage(topFive).show();
 
@@ -291,6 +292,85 @@ public class UploadScoreActivity extends Activity {
         textView.setTypeface(Typeface.MONOSPACE);
     }
 
+    public void SendComplaint(View v)
+    {
+
+        final TextView complaintsField = (TextView) findViewById(R.id.upload_score_complaint_text);
+        if(complaintsField.length()==0)
+        {
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.empty_field)
+                    .setMessage(R.string.empty_field_large)
+                    .setPositiveButton(R.string.confirm_exit_οκ, null).create().show();
+        }
+        else {
+            // try to upload complaint to server
+            //if there is no connection it can be saved locally
+
+                Thread thread = new Thread(new Runnable()
+                {
+                    @Override
+                    public void run() {
+                        try {
+                            URL url;
+                            String response = "";
+                            String complaint = complaintsField.getText().toString();   //collect data to send to server
+                            Log.w("Warn", "Complaint is: " + complaint);
+                            Calendar c = Calendar.getInstance();
+                            String date = c.get(Calendar.DAY_OF_MONTH) + "-" + (c.get(Calendar.MONTH)+1) + "-" + c.get(Calendar.YEAR);
+                            String museum="";
+                            if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                                museum=MainActivity.EXTERNAL_MUSEUM.museum_name;
+                            else
+                                museum="Museum Of Byzantine Culture Of Thessaloniki";
+                            ShowErrorOnView("");    //clear error log
+
+                            //UBUNTU LTS Server on okeanos.grnet.gr
+
+                            url = new URL("http://83.212.117.226/Complaints.php?date=" + date + "&complaint=" + URLEncoder.encode(complaint, "UTF-8") +"&museum="+museum);
+
+                            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                            conn.setReadTimeout(15000);
+                            conn.setConnectTimeout(15000);
+                            conn.setRequestMethod("POST");
+                            conn.setDoInput(true);
+                            conn.setDoOutput(true);
+
+                            OutputStream os = conn.getOutputStream();
+                            BufferedWriter writer = new BufferedWriter(
+                                    new OutputStreamWriter(os, "UTF-8"));
+
+                            writer.flush();
+                            writer.close();
+                            os.close();
+                            int responseCode = conn.getResponseCode();
+                            Log.w("Warn", "ResponseCode: " + responseCode); // 200: OK, The request was fulfilled.
+                            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                                String line;
+                                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                                while ((line = br.readLine()) != null) {
+                                    response += line;
+                                }
+                                Log.w("Warn", "Response is: " + response);
+                                if (response.equals("Success"))
+                                    ShowErrorOnView(getBaseContext().getString(R.string.upload_complaint_sent));
+                                else
+                                    ShowErrorOnView(getBaseContext().getString(R.string.error_try_later_large));
+                            }
+                        } catch (ConnectException ce) //connection exception
+                        {
+                            ShowErrorOnView(getBaseContext().getString(R.string.error_no_internet_connection_large));
+                        } catch (Exception e)     //general exception
+                        {
+                            Log.w("Warn", e.getMessage());
+                            ShowErrorOnView(getBaseContext().getString(R.string.error_try_later_large));
+                        }
+                    }
+                });
+                thread.start();
+
+        }
+    }
     // Reset the flags to hide the navigation bar
     @SuppressLint("NewApi")
     @Override

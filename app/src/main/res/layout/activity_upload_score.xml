@@ -102,6 +102,53 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="@string/upload_complaints"
+                            android:id="@+id/upload_score_complaint_info"
+                            android:editable="false" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/upload_score_complaint_text"
+                            android:layout_weight="1"
+                            android:maxWidth="50dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/upload_complaints_send"
+                            android:id="@+id/upload_score_complaint_button"
+                            android:background="@drawable/button_design"
+                            android:layout_weight="1"
+                            android:onClick="SendComplaint" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="5"></LinearLayout>
+                    </TableRow>
+                </TableLayout>
             </LinearLayout>
         </TableRow>
 
@@ -157,12 +204,25 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <TextView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/ErrorView"
-                android:layout_weight="1" />
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/ErrorView"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></LinearLayout>
 
 
         </TableRow>
