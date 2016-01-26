@@ -23,6 +23,8 @@
 
     <string name="correct">Correct</string>
     <string name="wrong">Wrong</string>
+    <string name="hangman_correct_is">The correct word is:</string>
+
 
 
     <string name="upload_score_info">Upload your score</string>

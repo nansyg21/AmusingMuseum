@@ -23,6 +23,7 @@
 
     <string name="correct">Σωστό</string>
     <string name="wrong">Λάθος</string>
+    <string name="hangman_correct_is">Η σωστή λέξη είναι:</string>
 
     <string name="upload_score_info">Ανεβάστε το σκορ σας</string>
     <string name="upload_score_name">Όνομα:</string>

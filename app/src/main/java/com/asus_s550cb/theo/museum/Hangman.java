@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,7 @@ public class Hangman extends Activity {
     private int mistakes; // Number of mistaken guesses
     char[] lettersFound; // An array with the letters the player has already found in the word
     char[] wordArray; // A char array to split the string of the choosen word
-    private View[] lettersView; // List with textViews one for each letter of the word dymanicly generated
+    private View[] lettersView; // List with textViews one for each letter of the word dynamically generated
     private ImageView currentArch; // The instance of the current image of arches, change on every mistake
     private int correctLetters; // Number of correct letters found
     private int currentApiVersion; // The api version of android
@@ -171,14 +172,26 @@ public class Hangman extends Activity {
             else if(mistakes>4)
             {
                 //Lost - Save and Show Score
-                SoundHandler.PlaySound(SoundHandler.wrong_sound_id4);
-                Score.setRiddleScore(correctLetters*2) ;
-                Intent itn= new Intent(getApplicationContext(), Score.class);
-                startActivity(itn);
+                for(int i=0;i<numberOfLetters;i++)  //show letters
+                {
+                    TextView tv = (TextView) findViewById(lettersView[i].getId());
+                    tv.setText(""+wordArray[i]);
+                    tv.invalidate();
+                }
+                currentArch.setImageBitmap(null);
+                CountDownTimer countDownTimer = new CountDownTimer(3000,1000) { //after 3 seconds quit
+                    public void onTick(long t)
+                    {
+                    }
 
-
-                QrCodeScanner.questionMode=true;
-                finish();
+                    public void onFinish() {
+                        SoundHandler.PlaySound(SoundHandler.wrong_sound_id4);
+                        Score.setRiddleScore(correctLetters*2) ;
+                        Intent itn= new Intent(getApplicationContext(), Score.class);
+                        startActivity(itn);
+                        QrCodeScanner.questionMode=true;
+                        finish();
+                    }}.start();
             }
         }
 
