@@ -44,6 +44,9 @@ public class PauseMenuActivity extends Activity {
     protected void onResume() {
         super.onResume();
         menu.hideNavBar(this.getWindow());//hide everything on Resume
+
+        //Update the language
+        getApplicationContext().getResources().updateConfiguration(menu.setLocale(), null);
     }
 
     public void pauseButtonOnClick(View v)
