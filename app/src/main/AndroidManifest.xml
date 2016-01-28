@@ -139,6 +139,7 @@
         </activity>
         <activity
             android:name=".PauseMenuActivity"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_pause_menu" >
         </activity>
