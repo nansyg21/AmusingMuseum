@@ -449,6 +449,8 @@ public class QrCodeScanner extends Activity {
     protected void onResume() {
         super.onResume();
         menu.hideNavBar(this.getWindow());
+        //Update the language
+        getApplicationContext().getResources().updateConfiguration(menu.setLocale(), null);
     }
 
     @Override
@@ -456,6 +458,8 @@ public class QrCodeScanner extends Activity {
         super.onWindowFocusChanged(hasFocus);
 
         menu.hideNavBar(this.getWindow());
+        //Update the language
+        getApplicationContext().getResources().updateConfiguration(menu.setLocale(), null);
     }
 
     @Override

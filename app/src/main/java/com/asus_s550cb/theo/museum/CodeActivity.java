@@ -74,10 +74,9 @@ public class CodeActivity extends Activity {
                 .setNegativeButton(R.string.confirm_exit_cancel, null)
                 .setPositiveButton(R.string.confirm_exit_οκ, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface arg0, int arg1)
-                    {
+                    public void onClick(DialogInterface arg0, int arg1) {
                         finish();
-                        Intent itn= new Intent(getApplicationContext(), menu.class); //go to menu screen with proper flag set
+                        Intent itn = new Intent(getApplicationContext(), menu.class); //go to menu screen with proper flag set
                         itn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         itn.putExtra("leaving", true);
                         startActivity(itn);
@@ -91,6 +90,18 @@ public class CodeActivity extends Activity {
 
         //Hide bars
         menu.hideNavBar(this.getWindow());
+        //Update the language
+        getApplicationContext().getResources().updateConfiguration(menu.setLocale(), null);
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        //Hide bars
+        menu.hideNavBar(this.getWindow());
+        //Update the language
+        getApplicationContext().getResources().updateConfiguration(menu.setLocale(), null);
+
     }
 
 }

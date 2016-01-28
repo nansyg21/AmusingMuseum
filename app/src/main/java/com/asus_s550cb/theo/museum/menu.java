@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -148,6 +149,9 @@ public class menu extends Activity {
 
         }
         hideNavBar(this.getWindow());
+
+        //Update the language
+        getApplicationContext().getResources().updateConfiguration( setLocale(), null);
     }
 
     public void changeLanguage(View v)
@@ -162,9 +166,13 @@ public class menu extends Activity {
                 config.locale = locale;
                 lang="uk";
                 getApplicationContext().getResources().updateConfiguration(config, null);
+                /**/
+
                 Intent refresh = new Intent(this, menu.class);
                 finish();
                 startActivity(refresh);
+                //Store language selection
+                PreferenceManager.getDefaultSharedPreferences(this).edit().putString("LANGUAGE","uk");
 
                 break;
             case R.id.elflag:
@@ -177,6 +185,9 @@ public class menu extends Activity {
                 refresh = new Intent(this, menu.class);
                 finish();
                 startActivity(refresh);
+                //Store language selection
+                PreferenceManager.getDefaultSharedPreferences(this).edit().putString("LANGUAGE", "el");
+
                 break;
         }
     }
@@ -211,4 +222,21 @@ public class menu extends Activity {
 
     }
 
+    //Restore the selected language
+    public static Configuration setLocale()
+    {
+        Locale locale;
+        if(lang=="uk") {
+             locale = new Locale("en_US");
+        }
+        else
+        {
+             locale = new Locale("el");
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+
+        return config;
+    }
 }

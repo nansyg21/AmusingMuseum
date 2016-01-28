@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,11 @@ public class Game extends AppCompatActivity {
 
         txtV=(TextView)findViewById(R.id.textView);
         txtV.setMovementMethod(new ScrollingMovementMethod());
+
+        if(menu.lang.equals("uk"))
+            Log.d("GLWWSA", "uk");
+        else
+            Log.d("GLWWSA", "EL");
 
         if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
         {
@@ -86,6 +92,9 @@ public class Game extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         menu.hideNavBar(this.getWindow());
+        //Update the language
+        getApplicationContext().getResources().updateConfiguration( menu.setLocale(), null);
+
     }
 
     @Override
