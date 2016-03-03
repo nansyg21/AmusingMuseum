@@ -82,8 +82,9 @@ public class menu extends Activity {
                 startActivity(new Intent(getApplicationContext(), Game.class));
                 break;
             case R.id.btnMenuHelp:
-                startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
+               // startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
                 //startActivity(new Intent(getApplicationContext(),UploadScoreActivity.class));
+                 Intent itn = new Intent(getApplicationContext(), SequencialCoins.class);
                // Intent itn = new Intent(getApplicationContext(), ChurchMap.class);
                // Intent itn = new Intent(getApplicationContext(), ClickMe.class);
                // Intent itn = new Intent(getApplicationContext(), Hangman.class);
@@ -92,7 +93,7 @@ public class menu extends Activity {
                 // Intent itn = new Intent(getApplicationContext(), RightOrder.class);
                // Intent itn = new Intent(getApplicationContext(), MemoryGame.class);
                //  Intent itn = new Intent(getApplicationContext(), ExhibitsFall.class);
-                //startActivityForResult(itn, 1);
+                startActivityForResult(itn, 1);
                 break;
             case R.id.btnMenuAbout:
                 startActivity(new Intent(getApplicationContext(),CreditsActivity.class));

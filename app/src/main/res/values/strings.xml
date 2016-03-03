@@ -434,6 +434,10 @@
             Random exhibits are falling from the sky. Watch the screen for the exhibit you must catch and save it.\n
             But beware, don\'t catch the wrong one. In the end you have the chance to see information about the exhibit you are trying to save.
          </item>
+        <item>
+            OBSERVE CAREFULLY THE COINS\n
+            Try to remember the order in which they are illuminated.\nThen select them exactly in the same order.
+         </item>
     </string-array>
 
     <string name="title_activity_loading_screen">LoadingScreen</string>
