@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class MatchingCoins extends Activity {
+public class MatchingStamps extends Activity {
 
     PauseMenuButton pauseBt;
 
@@ -34,7 +34,7 @@ public class MatchingCoins extends Activity {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
-        setContentView(new MatchingCoinsScreen(this));
+        setContentView(new MatchingStampsScreen(this));
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -61,27 +61,27 @@ public class MatchingCoins extends Activity {
 
 
 
-    //This is actually drawing on screen the game : Matching Coins
-    //A couple of pictures appear for each coin. The player matches the coins together
-    public class MatchingCoinsScreen extends View implements Runnable
+    //This is actually drawing on screen the game : Matching Stamps
+    //A couple of pictures appear for each stamp. The player matches the stamps together
+    public class MatchingStampsScreen extends View implements Runnable
     {
         int ScreenWidth,ScreenHeight, hits,PlayerTouchX, PlayerTouchY, mPosX, mPosY,frameWidth,frameHeight, imgWidth,imgHeight; ;
         Paint backgroundPaint, linePaint;
         Bitmap frameImg;
-        ArrayList<Bitmap> coinsList= new ArrayList<Bitmap>();//1 matches with 2, 3 with 4 etc
+        ArrayList<Bitmap> stampsList = new ArrayList<Bitmap>();//1 matches with 2, 3 with 4 etc
         Rect frame1Rect,frame2Rect;
-        ArrayList<Rect> coinsRectList= new ArrayList<Rect>();
+        ArrayList<Rect> stampsRectList = new ArrayList<Rect>();
         Random rand = new Random();
 
         boolean movingSomething=false;
-        Rect currentMovingCoin;
-        int currentMovingCoinId,leftCoin,rightCoin;
+        Rect currentMovingStamp;
+        int currentMovingStampId, leftStamp, rightStamp;
 
         boolean wave2=false;    //true once wave 1 is done
 
         private int mActivePointerId = -1;      //-1 instead of INVALID_POINTER_ID
 
-        public MatchingCoinsScreen(Context context)
+        public MatchingStampsScreen(Context context)
         {
             super(context);
 
@@ -112,63 +112,63 @@ public class MatchingCoins extends Activity {
             frame2Rect= new Rect(ScreenWidth/2,frame1Rect.top, ScreenWidth/2+frameWidth,frame1Rect.bottom);
 
             hits=0;
-            //coin images
+            //stamp images
             imgWidth=ScreenWidth/6;
             imgHeight=imgWidth;
 
-            InitializeCoinImages("1"); //call wave 1
+            InitializeStampImages("1"); //call wave 1
 
-            leftCoin=-1;
-            rightCoin=-1;
+            leftStamp =-1;
+            rightStamp =-1;
 
         }
 
-        public void InitializeCoinImages(String wave) {
+        public void InitializeStampImages(String wave) {
 
-            coinsList.clear();
+            stampsList.clear();
             if(wave.equals("1"))
             {
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_1));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_2));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_3));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_4));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_5));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_6));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_7));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_8));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_1));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_2));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_3));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_4));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_5));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_6));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_7));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_8));
             }
             else if (wave.equals("2"))
             {
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_9));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_10));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_11));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_12));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_13));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_14));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_15));
-                coinsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_16));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_9));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_10));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_11));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_12));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_13));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_14));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_15));
+                stampsList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mc_16));
             }
             else
                 Log.w("Warn","Wrong wave called.");
-            InitializeCoinRects();
+            InitializeStampRects();
 
         }
 
-        public void InitializeCoinRects() {
-            coinsRectList.clear();
+        public void InitializeStampRects() {
+            stampsRectList.clear();
             int x,y;
 
-            for(int i=0;i<coinsList.size()/2;i++)
+            for(int i=0;i< stampsList.size()/2;i++)
             {
                 //left side
                 x = rand.nextInt(ScreenWidth / 2 - imgWidth);
                 y = rand.nextInt(ScreenHeight - imgHeight);
-                coinsRectList.add( new Rect(x, y, x + imgWidth, y + imgHeight));
+                stampsRectList.add(new Rect(x, y, x + imgWidth, y + imgHeight));
 
                 //right side
                 x = rand.nextInt(ScreenWidth / 2 - imgWidth) + ScreenWidth / 2;
                 y = rand.nextInt(ScreenHeight - imgHeight);
-                coinsRectList.add( new Rect(x, y, x + imgWidth, y + imgHeight));
+                stampsRectList.add(new Rect(x, y, x + imgWidth, y + imgHeight));
             }
 
 
@@ -178,88 +178,88 @@ public class MatchingCoins extends Activity {
         public void DroppedPiece() //Player was dragging a piece, check if its near the original position
         {
 
-            if(currentMovingCoinId%2==0)
+            if(currentMovingStampId %2==0)
             {//frame 1 - left side
-                if (currentMovingCoin.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //empty frame 1:drop piece
-                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftCoin == -1) {
-                    currentMovingCoin.left = frame1Rect.left; //assign by value
-                    currentMovingCoin.top = frame1Rect.top;
-                    currentMovingCoin.right = frame1Rect.right;
-                    currentMovingCoin.bottom = frame1Rect.bottom;
+                if (currentMovingStamp.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //empty frame 1:drop piece
+                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftStamp == -1) {
+                    currentMovingStamp.left = frame1Rect.left; //assign by value
+                    currentMovingStamp.top = frame1Rect.top;
+                    currentMovingStamp.right = frame1Rect.right;
+                    currentMovingStamp.bottom = frame1Rect.bottom;
 
-                    leftCoin = currentMovingCoinId;
-                } else if (currentMovingCoin.intersect(new Rect(frame1Rect.left, frame1Rect.top,//moved the piece that already is in frame:drop the same piece again
-                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftCoin == currentMovingCoinId) {
-                    currentMovingCoin.left = frame1Rect.left; //assign by value
-                    currentMovingCoin.top = frame1Rect.top;
-                    currentMovingCoin.right = frame1Rect.right;
-                    currentMovingCoin.bottom = frame1Rect.bottom;
+                    leftStamp = currentMovingStampId;
+                } else if (currentMovingStamp.intersect(new Rect(frame1Rect.left, frame1Rect.top,//moved the piece that already is in frame:drop the same piece again
+                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftStamp == currentMovingStampId) {
+                    currentMovingStamp.left = frame1Rect.left; //assign by value
+                    currentMovingStamp.top = frame1Rect.top;
+                    currentMovingStamp.right = frame1Rect.right;
+                    currentMovingStamp.bottom = frame1Rect.bottom;
 
-                    leftCoin = currentMovingCoinId;
-                } else if (currentMovingCoin.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //tried to drop piece in frame 1 but there is another piece: find random position and drop it
-                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftCoin != -1 && leftCoin != currentMovingCoinId) {
+                    leftStamp = currentMovingStampId;
+                } else if (currentMovingStamp.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //tried to drop piece in frame 1 but there is another piece: find random position and drop it
+                        frame1Rect.right - 50, frame1Rect.bottom - 50)) && leftStamp != -1 && leftStamp != currentMovingStampId) {
                     int x = rand.nextInt(ScreenWidth / 2 - imgWidth);
                     int y = rand.nextInt(ScreenHeight - imgHeight);
-                    coinsRectList.set(currentMovingCoinId, new Rect(x, y, x + imgWidth, y + imgHeight));
-                } else if (!currentMovingCoin.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //Dropped piece in open space
+                    stampsRectList.set(currentMovingStampId, new Rect(x, y, x + imgWidth, y + imgHeight));
+                } else if (!currentMovingStamp.intersect(new Rect(frame1Rect.left, frame1Rect.top,   //Dropped piece in open space
                         frame1Rect.right - 50, frame1Rect.bottom - 50))) {
-                    if (currentMovingCoinId == leftCoin)//Dropped piece that was in frame
-                        leftCoin = -1;
-                    currentMovingCoinId = -1;         //update value
+                    if (currentMovingStampId == leftStamp)//Dropped piece that was in frame
+                        leftStamp = -1;
+                    currentMovingStampId = -1;         //update value
 
                 }
 
             }
-            else if(currentMovingCoinId%2==1)
+            else if(currentMovingStampId %2==1)
             {//frame 2 = right side
-                if (currentMovingCoin.intersect(new Rect(frame2Rect.left, frame2Rect.top,//empty frame 2:drop piece
-                        frame2Rect.right , frame2Rect.bottom )) && rightCoin == -1) {
-                    currentMovingCoin.left = frame2Rect.left; //assign by value
-                    currentMovingCoin.top = frame2Rect.top;
-                    currentMovingCoin.right = frame2Rect.right;
-                    currentMovingCoin.bottom = frame2Rect.bottom;
+                if (currentMovingStamp.intersect(new Rect(frame2Rect.left, frame2Rect.top,//empty frame 2:drop piece
+                        frame2Rect.right , frame2Rect.bottom )) && rightStamp == -1) {
+                    currentMovingStamp.left = frame2Rect.left; //assign by value
+                    currentMovingStamp.top = frame2Rect.top;
+                    currentMovingStamp.right = frame2Rect.right;
+                    currentMovingStamp.bottom = frame2Rect.bottom;
 
-                    rightCoin = currentMovingCoinId;
-                } else if (currentMovingCoin.intersect(new Rect(frame2Rect.left, frame2Rect.top,//moved the piece that already is in frame 2:drop the same piece again
-                        frame2Rect.right , frame2Rect.bottom )) && rightCoin == currentMovingCoinId) {
-                    currentMovingCoin.left = frame2Rect.left; //assign by value
-                    currentMovingCoin.top = frame2Rect.top;
-                    currentMovingCoin.right = frame2Rect.right;
-                    currentMovingCoin.bottom = frame2Rect.bottom;
+                    rightStamp = currentMovingStampId;
+                } else if (currentMovingStamp.intersect(new Rect(frame2Rect.left, frame2Rect.top,//moved the piece that already is in frame 2:drop the same piece again
+                        frame2Rect.right , frame2Rect.bottom )) && rightStamp == currentMovingStampId) {
+                    currentMovingStamp.left = frame2Rect.left; //assign by value
+                    currentMovingStamp.top = frame2Rect.top;
+                    currentMovingStamp.right = frame2Rect.right;
+                    currentMovingStamp.bottom = frame2Rect.bottom;
 
-                    rightCoin = currentMovingCoinId;
-                } else if (currentMovingCoin.intersect(new Rect(frame2Rect.left, frame2Rect.top, //tried to drop piece in frame 2 but there is another piece: find random position and drop it
-                        frame2Rect.right , frame2Rect.bottom )) && rightCoin != -1 && rightCoin != currentMovingCoinId) {
+                    rightStamp = currentMovingStampId;
+                } else if (currentMovingStamp.intersect(new Rect(frame2Rect.left, frame2Rect.top, //tried to drop piece in frame 2 but there is another piece: find random position and drop it
+                        frame2Rect.right , frame2Rect.bottom )) && rightStamp != -1 && rightStamp != currentMovingStampId) {
                     //right side
                     int x = rand.nextInt(ScreenWidth / 2 - imgWidth) + ScreenWidth / 2;
                     int y = rand.nextInt(ScreenHeight - imgHeight);
-                    coinsRectList.set(currentMovingCoinId, new Rect(x, y, x + imgWidth, y + imgHeight));
-                } else if (!currentMovingCoin.intersect(new Rect(frame2Rect.left, frame2Rect.top, //Dropped piece in open space
+                    stampsRectList.set(currentMovingStampId, new Rect(x, y, x + imgWidth, y + imgHeight));
+                } else if (!currentMovingStamp.intersect(new Rect(frame2Rect.left, frame2Rect.top, //Dropped piece in open space
                         frame2Rect.right , frame2Rect.bottom ))) {
-                    if (currentMovingCoinId == rightCoin)//Dropped piece that was in frame
-                        rightCoin = -1;
-                    currentMovingCoinId = -1;         //update value
+                    if (currentMovingStampId == rightStamp)//Dropped piece that was in frame
+                        rightStamp = -1;
+                    currentMovingStampId = -1;         //update value
                 }
             }
 
-            Log.w("Warn","Left:"+leftCoin+" right:"+rightCoin);
+            Log.w("Warn","Left:"+ leftStamp +" right:"+ rightStamp);
             CheckMatch();
 
         }
 
         public void CheckMatch()
         {
-            if(leftCoin+1==rightCoin)   //0 matches with 1 , 2 with 3 etc..
+            if(leftStamp +1== rightStamp)   //0 matches with 1 , 2 with 3 etc..
             {
                 SoundHandler.PlaySound(SoundHandler.correct_sound_id4);
-                coinsList.remove(rightCoin);
-                coinsList.remove(leftCoin);
-                coinsRectList.remove(rightCoin);
-                coinsRectList.remove(leftCoin);
+                stampsList.remove(rightStamp);
+                stampsList.remove(leftStamp);
+                stampsRectList.remove(rightStamp);
+                stampsRectList.remove(leftStamp);
 
-                if(coinsList.size()==0)
+                if(stampsList.size()==0)
                 {
-                    InitializeCoinImages("2");  //call wave 2
+                    InitializeStampImages("2");  //call wave 2
                     if(wave2)
                     {
                         //Calculate Save and Show Score
@@ -281,11 +281,11 @@ public class MatchingCoins extends Activity {
                         wave2=true;
                 }
 
-                Log.w("Warn", "still " + coinsList.size() + " coins");
-                leftCoin=-1;
-                rightCoin=-1;
-                currentMovingCoin=null;
-                currentMovingCoinId=-1;
+                Log.w("Warn", "still " + stampsList.size() + " stamps");
+                leftStamp =-1;
+                rightStamp =-1;
+                currentMovingStamp =null;
+                currentMovingStampId =-1;
             }
 
 
@@ -294,11 +294,11 @@ public class MatchingCoins extends Activity {
 
         public boolean CheckCollision() //finds the piece the user selected: returns true
         {
-            for(int i=0;i<coinsRectList.size();i++)
-                if( coinsRectList.get(i).contains(PlayerTouchX, PlayerTouchY))//cant move correctly places pieces
+            for(int i=0;i< stampsRectList.size();i++)
+                if( stampsRectList.get(i).contains(PlayerTouchX, PlayerTouchY))//cant move correctly places pieces
                 {
-                    currentMovingCoin=coinsRectList.get(i);
-                    currentMovingCoinId=i;
+                    currentMovingStamp = stampsRectList.get(i);
+                    currentMovingStampId =i;
 
                     return true;
                 }
@@ -329,9 +329,9 @@ public class MatchingCoins extends Activity {
             canvas.drawBitmap(frameImg,null,frame1Rect,null);
             canvas.drawBitmap(frameImg,null,frame2Rect,null);
 
-            // Draw coins
-            for(int i=0;i<coinsList.size();i++)
-                canvas.drawBitmap(coinsList.get(i), null, coinsRectList.get(i), null);
+            // Draw stamps
+            for(int i=0;i< stampsList.size();i++)
+                canvas.drawBitmap(stampsList.get(i), null, stampsRectList.get(i), null);
 
             pauseBt.getPauseMenuButton().draw(canvas);
 
@@ -400,20 +400,20 @@ public class MatchingCoins extends Activity {
                         PlayerTouchX = (int) x;
                         PlayerTouchY = (int) y;
 
-                        if(currentMovingCoin!=null && PlayerTouchX+imgWidth<ScreenWidth && PlayerTouchY+imgHeight<ScreenHeight)
-                            if(currentMovingCoinId%2==0 && PlayerTouchX+imgWidth<ScreenWidth/2) //cant move a left piece from the right side
+                        if(currentMovingStamp !=null && PlayerTouchX+imgWidth<ScreenWidth && PlayerTouchY+imgHeight<ScreenHeight)
+                            if(currentMovingStampId %2==0 && PlayerTouchX+imgWidth<ScreenWidth/2) //cant move a left piece from the right side
                             {
-                                currentMovingCoin.left = PlayerTouchX;
-                                currentMovingCoin.top = PlayerTouchY;
-                                currentMovingCoin.right = PlayerTouchX + imgWidth;
-                                currentMovingCoin.bottom = PlayerTouchY + imgHeight;
+                                currentMovingStamp.left = PlayerTouchX;
+                                currentMovingStamp.top = PlayerTouchY;
+                                currentMovingStamp.right = PlayerTouchX + imgWidth;
+                                currentMovingStamp.bottom = PlayerTouchY + imgHeight;
                             }
-                            else if(currentMovingCoinId%2==1 && PlayerTouchX>ScreenWidth/2) //cant move a right piece from the left side
+                            else if(currentMovingStampId %2==1 && PlayerTouchX>ScreenWidth/2) //cant move a right piece from the left side
                             {
-                                currentMovingCoin.left = PlayerTouchX;
-                                currentMovingCoin.top = PlayerTouchY;
-                                currentMovingCoin.right = PlayerTouchX + imgWidth;
-                                currentMovingCoin.bottom = PlayerTouchY + imgHeight;
+                                currentMovingStamp.left = PlayerTouchX;
+                                currentMovingStamp.top = PlayerTouchY;
+                                currentMovingStamp.right = PlayerTouchX + imgWidth;
+                                currentMovingStamp.bottom = PlayerTouchY + imgHeight;
                             }
                       //  else
                          //   Log.w("Warn","currentMovingPiece IS NULL");

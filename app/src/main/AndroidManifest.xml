@@ -73,7 +73,7 @@
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".MatchingCoins"
+            android:name=".MatchingStamps"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >

@@ -128,7 +128,7 @@ public class QrCodeScanner extends Activity {
                             startActivityForResult(itn, 1);
                             break;
                         case 4:
-                            itn = new Intent(getApplicationContext(), MatchingCoins.class);
+                            itn = new Intent(getApplicationContext(), MatchingStamps.class);
                             startActivityForResult(itn, 1);
                             break;
                         case 5:
@@ -170,7 +170,7 @@ public class QrCodeScanner extends Activity {
                 classToLoad=Hangman.class;
                 break;
             case "matchingcoins":
-                classToLoad=MatchingCoins.class;
+                classToLoad=MatchingStamps.class;
                 break;
             case "puzzle":
                 classToLoad=PuzzleActivity.class;
