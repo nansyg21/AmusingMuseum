@@ -83,7 +83,6 @@ public class ExhibitsFall extends Activity {
            Log.w("Warn", "Returned!");
            onFocusChangedCounterExhibitsFall++;
            exhibitsFallScreen.StartGame();
-
        }
 
     }
@@ -263,7 +262,7 @@ public class ExhibitsFall extends Activity {
 
                     currentRound++;
                     if((currentRound)<= totalRounds) {
-                       // Log.w("Warn", "Round: "+currentRound);
+                       // Log.w("Warn", "Round: "+currentIlluminateRound);
                         StartGame();
                     }
                     else

@@ -10,9 +10,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.view.MotionEventCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -25,17 +28,19 @@ import java.util.Random;
 /**
  * Created by panos on 3/3/2016.
  */
-public class SequencialCoins extends Activity {
+public class SequentialCoins extends Activity {
     PauseMenuButton pauseBt;
 
-    int screenWidth;
+    int screenWidth, focusCounter =0;
+    SequentialCoinsScreen sequentialCoinsScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
-        setContentView(new SequencialCoinsScreen(this));
+        sequentialCoinsScreen = new SequentialCoinsScreen(this);
+        setContentView(sequentialCoinsScreen);
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -57,25 +62,35 @@ public class SequencialCoins extends Activity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         menu.hideNavBar(this.getWindow());
+       // Log.w("Warn", "FOCUSED: " + focusCounter);
+        if(focusCounter==0)         //start game after returning from help, when counter is 0 (first time focused)
+            sequentialCoinsScreen.StartGame();
+        focusCounter++;
+
     }
 
 
-    //This is actually drawing on screen the game : Matching Stamps
+    //This is actually drawing on screen the game : Sequential Coins
     //A couple of pictures appear for each stamp. The player matches the stamps together
-    public class SequencialCoinsScreen extends View implements Runnable {
+    public class SequentialCoinsScreen extends View implements Runnable {
         int ScreenWidth, ScreenHeight, PlayerTouchX, PlayerTouchY, mPosX, mPosY, imgWidth, imgHeight, widthGap, heightGap;
-        int ROWS=2,COLLUMMS=5;
-        Paint backgroundPaint;
-        Bitmap frameImg;
+        int ROWS=2, COLUMNS =5,selectedCoin, currentIlluminateRound,currentPlayRound, stateRounds =3; //starting with 3 rounds and increasing
+        int[] correctCoins;                 //coins chosen randomly
+        Paint backgroundPaint, overlayPaint;
+        ColorFilter filter;
+        Bitmap lightImg;                    //draw this on top of an image to make it look like it is illuminated
         Random rand = new Random();
-
+        Boolean drawingSelectedEffectOnCoin =false,illuminateState=false, playState=false;              //states about coins
         ArrayList<Bitmap> coinImagesList = new ArrayList<Bitmap>();
         ArrayList<Rect> coinRectsList = new ArrayList<Rect>();
 
-
+        //timers
+        long elapsedEffectTimer, effectTimer, effectTimerLimit=250; //for pressed coin effect
+        long delayTimer, elapsedDelayTimer, delayBetween=2000;      //for switching lightening coins
+        long delayBetweenRounds=2000;
         private int mActivePointerId = -1;      //-1 instead of INVALID_POINTER_ID
 
-        public SequencialCoinsScreen(Context context) {
+        public SequentialCoinsScreen(Context context) {
             super(context);
             DisplayMetrics displaymetrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -87,6 +102,11 @@ public class SequencialCoins extends Activity {
             backgroundPaint.setStyle(Paint.Style.FILL);
             backgroundPaint.setColor(Color.parseColor("#8F0014"));//background: bussini
 
+            //for selected effect on selected coin
+            overlayPaint = new Paint();
+            filter = new LightingColorFilter(Color.GRAY,1);
+            overlayPaint.setColorFilter(filter);
+
             //coins images
             imgWidth = ScreenWidth / 6;
             imgHeight = imgWidth;
@@ -95,7 +115,24 @@ public class SequencialCoins extends Activity {
 
             InitializeImages();
             InitializeRects();
-            Log.w("Warn","Total: "+coinImagesList.size());
+           // Log.w("Warn", "Total: " + coinImagesList.size());
+
+            //TODO: Calculate score and exit...
+        }
+
+        public void StartGame() {
+            illuminateState=false; //nothing is illuminated and nothing can be selected until the game starts
+            playState=false;
+            CountDownTimer countDownTimer = new CountDownTimer(delayBetweenRounds, 1000) {
+                public void onTick(long millisUntilFinished) {
+                }
+
+                public void onFinish() {//  after a few seconds have passed the game starts
+                    illuminateState=true;
+                    playState=false;
+                    PrepareIlluminateState();
+                }
+            }.start();
 
         }
 
@@ -110,6 +147,8 @@ public class SequencialCoins extends Activity {
             coinImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.sc8));
             coinImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.sc9));
             coinImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.sc10));
+
+            lightImg = BitmapFactory.decodeResource(getResources(), R.drawable.sclight);
         }
 
         public void  InitializeRects(){
@@ -121,26 +160,73 @@ public class SequencialCoins extends Activity {
             coinRectsList.add(new Rect(getLastRect().right+widthGap,getLastRect().top,getLastRect().right+widthGap+imgWidth,getLastRect().bottom));
             coinRectsList.add(new Rect(getLastRect().right+widthGap,getLastRect().top,getLastRect().right+widthGap+imgWidth,getLastRect().bottom));
             coinRectsList.add(new Rect(getLastRect().right+widthGap,getLastRect().top,getLastRect().right+widthGap+imgWidth,getLastRect().bottom));
-            coinRectsList.add(new Rect(getLastRect().right+widthGap,getLastRect().top,getLastRect().right+widthGap+imgWidth,getLastRect().bottom));
+            coinRectsList.add(new Rect(getLastRect().right + widthGap, getLastRect().top, getLastRect().right + widthGap + imgWidth, getLastRect().bottom));
 
             //second row of coins
+            coinRectsList.add(new Rect(getUpperRect().left, getUpperRect().bottom + heightGap, getUpperRect().right, getUpperRect().bottom + heightGap + imgHeight));
+            coinRectsList.add(new Rect(getUpperRect().left, getUpperRect().bottom + heightGap, getUpperRect().right, getUpperRect().bottom + heightGap + imgHeight));
             coinRectsList.add(new Rect(getUpperRect().left, getUpperRect().bottom+heightGap,getUpperRect().right,getUpperRect().bottom+heightGap+imgHeight));
             coinRectsList.add(new Rect(getUpperRect().left, getUpperRect().bottom+heightGap,getUpperRect().right,getUpperRect().bottom+heightGap+imgHeight));
-            coinRectsList.add(new Rect(getUpperRect().left, getUpperRect().bottom+heightGap,getUpperRect().right,getUpperRect().bottom+heightGap+imgHeight));
-            coinRectsList.add(new Rect(getUpperRect().left, getUpperRect().bottom+heightGap,getUpperRect().right,getUpperRect().bottom+heightGap+imgHeight));
-            coinRectsList.add(new Rect(getUpperRect().left, getUpperRect().bottom+heightGap,getUpperRect().right,getUpperRect().bottom+heightGap+imgHeight));
+            coinRectsList.add(new Rect(getUpperRect().left, getUpperRect().bottom + heightGap, getUpperRect().right, getUpperRect().bottom + heightGap + imgHeight));
         }
 
         public Rect getLastRect(){
+         //Returns last inserted rect
             return coinRectsList.get(coinRectsList.size()-1);
         }
 
         public Rect getUpperRect(){
-            return coinRectsList.get(coinRectsList.size()-COLLUMMS);
+        //Returns the rect located in the same position on the upper row
+            return coinRectsList.get(coinRectsList.size()- COLUMNS);
+        }
+
+        public void PrepareIlluminateState() {          //chose some coins randomly and start counting time
+            correctCoins = new int[stateRounds];
+            for(int i =0; i< stateRounds;i++ )
+            {
+                correctCoins[i]= rand.nextInt(ROWS* COLUMNS -1);
+                Log.w("Warn","At index " +i+ ": "+correctCoins[i]);
+            }
+            currentIlluminateRound =0;                         //start by drawing light on this coin from correctCoins array
+            SoundHandler.PlaySound(SoundHandler.beep_sound_id3);
+            delayTimer=System.currentTimeMillis();
+        }
+
+        public Boolean SelectedSomeCoin() {             //find whether the user has selected any coin or not
+            for(int i=0;i< coinRectsList.size();i++)
+                if( coinRectsList.get(i).contains(PlayerTouchX, PlayerTouchY)) {
+                    selectedCoin = i;
+                    drawingSelectedEffectOnCoin =true;
+                    effectTimer=System.currentTimeMillis();
+                    return true;
+                }
+            return false;
+
         }
 
         @Override
         public void run() {   // Update state of what we draw
+            if(illuminateState)
+            {
+                elapsedDelayTimer = System.currentTimeMillis() - delayTimer;
+                if(elapsedDelayTimer>delayBetween)          //update coin and restart clock
+                {
+                    currentIlluminateRound++;
+                    if(currentIlluminateRound >=stateRounds)       //switch states if done
+                    {
+                        playState=true;
+                        illuminateState=false;
+                        currentPlayRound=0;     //user must start by selecting this index from correctCoins array
+                    }
+                    else
+                        SoundHandler.PlaySound(SoundHandler.beep_sound_id3);
+                    delayTimer= System.currentTimeMillis();
+                }
+            }
+
+            if(drawingSelectedEffectOnCoin)     //draw selected effect on coin for a short period
+                if( (elapsedEffectTimer= System.currentTimeMillis()-effectTimer) > effectTimerLimit)
+                    drawingSelectedEffectOnCoin=false;
 
             // onDraw(Canvas) will be called
             invalidate();
@@ -156,6 +242,15 @@ public class SequencialCoins extends Activity {
              //Draw coins
              for(int i=0;i< coinImagesList.size();i++)
                  canvas.drawBitmap(coinImagesList.get(i), null, coinRectsList.get(i), null);
+
+            //draw selected effect on coin if needed
+            if(drawingSelectedEffectOnCoin)
+                canvas.drawBitmap(coinImagesList.get(selectedCoin), null, coinRectsList.get(selectedCoin), overlayPaint);
+
+            //draw light if necessary
+            if(illuminateState) {
+                canvas.drawBitmap(lightImg, null, coinRectsList.get(correctCoins[currentIlluminateRound]), null);
+            }
 
             pauseBt.getPauseMenuButton().draw(canvas);
 
@@ -191,10 +286,38 @@ public class SequencialCoins extends Activity {
                     // Save the ID of this pointer (for dragging)
                     mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
 
-                    //do stuff here
+                    if(playState && !illuminateState && SelectedSomeCoin())    //CheckCollision:true:selected piece  false: selected empty
+                    {
+                        if(selectedCoin== correctCoins[currentPlayRound])
+                        {
+                            Log.w("Warn", "CORRECT: " + selectedCoin);
+                            SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
+
+                            filter = new LightingColorFilter(Color.GREEN,1);    //on correct coin is green
+                            overlayPaint.setColorFilter(filter);
+
+                            currentPlayRound++;
+                            if(currentPlayRound>=stateRounds)//all correct: one more round with one extra coin to choose
+                            {
+                                stateRounds++;               //on the next round we will have one more coin to select
+                                StartGame();
+                            }
+                        }
+                        else{
+                            //On one wrong choice and restart from the beginning
+                            Log.w("Warn", "WRONG: Selected:" + selectedCoin +" correct was: "+(correctCoins[currentPlayRound]));
+                            SoundHandler.PlaySound(SoundHandler.wrong_sound_id4);
+
+                            filter = new LightingColorFilter(Color.RED,1);//on wrong coin is red
+                            overlayPaint.setColorFilter(filter);
+
+                            stateRounds=3;
+                            StartGame();
+                        }
+                    }
+
                     break;
                 }
-
                 case MotionEvent.ACTION_UP:     //Finger left screen
                 {
                     break;
