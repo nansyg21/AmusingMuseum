@@ -1,0 +1,79 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:background="@color/royal_blue" tools:context=".ChurchMap"
+    android:id="@+id/framelayout">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:id="@+id/tableRow0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ImageView
+                android:id="@+id/pictureSaint"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="false"
+                android:scaleType="fitCenter"
+                android:src="@drawable/full_lumosity">
+
+            </ImageView>
+            <TableLayout
+                android:id="@+id/church_view_tableLayout"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_height="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1">
+
+
+                    <LinearLayout
+                        android:id="@+id/menuLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="end">
+
+                        <ImageView
+                            android:id="@+id/pauseBtImageView"
+                            android:layout_width="50dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/menu_icon"
+                            android:layout_gravity="end"
+                            android:onClick="menuBtClick"
+                            />
+
+                        <TextView
+                            android:id="@+id/nameTextView"
+                            android:layout_width="400dp"
+                            android:layout_height="0dp"
+                            android:text="Nameeeeeeeeeeeeeeee"
+                            android:textSize="@dimen/church_map_text_size"
+                            android:layout_weight="3">
+                        </TextView>
+                    </LinearLayout>
+
+
+
+                </TableRow>
+
+
+            </TableLayout>
+        </TableRow>
+
+    </TableLayout>
+
+</FrameLayout>
