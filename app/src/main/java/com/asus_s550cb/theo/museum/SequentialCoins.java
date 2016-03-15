@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.view.MotionEventCompat;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -62,7 +61,7 @@ public class SequentialCoins extends Activity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         menu.hideNavBar(this.getWindow());
-       // Log.w("Warn", "FOCUSED: " + focusCounter);
+        // Log.w("Warn", "FOCUSED: " + focusCounter);
         if(focusCounter==0)         //start game after returning from help, when counter is 0 (first time focused)
             sequentialCoinsScreen.StartGame();
         focusCounter++;
@@ -76,6 +75,7 @@ public class SequentialCoins extends Activity {
         int ScreenWidth, ScreenHeight, PlayerTouchX, PlayerTouchY, mPosX, mPosY, imgWidth, imgHeight, widthGap, heightGap;
         int ROWS=2, COLUMNS =5,selectedCoin, currentIlluminateRound,currentPlayRound, stateRounds =3; //starting with 3 rounds and increasing
         int[] correctCoins;                 //coins chosen randomly
+        int currentRound=0, TotalRounds=7, mistakes=0;   // 0<= currentRound <=TotalRounds
         Paint backgroundPaint, overlayPaint;
         ColorFilter filter;
         Bitmap lightImg;                    //draw this on top of an image to make it look like it is illuminated
@@ -115,25 +115,27 @@ public class SequentialCoins extends Activity {
 
             InitializeImages();
             InitializeRects();
-           // Log.w("Warn", "Total: " + coinImagesList.size());
-
-            //TODO: Calculate score and exit...
+            // Log.w("Warn", "Total: " + coinImagesList.size());
         }
 
         public void StartGame() {
-            illuminateState=false; //nothing is illuminated and nothing can be selected until the game starts
-            playState=false;
-            CountDownTimer countDownTimer = new CountDownTimer(delayBetweenRounds, 1000) {
-                public void onTick(long millisUntilFinished) {
-                }
+            if(++currentRound > TotalRounds)
+                LeaveSequentialCoins();
+            else {
+                // Log.w("Warn", "currentRound is: " + currentRound);
+                illuminateState = false; //nothing is illuminated and nothing can be selected until the game starts
+                playState = false;
+                CountDownTimer countDownTimer = new CountDownTimer(delayBetweenRounds, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                    }
 
-                public void onFinish() {//  after a few seconds have passed the game starts
-                    illuminateState=true;
-                    playState=false;
-                    PrepareIlluminateState();
-                }
-            }.start();
-
+                    public void onFinish() {//  after a few seconds have passed the game starts
+                        illuminateState = true;
+                        playState = false;
+                        PrepareIlluminateState();
+                    }
+                }.start();
+            }
         }
 
         public void  InitializeImages (){
@@ -171,12 +173,12 @@ public class SequentialCoins extends Activity {
         }
 
         public Rect getLastRect(){
-         //Returns last inserted rect
+            //Returns last inserted rect
             return coinRectsList.get(coinRectsList.size()-1);
         }
 
         public Rect getUpperRect(){
-        //Returns the rect located in the same position on the upper row
+            //Returns the rect located in the same position on the upper row
             return coinRectsList.get(coinRectsList.size()- COLUMNS);
         }
 
@@ -185,7 +187,7 @@ public class SequentialCoins extends Activity {
             for(int i =0; i< stateRounds;i++ )
             {
                 correctCoins[i]= rand.nextInt(ROWS* COLUMNS -1);
-                Log.w("Warn","At index " +i+ ": "+correctCoins[i]);
+                // Log.w("Warn","At index " +i+ ": "+correctCoins[i]);
             }
             currentIlluminateRound =0;                         //start by drawing light on this coin from correctCoins array
             SoundHandler.PlaySound(SoundHandler.beep_sound_id3);
@@ -202,6 +204,17 @@ public class SequentialCoins extends Activity {
                 }
             return false;
 
+        }
+
+        public void LeaveSequentialCoins()
+        {
+            //Save and Show Score
+            Score.currentRiddleScore= (int) Math.ceil( 70- mistakes*10) ;
+            Intent itn= new Intent(getApplicationContext(), Score.class);
+            startActivity(itn);
+
+            QrCodeScanner.questionMode=true;
+            finish();
         }
 
         @Override
@@ -239,9 +252,9 @@ public class SequentialCoins extends Activity {
             //Draw color on background
             canvas.drawPaint(backgroundPaint);
 
-             //Draw coins
-             for(int i=0;i< coinImagesList.size();i++)
-                 canvas.drawBitmap(coinImagesList.get(i), null, coinRectsList.get(i), null);
+            //Draw coins
+            for(int i=0;i< coinImagesList.size();i++)
+                canvas.drawBitmap(coinImagesList.get(i), null, coinRectsList.get(i), null);
 
             //draw selected effect on coin if needed
             if(drawingSelectedEffectOnCoin)
@@ -290,7 +303,7 @@ public class SequentialCoins extends Activity {
                     {
                         if(selectedCoin== correctCoins[currentPlayRound])
                         {
-                            Log.w("Warn", "CORRECT: " + selectedCoin);
+                            // Log.w("Warn", "CORRECT: " + selectedCoin);
                             SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
 
                             filter = new LightingColorFilter(Color.GREEN,1);    //on correct coin is green
@@ -304,8 +317,9 @@ public class SequentialCoins extends Activity {
                             }
                         }
                         else{
-                            //On one wrong choice and restart from the beginning
-                            Log.w("Warn", "WRONG: Selected:" + selectedCoin +" correct was: "+(correctCoins[currentPlayRound]));
+                            //On one wrong choice, game restarts from the beginning
+                            //Log.w("Warn", "WRONG: Selected:" + selectedCoin +" correct was: "+(correctCoins[currentPlayRound]));
+                            mistakes++;
                             SoundHandler.PlaySound(SoundHandler.wrong_sound_id4);
 
                             filter = new LightingColorFilter(Color.RED,1);//on wrong coin is red

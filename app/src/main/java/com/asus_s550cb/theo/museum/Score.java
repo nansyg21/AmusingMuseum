@@ -28,6 +28,7 @@ import android.widget.TextView;
  *  Right Order:    60 seconds: 1 point per second left  (+10 to reach 70)
  *  Memory game:    Best case: 16 clicks, for each extra click, subtract score by 70/16. If score is <20, user gets 20
  *  ExhibitsFall:   Score starts from 70 and is reduced by ~70/5=14 for each lost object and ~by 5 for each wrong caught object. If score is <20, user gets 20
+ *  SequentialCoins:There are 7 rounds. User starts from 70 points and loses 10 points for every mistake.
 
  */
 public class Score extends Activity {
@@ -164,7 +165,7 @@ public class Score extends Activity {
 
     public static void setQuizScore(int score)
     {
-     currentQuizScore=score;
+        currentQuizScore=score;
     }
 
     public static void setRiddleScore(int score)
