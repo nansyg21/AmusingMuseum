@@ -105,7 +105,12 @@ public class QrCodeScanner extends Activity {
                 // pass the number of the next activity to the quiz so it can pass it back to the qr code activity
                 // when the quiz is done and the riddle must start
                 itn.putExtra(nextApp, appToStart);
+                //Stage Increased
+                StartGame.startingStage++;
+
                 startActivityForResult(itn,1);
+
+
             }
             else
             {

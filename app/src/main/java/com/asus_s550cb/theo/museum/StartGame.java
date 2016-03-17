@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -24,7 +25,7 @@ public class StartGame extends Activity {
 
     StartGameOurview v;
     int height,width,newInt;
-    static int startingStage=0;
+    public static int startingStage=1;
     String nextApp;
     String [] rooms;
 
@@ -94,8 +95,9 @@ public class StartGame extends Activity {
             if(PauseMenuActivity.pause==true)
             {
                 PauseMenuActivity.pause=false;
-
-                startingStage--;
+                //Stage increases only if player plays the quiz,
+                //New increment location into QrCodeScanner!
+                //startingStage--;
             }
             v.resume();
 
@@ -105,11 +107,18 @@ public class StartGame extends Activity {
         }
 
         //StageCounter
-        startingStage++;
+        //startingStage++;
 
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+       // startingStage--;
+        Log.d("stopped", "Start Game stopped");
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -121,7 +130,7 @@ public class StartGame extends Activity {
         Thread t;
         SurfaceHolder holder;
         boolean isItok = false;
-        Bitmap ppenguin,background;
+        Bitmap ppenguin, background;
         Sprite sprite;
         Paint paint;//Text style in TextView
 
@@ -130,16 +139,16 @@ public class StartGame extends Activity {
             super(context);
             holder = getHolder();
             ppenguin = BitmapFactory.decodeResource(getResources(), R.drawable.penguinsheet);
-            background= BitmapFactory.decodeResource(getResources(), R.drawable.museum_map);
+            background = BitmapFactory.decodeResource(getResources(), R.drawable.museum_map);
             background = Bitmap.createScaledBitmap(background, width, (int) Math.ceil(height * 0.95), false);
 
-            paint=new Paint();
+            paint = new Paint();
             paint.setColor(Color.WHITE);
             paint.setTextSize((float) Math.ceil(height * 0.045));
             paint.setTextAlign(Paint.Align.CENTER);
 
-            textViewX=(float) Math.ceil(width* 0.8);
-            textViewY=(float) Math.ceil(height* 0.3);
+            textViewX = (float) Math.ceil(width * 0.8);
+            textViewY = (float) Math.ceil(height * 0.3);
 
         }
 
@@ -147,10 +156,9 @@ public class StartGame extends Activity {
         public void run() {
 
             //Only when not paused
-            if(PauseMenuActivity.pause==false)
-            {
-                sprite = new Sprite(StartGameOurview.this, ppenguin,width,height,startingStage);
-                while(isItok) {
+            if (PauseMenuActivity.pause == false) {
+                sprite = new Sprite(StartGameOurview.this, ppenguin, width, height, startingStage);
+                while (isItok) {
 
                     //perform drawing
                     if (!holder.getSurface().isValid()) {
@@ -168,23 +176,22 @@ public class StartGame extends Activity {
         }
 
         @Override
-        public void draw(Canvas canvas){
+        public void draw(Canvas canvas) {
             super.draw(canvas);
 
             //Only when not paused
-            if(PauseMenuActivity.pause==false) {
+            if (PauseMenuActivity.pause == false) {
                 canvas.drawColor(Color.parseColor("#0B0075"));
                 canvas.drawBitmap(background, 0, 0, null);
                 //Symbol \n cannot be realized from android , too bad
 
-                canvas.drawText( getResources().getString(R.string.room_word)+" " + startingStage + " :", textViewX, textViewY-30, paint);
-                canvas.drawText(setTextTitle()[0],textViewX,textViewY+100,paint);
-                canvas.drawText(setTextTitle()[1],textViewX,textViewY+200,paint);
-                canvas.drawText(setTextTitle()[2],textViewX,textViewY+300,paint);
+                canvas.drawText(getResources().getString(R.string.room_word) + " " + startingStage + " :", textViewX, textViewY - 30, paint);
+                canvas.drawText(setTextTitle()[0], textViewX, textViewY + 100, paint);
+                canvas.drawText(setTextTitle()[1], textViewX, textViewY + 200, paint);
+                canvas.drawText(setTextTitle()[2], textViewX, textViewY + 300, paint);
 
                 newInt = sprite.onDraw(canvas);
                 pauseBt.getPauseMenuButton().draw(canvas);
-
 
 
                 // When character is in a room, start the qr scanner activity and pass the next riddle number to it
@@ -197,28 +204,28 @@ public class StartGame extends Activity {
 
         }
 
-        public void pause(){
+        public void pause() {
             isItok = false;
-            while(true){
-                try{
+            while (true) {
+                try {
                     t.join();
-                }catch(InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 break;
             }
         }
+
         //EDW KSEKINAEI NEO THREAD KATHE FORA
         public void resume() throws InterruptedException {
             isItok = true;
-            t=new Thread(this);
+            t = new Thread(this);
             //This sleep is needed beacause switch activity takes time
             Thread.sleep(1000);
             t.start();
         }
 
     }
-
     @Override
     public void onBackPressed() {
 
