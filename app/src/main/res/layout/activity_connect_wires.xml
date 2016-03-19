@@ -1,77 +1,200 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:background="@color/royal_blue" tools:context=".ChurchMap"
-    android:id="@+id/framelayout">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context="com.example.nasiadesktop.wires.wires">
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/mainTable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:stretchColumns="*">
-
         <TableRow
-            android:id="@+id/tableRow0"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
+            android:id="@+id/menuRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+
+            <TextView
+                android:id="@+id/numOfClicks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"/>
 
             <ImageView
-                android:id="@+id/pictureSaint"
-                android:layout_height="match_parent"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="false"
-                android:scaleType="fitCenter"
-                android:src="@drawable/full_lumosity">
+                android:id="@+id/pauseBtImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/menu_icon"
+                android:onClick="menuBtClick"
+                android:layout_gravity="end"
+                />
 
-            </ImageView>
-            <TableLayout
-                android:id="@+id/church_view_tableLayout"
+
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/mainRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageToLight"
                 android:layout_height="match_parent"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:stretchColumns="*">
-
+                android:adjustViewBounds="false"
+                android:scaleType="matrix"
+                />
+            <TableLayout
+                android:id="@+id/wireTableLayout"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2">
                 <TableRow
-                    android:id="@+id/tableRow1"
-                    android:layout_height="0dp"
-                    android:layout_width="match_parent"
-                    android:layout_weight="1">
-
-
-                    <LinearLayout
-                        android:id="@+id/menuLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_gravity="end">
-
-                        <ImageView
-                            android:id="@+id/pauseBtImageView"
-                            android:layout_width="50dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:src="@drawable/menu_icon"
-                            android:layout_gravity="end"
-                            android:onClick="menuBtClick"
-                            />
-
-                        <TextView
-                            android:id="@+id/nameTextView"
-                            android:layout_width="400dp"
-                            android:layout_height="0dp"
-                            android:text="Nameeeeeeeeeeeeeeee"
-                            android:textSize="@dimen/church_map_text_size"
-                            android:layout_weight="3">
-                        </TextView>
-                    </LinearLayout>
-
-
-
+                    android:id="@+id/firstWireRow">
+                    <ImageView
+                        android:id="@+id/wire0"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire1"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire2"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire3"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire4"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
                 </TableRow>
-
-
+                <TableRow
+                    android:id="@+id/secondWireRow">
+                    <ImageView
+                        android:id="@+id/wire5"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire6"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire7"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire8"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire9"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/thirdWireRow">
+                    <ImageView
+                        android:id="@+id/wire10"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire11"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire12"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire13"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire14"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/forthWireRow">
+                    <ImageView
+                        android:id="@+id/wire15"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire16"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire17"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire18"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire19"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/fifthWireRow">
+                    <ImageView
+                        android:id="@+id/wire20"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire21"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire22"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire23"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                    <ImageView
+                        android:id="@+id/wire24"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:onClick="onTouch"/>
+                </TableRow>
             </TableLayout>
+
+
         </TableRow>
 
     </TableLayout>
