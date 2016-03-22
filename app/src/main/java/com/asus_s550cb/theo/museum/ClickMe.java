@@ -51,7 +51,7 @@ public class ClickMe extends Activity {
 
         //Start help screen
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
-        itn.putExtra("appNum",3);
+        itn.putExtra("appNum",4);
         startActivity(itn);
 
     }

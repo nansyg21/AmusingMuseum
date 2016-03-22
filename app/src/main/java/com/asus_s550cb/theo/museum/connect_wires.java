@@ -83,9 +83,9 @@ public class connect_wires extends Activity {
         assignImage(currentLevel); // Set image of Saint according to level
         setTableau(currentLevel);
 
-       /* Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
-        itn.putExtra("appNum", 2);
-        startActivity(itn);*/
+        Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
+        itn.putExtra("appNum", 10);
+        startActivity(itn);
     }
 
     // Reset the flags to hide the navigation bar

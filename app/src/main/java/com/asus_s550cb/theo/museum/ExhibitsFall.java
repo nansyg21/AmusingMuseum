@@ -65,7 +65,7 @@ public class ExhibitsFall extends Activity {
 
         //Start help screen
         Intent itn = new Intent(getApplicationContext(), HelpDialogActivity.class);
-         itn.putExtra("appNum", 9);
+         itn.putExtra("appNum", 3);
           startActivity(itn);
 
     }

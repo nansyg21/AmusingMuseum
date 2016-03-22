@@ -109,7 +109,7 @@ public class RightOrder extends Activity {
 
         //Start help screen
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
-        itn.putExtra("appNum", 7);
+        itn.putExtra("appNum", 8);
         startActivity(itn);
 
     }

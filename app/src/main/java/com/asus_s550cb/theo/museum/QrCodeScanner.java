@@ -94,7 +94,7 @@ public class QrCodeScanner extends Activity {
                 itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
                 startActivityForResult(itn,1);
             }
-            if(hintCounter==12)     //hints= rooms visited*2    Rooms=6     No rooms left, go to Upload Score Activity
+            if(hintCounter==21)     //hints= rooms visited*2    Rooms=6     No rooms left, go to Upload Score Activity
             {
                 itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
                 startActivityForResult(itn,1);
@@ -121,15 +121,16 @@ public class QrCodeScanner extends Activity {
                 else {
                     switch (appToStart) {
                         case 1:
-                            itn = new Intent(getApplicationContext(), connect_wires.class);
+                            //itn = new Intent(getApplicationContext(), connect_wires.class);
+                            itn = new Intent(getApplicationContext(), PuzzleActivity.class);
                             startActivityForResult(itn, 1);
                             break;
                         case 2:
-                            itn = new Intent(getApplicationContext(), ClickMe.class);
+                            itn = new Intent(getApplicationContext(), ExhibitsFall.class);
                             startActivityForResult(itn, 1);
                             break;
                         case 3:
-                            itn = new Intent(getApplicationContext(), Hangman.class);
+                            itn = new Intent(getApplicationContext(), ClickMe.class);
                             startActivityForResult(itn, 1);
                             break;
                         case 4:
@@ -137,13 +138,30 @@ public class QrCodeScanner extends Activity {
                             startActivityForResult(itn, 1);
                             break;
                         case 5:
-                            itn = new Intent(getApplicationContext(), PuzzleActivity.class);
+                            itn = new Intent(getApplicationContext(), SequentialCoins.class);
                             startActivityForResult(itn, 1);
                             break;
                         case 6:
+                            itn = new Intent(getApplicationContext(), ChurchMap.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        case 7:
                             itn = new Intent(getApplicationContext(), RightOrder.class);
                             startActivityForResult(itn, 1);
                             break;
+                        case 8:
+                            itn = new Intent(getApplicationContext(), MemoryGame.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        case 9:
+                            itn = new Intent(getApplicationContext(), connect_wires.class);
+                            startActivityForResult(itn, 1);
+                            break;
+                        case 10:
+                            itn = new Intent(getApplicationContext(), Hangman.class);
+                            startActivityForResult(itn, 1);
+                            break;
+
                         default:
                             finish();
                     }

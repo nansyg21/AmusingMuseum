@@ -184,7 +184,13 @@
                     android:id="@+id/button_display_topFive"
                     android:background="@drawable/button_design"
                     android:onClick="displayTopFive"/>
-
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/download_solutions"
+                    android:id="@+id/button_download_solutions"
+                    android:background="@drawable/button_design"
+                    android:onClick="downloadFile"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -51,7 +51,7 @@ public class PuzzleActivity extends Activity   {
 
         //Start help screen
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
-        itn.putExtra("appNum", 6);
+        itn.putExtra("appNum", 2);
         startActivity(itn);
 
 

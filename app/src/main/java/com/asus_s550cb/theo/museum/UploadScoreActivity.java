@@ -3,16 +3,20 @@ package com.asus_s550cb.theo.museum;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -370,6 +374,43 @@ public class UploadScoreActivity extends Activity {
                 thread.start();
 
         }
+    }
+    //Download pdf solutions file
+    public void downloadFile (View v) {
+
+        Toast.makeText(getApplicationContext(), "Downloading started...", Toast.LENGTH_SHORT).show();
+
+        //Download with download manager
+        DownloadManager downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
+        //parse the uri
+        Uri Download_Uri = Uri.parse("https://docs.google.com/document/d/11N86TsRsDeENpR0WbhWq8ePrm3FrskaxVgEX8Avwdrc/export?format=pdf");
+        //Create a download request
+        DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
+        //Set Notification description , store location and filename
+        request.setDescription("Anaptixis File").setTitle("Amusing_Museum_Solutions.pdf");
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Amusing_Museum_Solutions.pdf");
+        //Keep the notification into the status bar
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        //start the downloading
+        downloadManager.enqueue(request);
+
+
+        //If I want to do anything after downloaded the file
+        //just remove the comments here
+       /* BroadcastReceiver onComplete=new BroadcastReceiver() {
+            public void onReceive(Context ctxt, Intent intent) {
+
+                //Open the download folder with this code
+
+                Intent i = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
+                startActivity(i);
+
+
+            }
+        };
+        //register the receiver...
+       registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));*/
+
     }
     // Reset the flags to hide the navigation bar
     @SuppressLint("NewApi")

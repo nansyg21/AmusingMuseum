@@ -51,7 +51,7 @@ public class SequentialCoins extends Activity {
 
         //Start help screen
         Intent itn = new Intent(getApplicationContext(), HelpDialogActivity.class);
-        itn.putExtra("appNum", 10);
+        itn.putExtra("appNum", 6);
         startActivity(itn);
     }
 

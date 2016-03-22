@@ -18,7 +18,7 @@ import android.view.View;
 
 public class HelpscreenSliderActivity extends FragmentActivity {
 
-    private static final int NUM_PAGES = 8; // number of help pages -> static because of implementation
+    private static final int NUM_PAGES = 12; // number of help pages -> static because of implementation
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
