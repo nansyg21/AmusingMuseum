@@ -273,7 +273,7 @@ public class StartGame extends Activity {
             } else if (startingStage == 10) {
                 return new String[]{rooms[14], rooms[15], rooms[16]};
             } else if (startingStage == 11) {
-                return new String[]{rooms[17], "", ""};
+                return new String[]{rooms[17],  rooms[18], ""};
             }
         }
         return null;

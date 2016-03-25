@@ -173,7 +173,8 @@
             android:name=".connect_wires"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_connect_wires"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 

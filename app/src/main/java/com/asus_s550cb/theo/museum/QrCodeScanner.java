@@ -94,7 +94,7 @@ public class QrCodeScanner extends Activity {
                 itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
                 startActivityForResult(itn,1);
             }
-            if(hintCounter==21)     //hints= rooms visited*2    Rooms=6     No rooms left, go to Upload Score Activity
+            if(hintCounter>20)     //hints= rooms visited*2    Rooms=6     No rooms left, go to Upload Score Activity
             {
                 itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
                 startActivityForResult(itn,1);
@@ -161,7 +161,11 @@ public class QrCodeScanner extends Activity {
                             itn = new Intent(getApplicationContext(), Hangman.class);
                             startActivityForResult(itn, 1);
                             break;
-
+                        //The game is finished.....
+                        case 11:
+                            itn = new Intent(getApplicationContext(), UploadScoreActivity.class);
+                            startActivityForResult(itn, 1);
+                            break;
                         default:
                             finish();
                     }
@@ -443,6 +447,79 @@ public class QrCodeScanner extends Activity {
                             (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(5).hintImgBmp2.imageByteArray),500,600,true));
                 }
                 break;
+            case 12:
+                imgvExhibit.setImageResource(R.drawable.monument7a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(6).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+            case 13:
+                imgvExhibit.setImageResource(R.drawable.monument7b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(6).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+            case 14:
+                imgvExhibit.setImageResource(R.drawable.monument8a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(7).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+            case 15:
+                imgvExhibit.setImageResource(R.drawable.monument8b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(7).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+            case 16:
+                imgvExhibit.setImageResource(R.drawable.monument9a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(8).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+            case 17:
+                imgvExhibit.setImageResource(R.drawable.monument9b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(8).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+            case 18:
+                imgvExhibit.setImageResource(R.drawable.monument10a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(9).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+            case 19:
+                imgvExhibit.setImageResource(R.drawable.monument10b);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(9).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+            case 20:
+                imgvExhibit.setImageResource(R.drawable.monument11a);
+                if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+                {
+                    imgvExhibit.setImageBitmap(Bitmap.createScaledBitmap(MainActivity.EXTERNAL_MUSEUM.FromByteArrayToBitmap
+                            (MainActivity.EXTERNAL_MUSEUM.RoomsList.get(10).hintImgBmp2.imageByteArray),500,600,true));
+                }
+                break;
+
         }
         //ImageView listener!!!
         bt.setOnClickListener(new View.OnClickListener() {
