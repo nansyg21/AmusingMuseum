@@ -390,6 +390,32 @@
             The only thing you have to do is to find the right one.\n
             How good are you in history?
         </item>
+         <item>
+            FILL IT UP\n
+            Only if you put everything in place you can see what the picture is hidding.\n
+            It is a classical puzzle game, also known as "Fast and neatly"
+        </item>
+        <item>
+            CATCH THE EXHIBIT, SAVING IT FROM DESTRUCTION\n
+            Random exhibits are falling from the sky. Watch the screen for the exhibit you must catch and save it.\n
+            But beware, don\'t catch the wrong one. In the end you have the chance to see information about the exhibit you are trying to save.
+         </item>
+          <item>
+            CATCH ME IF YOU CAN\n
+            The faster your reflexes are the better.\n
+            Hit the moving image in order to complete the bigger picture in the end of the game.\n
+            The more successful hits you manage, the more points you score and you get a cleaner view at on of the museum\'s masterpieces.
+        </item>
+        <item>
+            ALL STAMPS HAVE TWO SIDES\n
+            Can you figure out who they are?\n
+            Match them as soon as possible to score points. The more observant you are, the sooner you will finish.\n
+            Remember nothing is over until you move on to the next room of the museum.
+        </item>
+         <item>
+            OBSERVE CAREFULLY THE COINS\n
+            Try to remember the order in which they are illuminated.\nThen select them exactly in the same order.
+         </item>
         <item>
             WHERE ARE THE MONUMENTS?\n
             Can you find the location of the monument on the map, knowing the monument and the location name?\n
@@ -397,10 +423,20 @@
             The clues you are asking for are hidden on the museum\'s walls
         </item>
         <item>
-            CATCH ME IF YOU CAN\n
-            The faster your reflexes are the better.\n
-            Hit the moving image in order to complete the bigger picture in the end of the game.\n
-            The more successful hits you manage, the more points you score and you get a cleaner view at on of the museum\'s masterpieces.
+            FIND THE RIGHT ORDER\n
+            Some of the pottery we admire up to this day, took a lot of time in order to look like this and carry all these details.\n
+            Put in the right order the production stages, their names and form, as fast as you can to increase your score
+        </item>
+         <item>
+            FIND THE PAIRS OF THE CLAY VESSELS\n
+             You have a few seconds to observe and memorize the pairs formed by the clay vessels. \n
+             Then you have to use your memory to locate those pairs with the least possible selections on screen.
+         </item>
+         <item>
+            ENLIGHTEN THE IMAGE ΤΗΝ ΕΙΚΟΝΑ \n
+            View the image! But to do so, you must first drop some light on it.
+            Match the wires on the right part of the image making the less possible moves.
+            By touching a wire you can rotate it.
         </item>
         <item>
             SAVE THE ARCHES\n
@@ -408,36 +444,7 @@
             All you have to do is to guess the word before all the arches come down.\n
             What is the words are kind of unusual and Greek, take a good look at your surroundings and the museum will give you the answer
         </item>
-        <item>
-            ALL COINS HAVE TWO FACES\n
-            Can you figure out who they are?\n
-            Match them as soon as possible to score points. The more observant you are, the sooner you will finish.\n
-            Remember nothing is over until you move on to the next room of the museum.
-        </item>
-        <item>
-            FILL IT UP\n
-            Only if you put everything in place you can see what the picture is hidding.\n
-            It is a classical puzzle game, also known as "Fast and neatly"
-        </item>
-        <item>
-            FIND THE RIGHT ORDER\n
-            Some of the pottery we admire up to this day, took a lot of time in order to look like this and carry all these details.\n
-            Put in the rigth order the production stages, their names and form, as fast as you can to increase your score
-        </item>
-         <item>
-            FIND THE PAIRS OF THE CLAY VESSELS\n
-             You have a few seconds to observe and memorize the pairs formed by the clay vessels. \n
-             Then you have to use your memory to locate those pairs with the least possible selections on screen.
-         </item>
-        <item>
-            CATCH THE EXHIBIT, SAVING IT FROM DESTRUCTION\n
-            Random exhibits are falling from the sky. Watch the screen for the exhibit you must catch and save it.\n
-            But beware, don\'t catch the wrong one. In the end you have the chance to see information about the exhibit you are trying to save.
-         </item>
-        <item>
-            OBSERVE CAREFULLY THE COINS\n
-            Try to remember the order in which they are illuminated.\nThen select them exactly in the same order.
-         </item>
+
     </string-array>
 
     <string name="title_activity_loading_screen">LoadingScreen</string>

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,9 @@ import java.io.ObjectInputStream;
 public class MainActivity extends AppCompatActivity {
 
     public int height,width;
+    public long showAnaptixisLogoFor=1000;
+    public long showAppAndMuseumLogoFor=2000;
+
     public static String WORKING_ON_EXTERNAL_MUSEUM_PREF_NAME="WORKING_ON_EXTERNAL_MUSEUM_PREF_NAME";//working with: Museum of Byzantine Culture of Thessaloniki or not
     public static String WORKING_ON_EXTERNAL_MUSEUM_VAR_KEY="WORKING_ON_EXTERNAL_MUSEUM_VAR_KEY";
     public static boolean WORKING_ON_EXTERNAL_MUSEUM;
@@ -42,17 +46,23 @@ public class MainActivity extends AppCompatActivity {
         height = displaymetrics.heightPixels;
         width = displaymetrics.widthPixels;
 
-
-        setContentView(new MainActivitySampleView(this));
+        setContentView(new MainActivitySampleAnaptixisLogoView(this));                      //start by showing Anaptixis logo
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), menu.class));
-                finish();
-            }
-        }, 1000);
 
+                setContentView(new MainActivitySampleView(getBaseContext()));               //then show App and Museum logo
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(getApplicationContext(), menu.class));     //then show Main Menu
+                        finish();
+                    }
+                }, showAppAndMuseumLogoFor);
+
+            }
+        }, showAnaptixisLogoFor);
     }
 
     public int getHeight() {
@@ -104,10 +114,29 @@ public class MainActivity extends AppCompatActivity {
 
             //Set Background Color
             canvas.drawColor(getResources().getColor(R.color.royal_blue));
-            //Draw the logo
+            //Draw the App and Museum logo
             canvas.drawBitmap(logo, (width / 2) / 2, (height * 2 / 10), null);
             canvas.drawBitmap(museum_logo, (width / 2) - (height / 4), (height * 5 / 10), null);
 
+        }
+    }
+
+    private class MainActivitySampleAnaptixisLogoView extends View {
+        Bitmap teamLogo = null;
+        Rect anaptixisLogoRect= new Rect(width/4,height/4,3*width/4,3*height/4);
+
+        public MainActivitySampleAnaptixisLogoView(Context context) {
+            super(context);
+            setFocusable(true);
+
+            my_context=getBaseContext();
+            teamLogo = BitmapFactory.decodeResource(getResources(), R.drawable.anaptixis_logo);
+        }
+
+        @Override
+        protected void onDraw(final Canvas canvas) {
+            canvas.drawColor(getResources().getColor(R.color.black_overlay));    //Draw the Anaptixis Logo on black background
+            canvas.drawBitmap(teamLogo, null, anaptixisLogoRect,null);
         }
     }
 

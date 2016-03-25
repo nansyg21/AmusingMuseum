@@ -83,7 +83,7 @@ public class menu extends Activity {
                 break;
             case R.id.btnMenuHelp:
                 startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
-                //startActivity(new Intent(getApplicationContext(),UploadScoreActivity.class));
+              //  startActivity(new Intent(getApplicationContext(),UploadScoreActivity.class));
                 // Intent itn = new Intent(getApplicationContext(), SequentialCoins.class);
                // Intent itn = new Intent(getApplicationContext(), ChurchMap.class);
                // Intent itn = new Intent(getApplicationContext(), ClickMe.class);
