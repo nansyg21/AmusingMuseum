@@ -67,6 +67,13 @@ public class QrCodeScanner extends Activity {
 
         nextApp="nextApp";
 
+        //The game is finished
+        if(appToStart ==  11 && !questionMode)
+        {
+            itn = new Intent(getApplicationContext(), UploadScoreActivity.class);
+            startActivityForResult(itn, 1);
+        }
+
         //If user typed a pass...
       /*  if(numCodeCheck)
             validateNumCode();*/
@@ -94,11 +101,12 @@ public class QrCodeScanner extends Activity {
                 itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
                 startActivityForResult(itn,1);
             }
-            if(hintCounter>20)     //hints= rooms visited*2    Rooms=6     No rooms left, go to Upload Score Activity
+            //No need to check hangman will send message to stop after next quiz game
+        /*    if(hintCounter>20)     //hints= rooms visited*2    Rooms=6     No rooms left, go to Upload Score Activity
             {
                 itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
                 startActivityForResult(itn,1);
-            }
+            }*/
             if(questionMode)
             {
                 itn=new Intent(getApplicationContext(),QuizGameActivity.class);
@@ -161,11 +169,7 @@ public class QrCodeScanner extends Activity {
                             itn = new Intent(getApplicationContext(), Hangman.class);
                             startActivityForResult(itn, 1);
                             break;
-                        //The game is finished.....
-                        case 11:
-                            itn = new Intent(getApplicationContext(), UploadScoreActivity.class);
-                            startActivityForResult(itn, 1);
-                            break;
+
                         default:
                             finish();
                     }
