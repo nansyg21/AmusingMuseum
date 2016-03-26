@@ -133,8 +133,8 @@ public class ExhibitsFall extends Activity {
             screenWidth = displaymetrics.widthPixels;
             screenHeight = displaymetrics.heightPixels;
 
-            imgWidth = 100;
-            imgHeight = 100;
+            imgHeight = screenHeight/6;
+            imgWidth = imgHeight;
             baseImgWidth=screenWidth/5;
             baseImgHeight=screenHeight/5;
             xSpeed = 0;

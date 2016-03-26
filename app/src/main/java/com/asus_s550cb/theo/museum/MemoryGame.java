@@ -12,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.view.MotionEventCompat;
@@ -79,11 +80,10 @@ public class MemoryGame extends Activity {
         if(onFocusChangedCounterMemoryGame ==0)    //On return from HelpDialogActivity Screen this method is triggered
                                         //it is also triggered any other time the app changes focus so we restart the game only once
         {
-            Log.w("Warn", "Returned!");
+           // Log.w("Warn", "Returned!");
             onFocusChangedCounterMemoryGame++;
             memoryGameScreen.StartGame();
         }
-
     }
 
     //This is actually drawing on screen the game
@@ -92,13 +92,11 @@ public class MemoryGame extends Activity {
         int PlayerTouchX, PlayerTouchY;
         MediaPlayer memory_game_pair_sound;
         int pairs, M = 4, N = 4, imgWidth, imgHeight, startingX, startingY, GapX, GapY,currentSelectedRectIndex1,currentSelectedRectIndex2, userClicks;
-        Paint backgroundPaint, txtPaint;
+        Paint backgroundPaint;
         Bitmap backSideImg;
-
 
         long noSelectTimer, elapsedNoSelectTime, limitNoSelectTime; //timer to freeze game between 2 selections
         long showAllImagesTimer, elapsedShowAllImagesTime, limitShowAllImagesTime; //timer for showing images on start
-
 
         ArrayList<Bitmap> ImagesList = new ArrayList<Bitmap>();
         ArrayList<Rect> RectList  = new ArrayList<Rect>();
@@ -106,22 +104,14 @@ public class MemoryGame extends Activity {
         int[] KeysArray  = new int[M*N];//keys used for pairs validation
 
         Boolean canSelectState, showCardsState;
-        Button invBtn;          //invisible button: triggered on exit to finish mini game
 
         public MemoryGameScreen(Context context) {
             super(context);
-           // memory_game_pair_sound = MediaPlayer.create(this.getContext(), something..);
 
             //for background color
             backgroundPaint = new Paint();
             backgroundPaint.setStyle(Paint.Style.FILL);
             backgroundPaint.setColor(getResources().getColor(R.color.neutral_beize));
-
-            //for text color
-            txtPaint = new Paint();
-            txtPaint.setStyle(Paint.Style.FILL);
-            txtPaint.setColor(Color.WHITE);//white
-            txtPaint.setTextSize(getResources().getDimension(R.dimen.memory_game_text_size));
 
             //back image
             backSideImg = BitmapFactory.decodeResource(getResources(), R.drawable.mg_back);  // no rescale: drawable-nodpi
@@ -140,15 +130,6 @@ public class MemoryGame extends Activity {
             GapX = ((screenWidth / (N+1))/3)/(N-1);  //for N images we have N-1 gaps
             GapY = ((screenHeight / (M+1))/3)/(M-1);
            // Log.w("Warn","screenWidth:"+screenWidth+" screenHeight:"+screenHeight+ "  imgWidth:"+imgWidth +" imgHeight:"+imgHeight+"  stX:"+startingY+" stY:"+startingY+" gapX"+GapX+" gapY:"+GapY);
-
-            invBtn = new Button(getContext());
-            invBtn.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.w("Warn", "Clicked button");
-                    LeaveMemoryGame();
-                }
-            });
 
             LoadImages();
             LoadRects();
@@ -190,11 +171,14 @@ public class MemoryGame extends Activity {
             ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg5) );
             ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg6) );
             ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg7) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg8) );
-            for(int i=0;i<M*N/2;i++)    //0-8, 1-9, 2-10, ... ,7-15
+            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg8));
+            //Log.w("Warn", "First Match:");
+            for(int i=0;i<(M*N)/2;i++)    //0-8, 1-9, 2-10, ... ,7-15
             {
                 KeysArray[i] = i + (M * N) / 2;
                 KeysArray[i + (M * N) / 2] = i;
+               // Log.w("Warn","["+i+"]: " +(i + (M * N) / 2));
+               // Log.w("Warn","["+(i + (M * N) / 2)+"]: " +i);
             }
         }
 
@@ -229,7 +213,7 @@ public class MemoryGame extends Activity {
         //Shuffle images, rects, keys etc
             //as implemented in LoadImages method pairs are: 0-8, 1-9, 2-10, ... ,7-15
             Random random = new Random();
-            for (int i = 0; i < M*N; i++)
+            for (int i = 0; i < (M*N)/2; i++)
             {
                 int j = random.nextInt(15); //swap i with j
 
@@ -240,17 +224,29 @@ public class MemoryGame extends Activity {
                // Rect r= RectList.get(i); //rect
                // RectList.set(i, RectList.get(j));
              //   RectList.set(j,r);
-                int temp=KeysArray[j], temp2=KeysArray[i];
-                KeysArray[i]=temp;  //Match [i] with previous [j]
-                KeysArray[j]=temp2; //and   [j] with previous [i]
-                KeysArray[temp]=i;  //when i points to j, then j MUST point back to i
-                KeysArray[temp2]=j;
+                int temp=KeysArray[i], temp2=KeysArray[j]; // i=0, j=1   temp=8, temp2=9
+                KeysArray[i]=temp2;  //Match [i] with previous [j]
+                KeysArray[j]=temp; //and   [j] with previous [i]
+                KeysArray[temp]=j;  //when i points to j, then j MUST point back to i
+                KeysArray[temp2]=i;
+               // Log.w("Warn", "Swapped "+i+" with "+j );
+            }
 
-                //Log.w("Warn", "Swapped "+i+" with "+j );
+            for(int i=0;i<(M*N);i++)            //verification stage: check pairs, if something is wrong re-shuffle
+            {
+                int j=KeysArray[i];
+               // Log.w("Warn","i="+i+", Keys["+i+"]=" +j+ "     j="+j+ ", Keys["+j+"]="+KeysArray[j]);
+                if(KeysArray[j]!=i || KeysArray[i]!=j) {
+                    //Log.w("Warn", "WRONGGG--");
+                    ImagesList.clear();
+                    LoadImages();
+                    RandomizePairs();
+                }
             }
         }
 
-        public Rect getLastRect() { //returns the last inserted Rect from RectList
+        public Rect getLastRect() {
+         //returns the last inserted Rect from RectList
             return RectList.get(RectList.size()-1);
         }
 
@@ -259,7 +255,7 @@ public class MemoryGame extends Activity {
             for(Rect r : RectList) {
                 if (r.contains(PlayerTouchX, PlayerTouchY)) {
                     userClicks++;
-                    Log.w("Warn","Selections: "+ userClicks);
+                    //Log.w("Warn","Selections: "+ userClicks);
                     return k;
                 }
                 k++;
@@ -298,7 +294,6 @@ public class MemoryGame extends Activity {
                     currentSelectedRectIndex2=-1;
                 }
 
-
             // onDraw(Canvas) will be called
             invalidate();
         }
@@ -334,7 +329,6 @@ public class MemoryGame extends Activity {
             postDelayed(this, 16);
         }
 
-
         @Override
         public boolean onTouchEvent(MotionEvent ev) {
 
@@ -350,7 +344,6 @@ public class MemoryGame extends Activity {
                         startActivity(itn);
                     }
                 }
-
 
                 final int pointerIndex = MotionEventCompat.getActionIndex(ev);
                 final float x = MotionEventCompat.getX(ev, pointerIndex);
@@ -370,7 +363,7 @@ public class MemoryGame extends Activity {
 
                         //search for pairs
                         if (KeysArray[currentSelectedRectIndex1] == currentSelectedRectIndex2 && KeysArray[currentSelectedRectIndex2] == currentSelectedRectIndex1) {
-                            Log.w("Warn", "Pair found");
+                           // Log.w("Warn", "Pair found");
                             SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
                             pairs++;
                             if(pairs== (M*N)/2)
@@ -394,7 +387,6 @@ public class MemoryGame extends Activity {
             return true;
         }
     }
-
 
     @Override
     public void onBackPressed() {
