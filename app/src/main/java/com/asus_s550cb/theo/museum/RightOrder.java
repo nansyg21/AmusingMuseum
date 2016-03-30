@@ -237,6 +237,7 @@ public class RightOrder extends Activity {
         SoundHandler.PlaySound(SoundHandler.correct_sound_id);
         Score.currentRiddleScore=(int) (10 + (minutes*60 + seconds)) ;
         Intent itn= new Intent(getApplicationContext(), Score.class);
+        itn.putExtra("nextStage", 8);
         startActivity(itn);
 
 

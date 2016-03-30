@@ -211,6 +211,7 @@ public class SequentialCoins extends Activity {
             //Save and Show Score
             Score.currentRiddleScore= (int) Math.ceil( 70- mistakes*10) ;
             Intent itn= new Intent(getApplicationContext(), Score.class);
+            itn.putExtra("nextStage", 6);
             startActivity(itn);
 
             QrCodeScanner.questionMode=true;

@@ -188,6 +188,7 @@ public class Hangman extends Activity {
                         SoundHandler.PlaySound(SoundHandler.wrong_sound_id4);
                         Score.setRiddleScore(correctLetters*2) ;
                         Intent itn= new Intent(getApplicationContext(), Score.class);
+                        itn.putExtra("nextStage", 11);
                         startActivity(itn);
                         QrCodeScanner.questionMode=true;
                         finish();
@@ -205,8 +206,9 @@ public class Hangman extends Activity {
         {
             //Win - Save and Show Score
             SoundHandler.PlaySound(SoundHandler.correct_sound_id);
-            Score.setRiddleScore(70-mistakes*2) ;
+            Score.setRiddleScore(70 - mistakes * 2) ;
             Intent itn= new Intent(getApplicationContext(), Score.class);
+            itn.putExtra("nextStage", 11);
             startActivity(itn);
 
             QrCodeScanner.questionMode=true;

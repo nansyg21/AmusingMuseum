@@ -272,6 +272,7 @@ public class MatchingStamps extends Activity {
                         else
                             Score.setRiddleScore(0) ;
                         Intent itn= new Intent(getApplicationContext(), Score.class);
+                        itn.putExtra("nextStage", 5);
                         startActivity(itn);
 
                         QrCodeScanner.questionMode=true;

@@ -25,7 +25,7 @@ public class StartGame extends Activity {
 
     StartGameOurview v;
     int height,width,newInt;
-    public static int startingStage=1;
+    private/* static */int startingStage;
     String nextApp;
     String [] rooms;
 
@@ -37,6 +37,14 @@ public class StartGame extends Activity {
         super.onCreate(savedInstanceState);
         //Hide everything...:)
         menu.hideNavBar(this.getWindow());
+
+
+        //Handle incoming variables
+        // Handle the incoming variables
+        Bundle extras = getIntent().getExtras();
+        if(extras !=null) {
+            startingStage = extras.getInt("nextStage");
+        }
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -199,6 +207,7 @@ public class StartGame extends Activity {
                     Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
                     itns.putExtra(nextApp, newInt);
                     startActivity(itns);
+                    finish();
                 }
             }
 

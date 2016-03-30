@@ -86,6 +86,8 @@ public class connect_wires extends Activity {
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
         itn.putExtra("appNum", 10);
         startActivity(itn);
+
+        QrCodeScanner.questionMode=true;
     }
 
     // Reset the flags to hide the navigation bar
@@ -363,6 +365,12 @@ public class connect_wires extends Activity {
 
             handler.postDelayed(new Runnable() {
                 public void run() {
+
+                    /*DEMO CODE TODO*/
+                    Score.currentRiddleScore= 50 ;
+                    Intent itn= new Intent(getApplicationContext(), Score.class);
+                    itn.putExtra("nextStage", 10);
+                    startActivity(itn);
                     finish();
                 }
             }, 1000);

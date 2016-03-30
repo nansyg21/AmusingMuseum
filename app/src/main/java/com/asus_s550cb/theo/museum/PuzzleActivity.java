@@ -146,9 +146,9 @@ public class PuzzleActivity extends Activity   {
                     new Rect(startingX + imgWidth - extraSpace, startingY, startingX + imgWidth + imgWidth, startingY + imgHeight),
                     1));
 
-            PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p3),
+            PuzzlePieces.add(new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p3),
                     getRandomRect(),
-                    new Rect(startingX+2*imgWidth-extraSpace, startingY, startingX+2*imgWidth + imgWidth, startingY + imgHeight+extraSpace),
+                    new Rect(startingX + 2 * imgWidth - extraSpace, startingY, startingX + 2 * imgWidth + imgWidth, startingY + imgHeight + extraSpace),
                     2));
 
             PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p4),
@@ -161,9 +161,9 @@ public class PuzzleActivity extends Activity   {
                     new Rect(startingX, startingY+imgHeight, startingX+imgWidth, startingY + imgHeight+imgHeight+extraSpace),
                     4));
 
-            PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p6),
+            PuzzlePieces.add(new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p6),
                     getRandomRect(),
-                    new Rect(startingX+imgWidth-extraSpace, startingY+imgHeight-extraSpace, startingX+imgWidth+ imgWidth+extraSpace, startingY +imgHeight+ imgHeight),
+                    new Rect(startingX + imgWidth - extraSpace, startingY + imgHeight - extraSpace, startingX + imgWidth + imgWidth + extraSpace, startingY + imgHeight + imgHeight),
                     5));
 
             PuzzlePieces.add( new PuzzlePiece(BitmapFactory.decodeResource(getResources(), R.drawable.p7),
@@ -232,10 +232,12 @@ public class PuzzleActivity extends Activity   {
             //Save and Show Score
             Score.setRiddleScore(70) ;//full score
             Intent itn= new Intent(getApplicationContext(), Score.class);
+            itn.putExtra("nextStage", 2);
             startActivity(itn);
 
             QrCodeScanner.questionMode=true;
             finish();
+
 
         }
 
@@ -343,10 +345,16 @@ public class PuzzleActivity extends Activity   {
                             //Save and Show Score
                             Score.setRiddleScore(70) ;//full score
                             Intent itn= new Intent(getApplicationContext(), Score.class);
+                            itn.putExtra("nextStage", 2);
                             startActivity(itn);
 
                             QrCodeScanner.questionMode=true;
+
+
+
                             finish();
+
+
                         }
 
                     }

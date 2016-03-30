@@ -262,6 +262,7 @@ public class ChurchMap extends Activity {
             Score.setRiddleScore((int) Math.ceil( correctPoints.size()*4.1)) ;
 
             Intent itn= new Intent(getApplicationContext(), Score.class);
+            itn.putExtra("nextStage", 7);
             startActivity(itn);
 
             QrCodeScanner.questionMode=true;

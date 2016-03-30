@@ -270,6 +270,7 @@ public class MemoryGame extends Activity {
 
             Score.currentRiddleScore = (int) Math.max(20,Math.ceil(70 - (userClicks -perferctValue)*(70/perferctValue)));//score starts from 20
             Intent itn = new Intent(getApplicationContext(), Score.class);
+            itn.putExtra("nextStage", 9);
             startActivity(itn);
 
             QrCodeScanner.questionMode = true;

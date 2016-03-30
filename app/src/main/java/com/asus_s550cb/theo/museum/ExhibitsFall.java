@@ -149,7 +149,7 @@ public class ExhibitsFall extends Activity {
             wrongObjectsCaught=0;
             correctObjectsCaught=0;
             currentRound=0;
-            totalRounds =5;
+            totalRounds =1;
             playingGame=false;
 
             // imgWidth = screenWidth / (N+1); //split by 5:  4 for each image 1 for free space
@@ -293,6 +293,7 @@ public class ExhibitsFall extends Activity {
            // Log.w("Warn", "FINAL SCORE: " + (Math.max(20, (int) Math.ceil(70 - (totalRounds - correctObjectsCaught) * (70 / totalRounds)) - 5 * wrongObjectsCaught)));
             Score.currentRiddleScore =Math.max(20, (int) Math.ceil(70- (totalRounds-correctObjectsCaught)*(70/totalRounds))-5*wrongObjectsCaught);//score starts from 20
             Intent itn = new Intent(getApplicationContext(), Score.class);
+            itn.putExtra("nextStage", 3);
             startActivity(itn);
 
             QrCodeScanner.questionMode = true;

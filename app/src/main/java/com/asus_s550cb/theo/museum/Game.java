@@ -85,6 +85,9 @@ public class Game extends AppCompatActivity {
         switch (v.getId()){
             case R.id.btnNext:
                 startActivity(new Intent(getApplicationContext(),LoadingScreen.class));
+                //Finish this screen when entering the game
+                finish();
+                break;
         }
     }
     //Remember to hide everything when Activity Resumes...

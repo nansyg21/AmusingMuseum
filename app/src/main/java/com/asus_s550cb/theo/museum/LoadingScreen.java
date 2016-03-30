@@ -60,7 +60,9 @@ public class LoadingScreen extends Activity {
     }
     //Just start the next activity and finish this one
     public void startActivityAfterLoading (){
-        startActivity(new Intent(getApplicationContext(),StartGame.class));
+        Intent itn= new Intent(getApplicationContext(),StartGame.class);
+        itn.putExtra("nextStage", 1);
+        startActivity(itn);
         this.finish();
     }
 

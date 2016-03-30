@@ -58,7 +58,10 @@ public class PauseMenuActivity extends Activity {
 
             case R.id.btnExit:
                 finish();
-                System.exit(0);
+                Intent itn= new Intent(getApplicationContext(), menu.class); //go to menu screen with proper flag set
+                itn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                itn.putExtra("leaving", true);
+                startActivity(itn);
                 break;
             case R.id.btnContinue:
                 finish();

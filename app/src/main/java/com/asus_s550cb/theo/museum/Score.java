@@ -31,6 +31,10 @@ import android.widget.TextView;
  *  SequentialCoins:There are 7 rounds. User starts from 70 points and loses 10 points for every mistake.
 
  */
+/*
+* Created by Theo on 30/3/2016
+* Class Score is responsesible to startActivity Startgame with the correct stage
+* */
 public class Score extends Activity {
 
     public static int TotalScore=0,currentQuizScore,currentRiddleScore;
@@ -42,13 +46,21 @@ public class Score extends Activity {
     int starsToShow,currentStarsShown;   //calculated according to score
     MediaPlayer score_sound;
     ImageView imgv;
-
+    //Assigned by incoming variables
+    private int nextStage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
         setContentView(R.layout.activity_score);
+
+        // Handle the incoming variables
+        //to know what stage is the next to show up
+        Bundle extras = getIntent().getExtras();
+        if(extras !=null) {
+            nextStage = extras.getInt("nextStage");
+        }
 
         // ------------------ Code in order to hide the navigation bar -------------------- //
         menu.hideNavBar(this.getWindow());
@@ -113,6 +125,10 @@ public class Score extends Activity {
 
             public void onFinish()
             {
+                /*TODO*/
+                Intent itn= new Intent(getApplicationContext(),StartGame.class);
+                itn.putExtra("nextStage", nextStage);
+                startActivity(itn);
                 finish();
             }
         }.start();

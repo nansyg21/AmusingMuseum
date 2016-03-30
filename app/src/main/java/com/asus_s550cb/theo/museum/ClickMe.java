@@ -248,6 +248,7 @@ public class ClickMe extends Activity {
 
             Score.currentRiddleScore= (int) Math.ceil( corrects*2.8) ;
             Intent itn= new Intent(getApplicationContext(), Score.class);
+            itn.putExtra("nextStage", 4);
             startActivity(itn);
 
 
