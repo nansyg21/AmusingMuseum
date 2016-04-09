@@ -110,7 +110,6 @@ public class ExhibitsFall extends Activity {
 
         int chosenObjectIndex;//the object the user must catch
         String chosenObjectName;
-        Button invBtn;          //invisible button: triggered on exit to finish mini game
 
         public ExhibitsFallScreen(Context context) {
             super(context);
@@ -149,19 +148,10 @@ public class ExhibitsFall extends Activity {
             wrongObjectsCaught=0;
             correctObjectsCaught=0;
             currentRound=0;
-            totalRounds =1;
+            totalRounds =5;
             playingGame=false;
 
             // imgWidth = screenWidth / (N+1); //split by 5:  4 for each image 1 for free space
-
-            invBtn = new Button(getContext());
-            invBtn.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.w("Warn", "Clicked button");
-                    LeaveExhibitsFall();
-                }
-            });
 
             AddAllExhibits();
 

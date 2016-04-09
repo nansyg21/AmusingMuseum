@@ -27,7 +27,6 @@ import java.util.Random;
 public class PuzzleActivity extends Activity   {
 
     PauseMenuButton pauseBt;
-    PauseMenuButton skipBt; //temporary   //TODO: Delete this button when no necessary
 
 
     int screenWidth;
@@ -43,8 +42,6 @@ public class PuzzleActivity extends Activity   {
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenWidth = displaymetrics.widthPixels;
         pauseBt=new PauseMenuButton(screenWidth,this);
-        skipBt=new PauseMenuButton(screenWidth/2,this);
-
 
         // ------------------ Code in order to hide the navigation bar -------------------- //
         menu.hideNavBar(this.getWindow());
@@ -290,7 +287,6 @@ public class PuzzleActivity extends Activity   {
             canvas.drawPaint(paint);
 
             pauseBt.getPauseMenuButton().draw(canvas);
-            skipBt.getPauseMenuButton().draw(canvas);
 
             // Draw frame
             canvas.drawBitmap(frame, null, frameRect, null);
@@ -330,31 +326,6 @@ public class PuzzleActivity extends Activity   {
                             Intent itn;
                             itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
                             startActivity(itn);
-                        }
-
-                    }
-
-                    if(skipBt.getRect().contains((int)touchX,(int)touchY))
-                    {
-                        if(ev.getAction()==MotionEvent.ACTION_DOWN) {
-                            //all pieces are correctly placed
-                            frame = BitmapFactory.decodeResource(getResources(), R.drawable.frame2);
-                            puzzle_completed_sound.start();
-
-
-                            //Save and Show Score
-                            Score.setRiddleScore(70) ;//full score
-                            Intent itn= new Intent(getApplicationContext(), Score.class);
-                            itn.putExtra("nextStage", 2);
-                            startActivity(itn);
-
-                            QrCodeScanner.questionMode=true;
-
-
-
-                            finish();
-
-
                         }
 
                     }
