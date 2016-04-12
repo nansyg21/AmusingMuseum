@@ -86,9 +86,13 @@ public class SequentialCoins extends Activity {
 
         //timers
         long elapsedEffectTimer, effectTimer, effectTimerLimit=250; //for pressed coin effect
-        long delayTimer, elapsedDelayTimer, delayBetween=2000;      //for switching lightening coins
+        long delayTimer, elapsedDelayTimer, lightEffectOnCoinDuration =1100;      //for switching lightening coins
         long delayBetweenRounds=2000;
         private int mActivePointerId = -1;      //-1 instead of INVALID_POINTER_ID
+
+        //delay between tho coins enlightening
+        Boolean delayBetweenTwoCoinsState=false;
+        long   delayBetweenTwoCoinsTimer, elapsedDelayBetweenTwoCoinsTimer,delayBetweenTwoCoins=100;
 
         public SequentialCoinsScreen(Context context) {
             super(context);
@@ -208,7 +212,6 @@ public class SequentialCoins extends Activity {
 
         public void LeaveSequentialCoins()
         {
-            //Save and Show Score
             Score.currentRiddleScore= (int) Math.ceil( 70- mistakes*10) ;
             Intent itn= new Intent(getApplicationContext(), Score.class);
             itn.putExtra("nextStage", 6);
@@ -220,10 +223,21 @@ public class SequentialCoins extends Activity {
 
         @Override
         public void run() {   // Update state of what we draw
-            if(illuminateState)
+            if(delayBetweenTwoCoinsState)//wait some time before the light goes to the next coin
+            {
+                elapsedDelayBetweenTwoCoinsTimer = System.currentTimeMillis() - delayBetweenTwoCoinsTimer;
+                if(elapsedDelayBetweenTwoCoinsTimer > delayBetweenTwoCoins)
+                {
+                    SoundHandler.PlaySound(SoundHandler.beep_sound_id3);
+                    delayBetweenTwoCoinsState=false;
+                    illuminateState=true;
+                    delayTimer= System.currentTimeMillis();
+                }
+            }
+            else if(illuminateState)
             {
                 elapsedDelayTimer = System.currentTimeMillis() - delayTimer;
-                if(elapsedDelayTimer>delayBetween)          //update coin and restart clock
+                if(elapsedDelayTimer> lightEffectOnCoinDuration)          //update coin and restart clock
                 {
                     currentIlluminateRound++;
                     if(currentIlluminateRound >=stateRounds)       //switch states if done
@@ -231,10 +245,14 @@ public class SequentialCoins extends Activity {
                         playState=true;
                         illuminateState=false;
                         currentPlayRound=0;     //user must start by selecting this index from correctCoins array
+                        delayTimer= System.currentTimeMillis();
                     }
-                    else
-                        SoundHandler.PlaySound(SoundHandler.beep_sound_id3);
-                    delayTimer= System.currentTimeMillis();
+                    else {
+                        delayBetweenTwoCoinsState=true;
+                        illuminateState=false;
+                        delayBetweenTwoCoinsTimer= System.currentTimeMillis();
+                    }
+
                 }
             }
 
@@ -262,7 +280,7 @@ public class SequentialCoins extends Activity {
                 canvas.drawBitmap(coinImagesList.get(selectedCoin), null, coinRectsList.get(selectedCoin), overlayPaint);
 
             //draw light if necessary
-            if(illuminateState) {
+            if(illuminateState && !delayBetweenTwoCoinsState) {
                 canvas.drawBitmap(lightImg, null, coinRectsList.get(correctCoins[currentIlluminateRound]), null);
             }
 

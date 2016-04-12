@@ -29,6 +29,7 @@ import android.widget.TextView;
  *  Memory game:    Best case: 16 clicks, for each extra click, subtract score by 70/16. If score is <20, user gets 20
  *  ExhibitsFall:   Score starts from 70 and is reduced by ~70/5=14 for each lost object and ~by 5 for each wrong caught object. If score is <20, user gets 20
  *  SequentialCoins:There are 7 rounds. User starts from 70 points and loses 10 points for every mistake.
+ *  connect_wires   <45 clicks = 70 points (excellent)  <55 clicks =50 points (good)     >=55 clicks = 30 points (bad)
 
  */
 /*

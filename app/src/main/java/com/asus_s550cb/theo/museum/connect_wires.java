@@ -275,7 +275,7 @@ public class connect_wires extends Activity {
         }
     }
 
-    //For ancles 25% possibility to rotate 90,180 or 270 degrees
+    //For angles 25% possibility to rotate 90,180 or 270 degrees
     public void ancleRotation(ImageView imgview, int i, int j)
     {
         Random r=new Random(System.currentTimeMillis());
@@ -325,7 +325,7 @@ public class connect_wires extends Activity {
 
     // Check solution
     // Lines are correct if they have 0 or 180 degrees rotation
-    // Ancles are only correct with 0 rotation
+    // Angles are only correct with 0 rotation
     // Cross is always correct
     public boolean checkSolution()
     {
@@ -359,15 +359,19 @@ public class connect_wires extends Activity {
         // Else take us to the next level
         if(currentLevel==4)
         {
-            assignImage(currentLevel+1);
+            assignImage(currentLevel + 1);
 
             Handler handler = new Handler();
 
             handler.postDelayed(new Runnable() {
                 public void run() {
 
-                    /*DEMO CODE TODO*/
-                    Score.currentRiddleScore= 50 ;
+                    if(numOfClicks<45)
+                        Score.currentRiddleScore= 70 ;
+                    else  if(numOfClicks<55)
+                        Score.currentRiddleScore= 50 ;
+                    else
+                        Score.currentRiddleScore= 30 ;
                     Intent itn= new Intent(getApplicationContext(), Score.class);
                     itn.putExtra("nextStage", 10);
                     startActivity(itn);
