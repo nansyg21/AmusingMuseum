@@ -114,8 +114,38 @@ public class SequentialCoins extends Activity {
             //coins images
             imgWidth = ScreenWidth / 6;
             imgHeight = imgWidth;
-            widthGap=10;
-            heightGap=30;
+            //Set the spaces between the coins
+            //based on the screen dpi
+            switch (displaymetrics.densityDpi)
+            {
+                case DisplayMetrics.DENSITY_MEDIUM:
+                    widthGap=8;
+                    heightGap=24;
+                    break;
+                case DisplayMetrics.DENSITY_HIGH:
+                    widthGap=10;
+                    heightGap=30;
+                    break;
+                case DisplayMetrics.DENSITY_XHIGH:
+                    widthGap=15;
+                    heightGap=45;
+                    break;
+                case DisplayMetrics.DENSITY_XXHIGH:
+                    widthGap=20;
+                    heightGap=60;
+                    break;
+                case DisplayMetrics.DENSITY_XXXHIGH:
+                    //LG G3, Samsung S6...
+                    //Toast.makeText(this.getContext(),"XXX_HIGH",Toast.LENGTH_LONG).show();
+                    widthGap=25;
+                    heightGap=75;;
+                    break;
+
+                default:
+                    widthGap=10;
+                    heightGap=30;
+                    break;
+            }
 
             InitializeImages();
             InitializeRects();
@@ -159,8 +189,8 @@ public class SequentialCoins extends Activity {
 
         public void  InitializeRects(){
             int startingX, startingY; //coordinates of the upper-left coin
-            startingX=ScreenWidth/10;
-            startingY=ScreenHeight/4;
+            startingX=ScreenWidth/12;
+            startingY=ScreenHeight/5;
             //first row of coins
             coinRectsList.add(new Rect(startingX,startingY,startingX+imgWidth,startingY+imgHeight));
             coinRectsList.add(new Rect(getLastRect().right+widthGap,getLastRect().top,getLastRect().right+widthGap+imgWidth,getLastRect().bottom));

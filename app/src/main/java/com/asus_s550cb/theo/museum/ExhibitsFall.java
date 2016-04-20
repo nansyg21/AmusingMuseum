@@ -137,7 +137,28 @@ public class ExhibitsFall extends Activity {
             baseImgWidth=screenWidth/5;
             baseImgHeight=screenHeight/5;
             xSpeed = 0;
-            ySpeed = 5;
+            //Check device density to adjust the falling speed
+            switch (displaymetrics.densityDpi)
+            {
+                case DisplayMetrics.DENSITY_MEDIUM:
+                    ySpeed=4;
+                    break;
+                case DisplayMetrics.DENSITY_HIGH:
+                    ySpeed=6;
+                    break;
+                case DisplayMetrics.DENSITY_XHIGH:
+                    ySpeed=8;
+                    break;
+                case DisplayMetrics.DENSITY_XXHIGH:
+                    ySpeed=10;
+                    break;
+                case DisplayMetrics.DENSITY_XXXHIGH:
+                    //LG G3, Samsung S6...
+                    //Toast.makeText(this.getContext(),"XXX_HIGH",Toast.LENGTH_LONG).show();
+                    ySpeed=12;
+                    break;
+                default: ySpeed=5;
+            }
 
             baseImg =BitmapFactory.decodeResource(getResources(), R.drawable.ed_base);
             baseRect= new Rect(10, screenHeight-baseImgHeight, 10+ baseImgWidth, screenHeight );

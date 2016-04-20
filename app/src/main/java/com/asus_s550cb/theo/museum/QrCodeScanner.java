@@ -130,7 +130,7 @@ public class QrCodeScanner extends Activity {
                 else {
                     switch (appToStart) {
                         case 1:
-                            //itn = new Intent(getApplicationContext(), connect_wires.class);
+                            //itn = new Intent(getApplicationContext(), SequentialCoins.class);
                             itn = new Intent(getApplicationContext(), PuzzleActivity.class);
                             startActivityForResult(itn, 1);
                             break;
