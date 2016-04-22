@@ -278,7 +278,6 @@ public class ExhibitsFall extends Activity {
                     }
                     else
                         LeaveExhibitsFall();
-
                 }
             });
             dialog.show();
@@ -363,8 +362,6 @@ public class ExhibitsFall extends Activity {
                     }
                 }
             }
-
-
 
             // onDraw(Canvas) will be called
             invalidate();
