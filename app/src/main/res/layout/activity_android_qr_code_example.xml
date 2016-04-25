@@ -11,16 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Fast Forward"
-            android:id="@+id/button"
-            android:layout_weight="5"
-            android:background="@drawable/button_design"
-            android:textColor="#ff0101"
-            android:onClick="FastForwardActiviy" />
-
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
