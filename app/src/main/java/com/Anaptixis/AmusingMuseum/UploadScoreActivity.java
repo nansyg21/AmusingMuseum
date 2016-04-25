@@ -383,7 +383,7 @@ public class UploadScoreActivity extends Activity {
         //Download with download manager
         DownloadManager downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
         //parse the uri
-        Uri Download_Uri = Uri.parse("https://docs.google.com/document/d/11N86TsRsDeENpR0WbhWq8ePrm3FrskaxVgEX8Avwdrc/export?format=pdf");
+        Uri Download_Uri = Uri.parse("https://docs.google.com/document/d/1Q-ksv5YH0omtMbbcqmN2K5R8mvTQzveIIq-i4LR2lIU/export?format=pdf");
         //Create a download request
         DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
         //Set Notification description , store location and filename
