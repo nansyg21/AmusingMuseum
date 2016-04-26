@@ -381,8 +381,7 @@
             Complete your museum tour with the greatest score.\n\n
             1. Follow the clues on the screen \n
             2. Use the QR code scanner to locate the correct exhibit\n
-            3. Fulfill successfully all the questions and the riddles, to increase your score.\n
-            Visit this page: http://83.212.117.226/ and create your own museum.
+            3. Fulfill successfully all the questions and the riddles, to increase your score.
         </item>
         <item>
             QUIZ GAME\n
@@ -550,6 +549,7 @@
     </string-array>
 
     <!-- TRANSLATION NEEDED! -->
+    <string name="title_Exhibit_information">Exhibit information</string>
     <string-array name="exhibits_information">
         <item>Part of a mural mosaic with fountain which until recently was covered by the most recent western wall of the central aisle of the basilica. In detached mosaic, the lower portion luxurious jets is illustrated, shown in blue color, by which overflows water falling on leaf stalks and  a bird. The show is developed into a gold background.</item>
         <item>Reliquary. Rectangular casket with flat cover, fastened with hooks. Its four sides adorn reliefs with scenes from the Old and New Testaments. On the front side, it represents the Tradition of the Law by Christ to the apostles Peter and Paul. On the reverse side there are depicted the Three Children in the furnace. On narrow sides there are depicted Daniel in the lion\'s den and the delivery of the Ten Commandments to Moses.</item>

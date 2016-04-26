@@ -82,6 +82,7 @@ public class menu extends Activity {
                 startActivity(new Intent(getApplicationContext(), Game.class));
                 break;
             case R.id.btnMenuHelp:
+                //TODO: MEMORY GAME HAS STILL A BUG..
                 startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
               //  startActivity(new Intent(getApplicationContext(),UploadScoreActivity.class));
                //  Intent itn = new Intent(getApplicationContext(), SequentialCoins.class);
@@ -91,8 +92,9 @@ public class menu extends Activity {
                 // Intent itn = new Intent(getApplicationContext(), MatchingStamps.class);
                // Intent itn = new Intent(getApplicationContext(), PuzzleActivity.class);
                 // Intent itn = new Intent(getApplicationContext(), RightOrder.class);
-               // Intent itn = new Intent(getApplicationContext(), MemoryGame.class);
+              //  Intent itn = new Intent(getApplicationContext(), MemoryGame.class);
                //  Intent itn = new Intent(getApplicationContext(), ExhibitsFall.class);
+              //  Intent itn = new Intent(getApplicationContext(), connect_wires.class);
               //  startActivityForResult(itn, 1);
                 break;
             case R.id.btnMenuAbout:

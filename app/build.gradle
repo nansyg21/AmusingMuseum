@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'ContactManager'
+            keyPassword 'anaptiXisthe$$aloniki2015'
+            storeFile file('C:/Users/panos/Desktop/AndroidApkKey/contactmanager_keystore.jks')
+            storePassword 'anaptiXisthe$$aloniki2015store'
+        }
+    }
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
     defaultConfig {

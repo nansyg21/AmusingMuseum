@@ -104,8 +104,10 @@ public class ExhibitsFall extends Activity {
         long delayTimer, elapsedDelayTimer;
 
         ArrayList<FallingExhibit> allExhibitsList = new ArrayList<FallingExhibit>();    //all FallingExhibit objects
-        ArrayList<FallingExhibit> activeExhibits = new ArrayList<FallingExhibit>();     //the enabled ones
+        ArrayList<FallingExhibit> activeExhibits = new ArrayList<FallingExhibit>();     //the enabled ones at each round
         ArrayList<Rect> activeExhibitsRects = new ArrayList<Rect>();     //and their rects
+
+        ArrayList<FallingExhibit> chosenExhibits = new ArrayList<FallingExhibit>();     //the chosen ones: 1 per round
 
         int chosenObjectIndex;//the object the user must catch
         String chosenObjectName;
@@ -181,7 +183,7 @@ public class ExhibitsFall extends Activity {
         {
             infoState=false;
             RestoreExhibits();
-            AddAChosenExhibit();
+            AddAUniqueChosenExhibit();
             InformAboutCorrectObject();
             AddRandomlyFallingExhibits();
             delayTimer=System.currentTimeMillis();
@@ -212,11 +214,15 @@ public class ExhibitsFall extends Activity {
                 allExhibitsList.get(i).restoreState();
         }
 
-        public void AddAChosenExhibit()
+        public void AddAUniqueChosenExhibit()     //chosen exhibit is unique in each round
         {
-            chosenObjectIndex= rand.nextInt(allExhibitsList.size() - 1);
-            chosenObjectName= allExhibitsList.get(chosenObjectIndex).name;
-            //Log.w("Warn", "Chosen is: " + chosenObjectIndex);
+            do {
+                chosenObjectIndex = rand.nextInt(allExhibitsList.size() - 1);
+                chosenObjectName = allExhibitsList.get(chosenObjectIndex).name;
+                Log.w("Warn", "Chosen is: " + chosenObjectIndex);
+
+            }while( chosenExhibits.contains(allExhibitsList.get(chosenObjectIndex)));
+            chosenExhibits.add(allExhibitsList.get(chosenObjectIndex));
         }
 
         public void InformAboutCorrectObject()     //Show a pop up toast informing the player about the correct object
