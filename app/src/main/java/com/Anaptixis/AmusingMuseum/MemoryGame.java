@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -95,10 +96,8 @@ public class MemoryGame extends Activity {
         long noSelectTimer, elapsedNoSelectTime, limitNoSelectTime; //timer to freeze game between 2 selections
         long showAllImagesTimer, elapsedShowAllImagesTime, limitShowAllImagesTime; //timer for showing images on start
 
-        ArrayList<Bitmap> ImagesList = new ArrayList<Bitmap>();
-        ArrayList<Rect> RectList  = new ArrayList<Rect>();
-        Boolean[] TurnedList  = new Boolean[M*N];//binary values for completed pairs
-        int[] KeysArray  = new int[M*N];//keys used for pairs validation
+        ArrayList<MemoryGameCard> cardList = new ArrayList<MemoryGameCard>();
+        ArrayList<Rect> rectList = new ArrayList<Rect>();
 
         Boolean canSelectState, showCardsState;
 
@@ -128,10 +127,8 @@ public class MemoryGame extends Activity {
             GapY = ((screenHeight / (M+1))/3)/(M-1);
            // Log.w("Warn","screenWidth:"+screenWidth+" screenHeight:"+screenHeight+ "  imgWidth:"+imgWidth +" imgHeight:"+imgHeight+"  stX:"+startingY+" stY:"+startingY+" gapX"+GapX+" gapY:"+GapY);
 
-            LoadImages();
-            LoadRects();
-            SetPairsDeselected();
-            RandomizePairs();
+            loadCards();
+            setPairsDeselected();
 
             limitNoSelectTime = 1000; //1 second
             limitShowAllImagesTime=5000;
@@ -151,106 +148,75 @@ public class MemoryGame extends Activity {
             canSelectState=false;
         }
 
-        public void LoadImages(){
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg1) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg2) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg3) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg4) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg5) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg6) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg7) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg8) );
+        public void loadCards(){    //1)create cards   2)create rects   3)shuffle rects   4)assign rects to cards
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg1),null,1));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg2),null,2));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg3),null,3));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg4),null,4));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg5),null,5));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg6),null,6));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg7),null,7));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg8),null,8));
 
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg1) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg2) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg3) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg4) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg5) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg6) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg7) );
-            ImagesList.add(BitmapFactory.decodeResource(getResources(), R.drawable.mg8));
-            //Log.w("Warn", "First Match:");
-            for(int i=0;i<(M*N)/2;i++)    //0-8, 1-9, 2-10, ... ,7-15
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg1),null,1));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg2),null,2));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg3),null,3));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg4),null,4));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg5),null,5));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg6),null,6));
+            cardList.add(new MemoryGameCard( BitmapFactory.decodeResource(getResources(), R.drawable.mg7),null,7));
+            cardList.add(new MemoryGameCard(BitmapFactory.decodeResource(getResources(), R.drawable.mg8), null, 8));
+
+
+
+            rectList.add(new Rect(startingX, startingY, startingX + imgWidth, startingY + imgHeight)); //1
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//2
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//3
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//4
+
+            rectList.add(new Rect(rectList.get(0).left, rectList.get(0).bottom+GapY, rectList.get(0).right, rectList.get(0).bottom+GapY +imgHeight));//5
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//6
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//7
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//8
+
+            rectList.add(new Rect(rectList.get(4).left, rectList.get(4).bottom+GapY, rectList.get(4).right, rectList.get(4).bottom+GapY +imgHeight));//9
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//10
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//11
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//12
+
+            rectList.add(new Rect(rectList.get(8).left, rectList.get(8).bottom+GapY, rectList.get(8).right, rectList.get(8).bottom+GapY +imgHeight));//13
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//14
+            rectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//15
+            rectList.add(new Rect(getLastRect().right + GapX, getLastRect().top, getLastRect().right + GapX + imgWidth, getLastRect().bottom));//16
+
+            Collections.shuffle(rectList);
+
+
+
+            //Matches: 0-8, 1-9, 2-10, ... ,7-15 so we shuffle
+
+            Random r = new Random();
+            for(int i =0;i<cardList.size();i++)
             {
-                KeysArray[i] = i + (M * N) / 2;
-                KeysArray[i + (M * N) / 2] = i;
-               // Log.w("Warn","["+i+"]: " +(i + (M * N) / 2));
-               // Log.w("Warn","["+(i + (M * N) / 2)+"]: " +i);
-            }
-        }
-
-        public void LoadRects() { //All rectangles gain proper values according to screen resolution
-            RectList.add(new Rect(startingX, startingY, startingX + imgWidth, startingY + imgHeight)); //1
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//2
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//3
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//4
-
-            RectList.add(new Rect(RectList.get(0).left, RectList.get(0).bottom+GapY, RectList.get(0).right, RectList.get(0).bottom+GapY +imgHeight));//5
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//6
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//7
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//8
-
-            RectList.add(new Rect(RectList.get(4).left, RectList.get(4).bottom+GapY, RectList.get(4).right, RectList.get(4).bottom+GapY +imgHeight));//9
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//10
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//11
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//12
-
-            RectList.add(new Rect(RectList.get(8).left, RectList.get(8).bottom+GapY, RectList.get(8).right, RectList.get(8).bottom+GapY +imgHeight));//13
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//14
-            RectList.add(new Rect(getLastRect().right+ GapX, getLastRect().top, getLastRect().right+ GapX+imgWidth, getLastRect().bottom));//15
-            RectList.add(new Rect(getLastRect().right + GapX, getLastRect().top, getLastRect().right + GapX + imgWidth, getLastRect().bottom));//16
-        }
-
-        public void SetPairsDeselected() { //Set all 'cards' to deselected
-            for(int i=0;i<M*N;i++)
-                TurnedList[i]=false;
-        }
-
-        public void RandomizePairs() {
-        //Shuffle images, rects, keys etc
-            //as implemented in LoadImages method pairs are: 0-8, 1-9, 2-10, ... ,7-15
-            Random random = new Random();
-            for (int i = 0; i < (M*N)/2; i++)
-            {
-                int j = random.nextInt(15); //swap i with j
-
-                Bitmap b= ImagesList.get(i); //image
-                ImagesList.set(i, ImagesList.get(j));
-                ImagesList.set(j,b);
-
-               // Rect r= RectList.get(i); //rect
-               // RectList.set(i, RectList.get(j));
-             //   RectList.set(j,r);
-                int temp=KeysArray[i], temp2=KeysArray[j]; // i=0, j=1   temp=8, temp2=9
-                KeysArray[i]=temp2;  //Match [i] with previous [j]
-                KeysArray[j]=temp; //and   [j] with previous [i]
-                KeysArray[temp]=j;  //when i points to j, then j MUST point back to i
-                KeysArray[temp2]=i;
-               // Log.w("Warn", "Swapped "+i+" with "+j );
+               cardList.get(i).rect=rectList.get(i);
             }
 
-            for(int i=0;i<(M*N);i++)            //verification stage: check pairs, if something is wrong re-shuffle
-            {
-                int j=KeysArray[i];
-               // Log.w("Warn","i="+i+", Keys["+i+"]=" +j+ "     j="+j+ ", Keys["+j+"]="+KeysArray[j]);
-                if(KeysArray[j]!=i || KeysArray[i]!=j) {
-                    //Log.w("Warn", "WRONGGG--");
-                    ImagesList.clear();
-                    LoadImages();
-                    RandomizePairs();
-                }
-            }
         }
 
-        public Rect getLastRect() {
-         //returns the last inserted Rect from RectList
-            return RectList.get(RectList.size()-1);
+
+        public void setPairsDeselected() { //Set all 'cards' to deselected
+            for(int i=0;i<cardList.size();i++)
+                cardList.get(i).turned=false;
         }
 
-        public int FindSelectedRect() {//Find where the user touched using the touch coordinates
+        public Rect getLastRect() {//returns the last inserted Rect
+            return rectList.get(rectList.size()-1);
+        }
+
+        public int findSelectedRect() {//Find where the user touched using the touch coordinates
             int k=0;
-            for(Rect r : RectList) {
-                if (r.contains(PlayerTouchX, PlayerTouchY)) {
+            for(MemoryGameCard mgc : cardList) {
+                if (mgc.rect.contains(PlayerTouchX, PlayerTouchY)) {
                     userClicks++;
                     //Log.w("Warn","Selections: "+ userClicks);
                     return k;
@@ -291,7 +257,6 @@ public class MemoryGame extends Activity {
                     currentSelectedRectIndex1=-1;
                     currentSelectedRectIndex2=-1;
                 }
-
             // onDraw(Canvas) will be called
             invalidate();
         }
@@ -306,22 +271,22 @@ public class MemoryGame extends Activity {
             pauseBt.getPauseMenuButton().draw(canvas);
 
             if(showCardsState)  //showing cards on game start for a few seconds
-                for (int i = 0; i < M * N; i++)
-                    canvas.drawBitmap(ImagesList.get(i), null, RectList.get(i), null);
+                for (int i = 0; i < cardList.size(); i++)
+                    canvas.drawBitmap( cardList.get(i).img, null, cardList.get(i).rect, null);
             else
             {
-                for (int i = 0; i < M * N; i++)//draw back side or normal side in all images
+                for (int i = 0; i < cardList.size(); i++)//draw back side or normal side in all images
                 {
-                    if (TurnedList[i])
-                        canvas.drawBitmap(ImagesList.get(i), null, RectList.get(i), null);
+                    if ( cardList.get(i).turned)
+                        canvas.drawBitmap( cardList.get(i).img, null, cardList.get(i).rect, null);
                     else
-                        canvas.drawBitmap(backSideImg, null, RectList.get(i), null);
+                        canvas.drawBitmap(backSideImg, null, cardList.get(i).rect, null);
                 }
 
                 if (currentSelectedRectIndex1 != -1)
-                    canvas.drawBitmap(ImagesList.get(currentSelectedRectIndex1), null, RectList.get(currentSelectedRectIndex1), null);// draw current selected images
+                    canvas.drawBitmap( cardList.get(currentSelectedRectIndex1).img, null, cardList.get(currentSelectedRectIndex1).rect, null);// draw current selected images
                 if (currentSelectedRectIndex2 != -1)
-                    canvas.drawBitmap(ImagesList.get(currentSelectedRectIndex2), null, RectList.get(currentSelectedRectIndex2), null);
+                    canvas.drawBitmap( cardList.get(currentSelectedRectIndex2).img, null, cardList.get(currentSelectedRectIndex2).rect, null);
             }
             // Invalidate view at about 60fps
             postDelayed(this, 16);
@@ -352,23 +317,25 @@ public class MemoryGame extends Activity {
 
                 if(!showCardsState)
                 {
-                    if (currentSelectedRectIndex1 == -1 && currentSelectedRectIndex2 == -1 && (currentSelectedRectIndex1 = FindSelectedRect()) != -1)  //nothing is selected: read first
+                    if (currentSelectedRectIndex1 == -1 && currentSelectedRectIndex2 == -1 && (currentSelectedRectIndex1 = findSelectedRect()) != -1)  //nothing is selected: read first
                     {
                         Log.w("Warn", "Selected 111: " + currentSelectedRectIndex1 + " 2 is: " + currentSelectedRectIndex2);
-                    } else if (currentSelectedRectIndex1 != -1 && currentSelectedRectIndex2 == -1 && (currentSelectedRectIndex2 = FindSelectedRect()) != -1)//selected 1: read second
+                    } else if (currentSelectedRectIndex1 != -1 && currentSelectedRectIndex2 == -1 && (currentSelectedRectIndex2 = findSelectedRect()) != -1)//selected 1: read second
                     {
-                       // Log.w("Warn", "Selected 222: " + currentSelectedRectIndex2 + "  1 is " + currentSelectedRectIndex1);
+                        Log.w("Warn", "Selected 222: " + currentSelectedRectIndex2 + "  1 is " + currentSelectedRectIndex1);
 
                         //search for pairs
-                        if (KeysArray[currentSelectedRectIndex1] == currentSelectedRectIndex2 && KeysArray[currentSelectedRectIndex2] == currentSelectedRectIndex1) {
-                           // Log.w("Warn", "Pair found");
+                       // if (KeysArray[currentSelectedRectIndex1] == currentSelectedRectIndex2 && KeysArray[currentSelectedRectIndex2] == currentSelectedRectIndex1) {
+                        if (cardList.get(currentSelectedRectIndex1).code == cardList.get(currentSelectedRectIndex2).code) {
+
+                            // Log.w("Warn", "Pair found");
                             SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
                             pairs++;
                             if(pairs== (M*N)/2)
                                 LeaveMemoryGame();
 
-                            TurnedList[currentSelectedRectIndex1] = true; //reveal 'cards'
-                            TurnedList[currentSelectedRectIndex2] = true;
+                            cardList.get(currentSelectedRectIndex1).turned = true; //reveal 'cards'
+                            cardList.get(currentSelectedRectIndex2).turned = true;
 
                             currentSelectedRectIndex1 = -1;
                             currentSelectedRectIndex2 = -1;
@@ -404,5 +371,23 @@ public class MemoryGame extends Activity {
                     }
                 }).create().show();
     }
+
+    public class MemoryGameCard     //represents an object drawn on screen on mini game: MemoryGame
+    {
+        private Bitmap img;
+        private Rect rect;
+        private Boolean turned;
+        private int code;
+
+        public MemoryGameCard(Bitmap _img, Rect _rect, int _code)
+        {
+            img= _img;
+            rect= _rect;
+            code = _code;
+        }
+
+
+    }
+
 }
 
