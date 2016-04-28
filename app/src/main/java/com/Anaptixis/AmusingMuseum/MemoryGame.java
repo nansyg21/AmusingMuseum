@@ -322,7 +322,7 @@ public class MemoryGame extends Activity {
                         Log.w("Warn", "Selected 111: " + currentSelectedRectIndex1 + " 2 is: " + currentSelectedRectIndex2);
                     } else if (currentSelectedRectIndex1 != -1 && currentSelectedRectIndex2 == -1 && (currentSelectedRectIndex2 = findSelectedRect()) != -1)//selected 1: read second
                     {
-                        Log.w("Warn", "Selected 222: " + currentSelectedRectIndex2 + "  1 is " + currentSelectedRectIndex1);
+                       // Log.w("Warn", "Selected 222: " + currentSelectedRectIndex2 + "  1 is " + currentSelectedRectIndex1);
 
                         //search for pairs
                        // if (KeysArray[currentSelectedRectIndex1] == currentSelectedRectIndex2 && KeysArray[currentSelectedRectIndex2] == currentSelectedRectIndex1) {
