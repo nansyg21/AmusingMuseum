@@ -5,12 +5,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,11 +29,13 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.StringTokenizer;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import javax.net.ssl.HttpsURLConnection;
 
 
-public class QuizGameActivity extends Activity {
+public class QuizGameActivity extends Activity implements OnClickListener{
 
     public static boolean firstQuiz;
 
@@ -50,6 +57,7 @@ public class QuizGameActivity extends Activity {
     private TextView timer; //Show the remaining time
     private TextView txtVquestion, txtVquestionCounter, txtVresult;
     private Button ans1, ans2, ans3, ans4;
+
     private String[] questions;
     private String[] answers;
     private String[] rightAnswers;
@@ -61,6 +69,8 @@ public class QuizGameActivity extends Activity {
     private int wrongAnswers;
 
     CountDownTimer countDownTimer; //Timer
+
+    private Drawable d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +101,12 @@ public class QuizGameActivity extends Activity {
         ans3 = (Button) findViewById(R.id.buttonAns3);
         ans4 = (Button) findViewById(R.id.buttonAns4);
 
+        d=ans1.getBackground();
+
+        ans1.setOnClickListener(this);
+        ans2.setOnClickListener(this);
+        ans3.setOnClickListener(this);
+        ans4.setOnClickListener(this);
 
         questions = getResources().getStringArray(R.array.Questions);
         answers = getResources().getStringArray(R.array.Answers);
@@ -141,63 +157,68 @@ public class QuizGameActivity extends Activity {
     }
 
 
-    public void buttonOnClick(View v) {
-        Button btn = (Button) v;
-        CharSequence test = ((Button) v).getText();
+    public void handleClick(CharSequence text,View v) {
+
+        Button btn=(Button) v;
+        CharSequence test =text;
         txtVresult.setVisibility(View.VISIBLE);
-        String toastText="";
-        Log.w("Warn","SELECTED:"+((Button) v).getText()+"|");
-        Log.w("Warn", "CORRECT IS:" + rightAnswers[questionCountPublic]+"|");
+
+      //  Log.w("Warn","SELECTED:"+((Button) v).getText()+"|");
+      //  Log.w("Warn", "CORRECT IS:" + rightAnswers[questionCountPublic]+"|");
         //Check for the right answer
         if (test.toString().equals(rightAnswers[questionCountPublic])) {
             SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
             correctAnswers++;
             UploadAnswerResults(questionCountPublic);
             txtVresult.setText(getResources().getString(R.string.rightAnswer));
-            toastText=getResources().getString(R.string.rightAnswer);
+            //toastText=getResources().getString(R.string.rightAnswer);
             //RightAnswer so increase the proper counter
             questionRightAnsPublic++;
             questionRightAns++;
-            Log.w("Warn","CORRECT");
+            btn.setBackgroundResource(R.drawable.quiz_button_correct);
+          //  Log.w("Warn","CORRECT");
 
         } else {
             SoundHandler.PlaySound(SoundHandler.wrong_sound_id);
             wrongAnswers++;
             txtVresult.setText(getResources().getString(R.string.wrongAnswer));
-            toastText=getResources().getString(R.string.wrongAnswer) + getResources().getString(R.string.correct_is) +rightAnswers[questionCountPublic];
+           // toastText=getResources().getString(R.string.wrongAnswer) + getResources().getString(R.string.correct_is) +rightAnswers[questionCountPublic];
+           // Toast.makeText(this.getBaseContext(), toastText, Toast.LENGTH_SHORT).show();
             UploadAnswerResults(questionCountPublic);
-            Log.w("Warn", "WRONG");
+            btn.setBackgroundResource(R.drawable.quiz_button_wrong);;
+            setColorsOnButtons();
+            //  Log.w("Warn", "WRONG");
         }
-
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(this.getBaseContext(), toastText, duration);
-        toast.show();
 
         //increase the public & private counter
         ++questionCountPublic;
         ++questionCounter;
 
-        //sleep and proceed to the nextQuestion
-        SystemClock.sleep(1000);
-        if (questionCounter < 3) {
-            nextQuestion();
-        } else {
-            //Stop timer or else it continues running after the activity is finished
-            countDownTimer.cancel();
 
-            //Save Quiz Score
-            Score.setQuizScore(questionRightAnsPublic * 10);
+        //Set AsyncTask to handle the question switch
+        MyTask task=new MyTask();
+        task.execute();
 
-            // When done open the qr scaner again to play the riddle
-            // To do so pass back the next activity number
-            // And make sure the user cannot go but by hitting the back button
-            QrCodeScanner.questionMode = false;
-            Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
-            itns.putExtra(nextApp, appToStart);
-            itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(itns);
-            finish();
 
+
+    }
+    //Color green the correct answer
+    private void setColorsOnButtons() {
+        if(ans1.getText().equals(rightAnswers[questionCountPublic]))
+        {
+            ans1.setBackgroundResource(R.drawable.quiz_button_correct);
+        }
+        else if(ans2.getText().equals(rightAnswers[questionCountPublic]))
+        {
+            ans2.setBackgroundResource(R.drawable.quiz_button_correct);
+        }
+        else if(ans3.getText().equals(rightAnswers[questionCountPublic]))
+        {
+            ans3.setBackgroundResource(R.drawable.quiz_button_correct);
+        }
+        else if(ans4.getText().equals(rightAnswers[questionCountPublic]))
+        {
+            ans4.setBackgroundResource(R.drawable.quiz_button_correct);
         }
     }
 
@@ -219,10 +240,7 @@ public class QuizGameActivity extends Activity {
         ans2.setText(answers[questionCountPublic * 4 + 1]);
         ans3.setText(answers[questionCountPublic * 4 + 2]);
         ans4.setText(answers[questionCountPublic * 4 + 3]);
-
-
     }
-
 
     //When the time end finish quiz finish Activity
     //and make sure that you are in the right question
@@ -423,5 +441,123 @@ public class QuizGameActivity extends Activity {
         //         }
 
 
+    }
+
+
+    private long mLastClickTime=0;
+    @Override
+    public void onClick(View v) {
+        // Preventing multiple clicks, using threshold of 1 second
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 2000) {
+            return;
+        }
+        mLastClickTime = SystemClock.elapsedRealtime();
+
+        Button btn = (Button) v;
+
+        if(btn.getId()== R.id.buttonAns1)
+        {
+            handleClick(btn.getText(), v);
+        }
+        else if (btn.getId()== R.id.buttonAns2)
+        {
+            handleClick(btn.getText(),v);
+        }
+        else if (btn.getId()== R.id.buttonAns3)
+        {
+            handleClick(btn.getText(),v);
+        }
+        else if(btn.getId()== R.id.buttonAns4)
+        {
+            handleClick(btn.getText(),v);
+        }
+    }
+
+    //Restore the button style
+    private void resetButtonBackground(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            ans1.setBackground(d);
+            ans2.setBackground(d);
+            ans3.setBackground(d);
+            ans4.setBackground(d);
+        }
+        else
+        {
+            ans1.setBackgroundDrawable(d);
+            ans2.setBackgroundDrawable(d);
+            ans3.setBackgroundDrawable(d);
+            ans4.setBackgroundDrawable(d);
+        }
+
+    }
+
+    //Proceed to new question or to mini game
+    private void goNextEvent() {
+
+        //Toast.makeText(this.getBaseContext(), toastText, Toast.LENGTH_SHORT).show();
+
+        //resetButtonColor();
+
+        if (questionCounter < 3) {
+            nextQuestion();
+        } else {
+            //Stop timer or else it continues running after the activity is finished
+            countDownTimer.cancel();
+
+            //Save Quiz Score
+            Score.setQuizScore(questionRightAnsPublic * 10);
+
+            // When done open the qr scaner again to play the riddle
+            // To do so pass back the next activity number
+            // And make sure the user cannot go but by hitting the back button
+            QrCodeScanner.questionMode = false;
+            Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
+            itns.putExtra(nextApp, appToStart);
+            itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(itns);
+            finish();
+
+        }
+
+    }
+
+
+
+    class MyTask extends AsyncTask<String,Integer,Void>
+    {
+
+        @Override
+        protected void onPreExecute() {
+            buttonsActivationSwitcher(false);
+            txtVresult.setVisibility(View.VISIBLE);
+
+        }
+        @Override
+        protected Void doInBackground(String... params) {
+
+            try {
+                Thread.sleep(2000);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            buttonsActivationSwitcher(true);
+            resetButtonBackground();
+            txtVresult.setVisibility(View.INVISIBLE);
+            goNextEvent();
+        }
+
+        private void buttonsActivationSwitcher(boolean b)
+        {
+
+            ans1.setClickable(b);
+            ans2.setClickable(b);
+            ans3.setClickable(b);
+            ans4.setClickable(b);
+        }
     }
 }
