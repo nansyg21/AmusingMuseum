@@ -27,7 +27,6 @@
     <string name="hangman_correct_is">The correct word is:</string>
 
 
-
     <string name="upload_score_info">Upload your score</string>
     <string name="upload_score_name">Name:</string>
     <string name="upload_score_num">Score:</string>
@@ -59,7 +58,7 @@
     <string name="Number">Number</string>
     <string name="Name">Name</string>
 
-<string name="title_activity_fullscreen_activity_room2">FullscreenActivityRoom2</string>
+    <string name="title_activity_fullscreen_activity_room2">FullscreenActivityRoom2</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
@@ -537,16 +536,24 @@
 
     <string-array name="rooms_startgame">
         <item>EARLY CHRISTIAN CHURCHES</item>
-        <item>EARLY CHRISTIAN CITY AND</item><item>PRIVATE DWELLING</item>
-        <item> FROM THE ELYSIAN FIELDS </item><item>TO THE CHRISTIAN PARADISE</item>
-        <item> FROM ICONOCLASM TO THE </item><item>SPLENDOUR OF THE MACEDONIAN</item><item>AND KOMNENIAN DYNASTIES</item>
-        <item>THE DYNASTIES OF</item><item>BYZANTINE EMPERORS</item>
+        <item>EARLY CHRISTIAN CITY AND</item>
+        <item>PRIVATE DWELLING</item>
+        <item> FROM THE ELYSIAN FIELDS </item>
+        <item>TO THE CHRISTIAN PARADISE</item>
+        <item> FROM ICONOCLASM TO THE </item>
+        <item>SPLENDOUR OF THE MACEDONIAN</item>
+        <item>AND KOMNENIAN DYNASTIES</item>
+        <item>THE DYNASTIES OF</item>
+        <item>BYZANTINE EMPERORS</item>
         <item> BYZANTINE CASTLES</item>
         <item>THE TWILIGHT OF BYZANTIUM</item>
         <item>DONATED COLLECTIONS (1/2)</item>
         <item>DONATED COLLECTIONS (2/2)</item>
-        <item> THE BYZANTINE LEGACY </item><item> IN THE YEARS AFTER THE</item><item>FALL OF CONSTANTINOPLE</item>
-        <item> DISCOVERING THE</item><item>PAST</item>
+        <item> THE BYZANTINE LEGACY </item>
+        <item> IN THE YEARS AFTER THE</item>
+        <item>FALL OF CONSTANTINOPLE</item>
+        <item> DISCOVERING THE</item>
+        <item>PAST</item>
     </string-array>
 
     <!-- TRANSLATION NEEDED! -->
@@ -608,6 +615,7 @@
 
     <string name="download_solutions">App Solutions</string>
 
+    <string name="title_activity_dowload_qrcode">DowloadQRCodeActivity</string>
 
 
 </resources>

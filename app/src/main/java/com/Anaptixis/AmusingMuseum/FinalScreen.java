@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -91,9 +92,32 @@ public class FinalScreen extends FragmentActivity {
 
         setContentView(R.layout.activity_final_screen);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
+///////////////////////
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
+        Resources res = getApplicationContext().getResources();
+        int id = R.drawable.phototoupload;
+        Bitmap bitmap = BitmapFactory.decodeResource(res, id);
+        // Uri photoPath = Uri.parse("android.resource://com.thesstrip.anaptixis.facebooktest/" + R.drawable.phototoupload);
+        // Bitmap bitmap = BitmapFactory.decodeResource();
 
-        final ShareButton shareButton = (ShareButton)findViewById(R.id.share_btn);
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(bitmap)
+                .build();
+
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+
+      /* ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .build();*/
+
+        ShareButton shareButton = (ShareButton)findViewById(R.id.share_btn);
+        shareButton.setShareContent(content);
+
+    /*    final ShareButton shareButton = (ShareButton)findViewById(R.id.share_btn);
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
         shareButton.setOnClickListener(new View.OnClickListener() { //on click, open up the share window
@@ -113,7 +137,7 @@ public class FinalScreen extends FragmentActivity {
                 shareDialog.show(linkContent, ShareDialog.Mode.WEB );
 
             }
-        });
+        });*/
 
         // ------------------ Code in order to hide the navigation bar -------------------- //
         menu.hideNavBar(this.getWindow());
@@ -177,7 +201,7 @@ public class FinalScreen extends FragmentActivity {
 
     public void share(View v)
     {
-        Log.w("Warn","SHARE PRESSED!!!!");
+     /*   Log.w("Warn","SHARE PRESSED!!!!");
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
         Bitmap bitmap = BitmapFactory.decodeFile("android.resource://" + "com.Anaptixis.AmusingMuseum" + "/drawable/" + "logo", options);
@@ -190,13 +214,19 @@ public class FinalScreen extends FragmentActivity {
                 .build();
 
         ShareButton shareButton = (ShareButton)findViewById(R.id.share_btn);
-        shareButton.setShareContent(content);
+        shareButton.setShareContent(content);*/
+
+
     }
 
     //Download pdf solutions file
     public void downloadFile (View v) {
-
         Toast.makeText(getApplicationContext(), "Downloading started...", Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(this, DownloadQRCodeService.class);
+        i.putExtra("DOWNLOAD","solutions");
+        this.startService(i);
+
+     /*   Toast.makeText(getApplicationContext(), "Downloading started...", Toast.LENGTH_SHORT).show();
 
         //Download with download manager
         DownloadManager downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE);
@@ -210,7 +240,7 @@ public class FinalScreen extends FragmentActivity {
         //Keep the notification into the status bar
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         //start the downloading
-        downloadManager.enqueue(request);
+        downloadManager.enqueue(request);*/
 
 
         //If I want to do anything after downloaded the file

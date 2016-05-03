@@ -83,7 +83,8 @@ public class menu extends Activity {
                 break;
             case R.id.btnMenuHelp:
                 //TODO: TEST MEMORY GAME TO MAKE SURE EVERYTHING IS ALRIGHT...
-                 startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
+               //  startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
+                startActivity(new Intent(getApplicationContext(),FinalScreen.class));
                 //startActivity(new Intent(getApplicationContext(),QuizGameActivity.class));
               //  startActivity(new Intent(getApplicationContext(),UploadScoreActivity.class));
                //  Intent itn = new Intent(getApplicationContext(), SequentialCoins.class);
@@ -119,7 +120,8 @@ public class menu extends Activity {
 
     public void GoToStats(View v)
     {
-        startActivity(new Intent(getApplicationContext(),Statistics.class));
+        startActivity(new Intent(getApplicationContext(),DowloadQRCodeActivity.class));
+       // startActivity(new Intent(getApplicationContext(),Statistics.class));
      //   ImageView imgv=(ImageView) v;
 
     }
