@@ -102,6 +102,7 @@ public class menu extends Activity {
             case R.id.btnMenuAbout:
                 startActivity(new Intent(getApplicationContext(),CreditsActivity.class));
                 break;
+
         }
     }
 
@@ -118,13 +119,15 @@ public class menu extends Activity {
         }
     }
 
-    public void GoToStats(View v)
+    public void GoToDownloads(View v)
     {
         startActivity(new Intent(getApplicationContext(),DowloadQRCodeActivity.class));
        // startActivity(new Intent(getApplicationContext(),Statistics.class));
      //   ImageView imgv=(ImageView) v;
 
     }
+
+
 
     @Override
     public void onBackPressed() {

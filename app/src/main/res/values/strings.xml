@@ -617,6 +617,15 @@
 
     <string name="title_activity_dowload_qrcode">DowloadQRCodeActivity</string>
 
+    <string name="download_qrcodes_info">Using the link below you can find the exhbibits images, their codes and QR codes. \n
+        For everyone who want to: \n
+        - Go on the museum adventure once again \n
+        - Train for their museum adventure \n
+        </string>
+    <string name="dowloadQrCodes">Download QR codes</string>
+    <string name="returntoMenu">Return to Menu</string>
+
+
 
 </resources>
 

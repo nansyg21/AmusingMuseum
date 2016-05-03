@@ -695,5 +695,8 @@
     <string name="download_solutions">Ληψη Λύσεων</string>
 
     <string name="download_qrcodes_info">Στον παρακάτω σύνδεσμο μπορείς να βρεις τις φωτογραφίες των εκθεμάτων, τους κωδικούς τους και τα QR Codes τους. \nΓια όσους θέλουν: \n - Να ξαναζήσουν την περιέτεια στο μουσείο. \n-Να προπονηθούν για την περιπέτειά τους στο μουσείο. \n</string>
+    <string name="dowloadQrCodes">Λήψη QR codes</string>
+    <string name="returntoMenu">Επιστροφή στο Μενού</string>
+
 
 </resources>

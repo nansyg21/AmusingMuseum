@@ -93,12 +93,15 @@
             android:gravity="center_horizontal"
             android:layout_weight="0">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/menu_see_statistics"
-                android:src="@drawable/stats_menu_bt"
-                android:onClick="GoToStats" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/downloads_bt"
+                    android:src="@drawable/download_button_icon"
+                    android:onClick="GoToDownloads" />
+
+
 
             <ImageView
                 android:layout_width="wrap_content"
