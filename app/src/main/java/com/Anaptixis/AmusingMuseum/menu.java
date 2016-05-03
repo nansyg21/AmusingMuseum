@@ -82,7 +82,7 @@ public class menu extends Activity {
                 startActivity(new Intent(getApplicationContext(), Game.class));
                 break;
             case R.id.btnMenuHelp:
-                //TODO: TEST MEMORY GAME TO MAKE SURE EVERYTHING IS ALRIGHT...
+
                  startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
                // startActivity(new Intent(getApplicationContext(),FinalScreen.class));
                 //startActivity(new Intent(getApplicationContext(),QuizGameActivity.class));

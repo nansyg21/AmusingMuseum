@@ -178,7 +178,7 @@
             android:name=".DowloadQRCodeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_dowload_qrcode"
-            android:theme="@style/FullscreenTheme"></activity>
+           ></activity>
     </application>
 
 </manifest>

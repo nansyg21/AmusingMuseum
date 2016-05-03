@@ -615,7 +615,7 @@
 
     <string name="download_solutions">App Solutions</string>
 
-    <string name="title_activity_dowload_qrcode">DowloadQRCodeActivity</string>
+    <string name="title_activity_dowload_qrcode" translatable="false">DowloadQRCodeActivity</string>
 
     <string name="download_qrcodes_info">Using the link below you can find the exhbibits images, their codes and QR codes. \n
         For everyone who want to: \n
