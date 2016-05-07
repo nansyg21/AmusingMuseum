@@ -91,10 +91,10 @@ public class menu extends Activity {
                // Intent itn = new Intent(getApplicationContext(), ChurchMap.class);
                // Intent itn = new Intent(getApplicationContext(), ClickMe.class);
                // Intent itn = new Intent(getApplicationContext(), Hangman.class);
-                // Intent itn = new Intent(getApplicationContext(), MatchingStamps.class);
+               //  Intent itn = new Intent(getApplicationContext(), MatchingStamps.class);
                // Intent itn = new Intent(getApplicationContext(), PuzzleActivity.class);
              //    Intent itn = new Intent(this, RightOrder.class);
-             //   startActivity(itn);
+               //  startActivity(itn);
                 //  Intent itn = new Intent(getApplicationContext(), MemoryGame.class);
                //  Intent itn = new Intent(getApplicationContext(), ExhibitsFall.class);
               //  Intent itn = new Intent(getApplicationContext(), connect_wires.class);
