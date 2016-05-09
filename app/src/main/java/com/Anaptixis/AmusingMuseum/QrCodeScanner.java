@@ -2,6 +2,7 @@ package com.Anaptixis.AmusingMuseum;
 
 /**
  * Created by theo on 19/8/2015.
+ *
  */
 
 import android.app.Activity;
@@ -49,6 +50,14 @@ public class QrCodeScanner extends Activity {
         super.onCreate(savedInstanceState);
         //set the main content layout of the Activity
         setContentView(R.layout.activity_android_qr_code_example);
+
+        if(savedInstanceState!=null)
+        {
+            Log.e("THEO","savedInstanceState not Null   ");
+            hintCounter=savedInstanceState.getInt("hintCounter");
+            appToStart=savedInstanceState.getInt("appToStart");
+            questionMode=savedInstanceState.getBoolean("questionMode");
+        }
 
         //Find the textView and the Hints List
         textViewHint = (TextView) findViewById(R.id.textViewHints);
@@ -226,6 +235,16 @@ public class QrCodeScanner extends Activity {
         startActivityForResult(itn, 1);
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Log.e("THEO","savedInstanceState Called");
+        outState.putInt("hintCounter",hintCounter);
+        outState.putInt("appToStart",appToStart);
+        outState.putBoolean("questionMode",questionMode);
+    }
+
     //alert dialog for downloadDialog
     private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
         AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
@@ -238,7 +257,7 @@ public class QrCodeScanner extends Activity {
                 try {
                     act.startActivity(intent);
                 } catch (ActivityNotFoundException anfe) {
-
+                    anfe.printStackTrace();
                 }
             }
         });
