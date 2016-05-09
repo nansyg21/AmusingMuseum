@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
+/*This Class IS NO LONGER USED!!!!*/
 public class CodeActivity extends Activity {
 
 

@@ -16,7 +16,9 @@
         android:text="@string/title_activity_insert_code"
         android:id="@+id/textView6"
         android:textSize="25dp"
-        android:layout_marginBottom="50dp" />
+        android:layout_marginTop="20dp"
+         />
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -25,7 +27,8 @@
         android:id="@+id/numCode"
         android:layout_gravity="center_horizontal"
         android:imeOptions="flagNoExtractUi"
-        android:inputType="textCapCharacters" />
+        android:inputType="textCapCharacters"
+        android:layout_marginTop="40dp"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -44,6 +47,7 @@
             android:onClick="buttonOnclick"
             android:textStyle="bold" />
 
+
         <Button
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -53,5 +57,7 @@
             android:layout_margin="10dp"
             android:onClick="buttonOnclick"
             android:textStyle="bold" />
+
+
     </LinearLayout>
 </LinearLayout>

@@ -42,6 +42,8 @@ public class QrCodeScanner extends Activity {
     TextView txtViewExhibit;//Exhibit information text
 
     EditText numCodeTxt;
+
+    TextView textViewIncorrectObjectView;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,7 @@ public class QrCodeScanner extends Activity {
         hints= getResources().getStringArray(R.array.hints);
         monumentCodes=getResources().getStringArray(R.array.monument_codes);
         textViewHint.setText(hints[hintCounter]);
+
 
         //Hide all..
         menu.hideNavBar(this.getWindow());
@@ -256,15 +259,16 @@ public class QrCodeScanner extends Activity {
                 //Check if the qrcode is correct...
                 if (contents.equals(monumentCodes[hintCounter]+"\n") || contents.equals(monumentCodes[hintCounter]) ) {
                     Log.d("code",monumentCodes[hintCounter]);
-                    buildExhibitInformationView(true);
+                    //The second parameter is not going to be used, dummy..
+                    buildExhibitInformationView(true,true);
 
                 }else {
                     //GO to information screen...
-                    buildExhibitInformationView(false);
+                    buildExhibitInformationView(false,false);
                     Log.d("code", monumentCodes[hintCounter]);
                     ///show a toast... for wrong...
-                    Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
-                    toast.show();
+                  //  Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
+                  //  toast.show();
 
 
                 }
@@ -295,7 +299,10 @@ public class QrCodeScanner extends Activity {
                 menu.hideNavBar(this.getWindow());
                 break;
             case R.id.button_num_code_Ok:
+                //Get editText ref
                 numCodeTxt= (EditText) findViewById(R.id.numCode);
+                //Find the textViewIncorrectpassword
+                //textViewIncorrectObjectView = (TextView) findViewById(R.id.textViewIncorrectObjectCode);
                 validateNumCode();
                 break;
             case R.id.button_num_code_Back:
@@ -304,28 +311,31 @@ public class QrCodeScanner extends Activity {
                 textViewHint.setText(hints[hintCounter]);
                 menu.hideNavBar(this.getWindow());
                 break;
+
         }
     }
     //check the code that the user typed
     public void validateNumCode(){
         // numCodeCheck=false;
         if(monumentCodes[hintCounter].equals(numCodeTxt.getText().toString())){
-            buildExhibitInformationView(true);
+            //The second parameter is not going to be used, dummy..
+            buildExhibitInformationView(true,true);
             Log.d("code", monumentCodes[hintCounter]);
         }
         //IF code is incorrect , display the information about the current exhibit and a toast with proper message
         else
         {
             //Info window
-            buildExhibitInformationView(false);
+            buildExhibitInformationView(false,true);
             Log.d("code", monumentCodes[hintCounter]);
+
             ///show a toast... for wrong...
-            Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
-            toast.show();
+            //Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
+            //toast.show();
         }
     }
     //BUILD and show the information screen
-    private void buildExhibitInformationView(final boolean theAnswerWasRight) {
+    private void buildExhibitInformationView(final boolean theAnswerWasRight, final boolean backToPasswordInsertion) {
 
         //set Content view
         setContentView(R.layout.exhibit_information);
@@ -337,6 +347,13 @@ public class QrCodeScanner extends Activity {
         ImageView bt=(ImageView) findViewById(R.id.backButtonExhibitInfo);
 
         ImageView titleImageView=(ImageView)findViewById(R.id.titleImageViewExInfo);
+
+        //If the answer was incorrect display the message
+        if(!theAnswerWasRight) {
+            textViewIncorrectObjectView = (TextView) findViewById(R.id.textViewIncorrectObjectCode);
+            if (textViewIncorrectObjectView != null)
+                textViewIncorrectObjectView.setVisibility(View.VISIBLE);
+        }
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
@@ -534,9 +551,16 @@ public class QrCodeScanner extends Activity {
                 if(theAnswerWasRight){
                     scanQR(null);
                 }else {
-                    setContentView(R.layout.activity_android_qr_code_example);
-                    textViewHint = (TextView) findViewById(R.id.textViewHints);
-                    textViewHint.setText(hints[hintCounter]);
+                    //Find the textViewIncorrectpassword
+
+                    //Check where was the incorrect password came from
+                    if(backToPasswordInsertion)
+                        setContentView(R.layout.activity_code);
+                    else {
+                        setContentView(R.layout.activity_android_qr_code_example);
+                        textViewHint = (TextView) findViewById(R.id.textViewHints);
+                        textViewHint.setText(hints[hintCounter]);
+                    }
                 }
             }
         });

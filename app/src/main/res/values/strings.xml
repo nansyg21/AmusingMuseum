@@ -622,9 +622,10 @@
         - Go on the museum adventure once again \n
         - Train for their museum adventure \n
         </string>
+
+    <string name="incorrectObjectCode">Incorrect Password! \n Please try again</string>
     <string name="dowloadQrCodes">Download QR codes</string>
     <string name="returntoMenu">Return to Menu</string>
-
 
 
 </resources>
