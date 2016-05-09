@@ -240,8 +240,8 @@ public class PuzzleActivity extends Activity   {
 
         public void DroppedPiece() //Player was dragging a piece, check if its near the original position
         {
-            if( currentMovingPiece.rect.contains(new Rect(currentMovingPiece.originalRec.left + 2*imgWidth / 5, currentMovingPiece.originalRec.top + 3*imgHeight / 5,
-                    currentMovingPiece.originalRec.right - 2*imgWidth / 5, currentMovingPiece.originalRec.bottom - 2*imgHeight / 5)))
+            if( currentMovingPiece.rect.intersect(new Rect(currentMovingPiece.originalRec.left + 2 * imgWidth / 5, currentMovingPiece.originalRec.top + 3 * imgHeight / 5,
+                    currentMovingPiece.originalRec.right - 2 * imgWidth / 5, currentMovingPiece.originalRec.bottom - 2 * imgHeight / 5)))
             {
                 currentMovingPiece.rect.left = currentMovingPiece.originalRec.left; //assign by value
                 currentMovingPiece.rect.top = currentMovingPiece.originalRec.top;
@@ -254,7 +254,6 @@ public class PuzzleActivity extends Activity   {
 
             }
         }
-
 
         public boolean CheckCollision() //finds the piece the user selected: returns true
         {
@@ -275,7 +274,6 @@ public class PuzzleActivity extends Activity   {
             invalidate();
         }
 
-
         @Override
         protected void onDraw(Canvas canvas)
         {
@@ -295,15 +293,27 @@ public class PuzzleActivity extends Activity   {
             for(PuzzlePiece p : PuzzlePieces)
                 canvas.drawBitmap(p.img, null, p.rect, null);
 
-            /** //Execute to see the area the dropped piece must cover to be accepted as correct
+             /** //Execute to see the area the dropped piece must cover to be accepted as correct
              if(currentMovingPiece!=null) {
              Paint tmpPaint = new Paint();
              tmpPaint.setColor(Color.BLACK);
 
-             canvas.drawRect(new Rect(currentMovingPiece.originalRec.left + 2*imgWidth / 5, currentMovingPiece.originalRec.top + 3*imgHeight / 5,
-             currentMovingPiece.originalRec.right - 2*imgWidth / 5, currentMovingPiece.originalRec.bottom - 2*imgHeight / 5), tmpPaint);
+             canvas.drawRect(new Rect(currentMovingPiece.originalRec.left + 2*imgWidth / 5,
+                                        currentMovingPiece.originalRec.top + 3*imgHeight / 5,
+                                        currentMovingPiece.originalRec.right - 2*imgWidth / 5,
+                                        currentMovingPiece.originalRec.bottom - 2*imgHeight / 5), tmpPaint);
              }
-             **/
+
+              //Execute to see all areas
+              Paint tmpPaint = new Paint();
+              tmpPaint.setColor(Color.BLACK);
+              for(PuzzlePiece pp :PuzzlePieces) {
+              canvas.drawRect(new Rect(pp.originalRec.left + 2 * imgWidth / 5,
+              pp.originalRec.top + 3 * imgHeight / 5,
+              pp.originalRec.right - 2 * imgWidth / 5,
+              pp.originalRec.bottom - 2 * imgHeight / 5), tmpPaint);
+              }
+            **/
             // Invalidate view at about 60fps
             postDelayed(this, 16);
         }
