@@ -76,7 +76,7 @@ public class Hangman extends Activity {
         correctLetters=0;
 
         // Dynamicaly create as many views as the letters of the word with the use of inflater
-        setContentView(R.layout.activity_hangman);
+        setContentView(R.layout.activity_hangman_fixed);
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TableRow letterTableRow = (TableRow) findViewById(R.id.letterTableRow0);
         for (int letters = 0; letters < numberOfLetters; letters++) {
