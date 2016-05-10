@@ -4,6 +4,7 @@ import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
+import android.util.Log;
 
 /**
  * Created by panos on 21/12/2015.
@@ -51,7 +52,14 @@ public class SoundHandler {
 
     public static void PlaySound(int sound_id)
     {
-        soundPool.play(sound_id,1,1,1,0,1);
+        try {
+            soundPool.play(sound_id, 1, 1, 1, 0, 1);
+        }
+        catch(Exception e)  //TODO: throws NullPointerException if the same mini game is restarted. The sound can't be played
+        {
+            Log.w("Warn","Soundpool, PlaySound Method: "+e.getMessage());
+        }
+
     }
 
 

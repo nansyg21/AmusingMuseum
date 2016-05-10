@@ -20,7 +20,6 @@ import android.support.v4.view.MotionEventCompat;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -72,6 +71,7 @@ public class SequentialCoins extends Activity {
     //This is actually drawing on screen the game : Sequential Coins
     //A couple of pictures appear for each stamp. The player matches the stamps together
     public class SequentialCoinsScreen extends View implements Runnable {
+
         int ScreenWidth, ScreenHeight, PlayerTouchX, PlayerTouchY, mPosX, mPosY, imgWidth, imgHeight, widthGap, heightGap;
         int ROWS=2, COLUMNS =5,selectedCoin, currentIlluminateRound,currentPlayRound, stateRounds =3; //starting with 3 rounds and increasing
         int[] correctCoins;                 //coins chosen randomly
@@ -93,6 +93,12 @@ public class SequentialCoins extends Activity {
         //delay between tho coins enlightening
         Boolean delayBetweenTwoCoinsState=false;
         long   delayBetweenTwoCoinsTimer, elapsedDelayBetweenTwoCoinsTimer,delayBetweenTwoCoins=100;
+
+        //stand by clock
+        Bitmap clock1Img;
+        Rect clock1Rect;
+        Paint clockPaint;
+        int clockFullyVisibleInSeconds, alphaCounter, alphaStep; //step = (255=max alpha value) / (seconds* iterations in each round= almost 30)
 
         public SequentialCoinsScreen(Context context) {
             super(context);
@@ -149,6 +155,15 @@ public class SequentialCoins extends Activity {
 
             InitializeImages();
             InitializeRects();
+
+            clock1Img = BitmapFactory.decodeResource(getResources(), R.drawable.sc_clock1);
+            clock1Rect = new Rect(ScreenWidth/2 - imgWidth/4, ScreenHeight-imgHeight/2, ScreenWidth/2+imgWidth/4, ScreenHeight);
+            clockPaint = new Paint();
+            clockFullyVisibleInSeconds= 2;
+            alphaCounter=0;
+            alphaStep=255/(clockFullyVisibleInSeconds*30);
+            clockPaint.setAlpha(alphaCounter);
+
             // Log.w("Warn", "Total: " + coinImagesList.size());
         }
 
@@ -237,7 +252,6 @@ public class SequentialCoins extends Activity {
                     return true;
                 }
             return false;
-
         }
 
         public void LeaveSequentialCoins()
@@ -273,6 +287,8 @@ public class SequentialCoins extends Activity {
                     if(currentIlluminateRound >=stateRounds)       //switch states if done
                     {
                         playState=true;
+
+                        alphaCounter=0;
                         illuminateState=false;
                         currentPlayRound=0;     //user must start by selecting this index from correctCoins array
                         delayTimer= System.currentTimeMillis();
@@ -284,6 +300,16 @@ public class SequentialCoins extends Activity {
                     }
 
                 }
+            }
+
+            if(!playState) //show clock gradually using fade in effect
+            {
+                alphaCounter += alphaStep;
+                if(alphaCounter>255) {
+                    alphaCounter = 255;
+                }
+                clockPaint.setAlpha( alphaCounter );
+
             }
 
             if(drawingSelectedEffectOnCoin)     //draw selected effect on coin for a short period
@@ -312,6 +338,13 @@ public class SequentialCoins extends Activity {
             //draw light if necessary
             if(illuminateState && !delayBetweenTwoCoinsState) {
                 canvas.drawBitmap(lightImg, null, coinRectsList.get(correctCoins[currentIlluminateRound]), null);
+            }
+
+            //draw clock image
+            if(!playState)
+            {
+               // Log.w("Warn", "alphaCounter=" + alphaCounter + " step=" + alphaStep);
+                canvas.drawBitmap(clock1Img, null, clock1Rect, clockPaint);
             }
 
             pauseBt.getPauseMenuButton().draw(canvas);
