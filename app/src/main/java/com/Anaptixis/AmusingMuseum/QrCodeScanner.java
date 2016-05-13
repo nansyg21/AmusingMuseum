@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class QrCodeScanner extends Activity {
 
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-    public static int hintCounter;//counter for finding the proper hint in list
+    public static int hintCounter=11;//counter for finding the proper hint in list
     int appToStart; // The number of the next activity to start
     public static boolean questionMode=true; // If this is true then Quiz will come up, else a riddle
 
