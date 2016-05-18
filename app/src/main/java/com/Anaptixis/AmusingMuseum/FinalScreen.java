@@ -149,7 +149,12 @@ public class FinalScreen extends FragmentActivity {
     public void closeApp(View v)
     {
         finish();
-        System.exit(0);
+        Intent itn= new Intent(getApplicationContext(), menu.class); //go to menu screen with proper flag set
+        itn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        itn.putExtra("leaving", true);
+        startActivity(itn);
+
+
     }
 
     public void ShowErrorOnView(final String err)   //use UI Thread to update view from worker thread

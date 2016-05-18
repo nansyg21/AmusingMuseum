@@ -83,8 +83,8 @@ public class menu extends Activity {
                 break;
             case R.id.btnMenuHelp:
 
-                 startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
-               // startActivity(new Intent(getApplicationContext(),FinalScreen.class));
+               //  startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
+                startActivity(new Intent(getApplicationContext(),SequentialCoins.class));
                 //startActivity(new Intent(getApplicationContext(),QuizGameActivity.class));
               //  startActivity(new Intent(getApplicationContext(),UploadScoreActivity.class));
                //  Intent itn = new Intent(getApplicationContext(), SequentialCoins.class);

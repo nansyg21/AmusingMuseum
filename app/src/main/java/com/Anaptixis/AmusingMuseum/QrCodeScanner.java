@@ -82,7 +82,7 @@ public class QrCodeScanner extends Activity {
         //The game is finished
         if(appToStart ==  11 && !questionMode)
         {
-            itn = new Intent(getApplicationContext(), UploadScoreActivity.class);
+            itn = new Intent(getApplicationContext(),FinalScreen.class);
             startActivityForResult(itn, 1);
         }
 
