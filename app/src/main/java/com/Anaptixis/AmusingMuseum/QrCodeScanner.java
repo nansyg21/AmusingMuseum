@@ -51,14 +51,15 @@ public class QrCodeScanner extends Activity {
         //set the main content layout of the Activity
         setContentView(R.layout.activity_android_qr_code_example);
 
-        if(savedInstanceState!=null)
+        //The same activity is never destroyed and recreated so this section is verbosed
+     /*   if(savedInstanceState!=null)
         {
-            Log.e("THEO","savedInstanceState not Null   ");
+            Log.e("THEO",this+"savedInstanceState not Null   ");
             hintCounter=savedInstanceState.getInt("hintCounter");
             appToStart=savedInstanceState.getInt("appToStart");
             questionMode=savedInstanceState.getBoolean("questionMode");
         }
-
+       */
         //Find the textView and the Hints List
         textViewHint = (TextView) findViewById(R.id.textViewHints);
         hints= getResources().getStringArray(R.array.hints);

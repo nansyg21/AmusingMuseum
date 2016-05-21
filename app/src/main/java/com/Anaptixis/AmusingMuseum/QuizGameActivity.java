@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -17,8 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,8 +28,6 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.StringTokenizer;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -70,7 +67,8 @@ public class QuizGameActivity extends Activity implements OnClickListener{
 
     CountDownTimer countDownTimer; //Timer
 
-    private Drawable d;
+    private Drawable d1,d2,d3,d4;
+    private boolean[] buttonDrawableNeedReset= new boolean[]{false,false,false,false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +99,10 @@ public class QuizGameActivity extends Activity implements OnClickListener{
         ans3 = (Button) findViewById(R.id.buttonAns3);
         ans4 = (Button) findViewById(R.id.buttonAns4);
 
-        d=ans1.getBackground();
+        d1=ans1.getBackground();
+        d2=ans2.getBackground();
+        d3=ans3.getBackground();
+        d4=ans4.getBackground();
 
         ans1.setOnClickListener(this);
         ans2.setOnClickListener(this);
@@ -111,6 +112,7 @@ public class QuizGameActivity extends Activity implements OnClickListener{
         questions = getResources().getStringArray(R.array.Questions);
         answers = getResources().getStringArray(R.array.Answers);
         rightAnswers = getResources().getStringArray(R.array.RightAnswers);
+
         if (MainActivity.WORKING_ON_EXTERNAL_MUSEUM) {
             questions = MainActivity.GetAllQuestions();
             answers = MainActivity.GetAllAnswers();
@@ -120,7 +122,7 @@ public class QuizGameActivity extends Activity implements OnClickListener{
 
         /**--------------------TIMER START----------------------------------**/
         timer = (TextView) findViewById(R.id.txtViewTimer);
-        countDownTimer = new CountDownTimer(30000, 1000) {
+        countDownTimer = new CountDownTimer(45000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 long seconds = (millisUntilFinished / 1000) % 60;
@@ -139,7 +141,7 @@ public class QuizGameActivity extends Activity implements OnClickListener{
                 // Finish game when the timer is zero
                 fixQuestionCounter();
                 QrCodeScanner.questionMode = false;
-                Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
+                Intent itns = new Intent(QuizGameActivity.this, QrCodeScanner.class);
                 itns.putExtra(nextApp, appToStart);
                 itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(itns);
@@ -163,11 +165,18 @@ public class QuizGameActivity extends Activity implements OnClickListener{
         CharSequence test =text;
         txtVresult.setVisibility(View.VISIBLE);
 
+        //The pushed button needs to be redrawed...
+        storeButtonDrawableUpdates(btn);
       //  Log.w("Warn","SELECTED:"+((Button) v).getText()+"|");
       //  Log.w("Warn", "CORRECT IS:" + rightAnswers[questionCountPublic]+"|");
         //Check for the right answer
         if (test.toString().equals(rightAnswers[questionCountPublic])) {
-            SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
+            try {
+                SoundHandler.PlaySound(SoundHandler.correct_sound_id3);
+            }catch(Exception e)
+            {
+                //Do nothing just silence...
+            }
             correctAnswers++;
             UploadAnswerResults(questionCountPublic);
             txtVresult.setText(getResources().getString(R.string.rightAnswer));
@@ -179,14 +188,20 @@ public class QuizGameActivity extends Activity implements OnClickListener{
           //  Log.w("Warn","CORRECT");
 
         } else {
-            SoundHandler.PlaySound(SoundHandler.wrong_sound_id);
+            try {
+                SoundHandler.PlaySound(SoundHandler.wrong_sound_id);
+            }catch(Exception e)
+            {
+                //Do nothing just silence...
+            }
+
             wrongAnswers++;
             txtVresult.setText(getResources().getString(R.string.wrongAnswer));
            // toastText=getResources().getString(R.string.wrongAnswer) + getResources().getString(R.string.correct_is) +rightAnswers[questionCountPublic];
            // Toast.makeText(this.getBaseContext(), toastText, Toast.LENGTH_SHORT).show();
             UploadAnswerResults(questionCountPublic);
-            btn.setBackgroundResource(R.drawable.quiz_button_wrong);;
-            setColorsOnButtons();
+            btn.setBackgroundResource(R.drawable.quiz_button_wrong);
+            setGreenTheCorrectAnswer();
             //  Log.w("Warn", "WRONG");
         }
 
@@ -202,23 +217,39 @@ public class QuizGameActivity extends Activity implements OnClickListener{
 
 
     }
+
+    private void storeButtonDrawableUpdates(Button btn) {
+        if(btn.getId()==R.id.buttonAns1)
+            buttonDrawableNeedReset[0]=true;
+        if(btn.getId()==R.id.buttonAns2)
+            buttonDrawableNeedReset[1]=true;
+        if(btn.getId()==R.id.buttonAns3)
+            buttonDrawableNeedReset[2]=true;
+        if(btn.getId()==R.id.buttonAns4)
+            buttonDrawableNeedReset[3]=true;
+    }
+
     //Color green the correct answer
-    private void setColorsOnButtons() {
+    private void setGreenTheCorrectAnswer() {
         if(ans1.getText().equals(rightAnswers[questionCountPublic]))
         {
             ans1.setBackgroundResource(R.drawable.quiz_button_correct);
+            buttonDrawableNeedReset[0]=true;
         }
         else if(ans2.getText().equals(rightAnswers[questionCountPublic]))
         {
             ans2.setBackgroundResource(R.drawable.quiz_button_correct);
+            buttonDrawableNeedReset[1]=true;
         }
         else if(ans3.getText().equals(rightAnswers[questionCountPublic]))
         {
             ans3.setBackgroundResource(R.drawable.quiz_button_correct);
+            buttonDrawableNeedReset[2]=true;
         }
         else if(ans4.getText().equals(rightAnswers[questionCountPublic]))
         {
             ans4.setBackgroundResource(R.drawable.quiz_button_correct);
+            buttonDrawableNeedReset[3]=true;
         }
     }
 
@@ -300,11 +331,11 @@ public class QuizGameActivity extends Activity implements OnClickListener{
                     URL url;
                     String response = "";
                     String question_text=questionText;
-                    Log.w("Warn", "Question: " + questionText);
+                   // Log.w("Warn", "Question: " + questionText);
                     //UBUNTU LTS Server on okeanos.grnet.gr
                     //Increase questionCountPublic by 1 because in DB id starts from 1 not 0
                     int id_num=questionCountPublic+1;
-                    Log.w("Warn", "Id: "+id_num);
+                    //Log.w("Warn", "Id: "+id_num);
                     //Pass id as a parameter
                     url = new URL("http://83.212.117.226/GetQuestionStats.php?question_id="+id_num);
 
@@ -316,14 +347,14 @@ public class QuizGameActivity extends Activity implements OnClickListener{
                     conn.setDoOutput(true);
 
                     int responseCode = conn.getResponseCode();
-                    Log.w("Warn", "ResponseCode: " + responseCode); // 200: OK, The request was fulfilled.
+                   // Log.w("Warn", "ResponseCode: " + responseCode); // 200: OK, The request was fulfilled.
                     if (responseCode == HttpsURLConnection.HTTP_OK) {
                         String line;
                         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                         while ((line = br.readLine()) != null) {
                             response += line;
                         }
-                        Log.w("Warn", "Response: " + response);
+                     //   Log.w("Warn", "Response: " + response);
                         SeparateResponseAndShowDataOnView(response);
                     }
 
@@ -357,7 +388,7 @@ public class QuizGameActivity extends Activity implements OnClickListener{
                     correctAnswers=Integer.valueOf(parts[0]);
                     wrongAnswers=Integer.valueOf(parts[1]);
 
-                    Log.w("Warn", "Correct Ans:" + parts[0] + " Wrong Ans: " + parts[1]);
+                   // Log.w("Warn", "Correct Ans:" + parts[0] + " Wrong Ans: " + parts[1]);
                 }
             }
         });
@@ -402,7 +433,7 @@ public class QuizGameActivity extends Activity implements OnClickListener{
                         writer.close();
                         os.close();
                         int responseCode = conn.getResponseCode();
-                        Log.w("Warn", "ResponseCode for Upload: " + responseCode); // 200: OK, The request was fulfilled.
+                       // Log.w("Warn", "ResponseCode for Upload: " + responseCode); // 200: OK, The request was fulfilled.
                         if (responseCode == HttpsURLConnection.HTTP_OK) {
                             String line;
                             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -410,7 +441,7 @@ public class QuizGameActivity extends Activity implements OnClickListener{
                                 response += line;
                             }
 
-                            Log.w("Warn", "Response: " + response);
+                         //   Log.w("Warn", "Response: " + response);
                             //                  if (response.contains("Integrity constraint violation")) //name already used on database
                             //                      ShowErrorOnView(getBaseContext().getString(R.string.error_on_upload_name_used));
                             //                 else if (response.equals("Success")) {
@@ -476,17 +507,33 @@ public class QuizGameActivity extends Activity implements OnClickListener{
     //Restore the button style
     private void resetButtonBackground(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            ans1.setBackground(d);
-            ans2.setBackground(d);
-            ans3.setBackground(d);
-            ans4.setBackground(d);
+            if (buttonDrawableNeedReset[0]) {
+                ans1.setBackground(d1);
+                ans1.setPressed(false);
+                buttonDrawableNeedReset[0] = !buttonDrawableNeedReset[0];
+            }
+            if (buttonDrawableNeedReset[1]) {
+                ans2.setBackground(d2);
+                ans2.setPressed(false);
+                buttonDrawableNeedReset[1] = !buttonDrawableNeedReset[1];
+            }
+            if (buttonDrawableNeedReset[2]) {
+                ans3.setBackground(d3);
+                ans3.setPressed(false);
+                buttonDrawableNeedReset[2] = !buttonDrawableNeedReset[2];
+            }
+            if (buttonDrawableNeedReset[3]) {
+                ans4.setBackground(d3);
+                ans4.setPressed(false);
+                buttonDrawableNeedReset[3] = !buttonDrawableNeedReset[3];
+            }
         }
         else
         {
-            ans1.setBackgroundDrawable(d);
-            ans2.setBackgroundDrawable(d);
-            ans3.setBackgroundDrawable(d);
-            ans4.setBackgroundDrawable(d);
+            ans1.setBackgroundDrawable(d1);
+            ans2.setBackgroundDrawable(d2);
+            ans3.setBackgroundDrawable(d3);
+            ans4.setBackgroundDrawable(d4);
         }
 
     }
@@ -545,8 +592,8 @@ public class QuizGameActivity extends Activity implements OnClickListener{
         }
         @Override
         protected void onPostExecute(Void aVoid) {
-            buttonsActivationSwitcher(true);
             resetButtonBackground();
+            buttonsActivationSwitcher(true);
             txtVresult.setVisibility(View.INVISIBLE);
             goNextEvent();
         }
