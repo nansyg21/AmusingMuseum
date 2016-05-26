@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class QrCodeScanner extends Activity {
 
@@ -40,10 +39,9 @@ public class QrCodeScanner extends Activity {
     String[] monumentInformations;
 
     TextView textViewHint;//In this textview the hints will be displayed!
-
     ImageView imgvExhibit ;//Exhibit image
     TextView txtViewExhibit;//Exhibit information text
-
+    TextView roomInfo;
     EditText numCodeTxt;
 
     TextView textViewIncorrectObjectView;
@@ -51,6 +49,7 @@ public class QrCodeScanner extends Activity {
     //Fields to load saved data
     SharedPreferences sharedPreferences;
     static SharedPreferences.Editor editor;
+    int room;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +57,9 @@ public class QrCodeScanner extends Activity {
         setContentView(R.layout.activity_android_qr_code_example);
 
         //Check for saved data
-        sharedPreferences=getSharedPreferences(menu.STORAGE_FILE, Context.MODE_PRIVATE);
-        editor=sharedPreferences.edit();
-        editor.putBoolean("savedGameAvailiable",true);
+        sharedPreferences = getSharedPreferences(menu.STORAGE_FILE, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putBoolean("savedGameAvailiable", true);
         editor.commit();
 
         //The same activity is never destroyed and recreated so this section is verbosed
@@ -74,6 +73,15 @@ public class QrCodeScanner extends Activity {
        */
         //Find the textView and the Hints List
         textViewHint = (TextView) findViewById(R.id.textViewHints);
+        roomInfo = (TextView) findViewById(R.id.textViewRoomScoreInfo);
+        //Set the room info for the user
+        room = (int) (Math.floor(hintCounter / 2)) + 1;
+
+
+            String[] roomName = getRoomTitleInArray();
+            roomInfo.setText(getResources().getString(R.string.room_word) + " " + room + ": \n" + roomName[0] + "\n" + roomName[1] + "\n" + roomName[2]);
+
+
         hints= getResources().getStringArray(R.array.hints);
         monumentCodes=getResources().getStringArray(R.array.monument_codes);
         textViewHint.setText(hints[hintCounter]);
@@ -596,6 +604,42 @@ public class QrCodeScanner extends Activity {
         editor.putBoolean("questionMode",questionMode);
         editor.commit();
     }
+
+    public String [] getRoomTitleInArray(){
+        String[] rooms=getResources().getStringArray(R.array.rooms_startgame);
+        if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
+        {
+            return new String[]{ rooms[room-1],"",""};
+        }
+        else {
+            if (room == 1) {
+                return new String[]{rooms[0], "", ""};
+            } else if (room == 2) {
+                return new String[]{rooms[1], rooms[2], ""};
+            } else if (room == 3) {
+                return new String[]{rooms[3], rooms[4], ""};
+            } else if (room == 4) {
+                return new String[]{rooms[5], rooms[6], rooms[7]};
+            } else if (room == 5) {
+                return new String[]{rooms[8], rooms[9], ""};
+            } else if (room == 6) {
+                return new String[]{rooms[10], "", ""};
+            } else if (room == 7) {
+                return new String[]{rooms[11], "", ""};
+            } else if (room == 8) {
+                return new String[]{rooms[12], "", ""};
+            } else if (room == 9) {
+                return new String[]{rooms[13], "", ""};
+            } else if (room == 10) {
+                return new String[]{rooms[14], rooms[15], rooms[16]};
+            } else if (room == 11) {
+                return new String[]{rooms[17],  rooms[18], ""};
+            }
+        }
+        return null;
+    }
+
+
     //Remember to hide everything when Activity Resumes...
     @Override
     protected void onResume() {

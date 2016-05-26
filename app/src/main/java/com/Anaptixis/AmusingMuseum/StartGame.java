@@ -25,7 +25,7 @@ public class StartGame extends Activity {
 
     StartGameOurview v;
     int height,width,newInt;
-    private/* static */int startingStage;
+    private int startingStage;
     String nextApp;
     String [] rooms;
 
@@ -190,9 +190,9 @@ public class StartGame extends Activity {
                 //Symbol \n cannot be realized from android , too bad
 
                 canvas.drawText(getResources().getString(R.string.room_word) + " " + startingStage + " :", textViewX, textViewY - 30, paint);
-                canvas.drawText(setTextTitle()[0], textViewX, textViewY + 100, paint);
-                canvas.drawText(setTextTitle()[1], textViewX, textViewY + 200, paint);
-                canvas.drawText(setTextTitle()[2], textViewX, textViewY + 300, paint);
+                canvas.drawText(getRoomTitleInArray()[0], textViewX, textViewY + 100, paint);
+                canvas.drawText(getRoomTitleInArray()[1], textViewX, textViewY + 200, paint);
+                canvas.drawText(getRoomTitleInArray()[2], textViewX, textViewY + 300, paint);
 
                 newInt = sprite.onDraw(canvas);
                 pauseBt.getPauseMenuButton().draw(canvas);
@@ -251,7 +251,7 @@ public class StartGame extends Activity {
                 }).create().show();
     }
 
-    public String [] setTextTitle(){
+    public String [] getRoomTitleInArray(){
         if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM)
         {
             return new String[]{ rooms[startingStage-1],"",""};
