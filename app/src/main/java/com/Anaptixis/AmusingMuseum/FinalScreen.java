@@ -20,6 +20,7 @@ import com.facebook.share.widget.ShareDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -81,7 +82,9 @@ public class FinalScreen extends FragmentActivity {
     CallbackManager callbackManager;
     ShareDialog shareDialog;    //a popup window with facebook share features
 
-
+    //Fields to load saved data
+    SharedPreferences sharedPreferences;
+    static SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +147,13 @@ public class FinalScreen extends FragmentActivity {
 
         TextView scoreTxtView = (TextView) findViewById(R.id.scoreInfoTxt);
         scoreTxtView.setText(Score.TotalScore + "");
+
+        //The game is finished there is no save.
+        //This is the only place that the field is actually is set to false
+        sharedPreferences=getSharedPreferences(menu.STORAGE_FILE, Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+        editor.putBoolean("savedGameAvailiable",false);
+        editor.commit();
     }
 
     public void closeApp(View v)

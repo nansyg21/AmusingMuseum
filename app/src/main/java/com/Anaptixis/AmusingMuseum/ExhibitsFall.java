@@ -64,8 +64,12 @@ public class ExhibitsFall extends Activity {
 
         //Start help screen
         Intent itn = new Intent(getApplicationContext(), HelpDialogActivity.class);
-         itn.putExtra("appNum", 3);
-          startActivity(itn);
+        itn.putExtra("appNum", 3);
+        startActivity(itn);
+
+        //Change and store the question Mode
+        QrCodeScanner.questionMode=true;
+        QrCodeScanner.storeQuestionMode(true);
 
     }
 
@@ -311,7 +315,6 @@ public class ExhibitsFall extends Activity {
             itn.putExtra("nextStage", 3);
             startActivity(itn);
 
-            QrCodeScanner.questionMode = true;
             finish();
         }
 

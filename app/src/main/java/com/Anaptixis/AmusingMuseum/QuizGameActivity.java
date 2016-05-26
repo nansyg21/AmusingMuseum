@@ -3,8 +3,10 @@ package com.Anaptixis.AmusingMuseum;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -66,15 +68,35 @@ public class QuizGameActivity extends Activity implements OnClickListener{
     private int wrongAnswers;
 
     CountDownTimer countDownTimer; //Timer
+    private long timeInMillis;
 
+    //Handle the drawables of the answer buttons
     private Drawable d1,d2,d3,d4;
     private boolean[] buttonDrawableNeedReset= new boolean[]{false,false,false,false};
+
+    //Fields to load saved data
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.quizgame_activity);
+
+        //Check for saved data
+        sharedPreferences=getSharedPreferences(menu.STORAGE_FILE, Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+        //set the questionMode false Here
+        QrCodeScanner.questionMode = false;
+        //Store
+        editor.putBoolean("questionMode",false);
+        editor.commit();
+
+        //find the room set the questionCounter
+        int room = (int)(Math.floor(QrCodeScanner.hintCounter/2))+1 ;
+        questionCountPublic=(room-1)*3;
 
         nextApp = "nextApp";
 
@@ -119,10 +141,11 @@ public class QuizGameActivity extends Activity implements OnClickListener{
             rightAnswers = MainActivity.GetAllRightAnswers();
         }
 
+        timeInMillis=(long) 45000;
 
         /**--------------------TIMER START----------------------------------**/
         timer = (TextView) findViewById(R.id.txtViewTimer);
-        countDownTimer = new CountDownTimer(45000, 1000) {
+        countDownTimer = new CountDownTimer(timeInMillis, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 long seconds = (millisUntilFinished / 1000) % 60;
@@ -139,8 +162,6 @@ public class QuizGameActivity extends Activity implements OnClickListener{
 
                 timer.setText("Time's up!");
                 // Finish game when the timer is zero
-                fixQuestionCounter();
-                QrCodeScanner.questionMode = false;
                 Intent itns = new Intent(QuizGameActivity.this, QrCodeScanner.class);
                 itns.putExtra(nextApp, appToStart);
                 itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -210,6 +231,7 @@ public class QuizGameActivity extends Activity implements OnClickListener{
         ++questionCounter;
 
 
+
         //Set AsyncTask to handle the question switch
         MyTask task=new MyTask();
         task.execute();
@@ -275,32 +297,22 @@ public class QuizGameActivity extends Activity implements OnClickListener{
 
     //When the time end finish quiz finish Activity
     //and make sure that you are in the right question
+/*
+    public  void fixQuestionCounter() {
 
-    public void fixQuestionCounter() {
+        if(questionCountPublic%3==0)
+            questionCountPublic+=3;
+        else if( questionCountPublic%3==1)
+            questionCountPublic+=2;
+        else if(questionCountPublic%3==2)
+            questionCountPublic+=1;
 
-        if (questionCountPublic < 3)
-            questionCountPublic = 3;
-        else if (questionCountPublic < 6)
-            questionCountPublic = 6;
-        else if (questionCountPublic < 9)
-            questionCountPublic = 9;
-        else if (questionCountPublic < 12)
-            questionCountPublic = 12;
-        else if (questionCountPublic < 15)
-            questionCountPublic = 15;
-        else if (questionCountPublic < 18)
-            questionCountPublic = 18;
-        else if (questionCountPublic < 21)
-            questionCountPublic = 21;
-        else if (questionCountPublic < 24)
-            questionCountPublic = 24;
-        else if (questionCountPublic < 27)
-            questionCountPublic = 27;
-        else if (questionCountPublic < 30)
-            questionCountPublic = 30;
+        //Store...
+        editor.putInt("questionCounterPublic",questionCountPublic);
+        editor.commit();
     }
 
-
+*/
     @Override
     public void onBackPressed() {
 
@@ -557,7 +569,6 @@ public class QuizGameActivity extends Activity implements OnClickListener{
             // When done open the qr scaner again to play the riddle
             // To do so pass back the next activity number
             // And make sure the user cannot go but by hitting the back button
-            QrCodeScanner.questionMode = false;
             Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
             itns.putExtra(nextApp, appToStart);
             itns.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

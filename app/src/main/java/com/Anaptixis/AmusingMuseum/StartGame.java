@@ -128,10 +128,6 @@ public class StartGame extends Activity {
         Log.d("stopped", "Start Game stopped");
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
 
     public class StartGameOurview extends SurfaceView implements Runnable {
 

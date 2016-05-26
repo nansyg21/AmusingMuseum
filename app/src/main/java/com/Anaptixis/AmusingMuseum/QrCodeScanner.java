@@ -8,8 +8,10 @@ package com.Anaptixis.AmusingMuseum;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,11 +47,21 @@ public class QrCodeScanner extends Activity {
     EditText numCodeTxt;
 
     TextView textViewIncorrectObjectView;
+
+    //Fields to load saved data
+    SharedPreferences sharedPreferences;
+    static SharedPreferences.Editor editor;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //set the main content layout of the Activity
         setContentView(R.layout.activity_android_qr_code_example);
+
+        //Check for saved data
+        sharedPreferences=getSharedPreferences(menu.STORAGE_FILE, Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+        editor.putBoolean("savedGameAvailiable",true);
+        editor.commit();
 
         //The same activity is never destroyed and recreated so this section is verbosed
      /*   if(savedInstanceState!=null)
@@ -108,6 +120,11 @@ public class QrCodeScanner extends Activity {
         try {
             //Increase the counter for the next Hint
             hintCounter++;
+            //Store this to sharedPreferences
+            editor.putInt("hintCounter",hintCounter);
+            editor.commit();
+
+
 
             if(MainActivity.WORKING_ON_EXTERNAL_MUSEUM && hintCounter==(MainActivity.EXTERNAL_MUSEUM.number_of_rooms*2))
             {       //hints= rooms visited*2    Rooms=dynamic value     No rooms left, go to Upload Score Activity
@@ -236,16 +253,6 @@ public class QrCodeScanner extends Activity {
         startActivityForResult(itn, 1);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        Log.e("THEO","savedInstanceState Called");
-        outState.putInt("hintCounter",hintCounter);
-        outState.putInt("appToStart",appToStart);
-        outState.putBoolean("questionMode",questionMode);
-    }
-
     //alert dialog for downloadDialog
     private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
         AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
@@ -278,14 +285,14 @@ public class QrCodeScanner extends Activity {
                 //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 //Check if the qrcode is correct...
                 if (contents.equals(monumentCodes[hintCounter]+"\n") || contents.equals(monumentCodes[hintCounter]) ) {
-                    Log.d("code",monumentCodes[hintCounter]);
+
                     //The second parameter is not going to be used, dummy..
                     buildExhibitInformationView(true,true);
 
                 }else {
                     //GO to information screen...
                     buildExhibitInformationView(false,false);
-                    Log.d("code", monumentCodes[hintCounter]);
+
                     ///show a toast... for wrong...
                   //  Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
                   //  toast.show();
@@ -340,15 +347,12 @@ public class QrCodeScanner extends Activity {
         if(monumentCodes[hintCounter].equals(numCodeTxt.getText().toString())){
             //The second parameter is not going to be used, dummy..
             buildExhibitInformationView(true,true);
-            Log.d("code", monumentCodes[hintCounter]);
         }
         //IF code is incorrect , display the information about the current exhibit and a toast with proper message
         else
         {
             //Info window
             buildExhibitInformationView(false,true);
-            Log.d("code", monumentCodes[hintCounter]);
-
             ///show a toast... for wrong...
             //Toast toast = Toast.makeText(this,getResources().getString(R.string.wrong_code), Toast.LENGTH_LONG);
             //toast.show();
@@ -588,6 +592,10 @@ public class QrCodeScanner extends Activity {
         menu.hideNavBar(this.getWindow());
     }
 
+    public static void storeQuestionMode(boolean questionMode){
+        editor.putBoolean("questionMode",questionMode);
+        editor.commit();
+    }
     //Remember to hide everything when Activity Resumes...
     @Override
     protected void onResume() {
@@ -595,6 +603,10 @@ public class QrCodeScanner extends Activity {
         menu.hideNavBar(this.getWindow());
         //Update the language
         getApplicationContext().getResources().updateConfiguration(menu.setLocale(), null);
+
+        //This code fix if app is minimized during scanning a qr .
+        hintCounter=sharedPreferences.getInt("hintCounter",0);
+        questionMode=sharedPreferences.getBoolean("questionMode",true);
     }
 
     @Override
@@ -625,6 +637,8 @@ public class QrCodeScanner extends Activity {
                     }
                 }).create().show();
     }
+
+
 }
 
 

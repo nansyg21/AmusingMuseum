@@ -81,7 +81,10 @@ public class connect_wires extends Activity {
         itn.putExtra("appNum", 10);
         startActivity(itn);
 
+        //Change and store the question Mode
         QrCodeScanner.questionMode=true;
+        QrCodeScanner.storeQuestionMode(true);
+
     }
 
     // Reset the flags to hide the navigation bar

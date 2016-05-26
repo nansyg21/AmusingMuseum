@@ -38,6 +38,7 @@ public class PuzzleActivity extends Activity   {
         setContentView(new PuzzleScreen(this));
 
 
+
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenWidth = displaymetrics.widthPixels;
@@ -51,6 +52,9 @@ public class PuzzleActivity extends Activity   {
         itn.putExtra("appNum", 2);
         startActivity(itn);
 
+        //Change and store the question Mode
+        QrCodeScanner.questionMode=true;
+        QrCodeScanner.storeQuestionMode(true);
 
     }
 
@@ -231,8 +235,6 @@ public class PuzzleActivity extends Activity   {
             Intent itn= new Intent(getApplicationContext(), Score.class);
             itn.putExtra("nextStage", 2);
             startActivity(itn);
-
-            QrCodeScanner.questionMode=true;
             finish();
 
 

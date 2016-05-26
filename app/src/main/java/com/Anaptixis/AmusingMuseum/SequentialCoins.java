@@ -52,6 +52,10 @@ public class SequentialCoins extends Activity {
         Intent itn = new Intent(getApplicationContext(), HelpDialogActivity.class);
         itn.putExtra("appNum", 6);
         startActivity(itn);
+
+        //Change and store the question Mode
+        QrCodeScanner.questionMode=true;
+        QrCodeScanner.storeQuestionMode(true);
     }
 
     // Reset the flags to hide the navigation bar
@@ -261,7 +265,6 @@ public class SequentialCoins extends Activity {
             itn.putExtra("nextStage", 6);
             startActivity(itn);
 
-            QrCodeScanner.questionMode=true;
             finish();
         }
 

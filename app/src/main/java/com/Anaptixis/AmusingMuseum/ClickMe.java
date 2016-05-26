@@ -54,6 +54,9 @@ public class ClickMe extends Activity {
         itn.putExtra("appNum",4);
         startActivity(itn);
 
+        //Change and store the question Mode
+        QrCodeScanner.questionMode=true;
+        QrCodeScanner.storeQuestionMode(true);
     }
 
     // Reset the flags to hide the navigation bar
@@ -251,8 +254,6 @@ public class ClickMe extends Activity {
             itn.putExtra("nextStage", 4);
             startActivity(itn);
 
-
-            QrCodeScanner.questionMode=true;
             finish();
 
         }

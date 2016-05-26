@@ -104,6 +104,10 @@ public class Hangman extends Activity {
         Intent itn= new Intent(getApplicationContext(), HelpDialogActivity.class);
         itn.putExtra("appNum",11);
         startActivity(itn);
+
+        //Change and store the question Mode
+        QrCodeScanner.questionMode=true;
+        QrCodeScanner.storeQuestionMode(true);
     }
 
     public void pauseButtonOnClick(View v)
@@ -190,7 +194,11 @@ public class Hangman extends Activity {
                         Intent itn= new Intent(getApplicationContext(), Score.class);
                         itn.putExtra("nextStage", 11);
                         startActivity(itn);
+
+                        //Change and store the question Mode
                         QrCodeScanner.questionMode=true;
+                        QrCodeScanner.storeQuestionMode(true);
+
                         finish();
                     }}.start();
             }
@@ -211,7 +219,6 @@ public class Hangman extends Activity {
             itn.putExtra("nextStage", 11);
             startActivity(itn);
 
-            QrCodeScanner.questionMode=true;
             finish();
         }
     }

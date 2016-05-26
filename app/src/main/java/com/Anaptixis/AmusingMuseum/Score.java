@@ -3,8 +3,10 @@ package com.Anaptixis.AmusingMuseum;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -49,12 +51,20 @@ public class Score extends Activity {
     ImageView imgv;
     //Assigned by incoming variables
     private int nextStage;
+
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);//hide status bar
         setContentView(R.layout.activity_score);
+
+        //Check for saved data
+        sharedPreferences=getSharedPreferences(menu.STORAGE_FILE, Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
 
         // Handle the incoming variables
         //to know what stage is the next to show up
@@ -154,6 +164,8 @@ public class Score extends Activity {
 
         int riddle_score= currentRiddleScore+currentQuizScore;
         TotalScore+=currentQuizScore+currentRiddleScore;
+        editor.putInt("totalScore",TotalScore);
+        editor.commit();
 
         if (riddle_score >= 0 && riddle_score <= 10)
         {

@@ -112,6 +112,9 @@ public class RightOrder extends Activity {
         itn.putExtra("appNum", 8);
         startActivity(itn);
 
+        //Change and store the question Mode
+        QrCodeScanner.questionMode=true;
+        QrCodeScanner.storeQuestionMode(true);
     }
 
     // Set listeners to textViews and imageViews
@@ -240,8 +243,6 @@ public class RightOrder extends Activity {
         itn.putExtra("nextStage", 8);
         startActivity(itn);
 
-
-        QrCodeScanner.questionMode=true;
         finish();
     }
 

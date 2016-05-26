@@ -2,13 +2,17 @@ package com.Anaptixis.AmusingMuseum;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +29,8 @@ import java.util.Locale;
 public class menu extends Activity {
     public static int mainPid;
     public static String lang="el";
-
+    public static String STORAGE_FILE="DATA";
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,8 @@ public class menu extends Activity {
         //hide nav & stat bars
         hideNavBar(this.getWindow());
         mainPid=android.os.Process.myPid();
+
+
 
         //hide icon: Upload score from local data if local data don't exist
         SharedPreferences settings = getApplicationContext().getSharedPreferences(UploadScoreActivity.LOCALLY_SAVED_DATA_PREFERENCE_NAME, 0);
@@ -71,7 +78,6 @@ public class menu extends Activity {
 
     public void ButtonOnClick(View v){
 
-        Button button=(Button) v;
         switch (v.getId()) {
 
             case R.id.btnMenuExit:
@@ -79,7 +85,18 @@ public class menu extends Activity {
                 System.exit(0);
                 break;
             case R.id.btnMenuNewGame:
-                startActivity(new Intent(getApplicationContext(), Game.class));
+
+
+                //Check if saved data
+                if(checkSavedDataExistance()) {
+                    showDialog(this,"Saved Game found!","Wish to continue last game or start a brand new one?", "New Game","Resume Last").show();
+                }
+                else {
+                    initializeSavedData();
+                    startActivity(new Intent(getApplicationContext(), Game.class));
+                }
+
+
                 break;
             case R.id.btnMenuHelp:
 
@@ -119,7 +136,6 @@ public class menu extends Activity {
                 break;
         }
     }
-
     public void GoToDownloads(View v)
     {
         startActivity(new Intent(getApplicationContext(),DowloadQRCodeActivity.class));
@@ -127,8 +143,6 @@ public class menu extends Activity {
      //   ImageView imgv=(ImageView) v;
 
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -248,5 +262,103 @@ public class menu extends Activity {
         config.locale = locale;
 
         return config;
+    }
+
+    //Check if there is saved game Data
+    private boolean checkSavedDataExistance(){
+        SharedPreferences sharedPreferences=getSharedPreferences(this.STORAGE_FILE, Context.MODE_PRIVATE);
+
+        return sharedPreferences.getBoolean("savedGameAvailiable",false);
+    }
+
+    //Reset SharedPreferences for a brand new game()
+    private void initializeSavedData(){
+        SharedPreferences sharedPreferences=getSharedPreferences(this.STORAGE_FILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+
+        //General Data
+        editor.putBoolean("savedGameAvailiable",false);
+        //roomNumber is availiable via Math.floor(hintCOunter/2) + 1
+
+        //editor.putInt("roomNumber",0);
+        editor.putInt("totalScore",0);
+
+        //Check if crash happened during quiz or minigame or somewhere else
+        editor.putBoolean("questionMode",true);
+
+        //Saved Data about quiz
+        editor.putInt("hintCounter",0);
+
+
+        //Commit the initialized data
+        editor.commit();
+    }
+
+    //Load sharedPreferences data, this method has to be called after the checkSavedDataExistance.
+    private void loadData(){
+
+        SharedPreferences sharedPreferences=getSharedPreferences(this.STORAGE_FILE, Context.MODE_PRIVATE);
+
+        //A saved game needs only the following values!
+        Score.TotalScore=sharedPreferences.getInt("totalScore",0);
+        QrCodeScanner.hintCounter=sharedPreferences.getInt("hintCounter",0);
+        QrCodeScanner.questionMode=sharedPreferences.getBoolean("questionMode",true);
+
+       // QuizGameActivity.questionCountPublic=sharedPreferences.getInt("questionCountPublic",0);
+        //Fix counter, in case which game exited/crashed during quiz
+    //    int room = (int)(Math.floor(QrCodeScanner.hintCounter/2))+1 ;
+
+    //    QuizGameActivity.questionCountPublic=(room-1)*3;
+      /*  if( room*3 > QuizGameActivity.questionCountPublic*3 )
+        {
+            if(QuizGameActivity.questionCountPublic%3==0)
+                QuizGameActivity.questionCountPublic+=3;
+            else if(QuizGameActivity.questionCountPublic%3==1)
+                QuizGameActivity.questionCountPublic += 2;
+            else if(QuizGameActivity.questionCountPublic%3==2)
+                QuizGameActivity.questionCountPublic+=1;
+        }*/
+
+     //   QuizGameActivity.questionRightAnsPublic=sharedPreferences.getInt("questionRightAnsPublic",0);
+
+     //   Log.w("THEO", QrCodeScanner.hintCounter+" hintC ");
+     //   Log.w("THEO ", Score.TotalScore+" score");
+
+
+        Intent itns = new Intent(getApplicationContext(), QrCodeScanner.class);
+        //This is how I calculate the room number
+        itns.putExtra("nextApp",(int) (Math.floor(QrCodeScanner.hintCounter/2 + 1)));
+        startActivity(itns);
+        finish();
+
+    }
+
+    //Create a dialog for saved game if exists
+    private AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
+        AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
+        downloadDialog.setTitle(title);
+        downloadDialog.setMessage(message);
+        downloadDialog.setPositiveButton(buttonYes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                try {
+                    initializeSavedData();
+                    startActivity(new Intent(getApplicationContext(), Game.class));
+                } catch (ActivityNotFoundException anfe) {
+                    anfe.printStackTrace();
+                }
+            }
+        });
+        downloadDialog.setNegativeButton(buttonNo, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                try {
+                    loadData();
+                } catch (ActivityNotFoundException anfe) {
+                    anfe.printStackTrace();
+                }
+
+            }
+        });
+        return downloadDialog.show();
     }
 }
