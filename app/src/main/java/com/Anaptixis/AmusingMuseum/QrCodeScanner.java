@@ -37,6 +37,7 @@ public class QrCodeScanner extends Activity {
     String[] hints;
     String[] monumentCodes;
     String[] monumentInformations;
+    String[] roomName;
 
     TextView textViewHint;//In this textview the hints will be displayed!
     ImageView imgvExhibit ;//Exhibit image
@@ -77,14 +78,14 @@ public class QrCodeScanner extends Activity {
         //Set the room info for the user
         room = (int) (Math.floor(hintCounter / 2)) + 1;
 
-
-            String[] roomName = getRoomTitleInArray();
-            roomInfo.setText(getResources().getString(R.string.room_word) + " " + room + ": \n" + roomName[0] + "\n" + roomName[1] + "\n" + roomName[2]);
+        roomName = getRoomTitleInArray();
+        roomInfo.setText(getResources().getString(R.string.room_word) + " " + room + ": \n" + roomName[0] + "\n" + roomName[1] + "\n" + roomName[2]);
 
 
         hints= getResources().getStringArray(R.array.hints);
         monumentCodes=getResources().getStringArray(R.array.monument_codes);
         textViewHint.setText(hints[hintCounter]);
+
 
 
         //Hide all..
@@ -107,9 +108,6 @@ public class QrCodeScanner extends Activity {
             startActivityForResult(itn, 1);
         }
 
-        //If user typed a pass...
-      /*  if(numCodeCheck)
-            validateNumCode();*/
 
         //These are important for the Exhibit information view
 
@@ -119,7 +117,7 @@ public class QrCodeScanner extends Activity {
             monumentInformations=MainActivity.GetAllHintsAsList();
         }
 
-        Log.d("test",monumentInformations[0]);
+        //Log.d("test",monumentInformations[0]);
     }
 
     //product qr code mode
@@ -139,12 +137,7 @@ public class QrCodeScanner extends Activity {
                 itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
                 startActivityForResult(itn,1);
             }
-            //No need to check hangman will send message to stop after next quiz game
-        /*    if(hintCounter>20)     //hints= rooms visited*2    Rooms=6     No rooms left, go to Upload Score Activity
-            {
-                itn=new Intent(getApplicationContext(),UploadScoreActivity.class);
-                startActivityForResult(itn,1);
-            }*/
+
             if(questionMode)
             {
                 itn=new Intent(getApplicationContext(),QuizGameActivity.class);
@@ -344,6 +337,8 @@ public class QrCodeScanner extends Activity {
                 setContentView(R.layout.activity_android_qr_code_example);
                 textViewHint = (TextView) findViewById(R.id.textViewHints);
                 textViewHint.setText(hints[hintCounter]);
+                roomInfo = (TextView) findViewById(R.id.textViewRoomScoreInfo);
+                roomInfo.setText(getResources().getString(R.string.room_word) + " " + room + ": \n" + roomName[0] + "\n" + roomName[1] + "\n" + roomName[2]);
                 menu.hideNavBar(this.getWindow());
                 break;
 

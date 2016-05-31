@@ -10,7 +10,7 @@
 
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/title_qrcode"
@@ -76,8 +76,8 @@
         </Button>
 
         <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text Large Text Large TextLarge TextLarge TextLarge TextLarge Text"
             android:id="@+id/textViewHints"
