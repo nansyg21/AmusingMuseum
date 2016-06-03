@@ -100,8 +100,10 @@ public class menu extends Activity {
                 break;
             case R.id.btnMenuHelp:
 
-               //  startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
-                startActivity(new Intent(getApplicationContext(),SequentialCoins.class));
+                /***Put into comments the commands that use shared prefs in your minigame to get access from here****/
+
+                 startActivity(new Intent(getApplicationContext(),HelpscreenSliderActivity.class));
+               // startActivity(new Intent(getApplicationContext(),ChurchMap.class));
                 //startActivity(new Intent(getApplicationContext(),QuizGameActivity.class));
               //  startActivity(new Intent(getApplicationContext(),UploadScoreActivity.class));
                //  Intent itn = new Intent(getApplicationContext(), SequentialCoins.class);
