@@ -304,10 +304,10 @@ public class MemoryGame extends Activity {
 
                 if (pauseBt.getRect().contains((int) touchX, (int) touchY)) {
                     if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-                       LeaveMemoryGame();
-                        //Intent itn;
-                        //itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
-                        //startActivity(itn);
+                       //LeaveMemoryGame();
+                        Intent itn;
+                        itn = new Intent(getApplicationContext(), PauseMenuActivity.class);
+                        startActivity(itn);
                     }
                 }
 
