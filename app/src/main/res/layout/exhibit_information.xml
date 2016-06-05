@@ -70,7 +70,7 @@
                 android:layout_toLeftOf="@+id/backButtonExhibitInfo"
                 android:layout_alignParentBottom="true"
                 android:visibility="gone"
-                />
+                android:background="#ffe100" />
         </RelativeLayout>
 
 

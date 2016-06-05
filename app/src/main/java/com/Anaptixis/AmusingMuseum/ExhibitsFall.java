@@ -231,7 +231,7 @@ public class ExhibitsFall extends Activity {
 
         public void InformAboutCorrectObject()     //Show a pop up toast informing the player about the correct object
         {
-            int duration = Toast.LENGTH_SHORT;
+            int duration = Toast.LENGTH_LONG;
             Toast toast = Toast.makeText(this.getContext(),getResources().getString(R.string.looking_for)+allExhibitsList.get(chosenObjectIndex).name, duration);
             toast.show();
         }
