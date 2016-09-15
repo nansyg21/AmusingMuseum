@@ -18,13 +18,13 @@
     <string name="Quit">Exit</string>
 
     <string name="confirm_exit_small">EXIT</string>
-    <string name="confirm_exit_large">Are you sure, you want to exit the application?</string>
+    <string name="confirm_exit_large">Are you sure that you want to close the application?</string>
     <string name="confirm_exit_cancel">Cancel</string>
     <string name="confirm_exit_οκ">OK</string>
 
     <string name="correct">Correct</string>
     <string name="wrong">Wrong</string>
-    <string name="hangman_correct_is">The correct word is:</string>
+    <string name="hangman_correct_is">The right word is:</string>
 
 
     <string name="upload_score_info">Upload your score</string>
@@ -32,25 +32,25 @@
     <string name="upload_score_num">Score:</string>
     <string name="upload_score_upload">Upload</string>
     <string name="upload_empty_name_small">Empty Name</string>
-    <string name="upload_empty_name_large">Please insert a name</string>
+    <string name="upload_empty_name_large">Please enter a name</string>
     <string name="upload_complaints">Complaints:</string>
-    <string name="upload_complaints_send">Send Complaint</string>
+    <string name="upload_complaints_send">Sending of complaints</string>
     <string name="empty_field">Empty Field</string>
-    <string name="empty_field_large">Please write your complaints or anything that you did not like during the tour</string>
+    <string name="empty_field_large">Please send any complaints or whatever you want to highlight during your tour</string>
 
     <string name="error">Error!</string>
-    <string name="error_on_upload_name_used">Name is already in use, please try a different name</string>
-    <string name="error_no_internet_connection_large">No internet connection</string>
+    <string name="error_on_upload_name_used">Name is already in use, please try with a different name </string>
+    <string name="error_no_internet_connection_large">You are not connected to the internet</string>
     <string name="error_try_later_large">Please try again later</string>
-    <string name="score_successfully_uploaded">Your score has been uploaded successfully</string>
-    <string name="upload_complaint_sent">Your complaint was sent</string>
+    <string name="score_successfully_uploaded">The score was successfully uploaded</string>
+    <string name="upload_complaint_sent">The text has been successfully sent</string>
 
     <string name="save_score_locally_button_text">Save locally</string>
     <string name="save_score_locally_successfully">Data saved locally</string>
     <string name="upload_locally_no_saved_data_found">No saved data found</string>
     <string name="upload_locally_already_saved">Your score has already been saved</string>
     <string name="download_and_play_with_other_museums">Download and play with other museums</string>
-    <string name="upload_previously_saved_score">Upload previously saved score</string>
+    <string name="upload_previously_saved_score">Upload the score that you have saved previously</string>
     <string name="download_change_museum_confirm">New museum downloaded. Play with new museum?</string>
     <string name="download_switch_to_mbp">Switch to Museum Of Byzantine Culture Of Thessaloniki</string>
     <string name="new_museum">New museum</string>
@@ -67,15 +67,15 @@
     <string name="museum_title">MUSEUM OF BYZANTINE CULTURE OF THESSALONIKI</string>
 
     <string name="museum_discription">
-        1. EARLY CHRISTIAN CHURCHES\n
-        2. EARLY CHRISTIAN CITY AND PRIVATE DWELLING\n
+        1. EARLY CHRISTIAN CHURCH\n
+        2. EARLY CHRISTIAN CITY AND DWELLING\n
         3. FROM THE ELYSIAN FIELDS TO THE CHRISTIAN PARADISE\n
         4. FROM ICONOCLASM TO THE SPLENDOUR OF THE MACEDONIAN AND KOMNENIAN DYNASTIES\n
         5. THE DYNASTIES OF BYZANTINE EMPERORS\n
-        6. BYZANTINE CASTLES\n
+        6. BYZANTINE CASTLE\n
         7. THE TWILIGHT OF BYZANTIUM\n
-        8-9. DONATED COLLECTIONS\n
-        10. THE BYZANTINE LEGACY IN THE YEARS AFTER THE FALL OF CONSTANTINOPLE\n
+        8-9. DONATIONS OF COLLECTIONS\n
+        10. THE BYZANTINE LEGACY IN THE YEARS AFTER THE FALL\n
         11. DISCOVERING THE PAST\n
     </string>
 
@@ -145,23 +145,23 @@
     </string-array>
 
     <string-array name="monument_names">
-        <item>AGGELOKASTRO</item>
-        <item>AMPHIPOLIS</item>
+        <item>ANGELOKASTRO</item>
+        <item>AMPHIPOLI</item>
         <item>SERVIA</item>
-        <item>PHILIPPOI</item>
+        <item>PHILIPPI</item>
         <item>MOGLENA</item>
         <item>SERRES</item>
-        <item>PLATAMONAS</item>
-        <item>ANAKTOROUPOLIS</item>
+        <item>PLATAMON</item>
+        <item>ANAKTOROUPOLI</item>
         <item>THESSALONIKI</item>
-        <item>ANASTASIOUPOLIS</item>
-        <item>GYNAIKOKASTRO</item>
+        <item>ANASTASSIOUPOLI</item>
+        <item>GYNEKOKASTRO</item>
         <item>KOUMOUTZINA</item>
-        <item>SIDIROKASTRO</item>
-        <item>GRATINI</item>
+        <item>SIDEROKASTRO</item>
+        <item>GRATINE</item>
         <item>RENTINA</item>
-        <item>DIDIMOTIHO</item>
-        <item>PITHIO</item>
+        <item>DIDYMOTEICHO</item>
+        <item>PYTHIO</item>
     </string-array>
 
     <string-array name="monument_images_filenames">
@@ -187,7 +187,7 @@
     <string name="title">Questions-Answers</string>
     <string name="rightAnswer">Correct !</string>
     <string name="wrongAnswer">Wrong !</string>
-    <string name="correct_is">The correct is:</string>
+    <string name="correct_is">The right is:</string>
     <string name="result">Result</string>
     <string name="correct_answers_num">Number of correct answers</string>
     <string name="question">Question</string>
@@ -196,27 +196,40 @@
 
 
     <string-array name="Questions">
-        <item>Centuries that are known as Early Christian Period:</item>
-        <item>The capital of Byzantine Empire, before the founding of Constantinople:</item>
-        <item>The year of Constantinople foundation, by Constantine the Great:</item>
-        <item>In Thessaloniki the "triklino" was the name of:</item>
-        <item>The amphoraes in the houses was used as:</item>
-        <item>The most popular clothe in East Meditteranean, the tunic, was manifactured with:</item>
-        <item>According to the Greek mythology, the Elysian Fields, were the final destination of the souls of:</item>
-        <item>Which of the following, was not used to follow a dead in his tomb:</item>
-        <item>What information is unexpected to be found on a tombstone:</item>
-        <item>Centuries that are known as Middle Byzantine Period:</item>
-        <item>The "koutroubia" were used from pilgrims to carry:</item>
-        <item>The name of the Byzantines, who were against the depiction of holly symbols:</item>
-        <item>Heraclius had been the emperor of Byzantium from 610 A.C to:</item>
-        <item>The name of the golden currency, which was established by Contantine the Great:</item>
-        <item>Alexios A Komnenian (1081-1118) established a new golden currency known as:</item>
-        <item>The emperor who re-established the castle of Rentina, while he reenforced the fortifications too:</item>
-        <item>The part of the castle, which is highly located to help the soldiers\' patrols:</item>
-        <item>In which of the following locations, a castle must not be built:</item>
-        <item>The year of the Fall of Contantinople by the Ottomans:</item>
-        <item>The emperor who canceled the Olympic Games:</item>
-        <item>The symbol of the Byzantine Empire:</item>
+        <item>Centuries otherwise called as Early Christian period:</item>
+        <item>Capital of the Byzantine empire:</item>
+        <item>Year of foundation of Constantinople by Constantine the Great:</item>
+        <item>The triclinium was:</item>
+        <item>The amphoras were used in houses as:</item>
+        <item>The most widespread garment in the Eastern Mediterranean, the tunic, was not manufactured by:</item>
+        <item>According to Roman tradition the Elysian Fields was the final destination of the souls of:</item>
+        <item>Which of the following symbols is not Christian:</item>
+        <item>What information someone is not waiting to find on an inscription:</item>
+        <item>The Middle Byzantine period comprises the centuries:</item>
+        <item>Pilgrim ampullae of lead were used by pilgrims to carry:</item>
+        <item>Name of the Christians who were against the depiction of sacred symbols:</item>
+        <item>Heraclius was emperor of Byzantium from 610 until 641 AD:</item>
+        <item>Name of the gold coin introduced by Constantine the Great:</item>
+        <item>Alexius I Komnenus (1081-1118) introduced a new gold coin, named:</item>
+        <item>Emperor who re-founds the castle of Rendina and he strengthens its fortifications:</item>
+        <item>Part of the castle situated high which serves for the patrols of soldiers :</item>
+        <item>In which of the following locations a castle will not be built:</item>
+
+        <item>In the Early Christian era cookware was the:</item>
+        <item>Year that Theodosius divides the Roman Empire in the East and West part: </item>
+        <item>Emperor who defined Christianity as the official religion of the Roman Empire:</item>
+        <item>During the Byzantine period the plate was the equivalent of today:</item>
+        <item>The oil lamp in the Byzantine period was used for:</item>
+        <item>According to the decree of Milan in 313 AD, every citizen believed (in):</item>
+        <item>Emperor who admired Greek culture and tried to restore the Roman Empire to the National Religion: </item>
+        <item>The terms “Byzantium” and “Byzantine” were used for the first time for the whole empire and its inhabitants by Western historians in:</item>
+        <item>Leo III, the Isaurian (Emperor 717 - 741 AD), for the better management of the empire dived, it into:</item>
+        <item>A woman in Byzantium could marry from the age of:</item>
+        <item>The “Solidarity Act” (996 AD) was a decree of the Emperor:</item>
+        <item>Battle in which Romanos IV Diogenes was defeated, captured and released after paying ransoms:</item>
+        <item>Year of the conquest of Constantinople by the Ottomans:</item>
+        <item>Emperor who abolished the Olympic Games:</item>
+        <item>Symbol of the Byzantine Empire :</item>
         <item>The name of the Ottoman soldier:</item>
     </string-array>
 
@@ -227,9 +240,9 @@
         <item>3rd - 7th century</item>
 
         <item>Alexandria</item>
-        <item>Antiohia</item>
+        <item>Antiochia</item>
         <item>Rome</item>
-        <item>Athens</item>
+        <item>Constantinople</item>
 
         <item>325 A.C</item>
         <item>332 A.C</item>
@@ -237,32 +250,32 @@
         <item>330 A.C</item>
 
         <item>Clothing type</item>
-        <item>Pottery</item>
-        <item>Kitchenware</item>
-        <item>Place of urban residence</item>
+        <item>Clay vessels</item>
+        <item>Cooking pot</item>
+        <item>Reception hall</item>
 
-        <item>Storage pottery</item>
+        <item>Storage vessels</item>
         <item>Kitchenware</item>
         <item>Decoration</item>
-        <item>Pillars</item>
+        <item>Supports</item>
 
-        <item>Wool</item>
-        <item>Animal skin</item>
+        <item>Flax or wool</item>
+        <item>Animal leather</item>
         <item>Silk</item>
         <item>Cotton</item>
 
         <item>Soldiers</item>
         <item>Kings</item>
-        <item>Defectors</item>
+        <item>Deserters</item>
         <item>Heroes</item>
 
-        <item>Glass vases</item>
-        <item>Golden coins</item>
-        <item>Shield</item>
-        <item>Pets</item>
+        <item>ΙΧΘΥΣ </item>
+        <item>Christogram</item>
+        <item>Seven-branched oil-lamp</item>
+        <item>Cross</item>
 
-        <item>Name</item>
-        <item>Occupation</item>
+        <item>Depiction of the dead</item>
+        <item>Profession</item>
         <item>Tomb\'s cost</item>
         <item>Marital status</item>
 
@@ -274,10 +287,10 @@
         <item>Wheat</item>
         <item>Wool</item>
         <item>Water</item>
-        <item>Essence</item>
+        <item>Myrrh</item>
 
         <item>Anti-unionist</item>
-        <item>Paynim</item>
+        <item>Gentiles</item>
         <item>Pagans</item>
         <item>Iconoclasts</item>
 
@@ -286,30 +299,92 @@
         <item>641 A.C</item>
         <item>631 A.C</item>
 
-        <item>Solidos</item>
-        <item>Miliarisio</item>
-        <item>Keratio</item>
+        <item>Solidus</item>
+        <item>Miliarense</item>
+        <item>Siliqua</item>
         <item>Follis</item>
 
-        <item>Tetartiro</item>
-        <item>Trimisio</item>
-        <item>Istamenon</item>
-        <item>Iperpiros</item>
+        <item>Tetarteron</item>
+        <item>Tremisses</item>
+        <item>Histamenon</item>
+        <item>Perperum</item>
 
-        <item>Fokas</item>
+        <item>Phocas</item>
         <item>Justinian</item>
         <item>Maurice</item>
-        <item>Tiberius Β</item>
+        <item>Tiberius II</item>
 
         <item>Cistern</item>
         <item>Tower</item>
-        <item>Peridromus</item>
+        <item>Round path</item>
         <item>Wall</item>
 
         <item>Hill</item>
         <item>Steep terrain</item>
-        <item>Place by the sea</item>
+        <item>Littoral place</item>
         <item>Plain</item>
+
+        <item>Cooking pot</item>
+        <item>Oil lamp</item>
+        <item>Oinochoe</item>
+        <item>Plate</item>
+
+        <item>405 </item>
+        <item>411 </item>
+        <item>385 </item>
+        <item>395 </item>
+
+        <item>Constantine the Great</item>
+        <item>Theodosius the Great</item>
+        <item>Justinian</item>
+        <item>Anastasius  I</item>
+
+
+        <item>Of a plate</item>
+        <item>Of a knife</item>
+        <item>Of a panel </item>
+        <item>Of a key</item>
+
+        <item>Heating</item>
+        <item>Cookery</item>
+        <item>Lighting</item>
+        <item>Storage</item>
+
+        <item>Christianity</item>
+        <item>Zoroastrianism</item>
+        <item>Dodekatheism</item>
+        <item>Whatever he wanted</item>
+
+        <item>Julian</item>
+        <item>Constantine the Great</item>
+        <item>Justinian</item>
+        <item>Heraclius</item>
+
+        <item>Of 18th century</item>
+        <item>Of 16th century</item>
+        <item>Of 14th century</item>
+        <item>Of 12th century</item>
+
+        <item>Departments</item>
+        <item>Themes</item>
+        <item>Cities</item>
+        <item>Prefectures</item>
+
+        <item>15</item>
+        <item>12</item>
+        <item>18</item>
+        <item>21</item>
+
+        <item>Basil II the Bulgar Slayer</item>
+        <item>Leo III the Isaurian</item>
+        <item>Constantine VII Porphyrogenitus</item>
+        <item>Alexius I Comnenus</item>
+
+        <item>Dyrrachium  1018 </item>
+        <item>Myriokephalo  1176</item>
+        <item>Mavropotamos 844 </item>
+        <item>Mantzikert  1071 </item>
+
 
         <item>1284</item>
         <item>1282</item>
@@ -322,51 +397,67 @@
         <item>Heraclius</item>
 
         <item>Owl</item>
-        <item>Lionοντάρι</item>
+        <item>Lion</item>
         <item>Eagle</item>
         <item>Bat</item>
 
         <item>Akritas</item>
-        <item>Legionnaire</item>
+        <item>Legionary</item>
         <item>Janissary</item>
         <item>Crusader</item>
     </string-array>
 
     <string-array name="RightAnswers">
+
         <item>4rth - 7th century</item>
-        <item>Rome</item>
+        <item>Constantinople</item>
         <item>330 A.C</item>
-        <item>Place of urban residence</item>
-        <item>Storage pottery</item>
-        <item>Wool</item>
+        <item>Reception hall</item>
+        <item>Storage vessels</item>
+        <item>Animal leather</item>
         <item>Heroes</item>
-        <item>Pets</item>
-        <item>Marital status</item>
+        <item>Seven-branched oil-lamp</item>
+        <item>Depiction of the dead</item>
         <item>8th - 12th century</item>
-        <item>Essence</item>
+        <item>Myrrh</item>
         <item>Iconoclasts</item>
         <item>641 A.C</item>
-        <item>Solidos</item>
-        <item>Iperpiros</item>
+        <item>Solidus</item>
+        <item>Perperum</item>
         <item>Justinian</item>
+        <item>Round path</item>
         <item>Plain</item>
-
+        <!--
+        Neww
+        -->
+        <item>Cooking pot</item>
+        <item>395 </item>
+        <item>Theodosius the Great</item>
+        <item>Of a plate</item>
+        <item>Lighting</item>
+        <item>Whatever he wanted</item>
+        <item>Julian</item>
+        <item>Of 16th century</item>
+        <item>Themes</item>
+        <item>12</item>
+        <item>Basil II the Bulgar Slayer</item>
+        <item>Mantzikert  1071 </item>
         <item>1453</item>
         <item>Theodosios</item>
         <item>Eagle</item>
-        <item>Janissary</item>
+
     </string-array>
 
     <string-array name="right_order_names">
-        <item>After figuration on the wheel</item>
-        <item>Investing whitish coating</item>
-        <item>Eecoration engraving</item>
-        <item>Com-glazing and baking</item>
+        <item>After the figuration on the potter’s wheel</item>
+        <item>Investing of whitish coating</item>
+        <item>Decoration engraving</item>
+        <item>Glazing and firing</item>
     </string-array>
 
     <string name="loading">Please wait...</string>
 
-    <string name="righ_order_timer">Remaining time</string>
+    <string name="righ_order_timer">Time remaining</string>
 
     <string name="title_activity_help_screen">HelpScreenActivity</string>
 
@@ -375,73 +466,73 @@
     <string-array name="advices">
         <item>
             GENERAL \n
-            Through this application you get to know the Museum of Byzantine Culture of Thessaloniki via a funny treasure hunt. \n
-            You should visit every room in the museum, answer the questions and gather all your abilities, in order to solve the riddles you
-            come across.\n
-            Complete your museum tour with the greatest score.\n\n
+            By means of the application you get to know the Museum of Byzantine Culture in Thessaloniki playing an amusing treasure hunt. \n
+            Visit all the rooms of the museum, answer correctly to questions and mobilize all your skill to solve the puzzles you meet.\n
+            Finish your walk in the museum with the highest score.\n\n
             1. Follow the clues on the screen \n
-            2. Use the QR code scanner to locate the correct exhibit\n
-            3. Fulfill successfully all the questions and the riddles, to increase your score.
+            2. Use the QR code scanner to identify the right exhibit\n
+            3. Complete successfully the questions and puzzles to increase your score.
         </item>
         <item>
             QUIZ GAME\n
             One question, four possible answers. \n
-            The only thing you have to do is to find the right one.\n
+            All you have to do is to find the right one.\n
             How good are you in history?
         </item>
          <item>
-            FILL IT UP\n
-            Only if you put everything in place you can see what the picture is hidding.\n
-            It is a classical puzzle game, also known as "Fast and neatly"
+            FILL IT\n
+            Only if you put everything in place you can see what the picture hides.\n
+            A classic puzzle game or else "Fast and neat".
         </item>
         <item>
-            CATCH THE EXHIBIT, SAVING IT FROM DESTRUCTION\n
-            Random exhibits are falling from the sky. Watch the screen for the exhibit you must catch and save it.\n
-            But beware, don\'t catch the wrong one. In the end you have the chance to see information about the exhibit you are trying to save.
+            SAVE THE MUSEUMS EXHIBITS FROM DESTRUCTION\n
+            Museum’s exhibits are falling from the sky. Observe the screen, in order to see which exhibit must be saved and try to grab it.\n
+            But be careful not to grab the wrong exhibit. At the end you have the opportunity to learn about this exhibit.
          </item>
           <item>
             CATCH ME IF YOU CAN\n
             The faster your reflexes are the better.\n
             Hit the moving image in order to complete the bigger picture in the end of the game.\n
-            The more successful hits you manage, the more points you score and you get a cleaner view at on of the museum\'s masterpieces.
+            The more successful hits you have you earn points and a better look at one of the masterpieces of our museum..
         </item>
         <item>
-            ALL STAMPS HAVE TWO SIDES\n
-            Can you figure out who they are?\n
-            Match them as soon as possible to score points. The more observant you are, the sooner you will finish.\n
-            Remember nothing is over until you move on to the next room of the museum.
+            EACH SEAL HAS TWO FACES\n
+            Can you identify which ones these are?\n
+            Match them as fast as you can to earn points. The more observant you are the faster you finish.\n
+            Remember that nothing ends, if you don’t move from one gallery to another inside the museum.
         </item>
          <item>
-            OBSERVE CAREFULLY THE COINS\n
-            Try to remember the order in which they are illuminated.\nThen select them exactly in the same order.
+            OBSERVE THE COINS CAREFULLY\n
+            Try to remember the order in which they are illuminated.\n
+             Then select them in this order without doing a mistake
          </item>
         <item>
             WHERE ARE THE MONUMENTS?\n
-            Can you find the location of the monument on the map, knowing the monument and the location name?\n
-            Choose the location on the map, as close as possible to the right one, to score more points\n
-            The clues you are asking for are hidden on the museum\'s walls
+            Knowing the monument and its location can you find where it is located on the map?\n
+            Select the location on the map as close as possible to the monument to earn points.\n
+            TOn the walls of the museum the information you ask for are hiding.
         </item>
         <item>
-            FIND THE RIGHT ORDER\n
-            Some of the pottery we admire up to this day, took a lot of time in order to look like this and carry all these details.\n
-            Put in the right order the production stages, their names and form, as fast as you can to increase your score
+            FIND THE PROPER ORDER\n
+            For some of the vessels we admire to this day for their appearance and details took enough effort and time to get their form.\n
+            Enter their stages of production, their name and their form as fast as you can to earn points.
         </item>
          <item>
-            FIND THE PAIRS OF THE CLAY VESSELS\n
-             You have a few seconds to observe and memorize the pairs formed by the clay vessels. \n
-             Then you have to use your memory to locate those pairs with the least possible selections on screen.
+            FIND THE PAIRS OF POTTERY\n
+             Someone mixed the museum’s vessels. You have a few seconds to observe and memorize their positions. \n
+             Then you have to use your memory to identify pairs of vessels with the least effort possible.
          </item>
          <item>
-            ENLIGHTEN THE IMAGE ΤΗΝ ΕΙΚΟΝΑ \n
-            View the image! But to do so, you must first drop some light on it.
-            Match the wires on the right part of the image making the less possible moves.
-            By touching a wire you can rotate it.
+            LIGHTEN THE IMAGE\n
+            The lights went out! To see the image you must turn the lights on.\n
+            Match the cables located at the right of the screen to form a single one, in order that all the lights can be turned on with as little as possible moves.\n
+            Touching each piece of the cable you can change its orientation.
         </item>
         <item>
             SAVE THE ARCHES\n
-            In fact it is all about the classic hangman game.\n
-            All you have to do is to guess the word before all the arches come down.\n
-            What is the words are kind of unusual and Greek, take a good look at your surroundings and the museum will give you the answer
+            In fact it’s the classic game of hangman.\n
+            Just find the word before all the arches of the exhibit are demolished.\n
+            What if the words are a bit unusual, notice your environment and it will give you the answer.
         </item>
 
     </string-array>
@@ -453,19 +544,17 @@
     <string name="title_activity_credits">CreditsActivity</string>
 
     <string name="credits">
-        The game "Amusing Museum" is an application for educational purposes. It has been developed in order to help the visitor
-        of the Museum of Byzantine Culture of Thessaloniki, to see the museum via a funny treasure hunt.\n
-        The application was developed during the Summer School of Open Source Projects of University of Macedonia and the department of
-         Applied Informatics.\n
-        Developer Team:\n
+        The Amusing Museum game is an educational application which was developed in order to provide the visitor of the Museum of Byzantine Culture with a tool that can make him/her able to know it by means of an amusing treasure hunt.\n
+       The application was developed for the Museum of Byzantine Culture in Thessaloniki by the Alumni team of the Applied Informatics of the University of Macedonia. The name of the team is Anaptixis Studios and the application was first shown at the International IMCL conference in Thessaloniki in 2015.\n
+        Development Team:\n
         Dimopoulos Theodoros - Christos\n
         Kotsikoris Panagiotis\n
         Moschou Athanasia\n\n
 
-        Have a nice tour of the Byzantine treasures in our city!
+        Have a good tour visiting the Byzantine treasures of our city!
     !</string>
 
-    <string name="title_qrcode"> Find the exhibit ! </string>
+    <string name="title_qrcode"> Find the artifact! </string>
     <string name="button_qrcode_scanner">QR code</string>
     <string name="button_num_code">Code</string>
 
@@ -476,28 +565,28 @@
 
     <!-- Fullfill NEEDED! -->
     <string-array name="hints">
-        <item>Locate the part of mosaic mural with fountain and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Spot the silver reliquary with scenes from the Old and New Testament and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Locate the clay amphora ( 5th-6th Cent.) and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Locate the solidus coin made ​​of gold and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Locate the mural with protoplasts Adam and Eve and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
+        <item>Identify the fragment of a mural mosaic with the depiction of a fountain and proceed to the next puzzle by scanning or entering the code of the artefact.</item>
+        <item>Identify the silver reliquary with scenes from the Old and New Testament and proceed to the next puzzle by scanning or entering the code of the artefact</item>
+        <item>Identify the clay amphora (5th-6th c.) and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the gold solidus (coin) of Justinian I and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the mural painting with the First Created Adam and Eve and proceed to the next puzzle by scanning or entering the code of the artefact </item>
 
-        <item>Locate the marble statue of the Good Shepherd and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Spot gold wristbands with enclosed enamel and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Locate the Tetraeuangelo (late 11th - early 12th century ) and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Locate Manuel Komneno\'s hyperpyron and proceeded to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Locate the solidus of Heraklion and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Locate the ceramic filter or else strainer and proceed to the next puzzle by scanning or by entering the code of the monument .</item>
-        <item>Type the title of the Room to proceed</item>
-        <item>hint 13</item>
-        <item>hint 14</item>
-        <item>hint 15</item>
-        <item>hint 16</item>
-        <item>hint 17</item>
-        <item>hint 18</item>
-        <item>hint 19</item>
-        <item>hint 20</item>
-        <item>hint 21</item>
+        <item>Identify the marble statuette of the Good Shepherd and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the gold bracelets with the cloisonné enamel and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the Four-gospel Codex (end of 11th-beginning of the 12th c.) and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the gold coin, perperum of Manuel I Comnenus and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the solidus of Heraclius and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the clay strainer and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the Byzantine castle and proceed to the next puzzle by scanning or entering the code of the artefact</item>
+        <item>Identify the portable, bizonal icon with six saints and proceed to the next puzzle by scanning or entering the code of the artefact</item>
+        <item>Identify the large unguentarium, preserved whole and welded. Proceed to the next puzzle by scanning or entering the code of the artefact</item>
+        <item>Identify the engraving of 1804, printed in Constantinople, and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify a colored woodcut depicting St. John of the Ladder. Proceed to the next puzzle by scanning or entering the code of the artefact</item>
+        <item>Identify the portable icon “Adoration of the Magi” and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the Sanctuary gate, originating from an iconostasis gate with the Annunciation on the upper zone and Apostles Peter and Paul on the lower. Proceed to the next puzzle by scanning or entering the code of the artefact</item>
+        <item>Identify the Music manuscript (Heirmologion) and proceed to the next puzzle by scanning or entering the code of the artefact</item>
+        <item>Identify the archiepiscopal vestment (sakkos) of Ioannikios, bishop of Melenikon and proceed to the next puzzle by scanning or entering the code of the artefact </item>
+        <item>Identify the South wind on the mosaic floor and proceed to the next puzzle by scanning or entering the code of the artefact </item>
         <item>hint 22</item>
     </string-array>
 
@@ -527,7 +616,7 @@
     </string-array>
 
 
-    <string name="title_activity_insert_code">Insert the code of the exhibit</string>
+    <string name="title_activity_insert_code">Type the code of the artefact </string>
     <string name="title_activity_pause_menu">PauseMenuActivity</string>
 
     <string name="wrong_code">Wrong code, try again!</string>
@@ -535,80 +624,91 @@
     <string name="room_word">ROOM</string>
 
     <string-array name="rooms_startgame">
-        <item>EARLY CHRISTIAN CHURCHES</item>
+        <item>EARLY CHRISTIAN CHURCH</item>
         <item>EARLY CHRISTIAN CITY AND</item>
-        <item>PRIVATE DWELLING</item>
-        <item> FROM THE ELYSIAN FIELDS </item>
+        <item>DWELLING</item>
+        <item>FROM THE ELYSIAN FIELDS </item>
         <item>TO THE CHRISTIAN PARADISE</item>
-        <item> FROM ICONOCLASM TO THE </item>
+        <item>FROM ICONOCLASM TO THE </item>
         <item>SPLENDOUR OF THE MACEDONIAN</item>
         <item>AND KOMNENIAN DYNASTIES</item>
         <item>THE DYNASTIES OF</item>
         <item>BYZANTINE EMPERORS</item>
-        <item> BYZANTINE CASTLES</item>
+        <item>BYZANTINE CASTLES</item>
         <item>THE TWILIGHT OF BYZANTIUM</item>
         <item>DONATED COLLECTIONS (1/2)</item>
         <item>DONATED COLLECTIONS (2/2)</item>
-        <item> THE BYZANTINE LEGACY </item>
-        <item> IN THE YEARS AFTER THE</item>
-        <item>FALL OF CONSTANTINOPLE</item>
-        <item> DISCOVERING THE</item>
+        <item>THE BYZANTINE LEGACY </item>
+        <item>IN THE YEARS AFTER THE</item>
+        <item>FALL</item>
+        <item>DISCOVERING THE</item>
         <item>PAST</item>
     </string-array>
 
     <!-- TRANSLATION NEEDED! -->
     <string name="title_Exhibit_information">Exhibit information</string>
     <string-array name="exhibits_information">
-        <item>Part of a mural mosaic with fountain which until recently was covered by the most recent western wall of the central aisle of the basilica. In detached mosaic, the lower portion luxurious jets is illustrated, shown in blue color, by which overflows water falling on leaf stalks and  a bird. The show is developed into a gold background.</item>
-        <item>Reliquary. Rectangular casket with flat cover, fastened with hooks. Its four sides adorn reliefs with scenes from the Old and New Testaments. On the front side, it represents the Tradition of the Law by Christ to the apostles Peter and Paul. On the reverse side there are depicted the Three Children in the furnace. On narrow sides there are depicted Daniel in the lion\'s den and the delivery of the Ten Commandments to Moses.</item>
-        <item>Spherical shape amphora with a conical neck ending in poor glass spout. The two arched handles are formed parallel to the shoulders of the amphora. Subtle horizontal grooves mellowed in the wheel run around the body of the amphora at the height of its shoulder.</item>
-        <item>The obverse shows a bust of Emperor Justinian, with military clothing and crusader bullet in the right hand. All around we read the inscription DN IVSTINIANVS PPAVG (Dominus Noster Iustinianus Perpetuus Augustus, which means, our Lord, Justinian, the eternal emperor).</item>
-        <item>Vaulted tomb full of paintings organized in panels with scenes from the Old and New Testament. The eastern narrow side of the tomb is decorated with a table surrounded by red and green band and portrays the protoplasts after their disobedience. The show is organized around tree with lush foliage in the trunk of which there is a wrapped snake.</item>
-        <item>Bracket monopod, of a luxurious table, made from a piece of marble. It consists of a cubic base with four small rectangular legs in its corners- by means of which rests on the ground. The main view of the brace is  adorned with sculpted form on the iconographic type of the "Good Shepherd", the young shepherd with a ram on his shoulders.</item>
-        <item>Pair of gold pods. Each wristband is covered by 20 tiles defined by granular film, which are decorated with fenced technical enamel, cloisonne. The tiles depict alternately a bird pecking a leaf, a palm and a rosette and are rendered in different color variations.</item>
-        <item>Tetraeuangelo contains readings which are read on Sunday,  Saturday and weekdays in the church. It consists of 325 sheets of parchment and is truncated. The text has two columns, with notation, written in an upright, rounded, elaborate minuscule scripture echoing the style of the second half of the 11th and early 12th century.</item>
-        <item>In one aspect, which is curved, Christ is depicted in the figure of Emmanuel, so he is young. It is flanked by the inscription IC- XC (Jesus Christ) and around the invocation “+ principal assistant “.In the back side, which is hollow, Manuel is illustrated standing wearing an imperial dress, holding banner and crusader orb.</item>
-        <item>On one side there is depicted the Emperor Heraclius on the left and his son and also emperor Heraclius Constantine on the right, wearing chlamys and crown with a cross. Among their heads there is a cross. All around there is the inscription ddNNhERACLIUS EthERACONSTPPAV (Dominus Noster Heraclius et Heraclius Constantinus Perpetuus Augustus), which means "our Gentlemen Heraclius and Heraclius Constantine the Eternal Emperors". </item>
-        <item>Filter, or in other words colander or strainer hemispherical. Incised wavy line runs around the rim. The whole body of the vase is pierced. The holes were opened, of course, while the clay was still damp with a sharp tool and with the direction from the interior of the vessel to the outward. The filter has been serving through the centuries the same use which remained in an unchanged shape until today.</item>
-        <item>The castles were fortified settlements, obtaining the basic functions of a city. They were built in key positions who controlled the passes of roads and offered protection to the inhabitants and residents of the surrounding region in seasons of war. The limited space and the morphology of the terrain determined the urban organization of the castles and the changes in the architecture of the houses.  </item>
+        <item>Fragment of a mural mosaic, of the mid-5th c., depicting a fountain. The mosaic, until recently, was covered by the newer western walls of the central aisle of the basilica of Acheiropoietos in Thessaloniki. On the detached mosaic the lower part of a fountain is depicted in blue color. From the fountain water overflows and drops on leaf sprouts and a bird. The representation is shown on a gold background</item>
+        <item>Reliquary from Nea Iraklia. Rectangular casket with flat cover, fastened with hooks. Reliefs decorate the four sides of the artefact with themes from the Old and New Testament. On the front side there is the representation of the Giving of the Law by Christ to the apostles Peter and Paul. On the reverse there is the depiction of the Three Children in the furnace. On the narrow sides we have Daniel in the lion’s pit and the Delivery of the Ten Commandments to Moses. Dated to the 4th c.</item>
+        <item>Amphora of spherical shape with tapered neck which ends in a glass shape mouth. The two arched handles are formed parallel to the shoulders of the amphora. Thin horizontal corrugations made on the potter’s wheel run around the body of the amphora at shoulder height. It comes from the Hosios David of Thessaloniki and dates to 5th-6th c.</item>
+        <item>On the obverse a bust of Emperor Justinian is shown, in military attire and crusader sphere in his right hand. All around we read the inscription DN IVSTINIANVS PPAVG (Dominus Noster Iustinianus Perpetuus Augustus, which means, our Lord, Justinian, the eternal emperor). Dated to 545-565 AD</item>
+        <item>The vaulted mural painting with scenes from the Old and New Testament. On a panel, surrounded by red and green band, there is a depiction of the First Created after their disobedience. The representation is organized around a tree with rich foliage, in the trunk of which the snake is wrapped. It derives from Thessaloniki (western cemetery) and it is dated to 360-370 AD</item>
+        <item>Trapezoforo, i.e. support of a uniped, luxurious table, made of marble. It is adorned with a relief figure in the iconographic type of the “Good Shepherd”, the young shepherd with a ram on his shoulders, who symbolizes Christ. Found in Thessaloniki and dated to the mid 4th c.</item>
+        <item>Pair of gold bracelets, which are decorated with cloisonné enamel. The tiles alternately depict bird pecking at leaf, palm. They come from Thessaloniki and are dated to 10th c. </item>
+        <item>Parchment codex, Four-gospel Codex from Thessaloniki. The Four-gospel Codex contains excerpts that are read on Sundays, Saturdays and weekdays in the church. It consists of 325 sheets and is truncated. The text is developed in two columns, with musical signs, written in a meticulous minuscule script that echoes the style of the second half of the 11th and early 12th century. It is illustrated with full-page portraits of the evangelists Matthew, Mark and Luke, whereas the depiction of John has been detached.</item>
+        <item>On one side, which is the curved one, Christ is depicted young in the type of Christ Emmanuel. He is framed by the inscription IC- XC (Jesus Christ) and around him there is the invocation “+Κύριε βοήθει”. On the reverse side, which is concave, Manuel I is depicted standing, with imperial attire, holding a banner and a crusader sphere. The coin is found  in New Panteleimon in Pieria and is dated back to 1164 - 1167 AD. Issued by the mint of Constantinople</item>
+        <item>On one side emperor Heraclius is depicted on the left together with his son and co-emperor Heraclius Constantine on the right. They both wear mantle and crown with a cross. Among their heads there is a cross. All around there is the inscription ddNNhERACLIUS ЄthЄRACONSTPPAV (Dominus Noster Heraclius et Heraclius Constantinus Perpetuus Augustus), which means “our Lords Heraclius and Heraclius Constantine the Eternal Emperors”. It is dated to 613-630 AD. Issued in Constantinople.</item>
+        <item>Strainer of hemispherical shape. The entire body of the vessel is pierced. Because the strainer had through the centuries the same use, retained the same shape until nowadays </item>
+        <item>Castles were fortified settlements, which brought together the basic functions of a city. They were built in key positions and controlled the passes of roads. They also provided protection to residents and residents of the surrounding area in times of war. The limited space and the terrain determined the town planning of the castles and the changes in the architecture of the houses.</item>
+        <item>Portable, bizonal icon with six saints. On the upper zone the military saints George, Demetrius and the physician saint Panteleimonas are depicted, while on the lower zone the military saints Theodore Stratilatis and Theodore Teron together with saint Antonios are shown. It comes from the church of Agios Athanasios in Thessaloniki and is dated to late 14th-early 15th c.</item>
+        <item>Large unguentarium, preserved whole and welded. It is made of dark blue glass with free blowing. Supported on a flat unformatted basis. The first spherical body has been pressed and is lenticular. The neck is wider at the base and narrows towards the rim. It is found in Thessaloniki and is dated to 14th-16th c.</item>
+        <item>Etching of 1804, printed in Constantinople. Hilarion and monks of the local dependency of the monastery of St. Catherine of Sinai payed the cost. The engraving shows the building complex of the monastery. In the perimeter of the etching we have the representation of events from the Old Testament and scenes of the life of St. Catherine, such as the burial of her relics by angels on the top of Mount Sinai</item>
+        <item>Colored woodcut depicting St. John of the Ladder, printed in 1700 in Lviv of today’s Ukraine. Made for the Monastery of St. Catherine on Mt. Sinai </item>
+        <item>Portable image “The Adoration of the Magi”. The representation of the adoration is displayed in front of a naturalistic landscape. Mountains, rivers, a lake, a city, a bridge, a watermill. On the left, in front of a building, Virgin Mary with the infant Christ in her arms and Joseph behind her welcomes the three Magi, who come from the right. The elder of them comes first and kneels and together with the two youngest, who stand behind him, offer the gifts to Christ. It is dated back to the early 16th c.</item>
+        <item>Sanctuary gate, originating from an iconostasis gate with the Annunciation on the upper zone and the apostles Peter and Paul on the lower. The scene of the Annunciation is displayed in front of high buildings. The archangel comes, with a strong gait, from the left and the Virgin projects the right hand as a sign of acceptance of Gabriel's message, while she holds a spindle in her left hand. It is dated back to the 15th c.</item>
+        <item>Musical manuscript (Heirmologion). Book of ecclesiastical music, which comprises formulas, according to which chants and hymns of saints are structured. It is dated back to the 17th c.</item>
+        <item>Archiepiscopal vestment (sakkos) of Ioannikios, bishop of Melenikon. Silk embroidered with gold and silver threads. On the front side there are vine sprouts with grapes, which end in oval medallions, into which the apostles are depicted. The enthroned Christ Pantocrator and the Annunciation are depicted inside the large central frameworks. Work of Christopher Zefar. It is dated between 1745-1753. On the reverse side the family tree of Christ, known as the “Root of Jesse” is depicted.</item>
+        <item>Mosaic floor from a triclinium of a residence with zodiac and personifications of months and winds. The mosaic was found in Thessaloniki and is dated to the first half of the 5th c. The subject of the mosaic was very popular in the 4th and 5th century and it is originated from the pagan tradition. Identify South wind.</item>
     </string-array>
 
     <string name="topFive">TOP 5</string>`
 
     <string name="title_activity_statistics">Statistics</string>
 
-    <string name="exhibitsFall1">Oinochoe from the 4th century AD. Its height is 16.5 cm. αnd diameter 4.5 cm. It is made of pale green glass. The base is flat unformatted. The body is octagonal and decorated with side stripes.\nThe almost cylindrical neck is reduced slightly towards the ring-shaped rim which is horizontal, and folded. The vessel is constructed with the technique of blowing into two successive molds.</string>
-    <string name="exhibitsFall2">Lamp dated around the 6th century and is made of copper alloy.\n It has spherical body, disc-shaped base, elongated spout and a hole with clam-shaped cover. The handle is a cross with forked antennae. On the back of the cross, there is a carrying handle attached to support the cross.</string>
-    <string name="exhibitsFall3">Clay whistle from the 3rd-4th century with a height of 9.3 cm and base diameter 2.7cm. It was discovered north of the cemetery of Evangelistria, on the eastern Thessaloniki. \n The upper body of the vessel has a cylindrical appendage with a spout and a small hole in the surface for the functioning of the whistle. When the vase was filled with water the sound produced when using the whistle imitated the chirping of a bird. The sound differed depending on the height of the water level in the vessel. The format of this game remained unchanged until today as similar whistles sold as toys so far, especially at festivals remote from urban areas.</string>
-    <string name="exhibitsFall4">Wooden portable picture that was created around 1200 AD. It\'s height is 53 cm, width is 28.5 cm and it has thickness of 3 cm. \nThe Virgin is depicted in the middle, praying with her left hand on the chest, holding on the right the young Christ, blessing with corresponding hand while holding a wrapped scroll in his left. The iconographic archetype of the image located in the 6th century work in Rome.</string>
-    <string name="exhibitsFall5">Glass unguentarium of the 4th century with a height of 8 cm and base diameter of 3 cm. \n It has flat base and a spherical body with a form of two young people\'s heads and a tall neck widening in ends horizontally creating in that way a ring-shaped lip. It was found in the West Cemetery of Thessaloniki, at Kallithea 5 street.</string>
-    <string name="exhibitsFall6">Glass bracelet of the 10th-12th century. It originates from Macedonia but the place of discovery is unknown. \nIt is flat on the inside and curved on the outside. It is decorated by yellow and gold colors. It is separated vertically by triple stripes in six rectangular fields which are alternatively: a bird with a long neck, possibly a swan with its wings stretched and three horizontal zigzags, two gold and a central yellow.</string>
-    <string name="exhibitsFall7">Archieratic garment of the 18th century made of silk, linen, gold and silver. \nIn the front side we see meandering vine shoots with grapes, resulting in oval medallions, within which the apostles are depicted. In large central framework we see enthroned Christ Pantocrator and the Feast of the Annunciation. On the back side we see the genealogical tree of Christ, known as the "Root of Jesse" according to the prophecy of Isaiah.</string>
-    <string name="exhibitsFall8">Golden coin made between 1164-1167 AD. \nIn one side, which is the curved, Christ is depicted in the formula of Emmanuel, which means at young age. On the other side, which is hollow,there is Manuel I, with imperial dress, holding a banner and a crusader sphere.</string>
-    <string name="exhibitsFall9">Leaden seal of emperor Constantine VII Porphyrogenitus (913-959 AD) with a diameter of 3.4 cm and a weight of 19.88 gramms. \nOn the one side we see Christ Pantocrator with the original IC-XC (Jesus Christ).On the orher side there is the Emperor Constantine VII wearing imperial clothes and holding the crusader ball in his right hand.The display of the emperor in the seal is an excellent example of portraiture of the time.</string>
-    <string name="exhibitsFall10">Colored copperplate engraved in 1798 by the monk painter Nikiforos descended from Karpenissi. It\'s height is 48.5 cm and it\'s width is 34.5 cm. \nIn the central frame we see St George the dragon-slayer above the monastery of Xenofontos, which is dedicated to the saint. On the upper right, Christ is blessing St George and on the left Saint Marina  is praying with a cross in her hand. </string>
-    <string name="exhibitsFall11">Marble inlay created with the opus sectile technique in the 7th century. Ir\'s height and width is 80 cm and it was found at the church of St. Demetrius at Thessaloniki. In the central circle we have two red squares and inside the created corners we see white leeves </string>
-    <string name="exhibitsFall12">Wall painting of the 5th century discovered at the west wall of a vaulted tomb, depicting the biblical story of Sosannas. \nThe show is divided into two zones, one of which is the lower one which shows a scaly thorakion that ends up taking the shape of a pine tree. On the second zone we have a floor as two wide stripes of green and orange and in from of them we see Sosanna between the two Jewish Judges.</string>
-    <string name="exhibitsFall13">Marble embossed plate of the 11th century coming from Thessaloniki.\nIt was used to decorate the long side of a Christian tomb of the 11th-12th century. The left half part is missing. In the main view, within the framework, two crosses are represented in graded foundations. The cross on the right is roman and framed by branched that grow from the base. Over the branches we see an eagle on the right and a smaller bird on the left. The cross left is a Resurrection cross with double horizontal rows and a tree is growing from within.</string>
-    <string name="exhibitsFall14">A copy of a mural found in a vaulted tomb at Nigde 6-8 street outside the western walls of Thessaloniki, at the settlement Tyroloe. It was created in 1950 and has a height of 75.5 cm and a width of 171 cm.\n It displays two colorful birds in front of a bown of fruits. The background is decorated with flowers. The scene looks like a heavenly landscape, refering to the afterlife. On the top and bottom of the image we it is decorated by red stripes.</string>
-    <string name="exhibitsFall15">A book used in churches to structure chants and hymns of saints of Byzantine music. It was created around the 17th century with a height of 17.5 cm and width 12 cm.</string>
+    <string name="exhibitsFall1">Oinochoe (ewer) of the 4th century made of pale green glass. The vessel is constructed with the technique of blowing (blown glass) in two consecutive molds </string>
+    <string name="exhibitsFall2">Bronze oil lamp, dating to the 6th century, that was found in Louloudies of Kitros in Pieria. The hole, through which they use to fill it with the fuel (usually oil), has a clam-shaped cover. The tip of the wick came out of the second hole. The handle of the oil lamp is cross-shaped and at its back there is a carrying handle. In the centre of the cross there is a link chain, which resulted in another equivalent, in front of the clam-shaped cover, so that the lamp can be hung from above.</string>
+    <string name="exhibitsFall3">Clay whistle of the 3rd-4th century. Discovered in the eastern cemetery of Thessaloniki, north of the cemetery of Evangelistria. When the vessel was filled with water, the sound produced, when using the whistle, imitated a bird’s chirping. The sound was varied according to the height of the water level inside the vessel. The format of this game remained unchanged until nowadays, as similar whistles are sold as toys so far, especially at festivals of regions remote from urban centres</string>
+    <string name="exhibitsFall4">Wooden portable icon with Virgin dexiokratoussa, which is dated to around 1200. The Virgin Mary is depicted to the waist, praying with her left hand on the chest and keeping with the right hand the infant Christ. Christ blesses with the one hand, while he holds with the other a wrapped scroll (manuscript in the form of a scroll).</string>
+    <string name="exhibitsFall5">Glass unguentarium of the 4th century from the Western cemetery of Thessaloniki (which was located in the todays region of Ampelokipi)</string>
+    <string name="exhibitsFall6">Glass bracelet of the 10th-12th centuries from Macedonia. It is painted with yellow and gold color. Vertical strips divide the surface of the bracelet into rectangular sections, where alternately bird with long neck (probably swan) and stretched wings and horizontal zigzags are depicted.</string>
+    <string name="exhibitsFall7">Archiepiscopal vestment (sakkos) of Ioannikios, bishop of Melenikon. Silk embroidered with gold and silver threads. On the front side there are vine sprouts with grapes, which end in oval medallions, into which the apostles are depicted. The enthroned Christ Pantocrator and the Annunciation are depicted inside the large central frameworks. On the reverse side the family tree of Christ, known as the “Root of Jesse” is depicted. Work of Christopher Zefar. It is dated between 1745-1753.</string>
+    <string name="exhibitsFall8">Perperum of Manuel I Comnenus, which is dated to 1164-1167 from New Panteleimonas in Pieria. On one side, which is the curved one, Christ is depicted young in the type of Christ Emmanuel. He is framed by the inscription IC- XC (Jesus Christ) and around him there is the invocation “+Κύριε βοήθει”. On the reverse side, which is concave, Manuel I is depicted standing, with imperial attire, holding a banner and a crusader sphere. Up and right, in the background, there is the hand of God. On the right and on the left of the emperor we read “To Manuel Despot, the Porphyrogenitus”. Issued by the mint of Constantinople</string>
+    <string name="exhibitsFall9">Lead seal of emperor Constantine VII Porphyrogenitus (913-959). On one side Christ Pantocrator with the initials IC-XC (Jesus Christ) is depicted. On the reverse side the emperor Constantine VII in bust, with imperial attire, and holding a crusader sphere in his right hand is depicted. We read the partly ruined inscription “+ Constantine”, written in circular form. This is the seal of the erudite emperor Constantine VII, son of Leo VI the Wise. The depiction of the emperor on this seal is an excellent example of a portrait of that era</string>
+    <string name="exhibitsFall10">Colored engraving, engraved and printed in 1798 by the monk painter Nikiforos, who came from the town of Karpenissi. Its central theme is St. George, the dragon-slayer and view of the Monastery of Xenophon, which is dedicated to this Saint. The representation is surrounded by secondary small icons in the corners• up and right Christ blessing the great martyr George, before He gives him the crown, and on the left St. Marina praying with a cross in her hand. On the bottom of the depiction we can see the Saint who hits the earth and water flows and his beheading</string>
+    <string name="exhibitsFall11">Opus sectile, placed on a wall. Dated to the second quarter of the 7th century it comes from the church of St. Demetrius in Thessaloniki. White and red marble tiles are placed on a background of a different color and form a panel of geometric character. Works of this type are a special kind of luxurious ornamentation, found in buildings of this era</string>
+    <string name="exhibitsFall12">Mural painting of the early 5th century from the west wall of a vaulted tomb, depicting the history of Sosanna from the Old Testament. Sosanna was accused of adultery by two Jewish judges, when she refused to give in to their solicitations. After that they both asked the death penalty for her. Sosanna prayed to God, Who sent Daniel to cross-examine the judges and reveal the plot. The theme of the representation was very popular at that time, because it expresses allegorically the triumph of the Church against the heresies which shook the Christian world in the 4th and 5th centuries.</string>
+    <string name="exhibitsFall13">Relief slab of a pseudo sarcophagus from a Christian tomb of the 11th-12th century from Thessaloniki. We miss the left half of the slab. The slab was re-used, as it is mentioned in the Hebrew inscription, engraved on the left part of it, in order to cover the tomb of Rabbi Yitzhak Sarouk, who died on Monday, 9 of the month Chesvan, in the year 5375 for the Jews, namely in November 1615.
+The decoration includes two crosses on pedestals (the horizontal antennas of which have been destroyed, to be used for Jewish burial). The cross on the right is Latin and is surrounded by vines that grow from its base. An eagle on the right and a smaller bird on the left, pecking berries of grapes, step on the vine. The cross on the left is a Resurrection cross (with a double horizontal antenna) and a cypress grows from its base.
+</string>
+    <string name="exhibitsFall14">Copy of Christos Lefakis of 1950-1960 from a fresco found inside an Early Christian tomb (4th c.) outside the west walls of Thessaloniki in Settlement Tyroloe. It depicts two colorful birds, framing a fruit basket. The background is decorated with flowers. The scene refers to a heavenly landscape, suggesting the afterlife. Thanks to copies of Christos Lefakis we know the decoration of many funerary mural paintings which have not survived, as was the case</string>
+    <string name="exhibitsFall15">Book of ecclesiastical music (Heirmologion) which comprises formulas, according to which chants and hymns of saints are structured. It is dated back to the 17th c.</string>
 
     <string name="exhibitsFall1_name">Oinochoe</string>
-    <string name="exhibitsFall2_name">Lamp</string>
+    <string name="exhibitsFall2_name">Oil lamp</string>
     <string name="exhibitsFall3_name">Clay whistle</string>
-    <string name="exhibitsFall4_name">Wooden picture</string>
+    <string name="exhibitsFall4_name">Wooden icon</string>
     <string name="exhibitsFall5_name">Glass unguentarium</string>
     <string name="exhibitsFall6_name">Glass bracelet</string>
-    <string name="exhibitsFall7_name">Archieratic garment</string>
-    <string name="exhibitsFall8_name">Golden coin</string>
-    <string name="exhibitsFall9_name">Leaden seal</string>
-    <string name="exhibitsFall10_name">Colored copperplate</string>
-    <string name="exhibitsFall11_name">Marble inlay</string>
-    <string name="exhibitsFall12_name">Wall painting of a vaulted tomb</string>
-    <string name="exhibitsFall13_name">Marble embossed</string>
-    <string name="exhibitsFall14_name">Colorful mural</string>
-    <string name="exhibitsFall15_name">Byzantine music book</string>
-    <string name="looking_for">We are looking for:  </string>
+    <string name="exhibitsFall7_name">Archiepiscopal sakkos</string>
+    <string name="exhibitsFall8_name">Gold coin</string>
+    <string name="exhibitsFall9_name">Lead seal</string>
+    <string name="exhibitsFall10_name">Colored engraving</string>
+    <string name="exhibitsFall11_name">Opus sectile</string>
+    <string name="exhibitsFall12_name">Mural painting of a vaulted tomb</string>
+    <string name="exhibitsFall13_name">Marble slab</string>
+    <string name="exhibitsFall14_name">Colorful mural painting</string>
+    <string name="exhibitsFall15_name">Book of Byzantine music</string>
+    <string name="looking_for">We are searching for:  </string>
 
     <string name="title_activity_connect_wires">connect_wires</string>
     <string name="num_clicks">Number of changes:</string>
@@ -617,10 +717,10 @@
 
     <string name="title_activity_dowload_qrcode" translatable="false">DowloadQRCodeActivity</string>
 
-    <string name="download_qrcodes_info">Using the link below you can find the exhbibits images, their codes and QR codes. \n
-        For everyone who want to: \n
-        - Go on the museum adventure once again \n
-        - Train for their museum adventure \n
+    <string name="download_qrcodes_info">In the following link you can find the photos of the exhibits, their codes and their QR Codes.\n
+        For those who want to: \n
+        - To relive the adventure in the museum \n
+        - To train for their adventure in the museum \n
         </string>
 
     <string name="incorrectObjectCode">Incorrect Password! \n Please try again</string>
