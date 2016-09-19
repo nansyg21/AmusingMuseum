@@ -72,6 +72,12 @@ public class FinalScreen extends FragmentActivity {
     ImageView downloadBtView;
     ImageView exitView;
 
+    ImageView totalScoreView;
+    ImageView downloadSolution;
+    ImageView shareView;
+    ImageView exitViewTmp;
+    ImageView congratsView;
+
     // share button
     private ShareButton shareButton;
     //image
@@ -143,6 +149,30 @@ public class FinalScreen extends FragmentActivity {
         });*/
 
         // ------------------ Code in order to hide the navigation bar -------------------- //
+
+        totalScoreView=(ImageView)findViewById(R.id.totalScore);
+        downloadSolution=(ImageView)findViewById(R.id.downloadTextImg);
+        shareView=(ImageView)findViewById(R.id.shareTextImg);
+        exitViewTmp=(ImageView)findViewById(R.id.exitTextImg);
+        congratsView=(ImageView)findViewById(R.id.congratsTxt);
+
+
+        if(menu.lang.equals("uk")) {
+            totalScoreView.setImageResource(R.drawable.total_score_en);
+            downloadSolution.setImageResource(R.drawable.solutions_en);
+            shareView.setImageResource(R.drawable.share_en);
+            exitViewTmp.setImageResource(R.drawable.exit_en);
+            congratsView.setImageResource(R.drawable.congrats_msg_en);
+        }
+        else
+        {
+            totalScoreView.setImageResource(R.drawable.total_score_greek);
+            downloadSolution.setImageResource(R.drawable.download_solution_greek);
+            shareView.setImageResource(R.drawable.share_greek);
+            exitViewTmp.setImageResource(R.drawable.exit_greek);
+            congratsView.setImageResource(R.drawable.congrats_msg_greek);
+        }
+
         menu.hideNavBar(this.getWindow());
 
         TextView scoreTxtView = (TextView) findViewById(R.id.scoreInfoTxt);
