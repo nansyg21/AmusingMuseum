@@ -8,8 +8,8 @@ android {
         applicationId 'com.Anaptixis.AmusingMuseum'
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 4
-        versionName "2.2"
+        versionCode 6
+        versionName "2.4"
     }
     buildTypes {
         release {
